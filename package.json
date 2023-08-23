@@ -1,0 +1,39 @@
+{
+  "name": "connect",
+  "version": "1.0.0",
+  "description": "connect best app",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon dist/server.js",
+    "dev": "ts-node-dev backend/server.ts",
+    "prettier": "npx prettier --write .",
+    "build": "tsc"
+  },
+  "author": "Giorgi khmaladze",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cloudinary": "^1.40.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "joi": "^17.9.2",
+    "jsonwebtoken": "^9.0.1",
+    "mongoose": "^7.4.4",
+    "multer": "^1.4.5-lts.1",
+    "winston": "^3.10.0"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/body-parser": "^1.19.2",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/joi": "^17.2.3",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/mongoose": "^5.11.97",
+    "@types/multer": "^1.4.7",
+    "nodemon": "^3.0.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  }
+}

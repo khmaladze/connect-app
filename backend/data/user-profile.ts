@@ -1,0 +1,76 @@
+const languages = [
+  "english",
+  "spanish",
+  "portuguese",
+  "french",
+  "italian",
+  "german",
+  "dutch",
+  "swedish",
+  "norwegian",
+  "danish",
+  "icelandic",
+  "finnish",
+  "estonian",
+  "latvian",
+  "lithuanian",
+  "russian",
+  "ukrainian",
+  "belarusian",
+  "polish",
+  "czech",
+  "slovak",
+  "slovenian",
+  "serbian",
+  "croatian",
+  "bosnian",
+  "bulgarian",
+  "romanian",
+  "hungarian",
+  "turkish",
+  "greek",
+  "chinese",
+  "japanese",
+  "korean",
+];
+
+const zodiac = [
+  "aries",
+  "taurus",
+  "gemini",
+  "cancer",
+  "leo",
+  "virgo",
+  "libra",
+  "scorpio",
+  "sagittarius",
+  "capricorn",
+  "aquarius",
+  "pisces",
+];
+
+const education = [
+  "high school",
+  "college",
+  "bachelor",
+  "master",
+  "doctorate",
+  "university",
+  "drop out",
+  "other",
+];
+
+const passions = [
+  "sports",
+  "travel",
+  "enterpreneurship",
+  "walking",
+  "start ups",
+];
+
+export const userProfileData = {
+  languages,
+  zodiac,
+  education,
+  passions,
+};
