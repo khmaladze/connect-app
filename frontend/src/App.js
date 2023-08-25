@@ -112,13 +112,11 @@ const Routing = () => {
             <Route
               path="/login"
               exact
-              element={<LoginPage onClick={customFunctions} />}
+              element={
+                <LoginPage onClick={customFunctions.customSetIsAuthList} />
+              }
             />
-            <Route
-              path="/register"
-              exact
-              element={<RegisterPage onClick={customFunctions} />}
-            />
+            <Route path="/register" exact element={<RegisterPage />} />
           </Fragment>
         )}
       </Routes>
