@@ -9,36 +9,6 @@ export const WelcomePageMain = styled.div`
   flex-direction: column;
 `;
 
-export const WelcomePageNavbar = styled.div`
-  height: 110px;
-  width: 70%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const WelcomePageLogo = styled.div`
-  height: 50px;
-  font-size: 32px;
-  color: #001aff;
-  cursor: pointer;
-`;
-
-export const WelcomePageNavbarButtons = styled.div`
-  width: 350px;
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-export const WelcomePageNavbarButton = styled.div`
-  color: #000000;
-  font-size: 28px;
-  cursor: pointer;
-`;
-
 export const WelcomePageMovingText = styled.div`
   margin-top: 10%;
   margin-bottom: 50px;

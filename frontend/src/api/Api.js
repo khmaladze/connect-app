@@ -38,11 +38,9 @@ export const apiPostRequest = async (request, postData, token) => {
         : ""
     );
     const response = res.data;
-    if (response) {
-      if (response.success) {
-        toast.success(response.message);
-        return res.data;
-      }
+    if (response?.success) {
+      toast.success(response.message);
+      return res.data;
     }
   } catch (error) {
     if (error && error.response && error.response.data) {

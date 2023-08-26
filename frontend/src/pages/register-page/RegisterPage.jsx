@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import {
   RegisterPageForm,
   RegisterPageFormContainer,
-  RegisterPageLogo,
   RegisterPageMain,
-  RegisterPageNavbar,
-  RegisterPageNavbarButton,
-  RegisterPageNavbarButtons,
 } from "./RegisterPageStyle";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -20,6 +16,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { toast } from "react-toastify";
+import WelcomePageNavbar from "../../components/navbar/WelcomePageNavbar";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -63,22 +60,14 @@ const RegisterPage = () => {
       API_URL_REQUEST.registerRequestUrl,
       postData
     );
-    if (response.success) {
+    if (response?.success) {
       navigate("/");
     }
   };
 
   return (
     <RegisterPageMain>
-      <RegisterPageNavbar>
-        <Link to={"/"}>
-          <RegisterPageLogo>CONNECT</RegisterPageLogo>
-        </Link>
-        <RegisterPageNavbarButtons>
-          <RegisterPageNavbarButton>ABOUT</RegisterPageNavbarButton>
-          <RegisterPageNavbarButton>INSTRUCTIONS</RegisterPageNavbarButton>
-        </RegisterPageNavbarButtons>
-      </RegisterPageNavbar>
+      <WelcomePageNavbar />
       <RegisterPageFormContainer>
         <RegisterPageForm>
           <Typography mb={2} component="h1" variant="h1">

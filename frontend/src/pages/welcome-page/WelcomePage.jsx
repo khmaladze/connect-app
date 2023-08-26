@@ -1,27 +1,15 @@
 import React from "react";
-import {
-  WelcomePageMain,
-  WelcomePageLogo,
-  WelcomePageMovingText,
-  WelcomePageNavbar,
-  WelcomePageNavbarButton,
-  WelcomePageNavbarButtons,
-} from "./WelcomePageStyle";
+import { WelcomePageMain, WelcomePageMovingText } from "./WelcomePageStyle";
 import Typewriter from "typewriter-effect";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
+import WelcomePageNavbar from "../../components/navbar/WelcomePageNavbar";
 
 const WelcomePage = () => {
   return (
     <WelcomePageMain>
-      <WelcomePageNavbar>
-        <WelcomePageLogo>CONNECT</WelcomePageLogo>
-        <WelcomePageNavbarButtons>
-          <WelcomePageNavbarButton>ABOUT</WelcomePageNavbarButton>
-          <WelcomePageNavbarButton>INSTRUCTIONS</WelcomePageNavbarButton>
-        </WelcomePageNavbarButtons>
-      </WelcomePageNavbar>
+      <WelcomePageNavbar />
       <WelcomePageMovingText>
         <div className="welcome__text">
           <Typewriter

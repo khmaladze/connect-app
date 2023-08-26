@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import {
   LoginPageForm,
   LoginPageFormContainer,
-  LoginPageLogo,
   LoginPageMain,
-  LoginPageNavbar,
-  LoginPageNavbarButton,
-  LoginPageNavbarButtons,
 } from "./LoginPageStyle";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -23,15 +19,14 @@ import { API_URL_REQUEST } from "../../config/config";
 import { logIn } from "../../store/auth";
 import { userLogin } from "../../store/isLogIn";
 import { toast } from "react-toastify";
+import WelcomePageNavbar from "../../components/navbar/WelcomePageNavbar";
 
-const LoginPage = (onClick) => {
+const LoginPage = ({ onClick }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  console.log({ onClick });
 
   const loginUserHandle = async () => {
     if (!email || !password) {
@@ -48,7 +43,7 @@ const LoginPage = (onClick) => {
       postData
     );
 
-    if (response.success) {
+    if (response?.success) {
       const responseData = response.data;
       const getUser = await responseData.user;
       const getUserToken = await responseData.token;
@@ -70,15 +65,7 @@ const LoginPage = (onClick) => {
 
   return (
     <LoginPageMain>
-      <LoginPageNavbar>
-        <Link to={"/"}>
-          <LoginPageLogo>CONNECT</LoginPageLogo>
-        </Link>
-        <LoginPageNavbarButtons>
-          <LoginPageNavbarButton>ABOUT</LoginPageNavbarButton>
-          <LoginPageNavbarButton>INSTRUCTIONS</LoginPageNavbarButton>
-        </LoginPageNavbarButtons>
-      </LoginPageNavbar>
+      <WelcomePageNavbar />
       <LoginPageFormContainer>
         <LoginPageForm>
           <Typography mb={2} component="h1" variant="h1">
