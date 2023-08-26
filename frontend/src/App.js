@@ -8,9 +8,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 // import ProfilePage from "./pages/profile-page/ProfilePage";
 // import Navbar from "./components/navbar/Navbar";
-// import { ToastContainer } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-// import { Modal } from "antd";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -78,13 +75,12 @@ const Routing = () => {
   return (
     <Fragment>
       <ToastContainer />
-      {/* <ToastContainer />
-      {isAuth && (
+      {/* {isAuth && (
         <Fragment>
           <Navbar onClick={setIsAuth} user={user} />
           <div className="navbar__bottom"></div>
         </Fragment>
-      )} */}
+      )}  */}
       <Routes>
         {/* {isAuth && (
           <Fragment>

@@ -76,13 +76,13 @@ const RegisterPage = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="given-name"
-                name="firstName"
+                autoFocus
                 required
                 fullWidth
+                autoComplete="given-name"
+                name="firstName"
                 id="firstName"
                 label="First Name"
-                autoFocus
                 value={firstname}
                 onChange={(e) => setFirstname(e.target.value)}
               />
