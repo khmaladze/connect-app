@@ -8,7 +8,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Navbar from "./components/navbar/Navbar";
-// import Navbar from "./components/navbar/Navbar";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
