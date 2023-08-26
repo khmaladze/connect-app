@@ -38,3 +38,7 @@ a {
   text-align: center;
   padding: 2.5px;
 }
+
+.navbar__bottom{
+  height: 110px;
+}
