@@ -6,7 +6,7 @@ import LoginPage from "./pages/login-page/LoginPage";
 import RegisterPage from "./pages/register-page/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import ProfilePage from "./pages/profile-page/ProfilePage";
+import ProfilePage from "./pages/profile-page/ProfilePage";
 // import Navbar from "./components/navbar/Navbar";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
@@ -70,6 +70,15 @@ const Routing = () => {
         navigate("/");
       }
     }
+
+    if (isAuth) {
+      if (window.location.pathname == "/login") {
+        navigate("/profile");
+      }
+      if (window.location.pathname == "/register") {
+        navigate("/profile");
+      }
+    }
   }, [isAuth]);
 
   return (
@@ -82,26 +91,26 @@ const Routing = () => {
         </Fragment>
       )}  */}
       <Routes>
-        {/* {isAuth && (
+        {isAuth && (
           <Fragment>
             <Route
               path="/profile"
               exact
               element={<ProfilePage user={user} onClick={customFunctions} />}
             />
-            <Route
+            {/* <Route
               path="/settings"
               exact
               element={<SettingsPage user={user} onClick={customFunctions} />}
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/"
               exact
               element={<MainPage user={user} onClick={customFunctions} />}
             />
-            <Route path="*" exact element={<NotFound />} />
+            <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
-        )} */}
+        )}
         {isAuth === false && (
           <Fragment>
             <Route path="/" exact element={<WelcomePage />} />
