@@ -8,10 +8,12 @@ import Menu from "@mui/material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import manImage from "../../images/man-profile.jpg";
-import girlImage from "../../images/girl-profile.jpg";
 import { useDispatch } from "react-redux";
-import { apiPutRequest, clearUserAuthLocalstorage } from "../../api/Api";
+import {
+  apiPutRequest,
+  clearUserAuthLocalstorage,
+  userProfileImage,
+} from "../../api/Api";
 import { API_URL_REQUEST } from "../../config/config";
 import { logOut } from "../../store/auth";
 
@@ -57,7 +59,7 @@ const Navbar = ({ user, onClick }) => {
               <Avatar
                 style={{ height: "55px", width: "55px" }}
                 alt="user"
-                src={user.gender === "male" ? manImage : girlImage}
+                src={userProfileImage(user.gender, user.profileImage)}
               />
             </IconButton>
           </Tooltip>
@@ -79,7 +81,7 @@ const Navbar = ({ user, onClick }) => {
           >
             {settings.map((setting) => (
               <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                {setting == "logout" ? (
+                {setting === "logout" ? (
                   <div
                     onClick={logOutHandle}
                     style={{
