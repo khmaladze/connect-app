@@ -40,7 +40,7 @@ const WelcomePage = () => {
               fontFamily: "'Raleway', sans-serif",
             }}
           >
-            LOG IN
+            LOGIN
           </Button>
         </Link>
         <div style={{ width: "70px" }}></div>
