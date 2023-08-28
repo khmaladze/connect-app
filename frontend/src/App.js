@@ -57,10 +57,10 @@ const Routing = () => {
     }
 
     if (isAuth === false) {
-      if (window.location.pathname == "/login") {
+      if (window.location.pathname === "/login") {
         navigate("/login");
       }
-      if (window.location.pathname == "/register") {
+      if (window.location.pathname === "/register") {
         navigate("/register");
       }
       if (
@@ -72,10 +72,10 @@ const Routing = () => {
     }
 
     if (isAuth) {
-      if (window.location.pathname == "/login") {
+      if (window.location.pathname === "/login") {
         navigate("/profile");
       }
-      if (window.location.pathname == "/register") {
+      if (window.location.pathname === "/register") {
         navigate("/profile");
       }
     }
