@@ -12,6 +12,7 @@ import {
   userProfileImage,
 } from "../../api/Api";
 import { API_URL_REQUEST } from "../../config/config";
+import UserPost from "../../components/post/UserPost";
 
 const ProfilePage = ({ user }) => {
   const [userProfileData, setUserProfileData] = useState("");
@@ -59,6 +60,7 @@ const ProfilePage = ({ user }) => {
           )}
         </ProfileDetails>
       </ProfileInfoContainer>
+      <UserPost />
     </ProfilePageMain>
   );
 };
