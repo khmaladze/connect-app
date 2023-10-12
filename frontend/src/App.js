@@ -8,6 +8,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "./pages/profile-page/ProfilePage";
 import Navbar from "./components/navbar/Navbar";
+import MainPage from "./pages/main-page/MainPage";
+import PageNavigator from "./components/page-navigator/PageNavigator";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -88,6 +90,12 @@ const Routing = () => {
         <Fragment>
           <Navbar onClick={setIsAuth} user={user} />
           <div className="navbar__bottom"></div>
+          {window.location.pathname !== "/profile" && (
+            <>
+              <PageNavigator />
+              <div className="navbar__bottom"></div>
+            </>
+          )}
         </Fragment>
       )}
       <Routes>
@@ -103,12 +111,12 @@ const Routing = () => {
               exact
               element={<SettingsPage user={user} onClick={customFunctions} />}
             /> */}
-            {/* <Route
+            <Route
               path="/"
               exact
               element={<MainPage user={user} onClick={customFunctions} />}
             />
-            <Route path="*" exact element={<NotFound />} /> */}
+            {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
         )}
         {isAuth === false && (
