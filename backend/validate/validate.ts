@@ -32,15 +32,25 @@ const detailMessage = () => {
   if (!isValidEnv()) {
     console.log(envValidMessages.isValidEnvMessage);
     console.log("{");
-    if (process.env.NODE_ENV == "") console.log(envValidMessages.node_env);
-    if (process.env.PORT == "") console.log(envValidMessages.port);
-    if (process.env.JWT_TOKEN == "") console.log(envValidMessages.jwt_token);
-    if (process.env.MONGODB == "") console.log(envValidMessages.mongodb);
-    if (process.env.CLOUDINARY_CLOUD_NAME == "")
+    if (process.env.NODE_ENV == "" || !process.env.NODE_ENV)
+      console.log(envValidMessages.node_env);
+    if (process.env.PORT == "" || !process.env.PORT)
+      console.log(envValidMessages.port);
+    if (process.env.JWT_TOKEN == "" || !process.env.JWT_TOKEN)
+      console.log(envValidMessages.jwt_token);
+    if (process.env.MONGODB == "" || !process.env.MONGODB)
+      console.log(envValidMessages.mongodb);
+    if (
+      process.env.CLOUDINARY_CLOUD_NAME == "" ||
+      !process.env.CLOUDINARY_CLOUD_NAME
+    )
       console.log(envValidMessages.cloudinary_cloud_name);
-    if (process.env.CLOUDINARY_API_KEY == "")
+    if (process.env.CLOUDINARY_API_KEY == "" || !process.env.CLOUDINARY_API_KEY)
       console.log(envValidMessages.cloudinary_api_key);
-    if (process.env.CLOUDINARY_API_SECRET == "")
+    if (
+      process.env.CLOUDINARY_API_SECRET == "" ||
+      !process.env.CLOUDINARY_API_SECRET
+    )
       console.log(envValidMessages.cloudinary_api_secret);
     console.log("}");
   }
