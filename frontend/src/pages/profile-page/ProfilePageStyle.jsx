@@ -36,4 +36,6 @@ export const ProfileDetails = styled.div`
   border-radius: 20px;
   padding: 30px;
   font-size: 20px;
+  display: flex;
+  align-items: center;
 `;

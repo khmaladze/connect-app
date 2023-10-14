@@ -48,16 +48,18 @@ const ProfilePage = ({ user }) => {
           image={userProfileImage(user.gender, user.profileImage)}
         />
         <ProfileDetails>
-          <h2>{user.firstname + " " + user.lastname}</h2>
-          <h3>username: {user.username}</h3>
-          {userProfileData && (
-            <Fragment>
-              <h3>languages: {userProfileData?.languages[0]}</h3>
-              <h3>zodiac: {userProfileData?.zodiac}</h3>
-              <h3>degree: {userProfileData?.education}</h3>
-              <h3>passion: {userProfileData?.passions[0]}</h3>
-            </Fragment>
-          )}
+          <div>
+            <h2>{user.firstname + " " + user.lastname}</h2>
+            <h3>username {user.username}</h3>
+            {userProfileData && (
+              <Fragment>
+                <h3>languages: {userProfileData?.languages[0]}</h3>
+                <h3>zodiac: {userProfileData?.zodiac}</h3>
+                <h3>degree: {userProfileData?.education}</h3>
+                <h3>passion: {userProfileData?.passions[0]}</h3>
+              </Fragment>
+            )}
+          </div>
         </ProfileDetails>
       </ProfileInfoContainer>
       <UserPost />
