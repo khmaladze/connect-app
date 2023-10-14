@@ -27,6 +27,9 @@ export const ProfileImage = styled.div`
   background-repeat: no-repeat;
   border-radius: 50%;
   border: 10px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: end;
 `;
 
 export const ProfileDetails = styled.div`
@@ -37,5 +40,6 @@ export const ProfileDetails = styled.div`
   padding: 30px;
   font-size: 20px;
   display: flex;
+  justify-content: center;
   align-items: center;
 `;
