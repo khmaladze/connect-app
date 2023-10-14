@@ -9,6 +9,7 @@ export const NavigationMain = styled.div`
   align-items: center;
   /* position: fixed; */
   z-index: 1;
+  background: white;
 `;
 
 export const NavigationContainer = styled.div`
