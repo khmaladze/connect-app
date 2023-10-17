@@ -91,25 +91,26 @@ const ProfilePage = ({ user }) => {
   const updateUserInfoHandle = async () => {
     if (!selectLanguage || !selectPassion || !selectEducation) {
       toast.error("please add all the fields");
-    } else {
-      const postData = {
-        languages: [selectLanguage],
-        passions: [selectPassion],
-        education: selectEducation,
-      };
+      return;
+    }
 
-      const updateuserprofileinfodataRequestUrl =
-        API_URL.user.user_profile.update_user_profile_info_data;
-      const response = await apiPutRequest(
-        updateuserprofileinfodataRequestUrl,
-        postData,
-        user.token
-      );
+    const postData = {
+      languages: [selectLanguage],
+      passions: [selectPassion],
+      education: selectEducation,
+    };
 
-      if (response?.success) {
-        localStorage.removeItem(userLocalstorage.auth.userProfileInfoData);
-        window.location.reload();
-      }
+    const updateuserprofileinfodataRequestUrl =
+      API_URL.user.user_profile.update_user_profile_info_data;
+    const response = await apiPutRequest(
+      updateuserprofileinfodataRequestUrl,
+      postData,
+      user.token
+    );
+
+    if (response?.success) {
+      localStorage.removeItem(userLocalstorage.auth.userProfileInfoData);
+      window.location.reload();
     }
   };
 

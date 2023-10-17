@@ -31,6 +31,7 @@ const LoginPage = ({ onClick }) => {
   const loginUserHandle = async () => {
     if (!email || !password) {
       toast.error("please add all the fields");
+      return;
     }
 
     const postData = {
