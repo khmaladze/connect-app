@@ -1,4 +1,4 @@
-const languages = [
+export const languages = [
   "english",
   "spanish",
   "portuguese",
@@ -34,7 +34,7 @@ const languages = [
   "korean",
 ];
 
-const zodiac = [
+export const zodiac = [
   "aries",
   "taurus",
   "gemini",
@@ -49,7 +49,7 @@ const zodiac = [
   "pisces",
 ];
 
-const education = [
+export const education = [
   "high school",
   "college",
   "bachelor",
@@ -60,17 +60,10 @@ const education = [
   "other",
 ];
 
-const passions = [
+export const passions = [
   "sports",
   "travel",
   "enterpreneurship",
   "walking",
   "start ups",
 ];
-
-export const userProfileData = {
-  languages,
-  zodiac,
-  education,
-  passions,
-};
