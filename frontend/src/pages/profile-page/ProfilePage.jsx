@@ -53,9 +53,15 @@ const ProfilePage = ({ user }) => {
     ) || null;
 
   const [image, setImage] = useState();
-  const [selectLanguage, setselectLanguage] = useState("");
-  const [selectEducation, setselectEducation] = useState("");
-  const [selectPassion, setselectPassion] = useState("");
+  const [selectLanguage, setselectLanguage] = useState(
+    userProfileInfoData ? userProfileInfoData.languages[0] : ""
+  );
+  const [selectEducation, setselectEducation] = useState(
+    userProfileInfoData ? userProfileInfoData.education : ""
+  );
+  const [selectPassion, setselectPassion] = useState(
+    userProfileInfoData ? userProfileInfoData.passions[0] : ""
+  );
 
   const updateuserprofileimageRequestUrl =
     API_URL.user.user_profile.update_profile_image;
