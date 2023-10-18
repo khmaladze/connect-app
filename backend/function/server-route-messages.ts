@@ -11,7 +11,7 @@ export const registerUserMessage = {
 };
 
 export const loginUserMessage = {
-  incorrect_email: "incorrect email",
+  incorrect_email: "email not found, incorrect email",
   incorrect_password: "incorrect password",
   auth_user_login: "user login success",
 };
