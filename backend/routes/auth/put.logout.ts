@@ -10,6 +10,52 @@ import {
   userLogOutMessage,
 } from "../../function/server-route-messages";
 
+/**
+ * @swagger
+ * /api/user/auth/logout:
+ *   put:
+ *     summary: Log out a user
+ *     description: Log out a user by providing an authentication token in the request headers.
+ *     tags:
+ *       - Auth
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The authentication token. Use the format "Bearer jwt_token".
+ *     responses:
+ *       200:
+ *         description: User log out successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *             example:
+ *               success: true
+ *               message: "user log out success"
+ *       401:
+ *         description: Unauthorized or invalid token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *             example:
+ *               success: false
+ *               message: "Unauthorized"
+ */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     let token: any = "";
