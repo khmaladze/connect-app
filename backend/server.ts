@@ -7,6 +7,8 @@ import authRoutes from "./routes/auth/index";
 import userProfileRoutes from "./routes/user-profile/index";
 import userSettingsRoutes from "./routes/settings/index";
 import { v2 as cloudinary } from "cloudinary";
+import swaggerSpec from "./swagger";
+import swaggerUi from "swagger-ui-express";
 
 // Check if environment variables are provided
 if (isValidEnv()) {
@@ -34,6 +36,7 @@ if (isValidEnv()) {
   app.use(`${config_api_user}/auth`, authRoutes);
   app.use(`${config_api_user}/profile`, userProfileRoutes);
   app.use(`${config_api_user}/settings`, userSettingsRoutes);
+  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // Start the server
   app.listen(config.port, () => {

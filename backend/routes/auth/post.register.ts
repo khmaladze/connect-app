@@ -11,6 +11,95 @@ import {
 import { getZodiacSign, isValidDate } from "../../function/server-user-profile";
 import { UserProfile } from "../../models/user-profile-model";
 
+// Documentation
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     RegisterUser:
+ *       type: object
+ *       properties:
+ *         firstname:
+ *           type: string
+ *           description: The user's first name.
+ *           example: John
+ *         lastname:
+ *           type: string
+ *           description: The user's last name.
+ *           example: Doe
+ *         username:
+ *           type: string
+ *           description: The user's username.
+ *           example: johndoe
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: The user's email address.
+ *           example: john.doe@example.com
+ *         gender:
+ *           type: string
+ *           enum:
+ *             - male
+ *             - female
+ *             - other
+ *           description: The user's gender.
+ *           example: male
+ *         birthDay:
+ *           type: number
+ *           description: The day of the user's birth.
+ *           example: 1
+ *         birthMonth:
+ *           type: number
+ *           description: The month of the user's birth.
+ *           example: 1
+ *         birthYear:
+ *           type: number
+ *           description: The year of the user's birth.
+ *           example: 2000
+ *         password:
+ *           type: string
+ *           description: The user's password.
+ *           example: 1234567890
+ *         confirmPassword:
+ *           type: string
+ *           description: The confirmation of the user's password.
+ *           example: 1234567890
+ *
+ * @swagger
+ * /api/user/auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Register a new user with the provided details.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/RegisterUser'
+ *     responses:
+ *       200:
+ *         description: User registration successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/RegisterUser'
+ *       400:
+ *         description: Bad request or user already exists.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *             example:
+ *               success: false
+ *               message: "Error message here"
+ *     tags:
+ *       - Auth
+ */
 // Joi schema for user registration
 const registrationSchema = Joi.object({
   firstname: Joi.string().trim().lowercase().required().min(2).max(50),

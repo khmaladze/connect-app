@@ -13,6 +13,90 @@ import {
 import { getDateAfter7Days } from "../../function/server-user-profile";
 import config from "../../config/config";
 
+// Documentation
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     LoginResponseUser:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         firstname:
+ *           type: string
+ *         lastname:
+ *           type: string
+ *         username:
+ *           type: string
+ *         gender:
+ *           type: string
+ *         profileImage:
+ *           type: string
+ *         birthDay:
+ *           type: number
+ *         birthMonth:
+ *           type: number
+ *         birthYear:
+ *           type: number
+ *         email:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *         updatedAt:
+ *           type: string
+ *         __v:
+ *           type: number
+ *     LoginResponseData:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *         message:
+ *           type: string
+ *         data:
+ *           type: object
+ *           properties:
+ *             token:
+ *               type: string
+ *             user:
+ *               $ref: '#/components/schemas/LoginResponseUser'
+ *     LoginRequest:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           format: email
+ *         password:
+ *           type: string
+ *
+ * @swagger
+ * /api/user/auth/login:
+ *   post:
+ *     summary: Log in a user
+ *     description: Log in a user by providing email and password.
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/LoginRequest'
+ *     responses:
+ *       200:
+ *         description: User login successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/LoginResponseData'
+ *       400:
+ *         description: Bad request or incorrect email/password.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/LoginResponseData'
+ */
 // Joi schema for user registration
 const loginSchema = Joi.object({
   email: Joi.string().email().required(),
