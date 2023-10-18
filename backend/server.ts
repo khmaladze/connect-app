@@ -28,12 +28,12 @@ if (isValidEnv()) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-  const userRoute = config.backend_api.user;
+  const config_api_user: string = "/api/user";
 
   // Define routes
-  app.use(userRoute.user_auth.path, authRoutes);
-  app.use(userRoute.user_profile.path, userProfileRoutes);
-  app.use(userRoute.user_settings.path, userSettingsRoutes);
+  app.use(`${config_api_user}/auth`, authRoutes);
+  app.use(`${config_api_user}/profile`, userProfileRoutes);
+  app.use(`${config_api_user}/settings`, userSettingsRoutes);
 
   // Start the server
   app.listen(config.port, () => {

@@ -15,6 +15,7 @@ const config_user_profile = {
   update_profile_image: `${config_api_user_profile}/update_profile_image`,
   update_profile_background_image: `${config_api_user_profile}/update_profile_background_image`,
   user_post: `${config_api_user_profile}/user_post`,
+  user_post: `${config_api_user_profile}/get_post`,
 };
 
 const config_user_settings = {
@@ -62,6 +63,7 @@ const updateUserProfileBackgroundImageRequestUrl =
 const acticitylogRequestUrl = API_URL.user.user_settings.user_active_log;
 const updateUserPasswordRequestUrl =
   API_URL.user.user_settings.update_user_password;
+const addpost = API_URL.user.user_profile.user_post;
 
 export const API_URL_REQUEST = {
   loginRequestUrl: loginRequestUrl,
@@ -74,4 +76,5 @@ export const API_URL_REQUEST = {
     updateUserProfileBackgroundImageRequestUrl,
   acticitylogRequestUrl: acticitylogRequestUrl,
   updateUserPasswordRequestUrl: updateUserPasswordRequestUrl,
+  addpost: addpost,
 };
