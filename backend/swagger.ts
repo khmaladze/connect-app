@@ -17,7 +17,7 @@ const options = {
     ],
   },
   // Recursively find all .ts files in the specified directory
-  apis: getRouteFiles(path.join(__dirname, "routes", "auth")),
+  apis: getRouteFiles(path.join(__dirname, "routes", ".")),
 };
 
 function getRouteFiles(dir: any) {

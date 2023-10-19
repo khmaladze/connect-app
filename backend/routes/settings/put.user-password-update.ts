@@ -1,5 +1,4 @@
 import { Response } from "express";
-import userActiveModel from "../../models/user-active-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import { CustomRequest } from "../../middleware/user-authorization";
@@ -11,6 +10,63 @@ import { User } from "../../models/user-model";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
 
+// Documentation
+/**
+ * @swagger
+ * /api/user/settings/update_password:
+ *   put:
+ *     summary: Update user password
+ *     description: Update the user's password.
+ *     tags:
+ *       - Settings
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The authentication token. Use the format "Bearer jwt_token".
+ *       - in: body
+ *         name: body
+ *         description: The new password and confirmPassword.
+ *         required: true
+ *         schema:
+ *           type: object
+ *           properties:
+ *             password:
+ *               type: string
+ *               minLength: 10
+ *               maxLength: 100
+ *             confirmPassword:
+ *               type: string
+ *               valid: Joi.ref("password")
+ *     responses:
+ *       200:
+ *         description: Update user password successful.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *       401:
+ *         description: Unauthorized or invalid token.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *             example:
+ *               success: false
+ *               message: "Unauthorized"
+ */
 // Joi schema for user passwordUpdate
 const passwordUpdateSchema = Joi.object({
   password: Joi.string().required().min(10).max(100),
