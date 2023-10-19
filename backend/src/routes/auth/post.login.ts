@@ -10,10 +10,17 @@ import {
   apiSuccessStatusMessage,
   loginUserMessage,
 } from "../../function/server-route-messages";
-import { getDateAfter7Days } from "../../function/server-user-profile";
 import config from "../../../../config/config";
+import { getDateAfter7Days } from "../../function/server-user-profile";
 
-// Documentation
+const MIN_PASSWORD_LENGTH = 10;
+
+// Joi schema for user login
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
+});
+
 /**
  * @swagger
  * components:
@@ -97,21 +104,15 @@ import config from "../../../../config/config";
  *             schema:
  *               $ref: '#/components/schemas/LoginResponseData'
  */
-// Joi schema for user registration
-const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(10).required(),
-});
-
 export const businessLogic = async (req: Request, res: Response) => {
   try {
-    // Validate request body
-    const schemaValidation = await loginSchema.validateAsync(req.body);
-
-    // Get data from request body
     const { email, password } = req.body;
 
-    let user: any = await User.findOne({ email });
+    // Validate request body
+    await loginSchema.validateAsync({ email, password });
+
+    // Find the user by email
+    const user: any = await User.findOne({ email });
     if (!user) {
       return custom_server_response(
         res,
@@ -137,11 +138,13 @@ export const businessLogic = async (req: Request, res: Response) => {
       expiresIn: "7d",
     });
 
-    // hide password for user
+    // Hide password for user
     user.password = undefined;
 
+    // Calculate JWT expiration date
     const user_jwt_expires = await getDateAfter7Days();
 
+    // Create a new userActiveModel
     await userActiveModel.create({
       jwt: token,
       user_id: user._id,
@@ -153,7 +156,7 @@ export const businessLogic = async (req: Request, res: Response) => {
       200,
       apiSuccessStatusMessage.success,
       loginUserMessage.auth_user_login,
-      { token: token, user: user }
+      { token, user }
     );
   } catch (error) {
     return customServerError(res, error);
