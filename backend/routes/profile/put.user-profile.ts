@@ -10,6 +10,67 @@ import { userProfileData } from "../../data/user-profile";
 import { UserProfile } from "../../models/user-profile-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 
+/**
+ * @swagger
+ * /api/user/profile/profile_info_data:
+ *   put:
+ *     summary: Update user profile information.
+ *     description: Update user profile data, including languages, education, and passions.
+ *     tags:
+ *       - Profile
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: Bearer jwt_token
+ *         description: The user's JWT token for authorization.
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               languages:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   enum:
+ *                     - english
+ *                     - ...  // Add other available languages here
+ *                 description: An array of languages.
+ *               education:
+ *                 type: string
+ *                 enum:
+ *                   - high school
+ *                   - ...  // Add other available education levels here
+ *                 description: The user's education level.
+ *               passions:
+ *                 type: array
+ *                 items:
+ *                   type: string
+ *                   enum:
+ *                     - travel
+ *                     - ...  // Add other available passions here
+ *                 description: An array of passions.
+ *     responses:
+ *       200:
+ *         description: User profile data updated successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates the success of the operation.
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating the result.
+ *     security:
+ *       - BearerAuth: []
+ */
 const userProfileSchema = Joi.object({
   languages: Joi.array().items(
     Joi.string().valid(...userProfileData.languages)

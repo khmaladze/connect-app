@@ -14,6 +14,95 @@ const postSchema = Joi.object({
   text: Joi.string().max(500),
 }).options({ abortEarly: false });
 
+/**
+ * @swagger
+ * /api/user/profile/add_post:
+ *   post:
+ *     summary: Add a new post to the user's profile.
+ *     description: Create a new post in the user's profile, including text and/or media.
+ *     tags:
+ *       - Profile
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: Bearer jwt_token
+ *         description: The user's JWT token for authorization.
+ *       - in: formData
+ *         name: text
+ *         schema:
+ *           type: string
+ *         description: The text content of the post (optional, max 500 characters).
+ *       - in: formData
+ *         name: image
+ *         type: file
+ *         description: An image file to upload with the post (optional).
+ *     requestBody:
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               text:
+ *                 type: string
+ *               image:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       200:
+ *         description: Post created successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates the success of the operation.
+ *                 message:
+ *                   type: string
+ *                   description: A message indicating the result.
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     text:
+ *                       type: string
+ *                       description: The text content of the post.
+ *                     media:
+ *                       type: array
+ *                       items:
+ *                         type: object
+ *                         properties:
+ *                           url:
+ *                             type: string
+ *                             description: The URL of the uploaded media (image).
+ *                           _id:
+ *                             type: string
+ *                             description: The unique ID of the media.
+ *                     author:
+ *                       type: object
+ *                       properties:
+ *                         _id:
+ *                           type: string
+ *                           description: The unique ID of the author.
+ *                     _id:
+ *                       type: string
+ *                       description: The unique ID of the post.
+ *                     createdAt:
+ *                       type: string
+ *                       description: The creation date of the post.
+ *                     updatedAt:
+ *                       type: string
+ *                       description: The last update date of the post.
+ *                     __v:
+ *                       type: integer
+ *                       description: The version of the post.
+ *     security:
+ *       - BearerAuth: []
+ */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
