@@ -4,7 +4,7 @@ import { detailMessage, isValidEnv } from "./validate/validate";
 import { connectDB } from "./config/database";
 import config from "./config/config";
 import authRoutes from "./routes/auth/index";
-import userProfileRoutes from "./routes/user-profile/index";
+import userProfileRoutes from "./routes/profile/index";
 import userSettingsRoutes from "./routes/settings/index";
 import { v2 as cloudinary } from "cloudinary";
 import swaggerSpec from "./swagger";
