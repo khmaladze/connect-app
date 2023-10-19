@@ -11,7 +11,28 @@ import {
 import { getZodiacSign, isValidDate } from "../../function/server-user-profile";
 import { UserProfile } from "../../models/user-profile-model";
 
-// Documentation
+// Joi schema for user registration
+const registrationSchema = Joi.object({
+  firstname: Joi.string().trim().lowercase().required().min(2).max(50),
+  lastname: Joi.string().trim().lowercase().required().min(2).max(50),
+  username: Joi.string().trim().lowercase().required().min(2).max(50),
+  gender: Joi.string().valid("male", "female", "other").lowercase().required(),
+  birthDay: Joi.number().required().min(1).max(31),
+  birthMonth: Joi.number().required().min(1).max(12),
+  birthYear: Joi.number().required().min(1900).max(new Date().getFullYear()),
+  email: Joi.string()
+    .email({
+      tlds: { allow: ["com"] },
+      minDomainSegments: 2,
+    })
+    .regex(/@(gmail|yahoo|outlook)\.com$/)
+    .trim()
+    .lowercase()
+    .required(),
+  password: Joi.string().required().min(10).max(100),
+  confirmPassword: Joi.string().required().valid(Joi.ref("password")),
+});
+
 /**
  * @swagger
  * components:
@@ -100,38 +121,12 @@ import { UserProfile } from "../../models/user-profile-model";
  *     tags:
  *       - Auth
  */
-// Joi schema for user registration
-const registrationSchema = Joi.object({
-  firstname: Joi.string().trim().lowercase().required().min(2).max(50),
-  lastname: Joi.string().trim().lowercase().required().min(2).max(50),
-  username: Joi.string().trim().lowercase().required().min(2).max(50),
-  gender: Joi.string()
-    .trim()
-    .valid("male", "female", "other")
-    .lowercase()
-    .required(),
-  birthDay: Joi.number().required().min(1).max(31),
-  birthMonth: Joi.number().required().min(1).max(12),
-  birthYear: Joi.number().required().min(1900).max(new Date().getFullYear()),
-  email: Joi.string()
-    .email({
-      tlds: { allow: ["com"] },
-      minDomainSegments: 2,
-    })
-    .regex(/@(gmail|yahoo|outlook)\.com$/)
-    .trim()
-    .lowercase()
-    .required(),
-  password: Joi.string().required().min(10).max(100),
-  confirmPassword: Joi.string().required().valid(Joi.ref("password")),
-});
-
 export const businessLogic = async (req: Request, res: Response) => {
   try {
-    // validate request body
+    // Validate request body
     const schemaValidation = await registrationSchema.validateAsync(req.body);
 
-    // get data from request body
+    // Get data from request body
     const {
       firstname,
       lastname,
@@ -145,7 +140,7 @@ export const businessLogic = async (req: Request, res: Response) => {
     } = req.body;
 
     // Check if the email already exists in the database
-    const emailExists = await User.exists({ email: email });
+    const emailExists = await User.exists({ email });
     if (emailExists) {
       return custom_server_response(
         res,
@@ -156,7 +151,7 @@ export const businessLogic = async (req: Request, res: Response) => {
     }
 
     // Check if the username already exists in the database
-    const usernameExists = await User.exists({ username: username });
+    const usernameExists = await User.exists({ username });
     if (usernameExists) {
       return custom_server_response(
         res,
@@ -166,8 +161,8 @@ export const businessLogic = async (req: Request, res: Response) => {
       );
     }
 
-    // validate year month day
-    if (isValidDate(birthYear, birthMonth, birthDay) == false) {
+    // Validate year, month, day
+    if (!isValidDate(birthYear, birthMonth, birthDay)) {
       return custom_server_response(
         res,
         400,
@@ -180,14 +175,14 @@ export const businessLogic = async (req: Request, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     const user = await User.create({
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      gender: gender,
-      birthDay: birthDay,
-      birthMonth: birthMonth,
-      birthYear: birthYear,
-      email: email,
+      firstname,
+      lastname,
+      username,
+      gender,
+      birthDay,
+      birthMonth,
+      birthYear,
+      email,
       password: hashedPassword,
     });
 
