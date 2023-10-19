@@ -17,10 +17,21 @@ export interface CustomRequest extends Request {
 }
 
 const isDateExpired = (dateString: any) => {
-  const currentDate = new Date(); // Get current date and time
-  const givenDate = new Date(dateString); // Convert the given date string to a Date object
+  const currentDate = new Date();
+  const givenDate = new Date(dateString);
+  return givenDate < currentDate;
+};
 
-  return givenDate < currentDate; // Compare the given date with the current date
+const verifyToken = (token: string) => {
+  return jwt.verify(token, config.jwt_token as string) as { id: string };
+};
+
+const removeExpiredSessions = async (userJwtStatusList: any[]) => {
+  for (const session of userJwtStatusList) {
+    if (isDateExpired(session.expires)) {
+      await userActiveModel.findByIdAndRemove(session._id);
+    }
+  }
 };
 
 const userAuthorization = async (
@@ -28,22 +39,11 @@ const userAuthorization = async (
   res: Response,
   next: NextFunction
 ) => {
-  let token: string = "";
-
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith("Bearer")
-  ) {
-    try {
-      // Get token from header
-      token = req.headers.authorization.split(" ")[1];
-
-      // Verify token
-      const decoded = jwt.verify(token, config.jwt_token as string) as {
-        id: string;
-      };
-
-      // Get user from the db
+  try {
+    const authorizationHeader = req.headers.authorization;
+    if (authorizationHeader && authorizationHeader.startsWith("Bearer")) {
+      const token = authorizationHeader.split(" ")[1];
+      const decoded = verifyToken(token);
       const user = await User.findById(decoded.id).select("_id");
 
       if (!user) {
@@ -74,16 +74,9 @@ const userAuthorization = async (
         user_id: user._id,
       });
 
-      for (var i = 0; i < userJwtStatusList.length; i++) {
-        let isSessionDateExpired = isDateExpired(userJwtStatusList[i].expires);
-        if (isSessionDateExpired) {
-          await userActiveModel.findByIdAndRemove(userJwtStatusList[i]._id);
-        }
-      }
+      removeExpiredSessions(userJwtStatusList);
 
-      const isExpired = isDateExpired(userJwtStatus.expires);
-
-      if (isExpired) {
+      if (isDateExpired(userJwtStatus.expires)) {
         return custom_server_response(
           res,
           401,
@@ -94,7 +87,7 @@ const userAuthorization = async (
 
       req.user = user;
       next();
-    } catch (error) {
+    } else {
       return custom_server_response(
         res,
         401,
@@ -102,14 +95,12 @@ const userAuthorization = async (
         userAuthorizationMessage.not_authorized
       );
     }
-  }
-
-  if (!token) {
+  } catch (error) {
     return custom_server_response(
       res,
       401,
       apiSuccessStatusMessage.no_success,
-      userAuthorizationMessage.not_authorized_no_token
+      userAuthorizationMessage.not_authorized
     );
   }
 };
