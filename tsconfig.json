@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "rootDir": "./backend",
+    "rootDir": ".",
     "typeRoots": ["./server/interfaces", "./types"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
