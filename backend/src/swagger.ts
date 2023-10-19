@@ -15,6 +15,24 @@ const options = {
         url: "http://localhost:5000",
       },
     ],
+    // Add securitySchemes here
+    securitySchemes: {
+      BearerAuth: {
+        type: "http",
+        scheme: "bearer",
+        bearerFormat: "JWT",
+      },
+    },
+    // Add components section to define security scheme
+    components: {
+      securitySchemes: {
+        BearerAuth: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+        },
+      },
+    },
   },
   // Recursively find all .ts files in the specified directory
   apis: getRouteFiles(path.join(__dirname, "routes", ".")),
@@ -37,6 +55,18 @@ function getRouteFiles(dir: any) {
 
   return results;
 }
+
+// Define parameters for Authorization header
+const bearerAuthHeader = {
+  name: "Authorization", // Header name
+  in: "header", // Location of the parameter
+  description: "Bearer token in the format 'Bearer {token}'", // Description
+  required: true, // Indicates it's a required header
+  schema: {
+    type: "string",
+    format: "Bearer {token}", // Example format
+  },
+};
 
 const swaggerSpec = swaggerJSDoc(options);
 
