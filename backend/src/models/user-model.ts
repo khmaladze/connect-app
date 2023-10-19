@@ -12,7 +12,6 @@ interface UserAttrs {
   username: string;
   gender: Gender;
   profileImage?: string;
-  // backgroundImage?: string;
   birthDay: number;
   birthMonth: number;
   birthYear: number;
@@ -28,7 +27,6 @@ interface UserDoc extends Document {
   username: string;
   gender: Gender;
   profileImage?: string;
-  // backgroundImage?: string;
   birthDay: number;
   birthMonth: number;
   birthYear: number;
@@ -42,77 +40,72 @@ const userSchema = new Schema<UserDoc, UserModel>(
       type: String,
       trim: true,
       lowercase: true,
-      required: true,
-      minlength: 2,
-      maxlength: 50,
+      required: [true, "First name is required."],
+      minlength: [2, "First name should be at least 2 characters."],
+      maxlength: [50, "First name should not exceed 50 characters."],
     },
     lastname: {
       type: String,
       trim: true,
       lowercase: true,
-      required: true,
-      minlength: 2,
-      maxlength: 50,
+      required: [true, "Last name is required."],
+      minlength: [2, "Last name should be at least 2 characters."],
+      maxlength: [50, "Last name should not exceed 50 characters."],
     },
     username: {
       type: String,
       trim: true,
       lowercase: true,
       unique: true,
-      required: true,
-      minlength: 2,
-      maxlength: 50,
+      required: [true, "Username is required."],
+      minlength: [2, "Username should be at least 2 characters."],
+      maxlength: [50, "Username should not exceed 50 characters."],
     },
     gender: {
       type: String,
       trim: true,
       enum: Object.values(Gender),
       lowercase: true,
-      required: true,
+      required: [true, "Gender is required."],
     },
     profileImage: {
       type: String,
       trim: true,
       default: "",
     },
-    // backgroundImage: {
-    //   type: String,
-    //   trim: true,
-    //   default: "",
-    // },
     birthDay: {
       type: Number,
-      required: true,
-      min: 1,
-      max: 31,
+      required: [true, "Birth day is required."],
+      min: [1, "Birth day should be at least 1."],
+      max: [31, "Birth day should not exceed 31."],
     },
     birthMonth: {
       type: Number,
-      required: true,
-      min: 1,
-      max: 12,
+      required: [true, "Birth month is required."],
+      min: [1, "Birth month should be at least 1."],
+      max: [12, "Birth month should not exceed 12."],
     },
     birthYear: {
       type: Number,
-      required: true,
-      min: 1900,
-      max: new Date().getFullYear(),
-      maxlength: 4,
-      minlength: 4,
+      required: [true, "Birth year is required."],
+      min: [1900, "Birth year should be at least 1900."],
+      max: [new Date().getFullYear(), "Invalid birth year."],
+      maxlength: [4, "Birth year should be 4 characters."],
+      minlength: [4, "Birth year should be 4 characters."],
     },
     email: {
       type: String,
       trim: true,
       lowercase: true,
       unique: true,
-      required: true,
-      maxlength: 100,
+      required: [true, "Email is required."],
+      maxlength: [100, "Email should not exceed 100 characters."],
     },
     password: {
       type: String,
-      required: true,
-      minlength: 10,
-      maxlength: 100,
+      required: [true, "Password is required."],
+      minlength: [10, "Password should be at least 10 characters."],
+      maxlength: [100, "Password should not exceed 100 characters."],
     },
   },
   { timestamps: true }
