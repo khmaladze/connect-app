@@ -10,7 +10,6 @@ import {
   userLogOutMessage,
 } from "../../function/server-route-messages";
 
-// Documentation
 /**
  * @swagger
  * /api/user/auth/logout:
@@ -40,7 +39,7 @@ import {
  *                   type: string
  *             example:
  *               success: true
- *               message: "user log out success"
+ *               message: "User log out success"
  *       401:
  *         description: Unauthorized or invalid token.
  *         content:
@@ -64,6 +63,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     token =
       req.headers.authorization && req.headers.authorization.split(" ")[1];
 
+    // Update user's token status to "LogOut"
     await userActiveModel.findOneAndUpdate(
       {
         jwt: token,
