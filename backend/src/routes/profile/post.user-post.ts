@@ -22,14 +22,15 @@ const postSchema = Joi.object({
  *     description: Create a new post in the user's profile, including text and/or media.
  *     tags:
  *       - Profile
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization
- *         required: true
  *         schema:
  *           type: string
- *           format: Bearer jwt_token
- *         description: The user's JWT token for authorization.
+ *         required: true
+ *         description: The authentication token. Use the format "Bearer jwt_token".
  *       - in: formData
  *         name: text
  *         schema:
@@ -99,8 +100,6 @@ const postSchema = Joi.object({
  *                     __v:
  *                       type: integer
  *                       description: The version of the post.
- *     security:
- *       - BearerAuth: []
  */
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {

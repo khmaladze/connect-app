@@ -18,14 +18,15 @@ import { CustomRequest } from "../../middleware/user-authorization";
  *     description: Update user profile data, including languages, education, and passions.
  *     tags:
  *       - Profile
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization
- *         required: true
  *         schema:
  *           type: string
- *           format: Bearer jwt_token
- *         description: The user's JWT token for authorization.
+ *         required: true
+ *         description: The authentication token. Use the format "Bearer jwt_token".
  *     requestBody:
  *       content:
  *         application/json:
@@ -68,8 +69,6 @@ import { CustomRequest } from "../../middleware/user-authorization";
  *                 message:
  *                   type: string
  *                   description: A message indicating the result.
- *     security:
- *       - BearerAuth: []
  */
 const userProfileSchema = Joi.object({
   languages: Joi.array().items(

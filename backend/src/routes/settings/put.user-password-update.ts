@@ -19,6 +19,8 @@ import Joi from "joi";
  *     description: Update the user's password.
  *     tags:
  *       - Settings
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization

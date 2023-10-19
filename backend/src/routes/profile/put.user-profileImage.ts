@@ -18,14 +18,15 @@ import { uploadImageToCloudinary } from "../../function/server-upload-image";
  *     description: Update the user's profile image with a new image.
  *     tags:
  *       - Profile
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization
- *         required: true
  *         schema:
  *           type: string
- *           format: Bearer jwt_token
- *         description: The user's JWT token for authorization.
+ *         required: true
+ *         description: The authentication token. Use the format "Bearer jwt_token".
  *     requestBody:
  *       required: true
  *       content:
@@ -60,8 +61,6 @@ import { uploadImageToCloudinary } from "../../function/server-upload-image";
  *                     profileImage:
  *                       type: string
  *                       description: The URL of the updated profile image.
- *     security:
- *       - BearerAuth: []
  */
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {

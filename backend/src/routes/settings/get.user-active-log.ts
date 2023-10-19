@@ -85,6 +85,8 @@ import {
  *     description: Get the active log for the user.
  *     tags:
  *       - Settings
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization

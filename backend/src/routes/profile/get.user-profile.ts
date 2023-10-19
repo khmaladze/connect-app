@@ -16,10 +16,13 @@ import { CustomRequest } from "../../middleware/user-authorization";
  *     description: Retrieve user profile data.
  *     tags:
  *       - Profile
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization
- *         type: string
+ *         schema:
+ *           type: string
  *         required: true
  *         description: The authentication token. Use the format "Bearer jwt_token".
  *     responses:
