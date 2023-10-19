@@ -1,7 +1,17 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
 import { userProfileData } from "../data/user-profile";
 
-const userProfileSchema = new mongoose.Schema(
+interface UserProfileAttrs {
+  languages: string[];
+  zodiac: string;
+  education: string;
+  passions: string[];
+  user_profile_id: Schema.Types.ObjectId;
+}
+
+export interface UserProfileDoc extends Document, UserProfileAttrs {}
+
+const userProfileSchema = new mongoose.Schema<UserProfileDoc>(
   {
     languages: {
       type: [String],
@@ -24,6 +34,9 @@ const userProfileSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const UserProfile = mongoose.model("UserProfile", userProfileSchema);
+const UserProfile = mongoose.model<UserProfileDoc>(
+  "UserProfile",
+  userProfileSchema
+);
 
-export { UserProfile };
+export { UserProfile, UserProfileAttrs };
