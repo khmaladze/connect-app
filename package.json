@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "start": "nodemon dist/server.js",
-    "dev": "ts-node-dev backend/server.ts",
+    "dev": "ts-node-dev backend/src/server.ts",
     "prettier": "npx prettier --write .",
     "build": "tsc",
     "test": "jest"
