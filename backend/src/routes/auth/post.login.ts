@@ -11,7 +11,7 @@ import {
   loginUserMessage,
 } from "../../function/server-route-messages";
 import { getDateAfter7Days } from "../../function/server-user-profile";
-import config from "../../config/config";
+import config from "../../../../config/config";
 
 // Documentation
 /**
@@ -133,7 +133,7 @@ export const businessLogic = async (req: Request, res: Response) => {
     }
 
     // Generate a JWT and send it back to the client
-    const token = jwt.sign({ id: user._id }, config.jwtToken, {
+    const token = jwt.sign({ id: user._id }, config.jwt_token, {
       expiresIn: "7d",
     });
 

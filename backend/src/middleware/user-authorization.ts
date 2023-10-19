@@ -9,7 +9,7 @@ import {
   apiSuccessStatusMessage,
   userAuthorizationMessage,
 } from "../function/server-route-messages";
-import config from "../config/config";
+import config from "../../../config/config";
 
 export interface CustomRequest extends Request {
   user?: any;
@@ -39,7 +39,7 @@ const userAuthorization = async (
       token = req.headers.authorization.split(" ")[1];
 
       // Verify token
-      const decoded = jwt.verify(token, config.jwtToken as string) as {
+      const decoded = jwt.verify(token, config.jwt_token as string) as {
         id: string;
       };
 

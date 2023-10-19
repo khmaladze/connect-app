@@ -1,8 +1,8 @@
 import express, { Application, Request } from "express";
 import bodyParser from "body-parser";
 import { detailMessage, isValidEnv } from "./validate/validate";
-import { connectDB } from "./config/database";
-import config from "./config/config";
+import { connectDB } from "../../config/database";
+import config from "../../config/config";
 import authRoutes from "./routes/auth/index";
 import userProfileRoutes from "./routes/profile/index";
 import userSettingsRoutes from "./routes/settings/index";
@@ -19,11 +19,10 @@ if (isValidEnv()) {
   const app: Application = express();
 
   // Set up Cloudinary configuration
-  const { cloudName, apiKey, apiSecret } = config.cloudinary;
   cloudinary.config({
-    cloud_name: cloudName,
-    api_key: apiKey,
-    api_secret: apiSecret,
+    cloud_name: config.cloudinary_cloud_name,
+    api_key: config.cloudinary_api_key,
+    api_secret: config.cloudinary_api_secret,
   });
 
   // Parse incoming request bodies in a middleware before your handlers
