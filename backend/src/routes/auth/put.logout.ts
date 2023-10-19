@@ -18,6 +18,8 @@ import {
  *     description: Log out a user by providing an authentication token in the request headers.
  *     tags:
  *       - Auth
+ *     security:
+ *       - BearerAuth: string
  *     parameters:
  *       - in: header
  *         name: Authorization
