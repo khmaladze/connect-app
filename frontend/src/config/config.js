@@ -27,4 +27,5 @@ export const API_URL = {
   acticitylogRequestUrl: "/api/user/settings/active_log",
   updateUserPasswordRequestUrl: "/api/user/profile/update_password",
   addpost: "/api/user/profile/add_post",
+  profileGetPost: "/api/user/profile/posts",
 };
