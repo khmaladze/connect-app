@@ -5,6 +5,7 @@ import * as userProfileImage from "./put.user-profileImage";
 import userAuthorization from "../../middleware/user-authorization";
 import * as userProfileDataGet from "./get.user-profile";
 import * as userPost from "./post.user-post";
+import * as getUserPost from "./get.user-post";
 import uploadImageToServer from "../../function/server-upload-image";
 let router = express.Router();
 
@@ -32,5 +33,6 @@ router.post(
   uploadImageToServer,
   userPost.businessLogic
 );
+router.get("/posts", userAuthorization, getUserPost.businessLogic);
 
 export default router;
