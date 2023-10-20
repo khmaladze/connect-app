@@ -14,7 +14,7 @@ import {
   clearUserAuthLocalstorage,
   userProfileImage,
 } from "../../api/Api";
-import { API_URL_REQUEST } from "../../config/config";
+import { API_URL } from "../../config/config";
 import { logOut } from "../../store/auth";
 
 const settings = ["profile", "main", "chat", "friend", "logout"];
@@ -24,7 +24,7 @@ const Navbar = ({ user, onClick }) => {
 
   const logOutHandle = async () => {
     const response = await apiPutRequest(
-      API_URL_REQUEST.logoutRequestUrl,
+      API_URL.logoutRequestUrl,
       {},
       user.token
     );

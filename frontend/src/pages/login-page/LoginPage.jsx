@@ -15,7 +15,7 @@ import {
   setLocalstorage,
   userLocalstorage,
 } from "../../api/Api";
-import { API_URL_REQUEST } from "../../config/config";
+import { API_URL } from "../../config/config";
 import { logIn } from "../../store/auth";
 import { userLogin } from "../../store/isLogIn";
 import { toast } from "react-toastify";
@@ -39,10 +39,7 @@ const LoginPage = ({ onClick }) => {
       password,
     };
 
-    const response = await apiPostRequest(
-      API_URL_REQUEST.loginRequestUrl,
-      postData
-    );
+    const response = await apiPostRequest(API_URL.loginRequestUrl, postData);
 
     if (response?.success) {
       const responseData = response.data;

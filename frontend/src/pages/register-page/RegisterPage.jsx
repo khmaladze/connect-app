@@ -10,7 +10,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { apiPostRequest } from "../../api/Api";
-import { API_URL_REQUEST } from "../../config/config";
+import { API_URL } from "../../config/config";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -56,10 +56,7 @@ const RegisterPage = () => {
       password,
       confirmPassword,
     };
-    const response = await apiPostRequest(
-      API_URL_REQUEST.registerRequestUrl,
-      postData
-    );
+    const response = await apiPostRequest(API_URL.registerRequestUrl, postData);
     if (response?.success) {
       navigate("/");
     }

@@ -12,11 +12,7 @@ import {
   userLocalstorage,
   userProfileImage,
 } from "../../api/Api";
-import {
-  API_CONTENT_TYPE,
-  API_URL,
-  API_URL_REQUEST,
-} from "../../config/config";
+import { API_CONTENT_TYPE, API_URL } from "../../config/config";
 import UserPost from "../../components/post/UserPost";
 import Button from "@mui/material/Button";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -63,15 +59,12 @@ const ProfilePage = ({ user }) => {
     userProfileInfoData ? userProfileInfoData.passions[0] : ""
   );
 
-  const updateuserprofileimageRequestUrl =
-    API_URL.user.user_profile.update_profile_image;
-
   const updateUserImageHandle = async () => {
     if (image && image[0] && image[0]["file"]) {
       const formData = new FormData();
       formData.append("image", image[0]["file"]);
       const response = await apiPutRequest(
-        updateuserprofileimageRequestUrl,
+        API_URL.updateUserProfileImageRequestUrl,
         formData,
         user.token,
         API_CONTENT_TYPE.update_user_profile_image
@@ -106,10 +99,8 @@ const ProfilePage = ({ user }) => {
       education: selectEducation,
     };
 
-    const updateuserprofileinfodataRequestUrl =
-      API_URL.user.user_profile.update_user_profile_info_data;
     const response = await apiPutRequest(
-      updateuserprofileinfodataRequestUrl,
+      API_URL.updateUserProfileInfoRequestUrl,
       postData,
       user.token
     );
@@ -123,7 +114,7 @@ const ProfilePage = ({ user }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await apiGetRequest(
-        API_URL_REQUEST.userprofilegetRequestUrl,
+        API_URL.userprofilegetRequestUrl,
         user.token
       );
       if (response.success) {
