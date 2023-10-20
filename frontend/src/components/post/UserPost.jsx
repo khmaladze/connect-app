@@ -4,7 +4,7 @@ import { userProfileImage } from "../../api/Api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 
-const UserPost = () => {
+const UserPost = ({ text, image }) => {
   return (
     <>
       <div
@@ -66,7 +66,7 @@ const UserPost = () => {
               padding: "10px",
             }}
           >
-            <h4>text text </h4>
+            <h4>{text || ""} </h4>
           </div>
           <div
             style={{
@@ -75,7 +75,7 @@ const UserPost = () => {
               minHeight: "350px",
               maxHeight: "500px",
               backgroundSize: "contain",
-              backgroundImage: `url(${userProfileImage("male", "")})`,
+              backgroundImage: `url(${userProfileImage("male", image || "")})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               padding: "10px",
