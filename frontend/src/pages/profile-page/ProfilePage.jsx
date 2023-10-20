@@ -122,12 +122,18 @@ const ProfilePage = ({ user }) => {
         setLocalstorage(userLocalstorage.auth.userProfileInfoData, {
           ...response.data,
         });
+        setselectLanguage(response.data.languages[0]);
+        setselectEducation(response.data.education);
+        setselectPassion(response.data.passions[0]);
       }
     };
     if (userProfileInfoData == null) {
       fetchData();
     } else {
       setUserProfileData(userProfileInfoData);
+      setselectLanguage(userProfileInfoData.languages[0]);
+      setselectEducation(userProfileInfoData.education);
+      setselectPassion(userProfileInfoData.passions[0]);
     }
   }, []);
 
