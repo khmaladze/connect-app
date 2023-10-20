@@ -309,8 +309,16 @@ const ProfilePage = ({ user }) => {
       {profilePosts
         ? profilePosts.map((item) => {
             return (
-              <div key={item.key}>
-                <UserPost text={item.text} image={item.media[0].url} />
+              <div key={item._id}>
+                <UserPost
+                  firstname={user.firstname}
+                  lastname={user.lastname}
+                  createdAt={user.createdAt}
+                  profileImage={user.profileImage}
+                  gender={user.gender}
+                  text={item.text}
+                  image={item.media[0].url}
+                />
               </div>
             );
           })

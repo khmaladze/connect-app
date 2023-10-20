@@ -4,7 +4,15 @@ import { userProfileImage } from "../../api/Api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 
-const UserPost = ({ text, image }) => {
+const UserPost = ({
+  firstname,
+  lastname,
+  text,
+  image,
+  profileImage,
+  createdAt,
+  gender,
+}) => {
   return (
     <>
       <div
@@ -51,11 +59,11 @@ const UserPost = ({ text, image }) => {
               <Avatar
                 style={{ height: "55px", width: "55px" }}
                 alt="user"
-                src={userProfileImage("male", "")}
+                src={userProfileImage(gender, profileImage)}
               />
-              <h3>name name</h3>
+              <h3>{firstname + " " + lastname}</h3>
             </div>
-            <h3>2020-01-01</h3>
+            <h3>{createdAt.slice(0, 10)}</h3>
           </div>
           <div
             style={{
@@ -75,7 +83,7 @@ const UserPost = ({ text, image }) => {
               minHeight: "350px",
               maxHeight: "500px",
               backgroundSize: "contain",
-              backgroundImage: `url(${userProfileImage("male", image || "")})`,
+              backgroundImage: `url(${image || ""})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
               padding: "10px",
