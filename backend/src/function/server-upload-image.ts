@@ -5,7 +5,7 @@ import fs from "fs";
 
 const storage: any = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "backend/uploads");
+    cb(null, "backend/src/uploads");
   },
   filename: (req: CustomRequest, file, cb) => {
     cb(
