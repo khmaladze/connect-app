@@ -13,14 +13,7 @@ import {
 import config from "../../../../config/config";
 import { getDateAfter7Days } from "../../function/server-user-profile";
 
-const MIN_PASSWORD_LENGTH = 10;
-
-// Joi schema for user login
-const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
-});
-
+// Documentation
 /**
  * @swagger
  * components:
@@ -104,6 +97,15 @@ const loginSchema = Joi.object({
  *             schema:
  *               $ref: '#/components/schemas/LoginResponseData'
  */
+
+const MIN_PASSWORD_LENGTH = 10;
+
+// Joi schema for user login
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
+});
+
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;

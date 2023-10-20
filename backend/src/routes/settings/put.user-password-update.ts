@@ -69,6 +69,7 @@ import Joi from "joi";
  *               success: false
  *               message: "Unauthorized"
  */
+
 // Joi schema for user passwordUpdate
 const passwordUpdateSchema = Joi.object({
   password: Joi.string().required().min(10).max(100),

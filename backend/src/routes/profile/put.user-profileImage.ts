@@ -10,6 +10,7 @@ import { User } from "../../models/user-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../function/server-upload-image";
 
+// Documentation
 /**
  * @swagger
  * /api/user/profile/update_profile_image:
@@ -62,6 +63,7 @@ import { uploadImageToCloudinary } from "../../function/server-upload-image";
  *                       type: string
  *                       description: The URL of the updated profile image.
  */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;

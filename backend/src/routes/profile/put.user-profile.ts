@@ -10,6 +10,7 @@ import { userProfileData } from "../../data/user-profile";
 import { UserProfile } from "../../models/user-profile-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 
+// Documentation
 /**
  * @swagger
  * /api/user/profile/profile_info_data:
@@ -70,6 +71,7 @@ import { CustomRequest } from "../../middleware/user-authorization";
  *                   type: string
  *                   description: A message indicating the result.
  */
+
 const userProfileSchema = Joi.object({
   languages: Joi.array().items(
     Joi.string().valid(...userProfileData.languages)

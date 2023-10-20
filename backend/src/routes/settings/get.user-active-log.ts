@@ -125,6 +125,7 @@ import {
  *               success: false
  *               message: "Unauthorized"
  */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userActiveData = await userActiveModel

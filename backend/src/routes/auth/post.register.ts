@@ -11,28 +11,7 @@ import {
 import { getZodiacSign, isValidDate } from "../../function/server-user-profile";
 import { UserProfile } from "../../models/user-profile-model";
 
-// Joi schema for user registration
-const registrationSchema = Joi.object({
-  firstname: Joi.string().trim().lowercase().required().min(2).max(50),
-  lastname: Joi.string().trim().lowercase().required().min(2).max(50),
-  username: Joi.string().trim().lowercase().required().min(2).max(50),
-  gender: Joi.string().valid("male", "female", "other").lowercase().required(),
-  birthDay: Joi.number().required().min(1).max(31),
-  birthMonth: Joi.number().required().min(1).max(12),
-  birthYear: Joi.number().required().min(1900).max(new Date().getFullYear()),
-  email: Joi.string()
-    .email({
-      tlds: { allow: ["com"] },
-      minDomainSegments: 2,
-    })
-    .regex(/@(gmail|yahoo|outlook)\.com$/)
-    .trim()
-    .lowercase()
-    .required(),
-  password: Joi.string().required().min(10).max(100),
-  confirmPassword: Joi.string().required().valid(Joi.ref("password")),
-});
-
+// Documentation
 /**
  * @swagger
  * components:
@@ -121,6 +100,29 @@ const registrationSchema = Joi.object({
  *     tags:
  *       - Auth
  */
+
+// Joi schema for user registration
+const registrationSchema = Joi.object({
+  firstname: Joi.string().trim().lowercase().required().min(2).max(50),
+  lastname: Joi.string().trim().lowercase().required().min(2).max(50),
+  username: Joi.string().trim().lowercase().required().min(2).max(50),
+  gender: Joi.string().valid("male", "female", "other").lowercase().required(),
+  birthDay: Joi.number().required().min(1).max(31),
+  birthMonth: Joi.number().required().min(1).max(12),
+  birthYear: Joi.number().required().min(1900).max(new Date().getFullYear()),
+  email: Joi.string()
+    .email({
+      tlds: { allow: ["com"] },
+      minDomainSegments: 2,
+    })
+    .regex(/@(gmail|yahoo|outlook)\.com$/)
+    .trim()
+    .lowercase()
+    .required(),
+  password: Joi.string().required().min(10).max(100),
+  confirmPassword: Joi.string().required().valid(Joi.ref("password")),
+});
+
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     // Validate request body

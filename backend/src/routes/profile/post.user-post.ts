@@ -10,10 +10,7 @@ import { uploadImageToCloudinary } from "../../function/server-upload-image";
 import Joi from "joi";
 import { Post } from "../../models/post-model";
 
-const postSchema = Joi.object({
-  text: Joi.string().max(500),
-}).options({ abortEarly: false });
-
+// Documentation
 /**
  * @swagger
  * /api/user/profile/add_post:
@@ -101,6 +98,10 @@ const postSchema = Joi.object({
  *                       type: integer
  *                       description: The version of the post.
  */
+
+const postSchema = Joi.object({
+  text: Joi.string().max(500),
+}).options({ abortEarly: false });
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {

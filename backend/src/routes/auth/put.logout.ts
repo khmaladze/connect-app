@@ -10,6 +10,7 @@ import {
   userLogOutMessage,
 } from "../../function/server-route-messages";
 
+// Documentation
 /**
  * @swagger
  * /api/user/auth/logout:
@@ -57,6 +58,7 @@ import {
  *               success: false
  *               message: "Unauthorized"
  */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     let token: any = "";

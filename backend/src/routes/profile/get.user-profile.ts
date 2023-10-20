@@ -8,6 +8,7 @@ import {
 import { UserProfile } from "../../models/user-profile-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 
+// Documentation
 /**
  * @swagger
  * /api/user/profile:
@@ -87,6 +88,7 @@ import { CustomRequest } from "../../middleware/user-authorization";
  *               success: false
  *               message: "Unauthorized"
  */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
