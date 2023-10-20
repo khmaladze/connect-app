@@ -1,4 +1,4 @@
-import express, { Application, Request } from "express";
+import express, { Application } from "express";
 import bodyParser from "body-parser";
 import { detailMessage, isValidEnv } from "./validate/validate";
 import { connectDB } from "../../config/database";

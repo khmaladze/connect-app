@@ -6,9 +6,9 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Your API",
+      title: "CONNECT APP BACKEND API.",
       version: "1.0.0",
-      description: "API Documentation for your Express TypeScript app",
+      description: "API Documentation",
     },
     servers: [
       {
