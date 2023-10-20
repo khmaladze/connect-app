@@ -33,6 +33,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { education, languages, passions } from "../../data/userInfoData";
 import { toast } from "react-toastify";
+import AddPost from "../../components/post/AddPost";
 
 // Register the plugins
 registerPlugin(
@@ -306,6 +307,13 @@ const ProfilePage = ({ user }) => {
           </div>
         </ProfileDetails>
       </ProfileInfoContainer>
+      <AddPost
+        firstname={user.firstname}
+        lastname={user.firstname}
+        profileImage={user.profileImage}
+        gender={user.gender}
+        jwt={user.token}
+      />
       {profilePosts
         ? profilePosts.map((item) => {
             return (

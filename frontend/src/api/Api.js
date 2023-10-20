@@ -23,7 +23,7 @@ const clearUserAuthLocalstorage = () => {
   }
 };
 
-export const apiPostRequest = async (request, postData, token) => {
+export const apiPostRequest = async (request, postData, token, contentType) => {
   try {
     const res = await axios.post(
       request,
@@ -31,7 +31,7 @@ export const apiPostRequest = async (request, postData, token) => {
       token
         ? {
             headers: {
-              "Content-Type": "application/json",
+              "Content-Type": contentType ? contentType : "application/json",
               Authorization: "Bearer " + token,
             },
           }
