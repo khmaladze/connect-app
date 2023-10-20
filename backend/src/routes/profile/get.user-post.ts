@@ -93,7 +93,9 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     }
 
     // Retrieve all posts created by the authenticated user
-    const userPosts = await Post.find({ author: userProfileId });
+    const userPosts = await Post.find({ author: userProfileId }).sort(
+      "-createdAt"
+    );
 
     return custom_server_response(
       res,
