@@ -58,6 +58,7 @@ const ProfilePage = ({ user }) => {
   const [selectPassion, setselectPassion] = useState(
     userProfileInfoData ? userProfileInfoData.passions[0] : ""
   );
+  const [profilePosts, setProfilePosts] = useState("");
 
   const updateUserImageHandle = async () => {
     if (image && image[0] && image[0]["file"]) {
@@ -112,7 +113,7 @@ const ProfilePage = ({ user }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProfileInfoData = async () => {
       const response = await apiGetRequest(
         API_URL.userprofilegetRequestUrl,
         user.token
@@ -128,13 +129,20 @@ const ProfilePage = ({ user }) => {
       }
     };
     if (userProfileInfoData == null) {
-      fetchData();
+      fetchProfileInfoData();
     } else {
       setUserProfileData(userProfileInfoData);
       setselectLanguage(userProfileInfoData.languages[0]);
       setselectEducation(userProfileInfoData.education);
       setselectPassion(userProfileInfoData.passions[0]);
     }
+    const fetchProfilePost = async () => {
+      const response = await apiGetRequest(API_URL.profileGetPost, user.token);
+      if (response?.success) {
+        setProfilePosts(response.data);
+      }
+    };
+    fetchProfilePost();
   }, []);
 
   const handleLanguageChange = (event) => {
@@ -298,7 +306,15 @@ const ProfilePage = ({ user }) => {
           </div>
         </ProfileDetails>
       </ProfileInfoContainer>
-      <UserPost />
+      {profilePosts
+        ? profilePosts.map((item) => {
+            return (
+              <div key={item.key}>
+                <UserPost text={item.text} image={item.media[0].url} />
+              </div>
+            );
+          })
+        : ""}
     </ProfilePageMain>
   );
 };
