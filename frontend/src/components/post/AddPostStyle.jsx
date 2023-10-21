@@ -45,10 +45,8 @@ export const AddPostTextBody = styled.div`
 `;
 
 export const AddPostImageBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+  width: 95%;
+  margin: 0 auto;
 `;
 
 export const AddPostFooter = styled.div`
