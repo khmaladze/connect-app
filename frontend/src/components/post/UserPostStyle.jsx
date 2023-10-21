@@ -46,7 +46,6 @@ export const UserPostBodyText = styled.div`
 `;
 
 export const UserPostBodyImage = styled.div`
-  ${(props) => (props.primary ? "blue" : "gray")};
   width: 100%;
   height: 100%;
   min-height: 350px;
