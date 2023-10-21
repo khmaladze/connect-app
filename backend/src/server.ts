@@ -6,6 +6,7 @@ import config from "../../config/config";
 import authRoutes from "./routes/auth/index";
 import userProfileRoutes from "./routes/profile/index";
 import userSettingsRoutes from "./routes/settings/index";
+import userFriendsRoutes from "./routes/friend/index";
 import { v2 as cloudinary } from "cloudinary";
 import swaggerSpec from "./swagger";
 import swaggerUi from "swagger-ui-express";
@@ -34,6 +35,7 @@ if (isValidEnv()) {
   // Define routes
   app.use(`${config_api_user}/auth`, authRoutes);
   app.use(`${config_api_user}/profile`, userProfileRoutes);
+  app.use(`${config_api_user}/friend`, userFriendsRoutes);
   app.use(`${config_api_user}/settings`, userSettingsRoutes);
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
