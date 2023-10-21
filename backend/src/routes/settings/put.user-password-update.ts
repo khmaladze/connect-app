@@ -6,7 +6,7 @@ import {
   apiSuccessStatusMessage,
   userSettingsUserActiveMessage,
 } from "../../function/server-route-messages";
-import { User } from "../../models/user-model";
+import { User } from "../../models/user/user-model";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
 

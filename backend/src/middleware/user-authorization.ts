@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
-import { User } from "../models/user-model";
+import { User } from "../models/user/user-model";
 import userActiveModel, {
   UserActiveStatusEnum,
-} from "../models/user-active-model";
+} from "../models/user/user-active-model";
 import { custom_server_response } from "../function/server-response";
 import {
   apiSuccessStatusMessage,

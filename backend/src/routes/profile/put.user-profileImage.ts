@@ -6,7 +6,7 @@ import {
   multerImageMessage,
   apiSuccessStatusMessage,
 } from "../../function/server-route-messages";
-import { User } from "../../models/user-model";
+import { User } from "../../models/user/user-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../function/server-upload-image";
 

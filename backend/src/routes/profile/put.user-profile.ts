@@ -7,7 +7,7 @@ import {
   userProfileMessage,
 } from "../../function/server-route-messages";
 import { userProfileData } from "../../data/user-profile";
-import { UserProfile } from "../../models/user-profile-model";
+import { UserProfile } from "../../models/user/user-profile-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 
 // Documentation

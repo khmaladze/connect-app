@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import Joi from "joi";
-import { User } from "../../models/user-model";
-import userActiveModel from "../../models/user-active-model";
+import { User } from "../../models/user/user-model";
+import userActiveModel from "../../models/user/user-active-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import {
