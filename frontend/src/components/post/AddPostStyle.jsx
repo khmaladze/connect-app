@@ -35,7 +35,7 @@ export const AddPostHeader = styled.div`
   border-bottom: 3px solid
     ${(props) =>
       props.borderColor == "friend"
-        ? " #0500ff"
+        ? "#0500ff"
         : props.borderColor == "closeFriend"
         ? "#1eff1e"
         : "#FF008A"};
@@ -73,7 +73,7 @@ export const AddPostFooter = styled.div`
   border-top: 3px solid
     ${(props) =>
       props.borderColor == "friend"
-        ? " #0500ff"
+        ? "#0500ff"
         : props.borderColor == "closeFriend"
         ? "#1eff1e"
         : "#FF008A"};
