@@ -36,6 +36,10 @@ export const UserPostHeader = styled.div`
   padding: 10px;
 `;
 
+export const UserPostHeaderDiv = styled.div`
+  width: 15px;
+`;
+
 export const UserPostBodyText = styled.div`
   display: flex;
   justify-content: flex-start;

@@ -30,6 +30,7 @@ import {
   AddPostFooter,
   AddPostHeader,
   AddPostHeaderContainer,
+  AddPostHeaderDiv,
   AddPostImageBody,
   AddPostTextBody,
 } from "./AddPostStyle";
@@ -90,6 +91,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
               alt="user"
               src={userProfileImage(gender, profileImage)}
             />
+            <AddPostHeaderDiv />
             <h3>{firstname + " " + lastname}</h3>
           </AddPostHeaderContainer>
           <h3>{postCreateDate}</h3>

@@ -32,9 +32,12 @@ export const AddPostHeader = styled.div`
 
 export const AddPostHeaderContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  min-width: 170px;
+`;
+
+export const AddPostHeaderDiv = styled.div`
+  width: 15px;
 `;
 
 export const AddPostTextBody = styled.div`

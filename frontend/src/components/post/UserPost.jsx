@@ -11,6 +11,7 @@ import {
   UserPostFooter,
   UserPostHeader,
   UserPostHeaderContainer,
+  UserPostHeaderDiv,
 } from "./UserPostStyle";
 
 const UserPost = ({
@@ -32,6 +33,7 @@ const UserPost = ({
               alt="user"
               src={userProfileImage(gender, profileImage)}
             />
+            <UserPostHeaderDiv />
             <h3>{firstname + " " + lastname}</h3>
           </UserPostHeaderContainer>
           <h3>{createdAt.slice(0, 10)}</h3>
