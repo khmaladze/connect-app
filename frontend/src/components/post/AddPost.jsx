@@ -42,7 +42,7 @@ registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileValidateType
 );
-const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
+const AddPost = ({ user }) => {
   const dateNow = new Date(Date.now());
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
@@ -62,7 +62,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
       const response = await apiPostRequest(
         API_URL.addpost,
         formData,
-        jwt,
+        user.token,
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 
@@ -82,10 +82,10 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
             <Avatar
               style={{ height: "55px", width: "55px" }}
               alt="user"
-              src={userProfileImage(gender, profileImage)}
+              src={userProfileImage(user.gender, user.profileImage)}
             />
             <AddPostHeaderDiv />
-            <h3>{firstname + " " + lastname}</h3>
+            <h3>{user.firstname + " " + user.lastname}</h3>
           </AddPostHeaderContainer>
           <h3>{postCreateDate}</h3>
         </AddPostHeader>

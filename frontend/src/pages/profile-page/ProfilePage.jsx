@@ -12,13 +12,7 @@ const ProfilePage = ({ user }) => {
         <ProfileImageComponent user={user} />
         <ProfileDetailsComponent user={user} />
       </ProfileInfoContainer>
-      <AddPost
-        firstname={user.firstname}
-        lastname={user.firstname}
-        profileImage={user.profileImage}
-        gender={user.gender}
-        jwt={user.token}
-      />
+      <AddPost user={user} />
       <ProfilePostComponent user={user} />
     </ProfilePageMain>
   );
