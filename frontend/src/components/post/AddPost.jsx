@@ -47,6 +47,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
+  const [borderColor, setBorderColor] = useState("friend");
 
   const createPost = async () => {
     if (image || text) {
@@ -74,17 +75,9 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
   };
 
   return (
-    <AddPostContainer
-      style={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "30px",
-      }}
-    >
-      <AddPostDiv>
-        <AddPostHeader>
+    <AddPostContainer>
+      <AddPostDiv borderColor={borderColor}>
+        <AddPostHeader borderColor={borderColor}>
           <AddPostHeaderContainer>
             <Avatar
               style={{ height: "55px", width: "55px" }}
@@ -107,7 +100,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
                 name="Text"
                 autoComplete="Text"
                 multiline
-                rows={4}
+                rows={3}
                 variant="outlined"
                 value={text}
                 onChange={(e) => setText(e.target.value)}
@@ -131,7 +124,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
             />
           </Grid>
         </AddPostImageBody>
-        <AddPostFooter>
+        <AddPostFooter borderColor={borderColor}>
           <div>
             <FavoriteBorderIcon />
             <AddCommentIcon />
