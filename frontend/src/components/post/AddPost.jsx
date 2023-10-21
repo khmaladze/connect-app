@@ -3,20 +3,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
 import { apiPostRequest, userProfileImage } from "../../api/Api";
-import styled from "styled-components";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
-
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
-
 // Import the Image EXIF Orientation and Image Preview plugins
 // Note: These need to be installed separately
 // `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
@@ -28,12 +21,7 @@ import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 // Import the plugin code
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import TextField from "@mui/material/TextField";
-import axios from "axios";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API_CONTENT_TYPE, API_URL } from "../../config/config";
 

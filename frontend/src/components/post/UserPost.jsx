@@ -86,10 +86,6 @@ const UserPost = ({
               backgroundImage: `url(${image || ""})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
-              padding: "10px",
-              margin: "7px",
-              borderBottomLeftRadius: "10px",
-              borderBottomRightRadius: "10px",
             }}
           ></div>
           <div
