@@ -11,7 +11,6 @@ export const UserPostContainer = styled.div`
 export const UserPostDiv = styled.div`
   max-width: 700px;
   width: 700px;
-  min-height: 350px;
   border: 3px solid #1eff1e;
   background: white;
   border-radius: 15px;
