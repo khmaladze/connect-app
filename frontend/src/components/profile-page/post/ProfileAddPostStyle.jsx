@@ -78,10 +78,40 @@ export const AddPostFooter = styled.div`
         ? "#1eff1e"
         : "#FF008A"};
   padding: 10px;
-  color: ${(props) =>
-    props.borderColor == "friend"
-      ? "#0500ff"
-      : props.borderColor == "closeFriend"
-      ? "#1eff1e"
-      : "#FF008A"};
+`;
+
+export const CustomTextarea = styled.textarea`
+  width: 670px;
+  max-width: 670px;
+  min-height: 100px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid
+    ${(props) =>
+      props.borderColor == "friend"
+        ? "#0500ff"
+        : props.borderColor == "closeFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
+  border-radius: 5px;
+  outline: none;
+
+  &:hover {
+    border-color: ${(props) =>
+      props.borderColor == "friend"
+        ? "#0500ff"
+        : props.borderColor == "closeFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
+  }
+
+  &:focus {
+    border-color: ${(props) =>
+      props.borderColor == "friend"
+        ? "#0500ff"
+        : props.borderColor == "closeFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
 `;

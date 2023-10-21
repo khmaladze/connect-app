@@ -4,14 +4,14 @@ import {
   apiPutRequest,
   setLocalstorage,
   userLocalstorage,
-} from "../../api/Api";
-import { API_URL } from "../../config/config";
+} from "../../../api/Api";
+import { API_URL } from "../../../config/config";
 import Button from "@mui/material/Button";
-import MyModal from "../../components/modal/MyModal";
+import MyModal from "../../modal/MyModal";
 import { Grid } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { education, languages, passions } from "../../data/userInfoData";
+import { education, languages, passions } from "../../../data/userInfoData";
 import { toast } from "react-toastify";
 import { ProfileDetails } from "./ProfileDetailsStyle";
 

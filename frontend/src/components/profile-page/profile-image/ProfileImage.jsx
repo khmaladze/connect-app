@@ -4,11 +4,11 @@ import {
   setLocalstorage,
   userLocalstorage,
   userProfileImage,
-} from "../../api/Api";
-import { API_CONTENT_TYPE_LIST, API_URL } from "../../config/config";
+} from "../../../api/Api";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../../config/config";
 import Button from "@mui/material/Button";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import MyModal from "../../components/modal/MyModal";
+import MyModal from "../../modal/MyModal";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 // Import FilePond styles

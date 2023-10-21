@@ -1,9 +1,9 @@
 import React from "react";
 import { ProfileInfoContainer, ProfilePageMain } from "./ProfilePageStyle";
-import AddPost from "../../components/post/AddPost";
-import ProfileImageComponent from "../../components/profile-page/ProfileImage";
-import ProfileDetailsComponent from "../../components/profile-page/ProfileDetails";
-import ProfilePostComponent from "../../components/profile-page/ProfilePost";
+import ProfileImageComponent from "../../components/profile-page/profile-image/ProfileImage";
+import ProfileDetailsComponent from "../../components/profile-page/profile-details/ProfileDetails";
+import ProfilePostComponent from "../../components/profile-page/post/ProfilePostComponent";
+import ProfileAddPostComponent from "../../components/profile-page/post/ProfileAddPost";
 
 const ProfilePage = ({ user }) => {
   return (
@@ -12,7 +12,7 @@ const ProfilePage = ({ user }) => {
         <ProfileImageComponent user={user} />
         <ProfileDetailsComponent user={user} />
       </ProfileInfoContainer>
-      <AddPost user={user} />
+      <ProfileAddPostComponent user={user} />
       <ProfilePostComponent user={user} />
     </ProfilePageMain>
   );

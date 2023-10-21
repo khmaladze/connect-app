@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
-import { apiPostRequest, userProfileImage } from "../../api/Api";
+import { apiPostRequest, userProfileImage } from "../../../api/Api";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -20,10 +20,9 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 // Import the plugin code
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
-import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API_CONTENT_TYPE_LIST, API_URL } from "../../config/config";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../../config/config";
 import {
   AddPostContainer,
   AddPostDiv,
@@ -33,7 +32,8 @@ import {
   AddPostHeaderDiv,
   AddPostImageBody,
   AddPostTextBody,
-} from "./AddPostStyle";
+  CustomTextarea,
+} from "./ProfileAddPostStyle";
 
 // Register the plugins
 registerPlugin(
@@ -42,7 +42,7 @@ registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileValidateType
 );
-const AddPost = ({ user }) => {
+const ProfileAddPostComponent = ({ user }) => {
   const dateNow = new Date(Date.now());
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
@@ -92,16 +92,9 @@ const AddPost = ({ user }) => {
         <AddPostTextBody>
           <Typography gutterBottom variant="h5" component="div">
             <Grid item xs={12}>
-              <TextField
-                style={{ maxWidth: "670px", width: "670px" }}
-                fullWidth
-                id="Text"
-                label="Text"
-                name="Text"
-                autoComplete="Text"
-                multiline
-                rows={3}
-                variant="outlined"
+              <CustomTextarea
+                placeholder="Add Text"
+                borderColor={borderColor}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
@@ -138,4 +131,4 @@ const AddPost = ({ user }) => {
   );
 };
 
-export default AddPost;
+export default ProfileAddPostComponent;

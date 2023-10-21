@@ -1,6 +1,6 @@
 import React from "react";
 import { Avatar } from "@mui/material";
-import { userProfileImage } from "../../api/Api";
+import { userProfileImage } from "../../../api/Api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import {
@@ -12,7 +12,7 @@ import {
   UserPostHeader,
   UserPostHeaderContainer,
   UserPostHeaderDiv,
-} from "./UserPostStyle";
+} from "./ProfilePostStyle";
 
 const UserPost = ({
   firstname,

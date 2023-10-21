@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import UserPost from "../post/UserPost";
-import { apiGetRequest } from "../../api/Api";
-import { API_URL } from "../../config/config";
+import UserPost from "./ProfilePost";
+import { apiGetRequest } from "../../../api/Api";
+import { API_URL } from "../../../config/config";
 
 const ProfilePostComponent = ({ user }) => {
   const [profilePosts, setProfilePosts] = useState("");
