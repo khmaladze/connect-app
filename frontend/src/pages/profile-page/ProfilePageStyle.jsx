@@ -16,22 +16,6 @@ export const ProfileInfoContainer = styled.div`
   border-bottom: 1px solid grey;
 `;
 
-export const ProfileImage = styled.div`
-  max-height: 250px;
-  max-width: 250px;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-image: url(${(props) => props.image});
-  background-position: center;
-  background-repeat: no-repeat;
-  border-radius: 50%;
-  border: 10px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-`;
-
 export const ProfileDetails = styled.div`
   height: 300px;
   width: 700px;
