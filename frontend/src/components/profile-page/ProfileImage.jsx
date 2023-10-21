@@ -1,6 +1,5 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
-  apiGetRequest,
   apiPutRequest,
   setLocalstorage,
   userLocalstorage,
@@ -25,7 +24,7 @@ import { Grid } from "@mui/material";
 import { toast } from "react-toastify";
 import { ProfileImage } from "./ProfileImageStyle";
 
-// plugins
+// Register the plugins
 registerPlugin(
   FilePondPluginFileValidateSize,
   FilePondPluginImageExifOrientation,
