@@ -24,6 +24,15 @@ import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API_CONTENT_TYPE, API_URL } from "../../config/config";
+import {
+  AddPostContainer,
+  AddPostDiv,
+  AddPostFooter,
+  AddPostHeader,
+  AddPostHeaderContainer,
+  AddPostImageBody,
+  AddPostTextBody,
+} from "./AddPostStyle";
 
 // Register the plugins
 registerPlugin(
@@ -64,126 +73,73 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
   };
 
   return (
-    <>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "30px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "700px",
-            width: "700px",
-            minHeight: "350px",
-            border: "3px solid #1eff1e",
-            background: "white",
-            borderRadius: "15px",
-            transition: "box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-            boxShadow:
-              " 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "70px",
-              width: "100%",
-              borderBottom: " 3px solid #1eff1e",
-              padding: "10px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                minWidth: "170px",
-              }}
-            >
-              <Avatar
-                style={{ height: "55px", width: "55px" }}
-                alt="user"
-                src={userProfileImage(gender, profileImage)}
-              />
-              <h3>{firstname + " " + lastname}</h3>
-            </div>
-            <h3>{postCreateDate}</h3>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              padding: "10px",
-            }}
-          >
-            <Typography gutterBottom variant="h5" component="div">
-              <Grid item xs={12}>
-                <TextField
-                  style={{ minWidth: "670px" }}
-                  fullWidth
-                  id="Text"
-                  label="Text"
-                  name="Text"
-                  autoComplete="Text"
-                  multiline
-                  rows={4} // Set the number of rows you want
-                  variant="outlined"
-                  value={text}
-                  onChange={(e) => setText(e.target.value)}
-                />
-              </Grid>
-            </Typography>
-          </div>
-          <div
-            style={{
-              width: "95%",
-              margin: "0 auto",
-            }}
-          >
+    <AddPostContainer
+      style={{
+        width: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "30px",
+      }}
+    >
+      <AddPostDiv>
+        <AddPostHeader>
+          <AddPostHeaderContainer>
+            <Avatar
+              style={{ height: "55px", width: "55px" }}
+              alt="user"
+              src={userProfileImage(gender, profileImage)}
+            />
+            <h3>{firstname + " " + lastname}</h3>
+          </AddPostHeaderContainer>
+          <h3>{postCreateDate}</h3>
+        </AddPostHeader>
+        <AddPostTextBody>
+          <Typography gutterBottom variant="h5" component="div">
             <Grid item xs={12}>
-              <h4>Upload Image</h4>
-              <FilePond
-                files={image}
-                allowMultiple={false}
-                maxFiles={1}
-                onupdatefiles={setImage}
-                allowFileSizeValidation={true}
-                maxFileSize={"5MB"}
-                acceptedFileTypes={["image/*"]}
-                name="files"
-                labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
+              <TextField
+                style={{ maxWidth: "670px", width: "670px" }}
+                fullWidth
+                id="Text"
+                label="Text"
+                name="Text"
+                autoComplete="Text"
+                multiline
+                rows={4}
+                variant="outlined"
+                value={text}
+                onChange={(e) => setText(e.target.value)}
               />
             </Grid>
+          </Typography>
+        </AddPostTextBody>
+        <AddPostImageBody>
+          <Grid item xs={12}>
+            <h4>Upload Image</h4>
+            <FilePond
+              files={image}
+              allowMultiple={false}
+              maxFiles={1}
+              onupdatefiles={setImage}
+              allowFileSizeValidation={true}
+              maxFileSize={"5MB"}
+              acceptedFileTypes={["image/*"]}
+              name="files"
+              labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
+            />
+          </Grid>
+        </AddPostImageBody>
+        <AddPostFooter>
+          <div>
+            <FavoriteBorderIcon />
+            <AddCommentIcon />
           </div>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              height: "50px",
-              width: "100%",
-              borderTop: "3px solid #1eff1e",
-              padding: "10px",
-            }}
-          >
-            <div>
-              <FavoriteBorderIcon />
-              <AddCommentIcon />
-            </div>
-            <div>
-              <Button onClick={createPost}>Create Post</Button>
-            </div>
+          <div>
+            <Button onClick={createPost}>Create Post</Button>
           </div>
-        </div>
-      </div>
-    </>
+        </AddPostFooter>
+      </AddPostDiv>
+    </AddPostContainer>
   );
 };
 
