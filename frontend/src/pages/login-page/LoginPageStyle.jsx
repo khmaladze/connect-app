@@ -14,9 +14,6 @@ export const LoginPageFormContainer = styled.div`
   height: 100%;
   width: 95%;
   margin: 0 auto;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 `;
 
 export const LoginPageForm = styled.div`

@@ -10,8 +10,6 @@ export const API_URL = {
   userprofilegetRequestUrl: "/api/user/profile",
   updateUserProfileInfoRequestUrl: "/api/user/profile/profile_info_data",
   updateUserProfileImageRequestUrl: "/api/user/profile/update_profile_image",
-  // updateUserProfileBackgroundImageRequestUrl:
-  //   updateUserProfileBackgroundImageRequestUrl,
   acticitylogRequestUrl: "/api/user/settings/active_log",
   updateUserPasswordRequestUrl: "/api/user/profile/update_password",
   addpost: "/api/user/profile/add_post",
