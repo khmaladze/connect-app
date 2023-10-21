@@ -12,7 +12,7 @@ import {
   userLocalstorage,
   userProfileImage,
 } from "../../api/Api";
-import { API_CONTENT_TYPE, API_URL } from "../../config/config";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../config/config";
 import UserPost from "../../components/post/UserPost";
 import Button from "@mui/material/Button";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
@@ -69,7 +69,7 @@ const ProfilePage = ({ user }) => {
         API_URL.updateUserProfileImageRequestUrl,
         formData,
         user.token,
-        API_CONTENT_TYPE.update_user_profile_image
+        API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 
       if (response.success) {

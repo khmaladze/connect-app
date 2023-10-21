@@ -23,7 +23,7 @@ import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API_CONTENT_TYPE, API_URL } from "../../config/config";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../config/config";
 import {
   AddPostContainer,
   AddPostDiv,
@@ -62,7 +62,7 @@ const AddPost = ({ gender, profileImage, firstname, lastname, jwt }) => {
         API_URL.addpost,
         formData,
         jwt,
-        API_CONTENT_TYPE.update_user_profile_image
+        API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 
       if (response.success) {
