@@ -316,6 +316,7 @@ const ProfilePage = ({ user }) => {
       />
       {profilePosts
         ? profilePosts.map((item) => {
+            console.log(item);
             return (
               <div key={item._id}>
                 <UserPost
@@ -324,8 +325,8 @@ const ProfilePage = ({ user }) => {
                   createdAt={user.createdAt}
                   profileImage={user.profileImage}
                   gender={user.gender}
-                  text={item.text}
-                  image={item.media[0].url}
+                  text={item.text || ""}
+                  image={item.media.length > 0 ? item.media[0].url : ""}
                 />
               </div>
             );

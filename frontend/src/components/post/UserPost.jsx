@@ -41,7 +41,7 @@ const UserPost = ({
             <h4>{text} </h4>
           </UserPostBodyText>
         )}
-        {image && <UserPostBodyImage image={image}></UserPostBodyImage>}
+        {image !== "" && <UserPostBodyImage image={image}></UserPostBodyImage>}
         <UserPostFooter>
           <div>
             <FavoriteBorderIcon />
