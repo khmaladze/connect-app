@@ -316,7 +316,6 @@ const ProfilePage = ({ user }) => {
       />
       {profilePosts
         ? profilePosts.map((item) => {
-            console.log(item);
             return (
               <div key={item._id}>
                 <UserPost
