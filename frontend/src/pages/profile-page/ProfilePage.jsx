@@ -321,7 +321,7 @@ const ProfilePage = ({ user }) => {
                 <UserPost
                   firstname={user.firstname}
                   lastname={user.lastname}
-                  createdAt={user.createdAt}
+                  createdAt={item.createdAt}
                   profileImage={user.profileImage}
                   gender={user.gender}
                   text={item.text || ""}
