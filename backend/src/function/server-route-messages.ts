@@ -52,6 +52,7 @@ export const userAddPostMessages = {
 
 export const userSendFriendRequestMessage = {
   user_required: "user required",
+  receiver_not_exists: "receiver not exists",
   friend_request_already_exists: "friend request already exists",
   person_already_send_you_request: "person already send you request",
   send_friend_request_success: "send friend request success",
