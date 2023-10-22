@@ -45,6 +45,12 @@ export const userSettingsUserActiveMessage = {
   update_user_password_success: "update user password success",
 };
 
+export const userAddPostMessages = {
+  user_required: "user required",
+  add_text_or_image: "please add text or image",
+  post_created_success: "post created success",
+};
+
 export const serverErrorMessage = {
   server_error: "server error",
 };
