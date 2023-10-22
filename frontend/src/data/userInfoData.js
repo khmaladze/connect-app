@@ -63,7 +63,7 @@ export const education = [
 export const passions = [
   "sports",
   "travel",
-  "enterpreneurship",
+  "entrepreneurship",
   "walking",
   "start ups",
 ];
