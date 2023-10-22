@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UserPostContainer = styled.div`
+export const ProfilePostContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@ export const UserPostContainer = styled.div`
   margin-top: 30px;
 `;
 
-export const UserPostDiv = styled.div`
+export const ProfilePostDiv = styled.div`
   max-width: 700px;
   width: 700px;
   border: 3px solid #1eff1e;
@@ -19,13 +19,13 @@ export const UserPostDiv = styled.div`
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 `;
 
-export const UserPostHeaderContainer = styled.div`
+export const ProfilePostHeaderContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
-export const UserPostHeader = styled.div`
+export const ProfilePostHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,11 +35,11 @@ export const UserPostHeader = styled.div`
   padding: 10px;
 `;
 
-export const UserPostHeaderDiv = styled.div`
+export const ProfilePostHeaderDiv = styled.div`
   width: 15px;
 `;
 
-export const UserPostBodyText = styled.div`
+export const ProfilePostBodyText = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -47,7 +47,7 @@ export const UserPostBodyText = styled.div`
   padding: 10px;
 `;
 
-export const UserPostBodyImage = styled.div`
+export const ProfilePostBodyImage = styled.div`
   width: 100%;
   height: 100%;
   min-height: 350px;
@@ -58,7 +58,7 @@ export const UserPostBodyImage = styled.div`
   background-repeat: no-repeat;
 `;
 
-export const UserPostFooter = styled.div`
+export const ProfilePostFooter = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -4,17 +4,17 @@ import { userProfileImage } from "../../../api/Api";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import {
-  UserPostBodyImage,
-  UserPostBodyText,
-  UserPostContainer,
-  UserPostDiv,
-  UserPostFooter,
-  UserPostHeader,
-  UserPostHeaderContainer,
-  UserPostHeaderDiv,
+  ProfilePostBodyImage,
+  ProfilePostBodyText,
+  ProfilePostContainer,
+  ProfilePostDiv,
+  ProfilePostFooter,
+  ProfilePostHeader,
+  ProfilePostHeaderContainer,
+  ProfilePostHeaderDiv,
 } from "./ProfilePostStyle";
 
-const UserPost = ({
+const ProfilePost = ({
   firstname,
   lastname,
   text,
@@ -24,35 +24,37 @@ const UserPost = ({
   gender,
 }) => {
   return (
-    <UserPostContainer>
-      <UserPostDiv>
-        <UserPostHeader>
-          <UserPostHeaderContainer>
+    <ProfilePostContainer>
+      <ProfilePostDiv>
+        <ProfilePostHeader>
+          <ProfilePostHeaderContainer>
             <Avatar
               style={{ height: "55px", width: "55px" }}
               alt="user"
               src={userProfileImage(gender, profileImage)}
             />
-            <UserPostHeaderDiv />
+            <ProfilePostHeaderDiv />
             <h3>{firstname + " " + lastname}</h3>
-          </UserPostHeaderContainer>
+          </ProfilePostHeaderContainer>
           <h3>{createdAt.slice(0, 10)}</h3>
-        </UserPostHeader>
+        </ProfilePostHeader>
         {text && (
-          <UserPostBodyText>
+          <ProfilePostBodyText>
             <h4>{text} </h4>
-          </UserPostBodyText>
+          </ProfilePostBodyText>
         )}
-        {image !== "" && <UserPostBodyImage image={image}></UserPostBodyImage>}
-        <UserPostFooter>
+        {image !== "" && (
+          <ProfilePostBodyImage image={image}></ProfilePostBodyImage>
+        )}
+        <ProfilePostFooter>
           <div>
             <FavoriteBorderIcon />
             <AddCommentIcon />
           </div>
-        </UserPostFooter>
-      </UserPostDiv>
-    </UserPostContainer>
+        </ProfilePostFooter>
+      </ProfilePostDiv>
+    </ProfilePostContainer>
   );
 };
 
-export default UserPost;
+export default ProfilePost;
