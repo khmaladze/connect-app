@@ -21,7 +21,6 @@ export const userProfileMessage = {
   add_min_one_fields: "add min one fields",
   userprofile_data_success: "userprofile data add success",
   user_profileImage_update_success: "user profileImage update success",
-  // user_backgroundImage_update_success: "user backgroundImage update success",
 };
 
 export const multerImageMessage = {

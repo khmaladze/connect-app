@@ -21,12 +21,6 @@ router.put(
   uploadImageToServer,
   userProfileImage.businessLogic
 );
-// router.put(
-//   routesUserProfile.update_profile_background_image,
-//   userAuthorization,
-//   uploadImageToServer,
-//   userProfileBackgroundImage.businessLogic
-// );
 router.post(
   "/add_post",
   userAuthorization,
