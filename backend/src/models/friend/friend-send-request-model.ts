@@ -26,6 +26,7 @@ const userFriendAddSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const UserFriendAdd = mongoose.model("UserFriendAdd", userFriendAddSchema);
-
-module.exports = UserFriendAdd;
+export const UserFriendAdd = mongoose.model(
+  "UserFriendAdd",
+  userFriendAddSchema
+);
