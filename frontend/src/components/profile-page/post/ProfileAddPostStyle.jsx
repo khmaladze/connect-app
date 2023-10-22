@@ -78,6 +78,12 @@ export const AddPostFooter = styled.div`
         ? "#1eff1e"
         : "#FF008A"};
   padding: 10px;
+  color: ${(props) =>
+    props.borderColor === "friend"
+      ? "#0500ff"
+      : props.borderColor === "closeFriend"
+      ? "#1eff1e"
+      : "#FF008A"};
 `;
 
 export const CustomTextarea = styled.textarea`
