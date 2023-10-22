@@ -51,6 +51,13 @@ export const userAddPostMessages = {
   post_created_success: "post created success",
 };
 
+export const userSendFriendRequestMessage = {
+  user_required: "user required",
+  friend_request_already_exists: "friend request already exists",
+  person_already_send_you_request: "person already send you request",
+  send_friend_request_success: "send friend request success",
+};
+
 export const serverErrorMessage = {
   server_error: "server error",
 };
