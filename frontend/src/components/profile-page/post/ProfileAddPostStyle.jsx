@@ -84,6 +84,15 @@ export const AddPostFooter = styled.div`
       : props.borderColor === "closeFriend"
       ? "#1eff1e"
       : "#FF008A"};
+
+  button {
+    color: ${(props) =>
+      props.borderColor === "friend"
+        ? "#0500ff"
+        : props.borderColor === "closeFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
+  }
 `;
 
 export const CustomTextarea = styled.textarea`
