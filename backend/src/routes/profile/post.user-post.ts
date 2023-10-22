@@ -2,8 +2,8 @@ import { Response } from "express";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import {
-  userProfileMessage,
   apiSuccessStatusMessage,
+  userAddPostMessages,
 } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../function/server-upload-image";
@@ -112,7 +112,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         res,
         400,
         apiSuccessStatusMessage.no_success,
-        userProfileMessage.user_required
+        userAddPostMessages.user_required
       );
     }
 
@@ -127,7 +127,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         res,
         400,
         apiSuccessStatusMessage.no_success,
-        "add text or media. minimum one field required"
+        userAddPostMessages.add_text_or_image
       );
     }
 
@@ -152,7 +152,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       res,
       200,
       apiSuccessStatusMessage.success,
-      "create",
+      userAddPostMessages.post_created_success,
       newData
     );
   } catch (error) {
