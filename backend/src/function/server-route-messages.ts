@@ -20,6 +20,7 @@ export const userProfileMessage = {
   user_required: "user required",
   add_min_one_fields: "add min one fields",
   userprofile_data_success: "userprofile data add success",
+  user_image_update_failed: "user image update failed",
   user_profileImage_update_success: "user profileImage update success",
 };
 
