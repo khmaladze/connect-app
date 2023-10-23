@@ -81,6 +81,9 @@ import { User } from "../../models/user/user-model";
  *                 message:
  *                   type: string
  *                   description: A message indicating unauthorized access.
+ *     security:
+ *       - BearerAuth: []
+
  */
 
 // Joi schema for user friend request
