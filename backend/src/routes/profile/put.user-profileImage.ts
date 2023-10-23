@@ -9,6 +9,7 @@ import {
 import { User } from "../../models/user/user-model";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../function/server-upload-image";
+import { deleteImageFromCloudinary } from "../../function/server-image-delete";
 
 // Documentation
 /**
@@ -90,6 +91,26 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     // Upload the image to Cloudinary in the specified folder
     const imageUrl = await uploadImageToCloudinary(String(userProfileId), file);
+
+    const deleteOldImageUrl: any = await User.findOne({
+      _id: userProfileId,
+    }).select("_id profileImage");
+
+    // console.log(String(deleteOldImageUrl?.profileImage));
+
+    if (deleteOldImageUrl) {
+      const deleted = await deleteImageFromCloudinary(
+        String(deleteOldImageUrl?.profileImage)
+      );
+      if (!deleted) {
+        return custom_server_response(
+          res,
+          400,
+          apiSuccessStatusMessage.no_success,
+          userProfileMessage.user_image_update_failed
+        );
+      }
+    }
 
     const newData = await User.findOneAndUpdate(
       { _id: userProfileId },
