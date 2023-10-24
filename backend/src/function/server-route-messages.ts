@@ -59,6 +59,11 @@ export const userSendFriendRequestMessage = {
   send_friend_request_success: "send friend request success",
 };
 
+export const userGetFriendRequestMessage = {
+  user_required: "user required",
+  get_friend_request_success: "get friend request success",
+};
+
 export const getUserFriendProfileMessage = {
   user_required: "user required",
   username_required: "username required",
