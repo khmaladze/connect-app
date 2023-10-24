@@ -98,6 +98,7 @@ export const AddPostFooter = styled.div`
 export const CustomTextarea = styled.textarea`
   width: 670px;
   max-width: 670px;
+  min-width: 670px;
   min-height: 100px;
   max-height: 300px;
   padding: 10px;
