@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
 import { User } from "../../models/user/user-model";
+import { UserFriend } from "../../models/friend/friend-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import {
@@ -192,6 +193,8 @@ export const businessLogic = async (req: Request, res: Response) => {
       user_profile_id: user._id,
       zodiac: getZodiacSign(Number(birthMonth), Number(birthDay)).toLowerCase(),
     });
+
+    await UserFriend.create({ user_profile_id: user._id });
 
     return custom_server_response(
       res,
