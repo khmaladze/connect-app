@@ -3,6 +3,7 @@ import userAuthorization from "../../middleware/user-authorization";
 import * as sendFriendRequest from "./post.friend-request";
 import * as getUserProfile from "./get.user-profile";
 import * as getFriendRequest from "./get.friend-request";
+import * as getSendRequest from "./get.send-request";
 let router = express.Router();
 
 router.post(
@@ -12,5 +13,10 @@ router.post(
 );
 router.get("/user/:username", userAuthorization, getUserProfile.businessLogic);
 router.get("/request", userAuthorization, getFriendRequest.businessLogic);
+router.get(
+  "/get_send_request",
+  userAuthorization,
+  getSendRequest.businessLogic
+);
 
 export default router;
