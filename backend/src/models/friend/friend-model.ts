@@ -5,7 +5,7 @@ const userFriendSchema = new mongoose.Schema(
     user_profile_id: { type: Schema.Types.ObjectId, ref: "User" },
     friends: [
       {
-        friends_from: { type: Date },
+        friends_from: { type: Date, default: Date.now },
         friend_list: {
           type: String,
           enum: ["Friend", "CloseFriend", "Favorite"],
@@ -19,6 +19,4 @@ const userFriendSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const UserFriend = mongoose.model("UserFriend", userFriendSchema);
-
-module.exports = UserFriend;
+export const UserFriend = mongoose.model("UserFriend", userFriendSchema);
