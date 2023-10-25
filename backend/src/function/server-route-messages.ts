@@ -71,6 +71,11 @@ export const getUserFriendProfileMessage = {
   user_get_success: "user get success",
 };
 
+export const getFriendSendRequestMessage = {
+  user_required: "user required",
+  get_send_request_success: "get send request success",
+};
+
 export const serverErrorMessage = {
   server_error: "server error",
 };
