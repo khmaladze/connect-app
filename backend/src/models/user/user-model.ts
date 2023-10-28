@@ -17,6 +17,8 @@ interface UserAttrs {
   birthYear: number;
   email: string;
   password: string;
+  isActive?: boolean;
+  isBlocked?: boolean;
 }
 
 interface UserModel extends Model<UserDoc> {}
@@ -32,6 +34,8 @@ interface UserDoc extends Document {
   birthYear: number;
   email: string;
   password: string;
+  isActive: boolean;
+  isBlocked: boolean;
 }
 
 const userSchema = new Schema<UserDoc, UserModel>(
@@ -106,6 +110,14 @@ const userSchema = new Schema<UserDoc, UserModel>(
       required: [true, "Password is required."],
       minlength: [10, "Password should be at least 10 characters."],
       maxlength: [100, "Password should not exceed 100 characters."],
+    },
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
     },
   },
   { timestamps: true }
