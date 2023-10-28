@@ -3,7 +3,7 @@
     "target": "es5",
     "module": "commonjs",
     "rootDir": ".",
-    "typeRoots": ["./server/interfaces", "./types"],
+    "typeRoots": [],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
