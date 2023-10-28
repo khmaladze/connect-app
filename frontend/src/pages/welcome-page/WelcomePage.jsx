@@ -15,6 +15,11 @@ const WelcomePage = () => {
           <Typewriter
             onInit={(typewriter) => {
               typewriter
+                .pasteString(
+                  "CREATE ACCOUNT, lOG IN, CREATE POST, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
+                )
+                .pauseFor(5000)
+                .deleteAll()
                 .typeString(
                   "CREATE ACCOUNT, lOG IN, CREATE POST, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
                 )
