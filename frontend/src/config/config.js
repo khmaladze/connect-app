@@ -3,21 +3,47 @@ export const API_CONTENT_TYPE_LIST = {
   application_x_www_form_urlencoded: "application/x-www-form-urlencoded",
 };
 
+const USER_API = "/api/user";
+
 export const API_URL = {
   auth: {
-    login: "/api/user/auth/login",
-    logout: "/api/user/auth/logout",
-    register: "/api/user/auth/register",
+    post: {
+      login: `${USER_API + "/auth/login"}`,
+      register: `${USER_API + "/auth/register"}`,
+    },
+    put: {
+      logout: `${USER_API + "/auth/logout"}`,
+    },
   },
   profile: {
-    userprofileget: "/api/user/profile",
-    updateUserProfileInfo: "/api/user/profile/profile_info_data",
-    updateUserProfileImage: "/api/user/profile/update_profile_image",
-    updateUserPassword: "/api/user/profile/update_password",
-    addpost: "/api/user/profile/add_post",
-    profileGetPost: "/api/user/profile/posts",
+    get: {
+      user_profile: `${USER_API + "/profile"}`,
+      profile_post: `${USER_API + "/profile/posts"}`,
+    },
+    post: {
+      add_post: `${USER_API + "/profile/add_post"}`,
+    },
+    put: {
+      updateUserProfileInfo: `${USER_API + "/profile/profile_info_data"}`,
+      updateUserProfileImage: `${USER_API + "/profile/update_profile_image"}`,
+    },
   },
   settings: {
-    acticitylog: "/api/user/settings/active_log",
+    get: {
+      acticity_log: `${USER_API + "/settings/active_log"}`,
+    },
+    put: {
+      user_password_update: `${USER_API + "/settings/update_password"}`,
+    },
+  },
+  friend: {
+    get: {
+      user_profile_for_request: `${USER_API + "/friend/user/"}`,
+      friend_request: `${USER_API + "/friend/request"}`,
+      get_send_requests: `${USER_API + "/friend/get_send_request"}`,
+    },
+    post: {
+      friend_request: `${USER_API + "/friend/send_friend_request"}`,
+    },
   },
 };
