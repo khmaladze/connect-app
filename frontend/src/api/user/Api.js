@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import manImage from "../images/man-profile.jpg";
-import girlImage from "../images/girl-profile.jpg";
+import manImage from "../../images/man-profile.jpg";
+import girlImage from "../../images/girl-profile.jpg";
 
 export const userLocalstorage = {
   auth: {

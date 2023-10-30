@@ -13,9 +13,9 @@ import {
   apiPutRequest,
   clearUserAuthLocalstorage,
   userProfileImage,
-} from "../../api/Api";
-import { API_URL } from "../../config/config";
-import { logOut } from "../../store/auth";
+} from "../../../api/user/Api";
+import { API_URL } from "../../../config/config";
+import { logOut } from "../../../store/auth";
 
 const settings = ["profile", "main", "chat", "friend", "logout"];
 

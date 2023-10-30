@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar } from "@mui/material";
-import { apiPostRequest, userProfileImage } from "../../../api/Api";
+import { apiPostRequest, userProfileImage } from "../../../../api/user/Api";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -22,7 +22,7 @@ import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { API_CONTENT_TYPE_LIST, API_URL } from "../../../config/config";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import {
   AddPostContainer,
   AddPostDiv,
@@ -60,7 +60,7 @@ const ProfileAddPostComponent = ({ user }) => {
       }
 
       const response = await apiPostRequest(
-        API_URL.addpost,
+        API_URL.profile.post.add_post,
         formData,
         user.token,
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded

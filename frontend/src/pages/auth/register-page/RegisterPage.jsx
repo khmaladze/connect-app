@@ -9,14 +9,14 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { apiPostRequest } from "../../../api/Api";
+import { apiPostRequest } from "../../../api/user/Api";
 import { API_URL } from "../../../config/config";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { toast } from "react-toastify";
-import WelcomePageNavbar from "../../../components/navbar/WelcomePageNavbar";
+import WelcomePageNavbar from "../../../components/user/navbar/WelcomePageNavbar";
 
 const RegisterPage = () => {
   const navigate = useNavigate();

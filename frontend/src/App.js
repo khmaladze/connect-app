@@ -2,14 +2,15 @@ import React, { Fragment, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useSelector, useStore } from "react-redux";
 import WelcomePage from "./pages/welcome-page/WelcomePage";
-import LoginPage from "./pages/login-page/LoginPage";
-import RegisterPage from "./pages/register-page/RegisterPage";
+import LoginPage from "./pages/auth/login-page/LoginPage";
+import RegisterPage from "./pages/auth/register-page/RegisterPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProfilePage from "./pages/profile-page/ProfilePage";
-import Navbar from "./components/navbar/Navbar";
+import Navbar from "./components/user/navbar/Navbar";
 import MainPage from "./pages/main-page/MainPage";
-import PageNavigator from "./components/page-navigator/PageNavigator";
+import PageNavigator from "./components/user/page-navigator/PageNavigator";
+import FriendPage from "./pages/friend-page/FriendPage";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -116,6 +117,7 @@ const Routing = () => {
               exact
               element={<MainPage user={user} onClick={customFunctions} />}
             />
+            <Route path="/friend" exact element={<FriendPage user={user} />} />
             {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
         )}

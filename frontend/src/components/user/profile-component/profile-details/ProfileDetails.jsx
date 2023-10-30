@@ -4,14 +4,14 @@ import {
   apiPutRequest,
   setLocalstorage,
   userLocalstorage,
-} from "../../../api/Api";
-import { API_URL } from "../../../config/config";
+} from "../../../../api/user/Api";
+import { API_URL } from "../../../../config/config";
 import Button from "@mui/material/Button";
 import MyModal from "../../modal/MyModal";
 import { Grid } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { education, languages, passions } from "../../../data/userInfoData";
+import { education, languages, passions } from "../../../../data/userInfoData";
 import { toast } from "react-toastify";
 import { ProfileDetails } from "./ProfileDetailsStyle";
 
@@ -45,7 +45,7 @@ const ProfileDetailsComponent = ({ user }) => {
     };
 
     const response = await apiPutRequest(
-      API_URL.updateUserProfileInfoRequestUrl,
+      API_URL.profile.put.updateUserProfileInfo,
       postData,
       user.token
     );
@@ -71,7 +71,7 @@ const ProfileDetailsComponent = ({ user }) => {
   useEffect(() => {
     const fetchProfileInfoData = async () => {
       const response = await apiGetRequest(
-        API_URL.userprofilegetRequestUrl,
+        API_URL.profile.get.user_profile,
         user.token
       );
       if (response.success) {

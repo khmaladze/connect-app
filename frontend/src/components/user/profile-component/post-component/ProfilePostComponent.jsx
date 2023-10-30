@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { apiGetRequest } from "../../../api/Api";
-import { API_URL } from "../../../config/config";
+import { apiGetRequest } from "../../../../api/user/Api";
+import { API_URL } from "../../../../config/config";
 import ProfilePost from "./ProfilePost";
 
 const ProfilePostComponent = ({ user }) => {
@@ -8,7 +8,10 @@ const ProfilePostComponent = ({ user }) => {
 
   useEffect(() => {
     const fetchProfilePost = async () => {
-      const response = await apiGetRequest(API_URL.profileGetPost, user.token);
+      const response = await apiGetRequest(
+        API_URL.profile.get.profile_post,
+        user.token
+      );
       if (response?.success) {
         setProfilePosts(response.data);
       }

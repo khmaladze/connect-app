@@ -14,12 +14,12 @@ import {
   apiPostRequest,
   setLocalstorage,
   userLocalstorage,
-} from "../../../api/Api";
+} from "../../../api/user/Api";
 import { API_URL } from "../../../config/config";
 import { logIn } from "../../../store/auth";
 import { userLogin } from "../../../store/isLogIn";
 import { toast } from "react-toastify";
-import WelcomePageNavbar from "../../../components/navbar/WelcomePageNavbar";
+import WelcomePageNavbar from "../../../components/user/navbar/WelcomePageNavbar";
 
 const LoginPage = ({ onClick }) => {
   const dispatch = useDispatch();
