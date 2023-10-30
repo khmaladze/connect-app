@@ -24,7 +24,7 @@ const Navbar = ({ user, onClick }) => {
 
   const logOutHandle = async () => {
     const response = await apiPutRequest(
-      API_URL.logoutRequestUrl,
+      API_URL.auth.put.logout,
       {},
       user.token
     );
