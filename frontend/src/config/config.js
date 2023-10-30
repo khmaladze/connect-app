@@ -4,14 +4,20 @@ export const API_CONTENT_TYPE_LIST = {
 };
 
 export const API_URL = {
-  loginRequestUrl: "/api/user/auth/login",
-  logoutRequestUrl: "/api/user/auth/logout",
-  registerRequestUrl: "/api/user/auth/register",
-  userprofilegetRequestUrl: "/api/user/profile",
-  updateUserProfileInfoRequestUrl: "/api/user/profile/profile_info_data",
-  updateUserProfileImageRequestUrl: "/api/user/profile/update_profile_image",
-  acticitylogRequestUrl: "/api/user/settings/active_log",
-  updateUserPasswordRequestUrl: "/api/user/profile/update_password",
-  addpost: "/api/user/profile/add_post",
-  profileGetPost: "/api/user/profile/posts",
+  auth: {
+    login: "/api/user/auth/login",
+    logout: "/api/user/auth/logout",
+    register: "/api/user/auth/register",
+  },
+  profile: {
+    userprofileget: "/api/user/profile",
+    updateUserProfileInfo: "/api/user/profile/profile_info_data",
+    updateUserProfileImage: "/api/user/profile/update_profile_image",
+    updateUserPassword: "/api/user/profile/update_password",
+    addpost: "/api/user/profile/add_post",
+    profileGetPost: "/api/user/profile/posts",
+  },
+  settings: {
+    acticitylog: "/api/user/settings/active_log",
+  },
 };
