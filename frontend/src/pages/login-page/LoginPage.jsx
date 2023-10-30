@@ -39,7 +39,7 @@ const LoginPage = ({ onClick }) => {
       password,
     };
 
-    const response = await apiPostRequest(API_URL.loginRequestUrl, postData);
+    const response = await apiPostRequest(API_URL.auth.post.login, postData);
 
     if (response?.success) {
       const responseData = response.data;
