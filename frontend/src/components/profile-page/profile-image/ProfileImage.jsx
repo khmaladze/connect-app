@@ -4,11 +4,11 @@ import {
   setLocalstorage,
   userLocalstorage,
   userProfileImage,
-} from "../../../api/Api";
+} from "../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../config/config";
 import Button from "@mui/material/Button";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import MyModal from "../../modal/MyModal";
+import MyModal from "../../user/modal/MyModal";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
 // Import FilePond styles
@@ -39,7 +39,7 @@ const ProfileImageComponent = ({ user }) => {
       const formData = new FormData();
       formData.append("image", image[0]["file"]);
       const response = await apiPutRequest(
-        API_URL.updateUserProfileImageRequestUrl,
+        API_URL.profile.put.updateUserProfileImage,
         formData,
         user.token,
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
