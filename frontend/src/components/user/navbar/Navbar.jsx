@@ -9,13 +9,13 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { useDispatch } from "react-redux";
+import { API_URL } from "../../../config/config";
+import { logOut } from "../../../store/auth";
 import {
   apiPutRequest,
   clearUserAuthLocalstorage,
   userProfileImage,
 } from "../../../api/user/Api";
-import { API_URL } from "../../../config/config";
-import { logOut } from "../../../store/auth";
 
 const settings = ["profile", "main", "chat", "friend", "logout"];
 
