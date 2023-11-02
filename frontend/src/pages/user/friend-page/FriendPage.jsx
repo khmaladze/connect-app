@@ -3,7 +3,7 @@ import SearchBar from "../../../components/user/friend-page/search-bar/SearchBar
 import { apiGetRequest } from "../../../api/user/Api";
 
 const FriendPage = ({ user }) => {
-  const handleSearch = async (searchTerm) => {
+  const handleSearch = async (searchTerm, updateSearchBar) => {
     // Perform a search using the searchTerm
     console.log("Search term:", searchTerm);
     // Add your search logic here
@@ -12,7 +12,10 @@ const FriendPage = ({ user }) => {
       "/api/user/friend/user/" + searchTerm,
       user.token
     );
-    console.log(response);
+
+    if (!response) {
+      updateSearchBar("");
+    }
   };
 
   return (

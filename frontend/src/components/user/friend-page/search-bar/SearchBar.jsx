@@ -8,7 +8,7 @@ const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    onSearch(searchTerm, setSearchTerm);
   };
 
   const handleKeyPress = (event) => {
