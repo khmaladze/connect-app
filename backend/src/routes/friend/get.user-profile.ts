@@ -77,7 +77,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.success,
+        apiSuccessStatusMessage.no_success,
         getUserFriendProfileMessage.user_not_found
       );
     }
@@ -86,7 +86,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.success,
+        apiSuccessStatusMessage.no_success,
         getUserFriendProfileMessage.user_not_found
       );
     }
