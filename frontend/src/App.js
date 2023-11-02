@@ -11,6 +11,7 @@ import Navbar from "./components/user/navbar/Navbar";
 import MainPage from "./pages/user/main-page/MainPage";
 import PageNavigator from "./components/user/page-navigator/PageNavigator";
 import FriendPage from "./pages/user/friend-page/FriendPage";
+import TopNavbar from "./components/user/navbar/TopNavbar";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -82,18 +83,7 @@ const Routing = () => {
   return (
     <Fragment>
       <ToastContainer />
-      {isAuth && (
-        <Fragment>
-          <Navbar updateSetIsAuth={setIsAuth} user={user} />
-          <div className="navbar__bottom"></div>
-          {window.location.pathname !== "/profile" && (
-            <Fragment>
-              <PageNavigator />
-              <div className="navbar__bottom"></div>
-            </Fragment>
-          )}
-        </Fragment>
-      )}
+      {isAuth && <TopNavbar user={user} customSetIsAuth={setIsAuth} />}
       <Routes>
         {isAuth && (
           <Fragment>
