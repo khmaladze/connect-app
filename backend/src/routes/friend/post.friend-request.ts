@@ -3,10 +3,7 @@ import Joi from "joi";
 import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  userSendFriendRequestMessage,
-} from "../../function/server-route-messages";
+import { userSendFriendRequestMessage } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { User } from "../../models/user/user-model";
 
@@ -102,7 +99,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.user_required
       );
     }
@@ -120,7 +116,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.receiver_not_exists
       );
     }
@@ -133,7 +128,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.receiver_not_exists
       );
     }
@@ -147,7 +141,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.friend_request_already_exists
       );
     }
@@ -161,7 +154,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.person_already_send_you_request
       );
     }
@@ -175,7 +167,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userSendFriendRequestMessage.send_friend_request_success,
       sendFriendRequest
     );

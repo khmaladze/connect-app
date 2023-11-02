@@ -1,10 +1,7 @@
 import { Response } from "express";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  userProfileMessage,
-  apiSuccessStatusMessage,
-} from "../../function/server-route-messages";
+import { userProfileMessage } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { Post } from "../../models/post/post-model";
 
@@ -84,12 +81,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const userProfileId: number = req.user._id;
 
     if (!userProfileId) {
-      return custom_server_response(
-        res,
-        400,
-        apiSuccessStatusMessage.no_success,
-        userProfileMessage.user_required
-      );
+      return custom_server_response(res, 400, userProfileMessage.user_required);
     }
 
     // Retrieve all posts created by the authenticated user
@@ -97,13 +89,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       "-createdAt"
     );
 
-    return custom_server_response(
-      res,
-      200,
-      apiSuccessStatusMessage.success,
-      "user_post",
-      userPosts
-    );
+    return custom_server_response(res, 200, "user_post", userPosts);
   } catch (error) {
     return customServerError(res, error);
   }

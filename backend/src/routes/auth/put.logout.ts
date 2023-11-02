@@ -5,10 +5,7 @@ import userActiveModel, {
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import { CustomRequest } from "../../middleware/user-authorization";
-import {
-  apiSuccessStatusMessage,
-  userLogOutMessage,
-} from "../../function/server-route-messages";
+import { userLogOutMessage } from "../../function/server-route-messages";
 
 // Documentation
 /**
@@ -80,7 +77,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userLogOutMessage.user_log_out_success
     );
   } catch (error) {

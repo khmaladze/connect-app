@@ -3,10 +3,7 @@ import userActiveModel from "../../models/user/user-active-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import { CustomRequest } from "../../middleware/user-authorization";
-import {
-  apiSuccessStatusMessage,
-  userSettingsUserActiveMessage,
-} from "../../function/server-route-messages";
+import { userSettingsUserActiveMessage } from "../../function/server-route-messages";
 
 /**
  * @swagger
@@ -138,7 +135,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userSettingsUserActiveMessage.get_user_log_success,
       userActiveData
     );

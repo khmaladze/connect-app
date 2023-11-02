@@ -4,7 +4,6 @@ import { custom_server_response } from "../../function/server-response";
 import {
   userProfileMessage,
   multerImageMessage,
-  apiSuccessStatusMessage,
 } from "../../function/server-route-messages";
 import { User } from "../../models/user/user-model";
 import { CustomRequest } from "../../middleware/user-authorization";
@@ -70,12 +69,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const userProfileId: number = req.user._id;
 
     if (!userProfileId) {
-      return custom_server_response(
-        res,
-        400,
-        apiSuccessStatusMessage.no_success,
-        userProfileMessage.user_required
-      );
+      return custom_server_response(res, 400, userProfileMessage.user_required);
     }
 
     const file = req.file; // Assuming the file is sent as 'image' field in the form data
@@ -84,7 +78,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         multerImageMessage.image_required
       );
     }
@@ -106,7 +99,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return custom_server_response(
           res,
           400,
-          apiSuccessStatusMessage.no_success,
           userProfileMessage.user_image_update_failed
         );
       }
@@ -123,7 +115,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userProfileMessage.user_profileImage_update_success,
       newData
     );

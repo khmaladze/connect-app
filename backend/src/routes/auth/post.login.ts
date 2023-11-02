@@ -6,10 +6,7 @@ import { User } from "../../models/user/user-model";
 import userActiveModel from "../../models/user/user-active-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  loginUserMessage,
-} from "../../function/server-route-messages";
+import { loginUserMessage } from "../../function/server-route-messages";
 import config from "../../../../config/config";
 import { getDateAfter7Days } from "../../function/server-user-profile";
 
@@ -116,12 +113,7 @@ export const businessLogic = async (req: Request, res: Response) => {
     // Find the user by email
     const user: any = await User.findOne({ email });
     if (!user) {
-      return custom_server_response(
-        res,
-        400,
-        apiSuccessStatusMessage.no_success,
-        loginUserMessage.incorrect_email
-      );
+      return custom_server_response(res, 400, loginUserMessage.incorrect_email);
     }
 
     // Compare the provided password with the hashed password stored in the user record
@@ -130,7 +122,6 @@ export const businessLogic = async (req: Request, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         loginUserMessage.incorrect_password
       );
     }
@@ -153,13 +144,10 @@ export const businessLogic = async (req: Request, res: Response) => {
       expires: user_jwt_expires,
     });
 
-    return custom_server_response(
-      res,
-      200,
-      apiSuccessStatusMessage.success,
-      loginUserMessage.auth_user_login,
-      { token, user }
-    );
+    return custom_server_response(res, 200, loginUserMessage.auth_user_login, {
+      token,
+      user,
+    });
   } catch (error) {
     return customServerError(res, error);
   }

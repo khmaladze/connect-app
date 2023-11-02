@@ -3,10 +3,7 @@ import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
 import { UserFriend } from "../../models/friend/friend-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  getFriendSendRequestMessage,
-} from "../../function/server-route-messages";
+import { getFriendSendRequestMessage } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import Joi from "joi";
 
@@ -24,7 +21,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         getFriendSendRequestMessage.user_required
       );
     }
@@ -37,12 +33,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const { id, status, friend_list } = req.body;
 
     if (!status) {
-      return custom_server_response(
-        res,
-        200,
-        apiSuccessStatusMessage.success,
-        "user friend request not found"
-      );
+      return custom_server_response(res, 200, "user friend request not found");
     }
 
     const userFriendRequest = await UserFriendAdd.find({
@@ -52,12 +43,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     });
 
     if (!userFriendRequest) {
-      return custom_server_response(
-        res,
-        200,
-        apiSuccessStatusMessage.success,
-        "user friend request not found"
-      );
+      return custom_server_response(res, 200, "user friend request not found");
     }
 
     if (status == "rejected") {
@@ -106,12 +92,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
     }
 
-    return custom_server_response(
-      res,
-      200,
-      apiSuccessStatusMessage.success,
-      "response send request success"
-    );
+    return custom_server_response(res, 200, "response send request success");
   } catch (error) {
     return customServerError(res, error);
   }

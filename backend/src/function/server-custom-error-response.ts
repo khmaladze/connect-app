@@ -1,9 +1,6 @@
 import { Response } from "express";
 import { custom_server_response } from "./server-response";
-import {
-  apiSuccessStatusMessage,
-  serverErrorMessage,
-} from "./server-route-messages";
+import { serverErrorMessage } from "./server-route-messages";
 import fs from "fs";
 
 interface IJoiErrorMessageData {
@@ -32,22 +29,12 @@ export const customServerError = async (
     }
   }
 
-  return custom_server_response(
-    res,
-    500,
-    apiSuccessStatusMessage.no_success,
-    serverErrorMessage.server_error
-  );
+  return custom_server_response(res, 500, serverErrorMessage.server_error);
 };
 
 export const customJoiValidationResponse = (
   res: Response,
   joi_message: string
 ) => {
-  return custom_server_response(
-    res,
-    400,
-    apiSuccessStatusMessage.no_success,
-    joi_message
-  );
+  return custom_server_response(res, 400, joi_message);
 };

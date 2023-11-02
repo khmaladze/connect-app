@@ -5,10 +5,7 @@ import userActiveModel, {
   UserActiveStatusEnum,
 } from "../models/user/user-active-model";
 import { custom_server_response } from "../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  userAuthorizationMessage,
-} from "../function/server-route-messages";
+import { userAuthorizationMessage } from "../function/server-route-messages";
 import config from "../../../config/config";
 
 export interface CustomRequest extends Request {
@@ -50,7 +47,6 @@ const userAuthorization = async (
         return custom_server_response(
           res,
           401,
-          apiSuccessStatusMessage.no_success,
           userAuthorizationMessage.user_not_found
         );
       }
@@ -65,7 +61,6 @@ const userAuthorization = async (
         return custom_server_response(
           res,
           401,
-          apiSuccessStatusMessage.no_success,
           userAuthorizationMessage.session_not_found
         );
       }
@@ -80,7 +75,6 @@ const userAuthorization = async (
         return custom_server_response(
           res,
           401,
-          apiSuccessStatusMessage.no_success,
           userAuthorizationMessage.session_expired
         );
       }
@@ -91,7 +85,6 @@ const userAuthorization = async (
       return custom_server_response(
         res,
         401,
-        apiSuccessStatusMessage.no_success,
         userAuthorizationMessage.not_authorized
       );
     }
@@ -99,7 +92,6 @@ const userAuthorization = async (
     return custom_server_response(
       res,
       401,
-      apiSuccessStatusMessage.no_success,
       userAuthorizationMessage.not_authorized
     );
   }

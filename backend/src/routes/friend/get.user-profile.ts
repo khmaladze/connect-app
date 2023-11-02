@@ -1,10 +1,7 @@
 import { Response } from "express";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  getUserFriendProfileMessage,
-} from "../../function/server-route-messages";
+import { getUserFriendProfileMessage } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { User } from "../../models/user/user-model";
 
@@ -52,7 +49,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         getUserFriendProfileMessage.user_required
       );
     }
@@ -64,7 +60,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.success,
         getUserFriendProfileMessage.username_required
       );
     }
@@ -77,7 +72,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         getUserFriendProfileMessage.user_not_found
       );
     }
@@ -86,7 +80,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         getUserFriendProfileMessage.user_not_found
       );
     }
@@ -94,7 +87,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       getUserFriendProfileMessage.user_get_success,
       getUserProfile
     );

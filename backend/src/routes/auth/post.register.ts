@@ -5,10 +5,7 @@ import { User } from "../../models/user/user-model";
 import { UserFriend } from "../../models/friend/friend-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  registerUserMessage,
-} from "../../function/server-route-messages";
+import { registerUserMessage } from "../../function/server-route-messages";
 import { getZodiacSign, isValidDate } from "../../function/server-user-profile";
 import { UserProfile } from "../../models/user/user-profile-model";
 
@@ -148,7 +145,6 @@ export const businessLogic = async (req: Request, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         registerUserMessage.user_email_exist
       );
     }
@@ -159,7 +155,6 @@ export const businessLogic = async (req: Request, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         registerUserMessage.user_username_exist
       );
     }
@@ -169,7 +164,6 @@ export const businessLogic = async (req: Request, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         registerUserMessage.user_not_valid_date
       );
     }
@@ -199,7 +193,6 @@ export const businessLogic = async (req: Request, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       registerUserMessage.auth_user_register
     );
   } catch (error) {

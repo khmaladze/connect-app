@@ -3,7 +3,6 @@ import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
 import {
-  apiSuccessStatusMessage,
   userGetFriendRequestMessage,
   userSendFriendRequestMessage,
 } from "../../function/server-route-messages";
@@ -17,7 +16,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userSendFriendRequestMessage.user_required
       );
     }
@@ -30,7 +28,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userGetFriendRequestMessage.get_friend_request_success,
       userFriendRequest
     );

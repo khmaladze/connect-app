@@ -1,10 +1,7 @@
 import { Response } from "express";
 import { customServerError } from "../../function/server-custom-error-response";
 import { custom_server_response } from "../../function/server-response";
-import {
-  apiSuccessStatusMessage,
-  userAddPostMessages,
-} from "../../function/server-route-messages";
+import { userAddPostMessages } from "../../function/server-route-messages";
 import { CustomRequest } from "../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../function/server-upload-image";
 import Joi from "joi";
@@ -111,7 +108,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userAddPostMessages.user_required
       );
     }
@@ -126,7 +122,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        apiSuccessStatusMessage.no_success,
         userAddPostMessages.add_text_or_image
       );
     }
@@ -151,7 +146,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      apiSuccessStatusMessage.success,
       userAddPostMessages.post_created_success,
       newData
     );
