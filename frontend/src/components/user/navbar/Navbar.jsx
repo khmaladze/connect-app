@@ -19,7 +19,7 @@ import {
 
 const settings = ["profile", "main", "chat", "friend", "logout"];
 
-const Navbar = ({ user, onClick }) => {
+const Navbar = ({ user, updateSetIsAuth }) => {
   const dispatch = useDispatch();
 
   const logOutHandle = async () => {
@@ -29,7 +29,7 @@ const Navbar = ({ user, onClick }) => {
       user.token
     );
     if (response.success) {
-      onClick(false);
+      updateSetIsAuth(false);
       setTimeout(() => {
         dispatch(logOut());
         clearUserAuthLocalstorage();

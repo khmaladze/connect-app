@@ -89,7 +89,7 @@ const Routing = () => {
       <ToastContainer />
       {isAuth && (
         <Fragment>
-          <Navbar onClick={setIsAuth} user={user} />
+          <Navbar updateSetIsAuth={setIsAuth} user={user} />
           <div className="navbar__bottom"></div>
           {window.location.pathname !== "/profile" && (
             <>
