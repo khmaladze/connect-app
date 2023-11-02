@@ -29,11 +29,6 @@ const Routing = () => {
   const store = useStore();
   const stateUser = useSelector((state) => state.auth);
   const loginUser = store.getState();
-  const customFunctions = {
-    customSetIsAuthList: {
-      customSetIsAuth: setIsAuth,
-    },
-  };
 
   let user;
 
@@ -112,11 +107,7 @@ const Routing = () => {
               exact
               element={<SettingsPage user={user} onClick={customFunctions} />}
             /> */}
-            <Route
-              path="/"
-              exact
-              element={<MainPage user={user} onClick={customFunctions} />}
-            />
+            <Route path="/" exact element={<MainPage user={user} />} />
             <Route path="/friend" exact element={<FriendPage user={user} />} />
             {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
@@ -127,9 +118,7 @@ const Routing = () => {
             <Route
               path="/login"
               exact
-              element={
-                <LoginPage onClick={customFunctions.customSetIsAuthList} />
-              }
+              element={<LoginPage updateSetIsAuth={setIsAuth} />}
             />
             <Route path="/register" exact element={<RegisterPage />} />
           </Fragment>

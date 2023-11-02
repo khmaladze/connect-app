@@ -21,7 +21,7 @@ import {
 import { API_URL } from "../../../../config/config";
 import { logIn } from "../../../../store/auth";
 
-const LoginPage = ({ onClick }) => {
+const LoginPage = ({ updateSetIsAuth }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -56,7 +56,7 @@ const LoginPage = ({ onClick }) => {
         })
       );
       dispatch(userLogin());
-      onClick.customSetIsAuth(true);
+      updateSetIsAuth(true);
       navigate("/");
     }
   };
