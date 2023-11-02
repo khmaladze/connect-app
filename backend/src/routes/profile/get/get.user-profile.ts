@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { userProfileMessage } from "../../function/server-route-messages";
-import { UserProfile } from "../../models/user/user-profile-model";
-import { CustomRequest } from "../../middleware/user-authorization";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { userProfileMessage } from "../../../function/server-route-messages";
+import { UserProfile } from "../../../models/user/user-profile-model";
+import { CustomRequest } from "../../../middleware/user-authorization";
 
 // Documentation
 /**

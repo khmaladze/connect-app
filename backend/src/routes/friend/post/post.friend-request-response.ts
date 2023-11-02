@@ -1,10 +1,10 @@
 import { Response } from "express";
-import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
-import { UserFriend } from "../../models/friend/friend-model";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { getFriendSendRequestMessage } from "../../function/server-route-messages";
-import { CustomRequest } from "../../middleware/user-authorization";
+import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
+import { UserFriend } from "../../../models/friend/friend-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { getFriendSendRequestMessage } from "../../../function/server-route-messages";
+import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 
 // Joi schema for response user friend request

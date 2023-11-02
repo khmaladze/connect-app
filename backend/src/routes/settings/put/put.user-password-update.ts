@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { CustomRequest } from "../../middleware/user-authorization";
-import { userSettingsUserActiveMessage } from "../../function/server-route-messages";
-import { User } from "../../models/user/user-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { CustomRequest } from "../../../middleware/user-authorization";
+import { userSettingsUserActiveMessage } from "../../../function/server-route-messages";
+import { User } from "../../../models/user/user-model";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
 

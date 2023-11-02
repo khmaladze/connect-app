@@ -1,10 +1,10 @@
 import express from "express";
 import userAuthorization from "../../middleware/user-authorization";
-import * as sendFriendRequest from "./post.friend-request";
-import * as getUserProfile from "./get.user-profile";
-import * as getFriendRequest from "./get.friend-request";
-import * as getSendRequest from "./get.send-request";
-import * as responseFriendRequest from "./post.friend-request-response";
+import * as sendFriendRequest from "./post/post.friend-request";
+import * as getUserProfile from "./get/get.user-profile";
+import * as getFriendRequest from "./get/get.friend-request";
+import * as getSendRequest from "./get/get.send-request";
+import * as responseFriendRequest from "./post/post.friend-request-response";
 let router = express.Router();
 
 router.post(

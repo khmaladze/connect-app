@@ -1,14 +1,14 @@
 import { Response } from "express";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
 import {
   userProfileMessage,
   multerImageMessage,
-} from "../../function/server-route-messages";
-import { User } from "../../models/user/user-model";
-import { CustomRequest } from "../../middleware/user-authorization";
-import { uploadImageToCloudinary } from "../../function/server-upload-image";
-import { deleteImageFromCloudinary } from "../../function/server-image-delete";
+} from "../../../function/server-route-messages";
+import { User } from "../../../models/user/user-model";
+import { CustomRequest } from "../../../middleware/user-authorization";
+import { uploadImageToCloudinary } from "../../../function/server-upload-image";
+import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
 
 // Documentation
 /**

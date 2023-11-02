@@ -1,7 +1,7 @@
 import express from "express";
-import * as register from "./post.register";
-import * as login from "./post.login";
-import * as logout from "./put.logout";
+import * as register from "./post/post.register";
+import * as login from "./post/post.login";
+import * as logout from "./put/put.logout";
 import userAuthorization from "../../middleware/user-authorization";
 let router = express.Router();
 

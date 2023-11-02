@@ -1,11 +1,11 @@
 import { Response } from "express";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { userAddPostMessages } from "../../function/server-route-messages";
-import { CustomRequest } from "../../middleware/user-authorization";
-import { uploadImageToCloudinary } from "../../function/server-upload-image";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { userAddPostMessages } from "../../../function/server-route-messages";
+import { CustomRequest } from "../../../middleware/user-authorization";
+import { uploadImageToCloudinary } from "../../../function/server-upload-image";
 import Joi from "joi";
-import { Post } from "../../models/post/post-model";
+import { Post } from "../../../models/post/post-model";
 
 // Documentation
 /**

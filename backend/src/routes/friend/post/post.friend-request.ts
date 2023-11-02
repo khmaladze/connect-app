@@ -1,11 +1,11 @@
 import { Response } from "express";
 import Joi from "joi";
-import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { userSendFriendRequestMessage } from "../../function/server-route-messages";
-import { CustomRequest } from "../../middleware/user-authorization";
-import { User } from "../../models/user/user-model";
+import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { userSendFriendRequestMessage } from "../../../function/server-route-messages";
+import { CustomRequest } from "../../../middleware/user-authorization";
+import { User } from "../../../models/user/user-model";
 
 // Documentation
 /**

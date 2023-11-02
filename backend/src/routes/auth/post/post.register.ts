@@ -1,13 +1,16 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
-import { User } from "../../models/user/user-model";
-import { UserFriend } from "../../models/friend/friend-model";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { registerUserMessage } from "../../function/server-route-messages";
-import { getZodiacSign, isValidDate } from "../../function/server-user-profile";
-import { UserProfile } from "../../models/user/user-profile-model";
+import { User } from "../../../models/user/user-model";
+import { UserFriend } from "../../../models/friend/friend-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { registerUserMessage } from "../../../function/server-route-messages";
+import {
+  getZodiacSign,
+  isValidDate,
+} from "../../../function/server-user-profile";
+import { UserProfile } from "../../../models/user/user-profile-model";
 
 // Documentation
 /**

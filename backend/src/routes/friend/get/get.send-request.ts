@@ -1,12 +1,12 @@
 import { Response } from "express";
-import { UserFriendAdd } from "../../models/friend/friend-send-request-model";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
+import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
 import {
+  getFriendSendRequestMessage,
   userGetFriendRequestMessage,
-  userSendFriendRequestMessage,
-} from "../../function/server-route-messages";
-import { CustomRequest } from "../../middleware/user-authorization";
+} from "../../../function/server-route-messages";
+import { CustomRequest } from "../../../middleware/user-authorization";
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
@@ -16,12 +16,12 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        userSendFriendRequestMessage.user_required
+        getFriendSendRequestMessage.user_required
       );
     }
 
     const userFriendRequest = await UserFriendAdd.find({
-      receiver: userProfileId,
+      sender: userProfileId,
       status: "pending",
     });
 

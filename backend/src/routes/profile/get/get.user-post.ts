@@ -1,9 +1,9 @@
 import { Response } from "express";
-import { customServerError } from "../../function/server-custom-error-response";
-import { custom_server_response } from "../../function/server-response";
-import { userProfileMessage } from "../../function/server-route-messages";
-import { CustomRequest } from "../../middleware/user-authorization";
-import { Post } from "../../models/post/post-model";
+import { customServerError } from "../../../function/server-custom-error-response";
+import { custom_server_response } from "../../../function/server-response";
+import { userProfileMessage } from "../../../function/server-route-messages";
+import { CustomRequest } from "../../../middleware/user-authorization";
+import { Post } from "../../../models/post/post-model";
 
 /**
  * @swagger
