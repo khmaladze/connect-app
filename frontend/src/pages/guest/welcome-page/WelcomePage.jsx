@@ -4,7 +4,7 @@ import Typewriter from "typewriter-effect";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import WelcomePageNavbar from "../../components/user/navbar/WelcomePageNavbar";
+import WelcomePageNavbar from "../../../components/user/navbar/WelcomePageNavbar";
 
 const WelcomePage = () => {
   return (

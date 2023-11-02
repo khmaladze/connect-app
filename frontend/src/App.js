@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import { useSelector, useStore } from "react-redux";
-import WelcomePage from "./pages/welcome-page/WelcomePage";
+import WelcomePage from "./pages/guest/welcome-page/WelcomePage";
 import LoginPage from "./pages/user/auth/login-page/LoginPage";
 import RegisterPage from "./pages/user/auth/register-page/RegisterPage";
 import { ToastContainer } from "react-toastify";
