@@ -105,7 +105,7 @@ const Routing = () => {
             <Route
               path="/profile"
               exact
-              element={<ProfilePage user={user} onClick={customFunctions} />}
+              element={<ProfilePage user={user} />}
             />
             {/* <Route
               path="/settings"
