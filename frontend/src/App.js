@@ -92,10 +92,10 @@ const Routing = () => {
           <Navbar updateSetIsAuth={setIsAuth} user={user} />
           <div className="navbar__bottom"></div>
           {window.location.pathname !== "/profile" && (
-            <>
+            <Fragment>
               <PageNavigator />
               <div className="navbar__bottom"></div>
-            </>
+            </Fragment>
           )}
         </Fragment>
       )}
