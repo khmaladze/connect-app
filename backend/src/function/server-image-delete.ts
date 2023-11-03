@@ -6,9 +6,6 @@ export async function deleteImageFromCloudinary(
   imageUrl: string
 ): Promise<boolean> {
   try {
-    let url = imageUrl.slice(62, imageUrl.length);
-    url = url.slice(0, url.length - 4);
-
     // Configure Cloudinary with your credentials
     cloudinary.v2.config({
       cloud_name: config.cloudinary_cloud_name,
@@ -17,10 +14,13 @@ export async function deleteImageFromCloudinary(
     });
 
     // Send a request to Cloudinary to delete the image
-    const result = await cloudinary.v2.api.delete_resources([String(url)], {
-      type: "upload",
-      resource_type: "image",
-    });
+    const result = await cloudinary.v2.api.delete_resources(
+      [String(imageUrl)],
+      {
+        type: "upload",
+        resource_type: "image",
+      }
+    );
 
     return true;
   } catch (error) {
