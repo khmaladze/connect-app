@@ -28,10 +28,15 @@ export const uploadImageToCloudinary = async (
     // If the folder already exists, use its public_id
     const folderPublicId = existingFolder.public_id || "";
 
+    // Ensure that the uniqueFilename doesn't contain an extension
+    const uniqueFilename = `${Date.now()}_${file.originalname
+      .replace(/\s/g, "")
+      .replace(/\..+$/, "")}`;
+
     // Upload the image to Cloudinary with the specified folder and public_id
     const result = await cloudinary.uploader.upload(file.path, {
       folder: folderName,
-      public_id: folderPublicId + "/" + file.originalname,
+      public_id: folderPublicId + "/" + uniqueFilename,
     });
 
     // Check if the image file exists
@@ -41,7 +46,7 @@ export const uploadImageToCloudinary = async (
     }
 
     // Return the uploaded image URL
-    return result.secure_url;
+    return { secure_url: result.secure_url, public_id: result.public_id };
   } catch (error) {
     // Handle any errors
     console.error("Error uploading image to Cloudinary:", error);
