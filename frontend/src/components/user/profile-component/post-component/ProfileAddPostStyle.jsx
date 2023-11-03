@@ -32,13 +32,13 @@ export const AddPostHeader = styled.div`
   align-items: center;
   height: 70px;
   width: 100%;
-  border-bottom: 3px solid
+  /* border-bottom: 3px solid
     ${(props) =>
-      props.borderColor === "friend"
-        ? "#0500ff"
-        : props.borderColor === "closeFriend"
-        ? "#1eff1e"
-        : "#FF008A"};
+    props.borderColor === "friend"
+      ? "#0500ff"
+      : props.borderColor === "closeFriend"
+      ? "#1eff1e"
+      : "#FF008A"}; */
   padding: 10px;
 `;
 
@@ -70,13 +70,13 @@ export const AddPostFooter = styled.div`
   align-items: center;
   height: 50px;
   width: 100%;
-  border-top: 3px solid
+  /* border-top: 3px solid
     ${(props) =>
-      props.borderColor === "friend"
-        ? "#0500ff"
-        : props.borderColor === "closeFriend"
-        ? "#1eff1e"
-        : "#FF008A"};
+    props.borderColor === "friend"
+      ? "#0500ff"
+      : props.borderColor === "closeFriend"
+      ? "#1eff1e"
+      : "#FF008A"}; */
   padding: 10px;
   color: ${(props) =>
     props.borderColor === "friend"
