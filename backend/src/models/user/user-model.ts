@@ -12,6 +12,7 @@ interface UserAttrs {
   username: string;
   gender: Gender;
   profileImage?: string;
+  profileImagePublicId?: string;
   birthDay: number;
   birthMonth: number;
   birthYear: number;
@@ -29,6 +30,7 @@ interface UserDoc extends Document {
   username: string;
   gender: Gender;
   profileImage?: string;
+  profileImagePublicId?: string;
   birthDay: number;
   birthMonth: number;
   birthYear: number;
@@ -76,6 +78,10 @@ const userSchema = new Schema<UserDoc, UserModel>(
       type: String,
       trim: true,
       default: "",
+    },
+    profileImagePublicId: {
+      type: String,
+      trim: true,
     },
     birthDay: {
       type: Number,
