@@ -87,13 +87,11 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const deleteOldImageUrl: any = await User.findOne({
       _id: userProfileId,
-    }).select("_id profileImage");
-
-    // console.log(String(deleteOldImageUrl?.profileImage));
+    }).select("_id profileImagePublicId");
 
     if (deleteOldImageUrl) {
       const deleted = await deleteImageFromCloudinary(
-        String(deleteOldImageUrl?.profileImage)
+        String(deleteOldImageUrl?.profileImagePublicId)
       );
       if (!deleted) {
         return custom_server_response(
@@ -106,7 +104,10 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const newData = await User.findOneAndUpdate(
       { _id: userProfileId },
-      { profileImage: imageUrl },
+      {
+        profileImage: imageUrl.secure_url,
+        profileImagePublicId: imageUrl.public_id,
+      },
       {
         new: true,
       }
