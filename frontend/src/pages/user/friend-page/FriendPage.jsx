@@ -79,6 +79,8 @@ const FriendPage = ({ user }) => {
             imageUrl={searchResult.profileImage}
             username={searchResult.username}
             gender={searchResult.gender}
+            id={searchResult._id}
+            token={user.token}
             onButtonClick={() => {
               console.log("hi");
             }}
