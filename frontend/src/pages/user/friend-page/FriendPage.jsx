@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import SearchBar from "../../../components/user/friend-page/search-bar/SearchBar";
 import { apiGetRequest } from "../../../api/user/Api";
+import SendRequests from "../../../components/user/friend-page/friend-cards/send-request/SendRequests";
+import { toast } from "react-toastify";
 
 const FriendPage = ({ user }) => {
+  const [searchResult, setSearchResult] = useState("");
   const handleSearch = async (searchTerm, updateSearchBar) => {
-    // Perform a search using the searchTerm
-    console.log("Search term:", searchTerm);
-    // Add your search logic here
+    if (searchTerm.length <= 0) {
+      toast.error("can't find user with empty field");
+      return;
+    }
 
     const response = await apiGetRequest(
       "/api/user/friend/user/" + searchTerm,
@@ -15,6 +19,8 @@ const FriendPage = ({ user }) => {
 
     if (!response) {
       updateSearchBar("");
+    } else {
+      setSearchResult(response.data);
     }
   };
 
@@ -59,6 +65,26 @@ const FriendPage = ({ user }) => {
       >
         <SearchBar onSearch={handleSearch} />
       </div>
+      {searchResult && (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "15px",
+          }}
+        >
+          <SendRequests
+            imageUrl={searchResult.profileImage}
+            username={searchResult.username}
+            gender={searchResult.gender}
+            onButtonClick={() => {
+              console.log("hi");
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
