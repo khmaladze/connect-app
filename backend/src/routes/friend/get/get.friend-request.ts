@@ -7,6 +7,7 @@ import {
   userSendFriendRequestMessage,
 } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
+import { User } from "../../../models/user/user-model";
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
@@ -25,11 +26,24 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       status: "pending",
     });
 
+    if (userFriendRequest.length < 1) {
+      return custom_server_response(
+        res,
+        200,
+        userGetFriendRequestMessage.get_friend_request_success,
+        userFriendRequest
+      );
+    }
+
+    const userDetails = await User.find({
+      _id: userFriendRequest[0].sender,
+    }).select("_id profileImage gender username");
+
     return custom_server_response(
       res,
       200,
       userGetFriendRequestMessage.get_friend_request_success,
-      userFriendRequest
+      userDetails
     );
   } catch (error) {
     return customServerError(res, error);
