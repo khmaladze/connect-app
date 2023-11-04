@@ -4,6 +4,7 @@ import { custom_server_response } from "../../../function/server-response";
 import { getUserFriendProfileMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
+import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 
 // Documentaion
 /**
@@ -66,7 +67,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const getUserProfile = await User.findOne({
       username,
-    }).select("username profileImage gender");
+    }).select("_id username profileImage gender");
 
     if (!getUserProfile) {
       return custom_server_response(
@@ -82,6 +83,26 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         400,
         getUserFriendProfileMessage.user_not_found
       );
+    }
+
+    // Check if we already send request
+    const sendRequestAlready = await UserFriendAdd.find({
+      sender: userProfileId,
+      receiver: getUserProfile._id.toString(),
+    });
+
+    if (sendRequestAlready.length > 0) {
+      return custom_server_response(res, 400, "you already send");
+    }
+
+    // Check if user already send us friend request
+    const userAlreadySendFriendRequest = await UserFriendAdd.find({
+      receiver: userProfileId,
+      sender: getUserProfile._id.toString(),
+    });
+
+    if (userAlreadySendFriendRequest.length > 0) {
+      return custom_server_response(res, 400, "user send you");
     }
 
     return custom_server_response(
