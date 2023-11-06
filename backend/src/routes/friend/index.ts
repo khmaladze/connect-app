@@ -19,6 +19,10 @@ router.get(
   userAuthorization,
   getSendRequest.businessLogic
 );
-router.put("/response", userAuthorization, responseFriendRequest.businessLogic);
+router.post(
+  "/response",
+  userAuthorization,
+  responseFriendRequest.businessLogic
+);
 
 export default router;
