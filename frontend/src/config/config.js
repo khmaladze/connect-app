@@ -44,6 +44,7 @@ export const API_URL = {
     },
     post: {
       friend_request: `${USER_API + "/friend/send_friend_request"}`,
+      friend_request_response: `${USER_API + "/friend/response"}`,
     },
   },
 };
