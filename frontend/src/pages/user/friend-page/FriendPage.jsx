@@ -3,6 +3,7 @@ import SearchBar from "../../../components/user/friend-page/search-bar/SearchBar
 import { apiGetRequest } from "../../../api/user/Api";
 import SendRequests from "../../../components/user/friend-page/friend-cards/send-request/SendRequests";
 import { toast } from "react-toastify";
+import GetRequest from "../../../components/user/friend-page/friend-cards/get-request/GetRequest";
 
 const FriendPage = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
@@ -87,6 +88,29 @@ const FriendPage = ({ user }) => {
           />
         </div>
       )}
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "50px",
+        }}
+      >
+        <h2>Get Friend Request</h2>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "15px",
+        }}
+      >
+        <GetRequest token={user.token} />
+      </div>
     </div>
   );
 };
