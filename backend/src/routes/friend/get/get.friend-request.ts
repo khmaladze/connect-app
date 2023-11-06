@@ -24,7 +24,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const userFriendRequest = await UserFriendAdd.find({
       receiver: userProfileId,
       status: "pending",
-    });
+    }).select("_id sender receiver");
 
     if (userFriendRequest.length < 1) {
       return custom_server_response(
@@ -35,15 +35,19 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
     }
 
-    const userDetails = await User.find({
-      _id: userFriendRequest[0].sender,
-    }).select("_id profileImage gender username");
+    let friendRequests: any = [];
+    for (let i = 0; i < userFriendRequest.length; i++) {
+      let userDetails = await User.findOne({
+        _id: userFriendRequest[i].sender,
+      }).select("_id username gender profileImage");
+      friendRequests.push({ user: userDetails, request: userFriendRequest[i] });
+    }
 
     return custom_server_response(
       res,
       200,
       userGetFriendRequestMessage.get_friend_request_success,
-      userDetails
+      friendRequests
     );
   } catch (error) {
     return customServerError(res, error);
