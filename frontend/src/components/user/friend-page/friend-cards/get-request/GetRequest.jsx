@@ -62,77 +62,85 @@ const GetRequest = ({ token }) => {
       {friendRequest.length > 0 &&
         friendRequest.map((item) => {
           return (
-            <Card key={item.user._id}>
-              <CardMedia
-                component="img"
-                alt="User Image"
-                height="200"
-                image={userProfileImage(
-                  item.user.gender,
-                  item.user.profileImage
-                )}
-              />
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {item.user.username}
-                </Typography>
-                <Select
-                  style={{
-                    width: "100%",
-                    marginTop: "10px",
-                  }}
-                  labelId="dropdown-label"
-                  id="dropdown"
-                  value={status}
-                  onChange={(event) => setStatus(event.target.value)}
-                >
-                  <MenuItem key={"Friend"} value={"Friend"}>
-                    Friend
-                  </MenuItem>
-                  <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
-                    close friend
-                  </MenuItem>
-                  <MenuItem key={"Favorite"} value={"Favorite"}>
-                    Favorite
-                  </MenuItem>
-                </Select>
-                <Button
-                  style={{
-                    width: "100%",
-                    marginTop: "15px",
-                  }}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  onClick={() =>
-                    sendFriendRequestResponse(
-                      item.request._id,
-                      "accepted",
-                      status
-                    )
-                  }
-                >
-                  Accept
-                </Button>
-                <Button
-                  style={{
-                    width: "100%",
-                    marginTop: "15px",
-                    backgroundColor: "red",
-                  }}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  onClick={() =>
-                    sendFriendRequestResponse(item.request._id, "rejected")
-                  }
-                >
-                  Reject
-                </Button>
-              </CardContent>
-            </Card>
+            <div
+              key={item.user._id}
+              style={{
+                width: "300px",
+                height: "480px",
+              }}
+            >
+              <Card>
+                <CardMedia
+                  component="img"
+                  alt="User Image"
+                  height="200"
+                  image={userProfileImage(
+                    item.user.gender,
+                    item.user.profileImage
+                  )}
+                />
+                <CardContent>
+                  <Typography variant="h6" component="div">
+                    {item.user.username}
+                  </Typography>
+                  <Select
+                    style={{
+                      width: "100%",
+                      marginTop: "10px",
+                    }}
+                    labelId="dropdown-label"
+                    id="dropdown"
+                    value={status}
+                    onChange={(event) => setStatus(event.target.value)}
+                  >
+                    <MenuItem key={"Friend"} value={"Friend"}>
+                      Friend
+                    </MenuItem>
+                    <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
+                      close friend
+                    </MenuItem>
+                    <MenuItem key={"Favorite"} value={"Favorite"}>
+                      Favorite
+                    </MenuItem>
+                  </Select>
+                  <Button
+                    style={{
+                      width: "100%",
+                      marginTop: "15px",
+                    }}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    onClick={() =>
+                      sendFriendRequestResponse(
+                        item.request._id,
+                        "accepted",
+                        status
+                      )
+                    }
+                  >
+                    Accept
+                  </Button>
+                  <Button
+                    style={{
+                      width: "100%",
+                      marginTop: "15px",
+                      backgroundColor: "red",
+                    }}
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    size="large"
+                    onClick={() =>
+                      sendFriendRequestResponse(item.request._id, "rejected")
+                    }
+                  >
+                    Reject
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           );
         })}
     </Fragment>

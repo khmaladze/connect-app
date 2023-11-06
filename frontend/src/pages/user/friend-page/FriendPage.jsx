@@ -106,6 +106,7 @@ const FriendPage = ({ user }) => {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection: "column",
           marginTop: "15px",
         }}
       >
