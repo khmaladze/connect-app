@@ -5,6 +5,7 @@ import * as getUserProfile from "./get/get.user-profile";
 import * as getFriendRequest from "./get/get.friend-request";
 import * as getSendRequest from "./get/get.send-request";
 import * as responseFriendRequest from "./put/put.friend-request-response";
+import * as removeSentFriendRequest from "./put/put.remove-friend-request";
 let router = express.Router();
 
 router.post(
@@ -20,5 +21,6 @@ router.get(
   getSendRequest.businessLogic
 );
 router.put("/response", userAuthorization, responseFriendRequest.businessLogic);
+router.put("/remove", userAuthorization, removeSentFriendRequest.businessLogic);
 
 export default router;
