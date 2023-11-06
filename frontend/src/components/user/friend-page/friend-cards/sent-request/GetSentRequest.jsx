@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {
   apiGetRequest,
-  apiPostRequest,
+  apiPutRequest,
   userProfileImage,
 } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
@@ -35,10 +35,10 @@ const GetSendRequest = ({ token }) => {
     getFriendRequest();
   }, []);
 
-  const removeFriendRequest = async (id, status, friendList = "Friend") => {
-    const response = await apiPostRequest(
-      API_URL.friend.post.friend_request_response,
-      { id: id, status: status, friend_list: friendList },
+  const removeFriendRequest = async (id) => {
+    const response = await apiPutRequest(
+      API_URL.friend.put.friend_request_remove,
+      { id: id },
       token
     );
 
