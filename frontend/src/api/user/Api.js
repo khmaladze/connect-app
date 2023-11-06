@@ -93,6 +93,7 @@ export const apiPutRequest = async (request, postData, token, contentType) => {
     );
     const response = res.data;
     if (response.success) {
+      toast.success(response.message);
       return res.data;
     }
   } catch (error) {
