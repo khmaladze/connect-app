@@ -21,7 +21,11 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
       token
     );
 
-    console.log(response);
+    if (response?.success) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
   };
 
   return (
