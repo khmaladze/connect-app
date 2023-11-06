@@ -74,7 +74,7 @@ export const getUserFriendProfileMessage = {
 export const getFriendSendRequestMessage = {
   user_required: "user required",
   get_send_request_success: "get send request success",
-  you_have_not_send_request: "you_have_not_send_request",
+  you_have_not_send_request: "you have not send request",
 };
 
 export const serverErrorMessage = {
