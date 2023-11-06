@@ -7,6 +7,7 @@ import {
   userGetFriendRequestMessage,
 } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
+import { User } from "../../../models/user/user-model";
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
@@ -23,13 +24,30 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const userFriendRequest = await UserFriendAdd.find({
       sender: userProfileId,
       status: "pending",
-    });
+    }).select("_id sender receiver");
+
+    if (userFriendRequest.length < 1) {
+      return custom_server_response(
+        res,
+        200,
+        getFriendSendRequestMessage.you_have_not_send_request,
+        userFriendRequest
+      );
+    }
+
+    let friendRequests: any = [];
+    for (let i = 0; i < userFriendRequest.length; i++) {
+      let userDetails = await User.findOne({
+        _id: userFriendRequest[i].receiver,
+      }).select("_id username gender profileImage");
+      friendRequests.push({ user: userDetails, request: userFriendRequest[i] });
+    }
 
     return custom_server_response(
       res,
       200,
       userGetFriendRequestMessage.get_friend_request_success,
-      userFriendRequest
+      friendRequests
     );
   } catch (error) {
     return customServerError(res, error);
