@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import {
   apiGetRequest,
-  apiPostRequest,
+  apiPutRequest,
   userProfileImage,
 } from "../../../../../api/user/Api";
 import { MenuItem, Select } from "@mui/material";
@@ -42,8 +42,8 @@ const GetRequest = ({ token }) => {
     status,
     friendList = "Friend"
   ) => {
-    const response = await apiPostRequest(
-      API_URL.friend.post.friend_request_response,
+    const response = await apiPutRequest(
+      API_URL.friend.put.friend_request_response,
       { id: id, status: status, friend_list: friendList },
       token
     );
