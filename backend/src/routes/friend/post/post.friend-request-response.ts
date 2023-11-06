@@ -9,7 +9,12 @@ import Joi from "joi";
 
 // Joi schema for response user friend request
 const responseFriendRequestSchema = Joi.object({
-  status: Joi.string().trim().required().max(200),
+  id: Joi.string(),
+  status: Joi.string()
+    .valid("pending", "accepted", "rejected")
+    .trim()
+    .required()
+    .max(200),
   friend_list: Joi.string().valid("Friend", "CloseFriend", "Favorite"),
 });
 
@@ -33,7 +38,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const { id, status, friend_list } = req.body;
 
     if (!status) {
-      return custom_server_response(res, 200, "user friend request not found");
+      return custom_server_response(res, 200, "you reject friend request");
     }
 
     const userFriendRequest = await UserFriendAdd.find({
@@ -46,26 +51,31 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(res, 200, "user friend request not found");
     }
 
+    // if user reject
     if (status == "rejected") {
-      await UserFriendAdd.findOneAndUpdate(
-        {
-          _id: id,
-          receiver: userProfileId,
-          status: status,
-        },
+      await UserFriendAdd.findByIdAndUpdate(
+        id,
+        { status: "rejected" },
         { new: true }
+      );
+
+      return custom_server_response(
+        res,
+        200,
+        "response send request success reject"
       );
     }
 
+    // if user accepted
     if (friend_list && status !== "rejected") {
-      const receiverData: any = await UserFriendAdd.findOneAndUpdate(
-        {
-          _id: id,
-          receiver: userProfileId,
-          status: status,
-        },
-        { new: true }
-      );
+      const alreadyFriends: any = await UserFriendAdd.find({
+        _id: id,
+        status: "accepted",
+      });
+
+      if (alreadyFriends.length > 0) {
+        return custom_server_response(res, 400, "already friends");
+      }
 
       await UserFriend.findOneAndUpdate(
         { user_profile_id: userProfileId },
@@ -80,14 +90,21 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
 
       await UserFriend.findOneAndUpdate(
-        { user_profile_id: receiverData[0].sender },
+        { user_profile_id: userFriendRequest[0].sender },
         {
           $push: {
             friends: [
-              { friend_list: "Friend", user_id: userFriendRequest[0].sender },
+              { friend_list: "Friend", user_id: userFriendRequest[0].receiver },
             ],
           },
         },
+        { new: true }
+      );
+
+      // update userFriendAdd
+      await UserFriendAdd.findByIdAndUpdate(
+        id,
+        { status: "accepted" },
         { new: true }
       );
     }
