@@ -10,6 +10,7 @@ import {
   userProfileImage,
 } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const GetSendRequest = ({ token }) => {
   const [loading, setLoading] = useState(true);
@@ -51,7 +52,7 @@ const GetSendRequest = ({ token }) => {
 
   return (
     <Fragment>
-      {loading && <h4>loading</h4>}
+      {loading && <CircularProgress />}
       {!loading && friendRequest.length === 0 && <h4>no request</h4>}
       {friendRequest.length > 0 &&
         friendRequest.map((item) => {

@@ -9,7 +9,7 @@ import {
   apiPutRequest,
   userProfileImage,
 } from "../../../../../api/user/Api";
-import { MenuItem, Select } from "@mui/material";
+import { CircularProgress, MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 
 const GetRequest = ({ token }) => {
@@ -57,7 +57,7 @@ const GetRequest = ({ token }) => {
 
   return (
     <Fragment>
-      {loading && <h4>loading</h4>}
+      {loading && <CircularProgress />}
       {!loading && friendRequest.length === 0 && <h4>no request</h4>}
       {friendRequest.length > 0 &&
         friendRequest.map((item) => {
