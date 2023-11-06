@@ -15,6 +15,8 @@ const userAuthorizationMessage = {
   session_expired: "Session expired",
   not_authorized: "Not authorized",
   not_authorized_no_token: "Not authorized, no token",
+  error_you_are_not_user_user_not_found:
+    "Error, You are not user. user not found",
 };
 
 const clearUserAuthLocalstorage = () => {
@@ -117,7 +119,9 @@ const userNotAuthorizedAction = (error) => {
     error.response.data.message === userAuthorizationMessage.session_expired ||
     error.response.data.message === userAuthorizationMessage.not_authorized ||
     error.response.data.message ===
-      userAuthorizationMessage.not_authorized_no_token
+      userAuthorizationMessage.not_authorized_no_token ||
+    error.response.data.message ===
+      userAuthorizationMessage.error_you_are_not_user_user_not_found
   ) {
     setTimeout(() => {
       clearUserAuthLocalstorage();
