@@ -4,6 +4,7 @@ import { apiGetRequest } from "../../../api/user/Api";
 import SendRequests from "../../../components/user/friend-page/friend-cards/send-request/SendRequests";
 import { toast } from "react-toastify";
 import GetRequest from "../../../components/user/friend-page/friend-cards/get-request/GetRequest";
+import GetSendRequest from "../../../components/user/friend-page/friend-cards/sent-request/GetSentRequest";
 
 const FriendPage = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
@@ -111,6 +112,30 @@ const FriendPage = ({ user }) => {
         }}
       >
         <GetRequest token={user.token} />
+      </div>
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: "50px",
+        }}
+      >
+        <h2>Get Sent Friend Request</h2>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          marginTop: "15px",
+        }}
+      >
+        <GetSendRequest token={user.token} />
       </div>
     </div>
   );
