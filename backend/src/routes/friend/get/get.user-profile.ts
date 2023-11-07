@@ -92,6 +92,9 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     });
 
     if (sendRequestAlready.length > 0) {
+      if (sendRequestAlready[0].status == "accepted") {
+        return custom_server_response(res, 400, "user is already friend");
+      }
       return custom_server_response(res, 400, "you already send");
     }
 
@@ -102,7 +105,19 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     });
 
     if (userAlreadySendFriendRequest.length > 0) {
-      return custom_server_response(res, 400, "user send you");
+      if (userAlreadySendFriendRequest[0].status == "accepted") {
+        return custom_server_response(res, 400, "user is already friend");
+      }
+      if (userAlreadySendFriendRequest[0].status == "rejected") {
+        return custom_server_response(
+          res,
+          200,
+          getUserFriendProfileMessage.user_get_success,
+          getUserProfile
+        );
+      } else {
+        return custom_server_response(res, 400, "user send you");
+      }
     }
 
     return custom_server_response(
