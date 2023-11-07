@@ -29,7 +29,12 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
   };
 
   return (
-    <Card>
+    <Card
+      style={{
+        width: "300px",
+        height: "400px",
+      }}
+    >
       <CardMedia
         component="img"
         alt="User Image"

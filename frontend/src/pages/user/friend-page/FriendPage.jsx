@@ -83,9 +83,6 @@ const FriendPage = ({ user }) => {
             gender={searchResult.gender}
             id={searchResult._id}
             token={user.token}
-            onButtonClick={() => {
-              console.log("hi");
-            }}
           />
         </div>
       )}
