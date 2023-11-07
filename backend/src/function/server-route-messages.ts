@@ -22,7 +22,6 @@ export const loginUserMessage = {
 };
 
 export const userProfileMessage = {
-  user_required: "user required",
   add_min_one_fields: "add min one fields",
   userprofile_data_success: "userprofile data add success",
   user_image_update_failed: "user image update failed",
@@ -51,13 +50,11 @@ export const userSettingsUserActiveMessage = {
 };
 
 export const userAddPostMessages = {
-  user_required: "user required",
   add_text_or_image: "please add text or image",
   post_created_success: "post created success",
 };
 
 export const userSendFriendRequestMessage = {
-  user_required: "user required",
   receiver_not_exists: "receiver not exists",
   friend_request_already_exists: "friend request already exists",
   person_already_send_you_request: "person already send you request",
@@ -69,14 +66,12 @@ export const userGetFriendRequestMessage = {
 };
 
 export const getUserFriendProfileMessage = {
-  user_required: "user required",
   username_required: "username required",
   user_not_found: "user not found",
   user_get_success: "user get success",
 };
 
 export const getFriendSendRequestMessage = {
-  user_required: "user required",
   get_send_request_success: "get send request success",
   you_have_not_send_request: "you have not send request",
 };
