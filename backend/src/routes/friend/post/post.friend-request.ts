@@ -150,7 +150,28 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       receiver: userProfileId.toString(),
       sender: receiver,
     });
+
     if (receiverfriendRequestAlreadyExists) {
+      const requestStatus = await UserFriendAdd.find({
+        receiver: userProfileId.toString(),
+        sender: receiver,
+      });
+
+      if (requestStatus[0].status == "rejected") {
+        const sendFriendRequest = await UserFriendAdd.create({
+          sender: userProfileId.toString(),
+          receiver: receiver,
+          friend_list: friend_list,
+        });
+
+        return custom_server_response(
+          res,
+          200,
+          userSendFriendRequestMessage.send_friend_request_success,
+          sendFriendRequest
+        );
+      }
+
       return custom_server_response(
         res,
         400,
