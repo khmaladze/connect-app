@@ -38,7 +38,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const { id, status, friend_list } = req.body;
 
     if (!status) {
-      return custom_server_response(res, 200, "you reject friend request");
+      return custom_server_response(res, 400, "you reject friend request");
     }
 
     const userFriendRequest = await UserFriendAdd.find({
@@ -47,7 +47,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       status: "pending",
     });
 
-    if (!userFriendRequest) {
+    if (userFriendRequest.length < 1) {
       return custom_server_response(res, 200, "user friend request not found");
     }
 
@@ -82,7 +82,10 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         {
           $push: {
             friends: [
-              { friend_list: "Friend", user_id: userFriendRequest[0].sender },
+              {
+                friend_list: friend_list,
+                user_id: userFriendRequest[0].sender,
+              },
             ],
           },
         },
@@ -94,7 +97,10 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         {
           $push: {
             friends: [
-              { friend_list: "Friend", user_id: userFriendRequest[0].receiver },
+              {
+                friend_list: userFriendRequest[0].friend_list,
+                user_id: userFriendRequest[0].receiver,
+              },
             ],
           },
         },
