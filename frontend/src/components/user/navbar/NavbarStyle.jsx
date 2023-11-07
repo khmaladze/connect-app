@@ -9,6 +9,7 @@ export const FixedNavbar = styled.div`
   position: fixed;
   background: white;
   z-index: 100;
+  font-family: "Raleway", sans-serif;
 `;
 
 export const NavbarMain = styled.div`

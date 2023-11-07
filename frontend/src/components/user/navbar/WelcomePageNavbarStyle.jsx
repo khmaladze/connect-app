@@ -17,6 +17,7 @@ export const WelcomePageLogo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "Raleway", sans-serif;
 `;
 
 export const WelcomePageNavbarButtons = styled.div`
@@ -25,6 +26,7 @@ export const WelcomePageNavbarButtons = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "Raleway", sans-serif;
 `;
 
 export const WelcomePageNavbarButton = styled.div`
