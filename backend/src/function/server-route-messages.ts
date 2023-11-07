@@ -3,6 +3,11 @@ export const apiSuccessStatusMessage = {
   no_success: false,
 };
 
+export const userCheckMessage = {
+  user_required: "user required",
+  not_authorized: "Not authorized",
+};
+
 export const registerUserMessage = {
   user_email_exist: "try another email",
   user_username_exist: "try another username",
@@ -60,7 +65,6 @@ export const userSendFriendRequestMessage = {
 };
 
 export const userGetFriendRequestMessage = {
-  user_required: "user required",
   get_friend_request_success: "get friend request success",
 };
 
