@@ -32,15 +32,21 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const userFriendRequest = await UserFriendAdd.find({
       _id: id,
-      receiver: userProfileId,
-      status: "pending",
+      sender: userProfileId,
     });
 
-    if (!userFriendRequest) {
-      return custom_server_response(res, 200, "user friend request not found");
+    if (userFriendRequest) {
+      if (
+        userFriendRequest[0].status == "accepted" ||
+        userFriendRequest[0].status == "rejected"
+      ) {
+        return custom_server_response(res, 200, "accepted or other");
+      }
     }
 
-    await UserFriendAdd.findByIdAndDelete(id);
+    if (userFriendRequest[0].status == "pending") {
+      await UserFriendAdd.findByIdAndDelete(id);
+    }
 
     return custom_server_response(res, 200, "response remove success");
   } catch (error) {
