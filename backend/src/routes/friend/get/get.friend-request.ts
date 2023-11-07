@@ -13,14 +13,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
 
-    if (!userProfileId) {
-      return custom_server_response(
-        res,
-        400,
-        userSendFriendRequestMessage.user_required
-      );
-    }
-
     const userFriendRequest = await UserFriendAdd.find({
       receiver: userProfileId,
       status: "pending",

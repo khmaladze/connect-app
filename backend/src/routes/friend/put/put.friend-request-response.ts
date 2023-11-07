@@ -22,14 +22,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
 
-    if (!userProfileId) {
-      return custom_server_response(
-        res,
-        400,
-        getFriendSendRequestMessage.user_required
-      );
-    }
-
     // Validate request body
     const schemaValidation = await responseFriendRequestSchema.validateAsync(
       req.body
