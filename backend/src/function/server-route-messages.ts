@@ -76,6 +76,13 @@ export const getFriendSendRequestMessage = {
   you_have_not_send_request: "you have not send request",
 };
 
+export const userFriendRequestResponseMessage = {
+  error_can_not_send_response: "error, can't send response",
+  user_friend_request_not_found: "user friend request not found",
+  already_friends: "already friends",
+  request_response_send_success: "request response send success",
+};
+
 export const serverErrorMessage = {
   server_error: "server error",
 };
