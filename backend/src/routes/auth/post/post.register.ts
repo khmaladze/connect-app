@@ -127,7 +127,7 @@ const registrationSchema = Joi.object({
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     // Validate request body
-    const schemaValidation = await registrationSchema.validateAsync(req.body);
+    await registrationSchema.validateAsync(req.body);
 
     // Get data from request body
     const {
@@ -171,6 +171,7 @@ export const businessLogic = async (req: Request, res: Response) => {
       );
     }
 
+    // for password hash
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 

@@ -105,6 +105,7 @@ const loginSchema = Joi.object({
 
 export const businessLogic = async (req: Request, res: Response) => {
   try {
+    // Request body
     const { email, password } = req.body;
 
     // Validate request body
