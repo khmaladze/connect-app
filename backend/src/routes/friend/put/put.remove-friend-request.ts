@@ -2,10 +2,7 @@ import { Response } from "express";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import {
-  getFriendSendRequestMessage,
-  userFriendRequstRemoveMessage,
-} from "../../../function/server-route-messages";
+import { userFriendRequstRemoveMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 
