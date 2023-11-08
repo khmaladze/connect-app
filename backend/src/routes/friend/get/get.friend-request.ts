@@ -2,10 +2,7 @@ import { Response } from "express";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import {
-  userGetFriendRequestMessage,
-  userSendFriendRequestMessage,
-} from "../../../function/server-route-messages";
+import { userGetFriendRequestMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 
@@ -27,13 +24,15 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
     }
 
-    let friendRequests: any = [];
-    for (let i = 0; i < userFriendRequest.length; i++) {
-      let userDetails = await User.findOne({
-        _id: userFriendRequest[i].sender,
+    const friendRequestPromises = userFriendRequest.map(async (request) => {
+      const userDetails = await User.findOne({
+        _id: request.sender,
       }).select("_id username gender profileImage");
-      friendRequests.push({ user: userDetails, request: userFriendRequest[i] });
-    }
+
+      return { user: userDetails, request };
+    });
+
+    const friendRequests = await Promise.all(friendRequestPromises);
 
     return custom_server_response(
       res,
