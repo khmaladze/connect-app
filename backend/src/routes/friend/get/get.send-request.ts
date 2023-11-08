@@ -27,13 +27,15 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
     }
 
-    let friendRequests: any = [];
-    for (let i = 0; i < userFriendRequest.length; i++) {
-      let userDetails = await User.findOne({
-        _id: userFriendRequest[i].receiver,
+    const friendRequestPromises = userFriendRequest.map(async (request) => {
+      const userDetails = await User.findOne({
+        _id: request.receiver,
       }).select("_id username gender profileImage");
-      friendRequests.push({ user: userDetails, request: userFriendRequest[i] });
-    }
+
+      return { user: userDetails, request };
+    });
+
+    const friendRequests = await Promise.all(friendRequestPromises);
 
     return custom_server_response(
       res,
