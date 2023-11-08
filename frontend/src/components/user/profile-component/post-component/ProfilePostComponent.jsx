@@ -19,10 +19,11 @@ const ProfilePostComponent = ({ user }) => {
           setLoading(!loading);
           setProfilePosts(response.data);
         }, 1500);
+      } else {
+        setTimeout(() => {
+          setLoading(!loading);
+        }, 3000);
       }
-      setTimeout(() => {
-        setLoading(!loading);
-      }, 3000);
     };
     fetchProfilePost();
   }, []);
