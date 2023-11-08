@@ -34,6 +34,7 @@ const SearchBar = ({ onSearch }) => {
           <InputAdornment position="end">
             <IconButton color="primary" onClick={handleSearch} size="small">
               <SearchIcon />
+              {/* <span class="material-symbols-outlined">search</span> */}
             </IconButton>
           </InputAdornment>
         ),

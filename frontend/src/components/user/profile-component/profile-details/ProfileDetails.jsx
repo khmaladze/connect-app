@@ -9,7 +9,7 @@ import { API_URL } from "../../../../config/config";
 import Button from "@mui/material/Button";
 import MyModal from "../../modal/MyModal";
 import { Grid } from "@mui/material";
-import InfoIcon from "@mui/icons-material/Info";
+// import InfoIcon from "@mui/icons-material/Info";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { education, languages, passions } from "../../../../data/userInfoData";
 import { toast } from "react-toastify";
@@ -114,7 +114,10 @@ const ProfileDetailsComponent = ({ user }) => {
               style={{ width: "100%", marginTop: "10px" }}
               variant="contained"
               color="primary"
-              startIcon={<InfoIcon />}
+              startIcon={
+                // <InfoIcon />
+                <span class="material-symbols-outlined">info</span>
+              }
             >
               Update Info
             </Button>

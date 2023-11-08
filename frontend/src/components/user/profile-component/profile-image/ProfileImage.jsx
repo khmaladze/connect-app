@@ -7,7 +7,7 @@ import {
 } from "../../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import Button from "@mui/material/Button";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
+// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import MyModal from "../../modal/MyModal";
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -69,7 +69,10 @@ const ProfileImageComponent = ({ user }) => {
           <Button
             variant="contained"
             color="primary"
-            startIcon={<AddPhotoAlternateIcon />}
+            startIcon={
+              // <AddPhotoAlternateIcon />
+              <span class="material-symbols-outlined">add_photo_alternate</span>
+            }
           >
             Update Image
           </Button>
