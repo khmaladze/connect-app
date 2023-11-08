@@ -2,9 +2,11 @@ import React, { Fragment, useEffect, useState } from "react";
 import { apiGetRequest } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import ProfilePost from "./ProfilePost";
+import { CircularProgress } from "@mui/material";
 
 const ProfilePostComponent = ({ user }) => {
   const [profilePosts, setProfilePosts] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchProfilePost = async () => {
@@ -13,14 +15,33 @@ const ProfilePostComponent = ({ user }) => {
         user.token
       );
       if (response?.success) {
-        setProfilePosts(response.data);
+        setTimeout(() => {
+          setLoading(!loading);
+          setProfilePosts(response.data);
+        }, 1500);
       }
+      setTimeout(() => {
+        setLoading(!loading);
+      }, 3000);
     };
     fetchProfilePost();
   }, []);
 
   return (
     <Fragment>
+      {loading && (
+        <div
+          style={{
+            maxWidth: "1500px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "15px",
+          }}
+        >
+          <CircularProgress />
+        </div>
+      )}
       {profilePosts
         ? profilePosts.map((item) => {
             return (
