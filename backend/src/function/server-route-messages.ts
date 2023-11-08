@@ -83,6 +83,11 @@ export const userFriendRequestResponseMessage = {
   request_response_send_success: "request response send success",
 };
 
+export const userFriendRequstRemoveMessage = {
+  user_already_respond: "user already respond",
+  response_remove_success: "response remove success",
+};
+
 export const serverErrorMessage = {
   server_error: "server error",
 };
