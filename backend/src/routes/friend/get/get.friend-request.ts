@@ -6,6 +6,63 @@ import { userGetFriendRequestMessage } from "../../../function/server-route-mess
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 
+/**
+ * @swagger
+ * /api/user/friend/request:
+ *   get:
+ *     summary: Get friend requests for the user.
+ *     description: Retrieve pending friend requests for the user.
+ *     tags:
+ *       - Friend
+ *     parameters:
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: Bearer jwt_token
+ *         description: The user's JWT token for authorization.
+ *     responses:
+ *       200:
+ *         description: Friend requests retrieved successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   user:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         description: The unique ID of the user.
+ *                       username:
+ *                         type: string
+ *                         description: The username of the user.
+ *                       gender:
+ *                         type: string
+ *                         description: The gender of the user.
+ *                       profileImage:
+ *                         type: string
+ *                         description: The URL of the user's profile image.
+ *                   request:
+ *                     type: object
+ *                     properties:
+ *                       _id:
+ *                         type: string
+ *                         description: The unique ID of the friend request.
+ *                       sender:
+ *                         type: string
+ *                         description: The sender of the friend request.
+ *                       receiver:
+ *                         type: string
+ *                         description: The receiver of the friend request.
+ *     security:
+ *       - BearerAuth: []
+ */
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
