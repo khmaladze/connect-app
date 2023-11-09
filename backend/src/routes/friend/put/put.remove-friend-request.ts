@@ -6,6 +6,50 @@ import { userFriendRequstRemoveMessage } from "../../../function/server-route-me
 import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 
+/**
+ * @swagger
+ * /api/user/friend/remove:
+ *   put:
+ *     summary: Remove a friend request
+ *     tags:
+ *       - Friend
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *           required:
+ *             - id
+ *     responses:
+ *       200:
+ *         description: Friend request removed successfully
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Friend request not found
+ *       409:
+ *         description: User has already responded to the request
+ *     security:
+ *       - BearerAuth: []
+ */
+
+/**
+ * Handles the business logic for removing a friend request.
+ * @function
+ * @param {CustomRequest} req - Express request object
+ * @param {Response} res - Express response object
+ */
+
 // Joi schema for response user friend request
 const responseFriendRequestSchema = Joi.object({
   id: Joi.string(),

@@ -40,7 +40,7 @@ router.put(
   responseFriendRequest.businessLogic
 );
 router.put(
-  "/remove",
+  "/remove_request",
   userAuthorization,
   userCheck,
   removeSentFriendRequest.businessLogic
