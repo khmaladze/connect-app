@@ -37,7 +37,8 @@ if (isValidEnv()) {
   app.use(`${config_api_user}/profile`, userProfileRoutes);
   app.use(`${config_api_user}/friend`, userFriendsRoutes);
   app.use(`${config_api_user}/settings`, userSettingsRoutes);
-  app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  if (config.node_env == "development")
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
   // Start the server
   app.listen(config.port, () => {
