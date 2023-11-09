@@ -54,6 +54,10 @@ export const userAddPostMessages = {
   post_created_success: "post created success",
 };
 
+export const getUserPostMessage = {
+  get_user_post: "get user post",
+};
+
 export const userSendFriendRequestMessage = {
   receiver_not_exists: "receiver not exists",
   friend_request_already_exists: "friend request already exists",
