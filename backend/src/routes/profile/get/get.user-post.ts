@@ -1,7 +1,7 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userProfileMessage } from "../../../function/server-route-messages";
+import { getUserPostMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { Post } from "../../../models/post/post-model";
 
@@ -85,7 +85,12 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       "-createdAt"
     );
 
-    return custom_server_response(res, 200, "user_post", userPosts);
+    return custom_server_response(
+      res,
+      200,
+      getUserPostMessage.get_user_post,
+      userPosts
+    );
   } catch (error) {
     return customServerError(res, error);
   }
