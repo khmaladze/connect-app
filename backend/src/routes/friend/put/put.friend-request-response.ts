@@ -7,6 +7,59 @@ import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 import { userFriendRequestResponseMessage } from "../../../function/server-route-messages";
 
+/**
+ * @swagger
+ * /api/user/friend/response:
+ *   put:
+ *     summary: Respond to a friend request
+ *     tags:
+ *       - Friend
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               id:
+ *                 type: string
+ *               status:
+ *                 type: string
+ *                 enum: ['pending', 'accepted', 'rejected']
+ *               friend_list:
+ *                 type: string
+ *                 enum: ['Friend', 'CloseFriend', 'Favorite']
+ *           required:
+ *             - id
+ *             - status
+ *     responses:
+ *       200:
+ *         description: Friend request response sent successfully
+ *       400:
+ *         description: Bad request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *       404:
+ *         description: Friend request not found
+ *       409:
+ *         description: Already friends
+ *     security:
+ *       - BearerAuth: []
+ */
+
+/**
+ * Handles the business logic for responding to a friend request.
+ * @function
+ * @param {CustomRequest} req - Express request object
+ * @param {Response} res - Express response object
+ */
+
 // Joi schema for response user friend request
 const responseFriendRequestSchema = Joi.object({
   id: Joi.string(),
