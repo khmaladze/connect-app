@@ -8,7 +8,7 @@ import Joi from "joi";
 
 /**
  * @swagger
- * /api/user/friend/remove:
+ * /api/user/friend/remove_request:
  *   put:
  *     summary: Remove a friend request
  *     tags:
