@@ -71,7 +71,9 @@ const ProfileImageComponent = ({ user }) => {
             color="primary"
             startIcon={
               // <AddPhotoAlternateIcon />
-              <span class="material-symbols-outlined">add_photo_alternate</span>
+              <span className="material-symbols-outlined">
+                add_photo_alternate
+              </span>
             }
           >
             Update Image

@@ -36,13 +36,13 @@ const PageNavigator = () => {
         <NavigationBar>
           <Link to={"/profile"}>
             {/* <PersonIcon /> */}
-            <span class="material-symbols-outlined">person</span>
+            <span className="material-symbols-outlined">person</span>
           </Link>
         </NavigationBar>
         <NavigationBar>
           <Link to={"/settings"}>
             {/* <SettingsIcon /> */}
-            <span class="material-symbols-outlined">settings</span>
+            <span className="material-symbols-outlined">settings</span>
           </Link>
         </NavigationBar>
       </NavigationContainer>

@@ -116,7 +116,7 @@ const ProfileDetailsComponent = ({ user }) => {
               color="primary"
               startIcon={
                 // <InfoIcon />
-                <span class="material-symbols-outlined">info</span>
+                <span className="material-symbols-outlined">info</span>
               }
             >
               Update Info
