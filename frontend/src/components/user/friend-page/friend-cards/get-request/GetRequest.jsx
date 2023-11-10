@@ -26,10 +26,10 @@ const GetRequest = ({ token }) => {
       if (response?.success) {
         setFriendRequest(response.data);
         if (response.data.length > 0) {
-          setLoading(!loading);
+          setLoading(false);
         } else {
           setTimeout(() => {
-            setLoading(!loading);
+            setLoading(false);
           }, 2000);
         }
       }
