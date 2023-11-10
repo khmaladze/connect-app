@@ -58,17 +58,20 @@ const FriendPage = ({ user }) => {
         </FriendPageSendRequestDiv>
       )}
       <FriendPageHeaderText>
-        <h2>Get Friend Request</h2>
+        <h2>Friend Request</h2>
       </FriendPageHeaderText>
       <FriendPageCardDiv>
         <GetRequest token={user.token} />
       </FriendPageCardDiv>
       <FriendPageHeaderText>
-        <h2>Get Sent Friend Request</h2>
+        <h2>Sent Friend Requests</h2>
       </FriendPageHeaderText>
       <FriendPageCardDiv>
         <GetSendRequest token={user.token} />
       </FriendPageCardDiv>
+      <FriendPageHeaderText>
+        <h2>Friend List</h2>
+      </FriendPageHeaderText>
     </FriendMainPage>
   );
 };
