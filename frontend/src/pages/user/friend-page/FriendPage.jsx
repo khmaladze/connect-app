@@ -5,6 +5,15 @@ import SendRequests from "../../../components/user/friend-page/friend-cards/send
 import { toast } from "react-toastify";
 import GetRequest from "../../../components/user/friend-page/friend-cards/get-request/GetRequest";
 import GetSendRequest from "../../../components/user/friend-page/friend-cards/sent-request/GetSentRequest";
+import {
+  FriendMainPage,
+  FriendMainPageSendRequestSmallText,
+  FriendMainPageSendRequestText,
+  FriendPageCardDiv,
+  FriendPageHeaderText,
+  FriendPageSendRequestDiv,
+  FriendRequstSearchBar,
+} from "./FriendPageStyle";
 
 const FriendPage = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
@@ -27,56 +36,18 @@ const FriendPage = ({ user }) => {
   };
 
   return (
-    <div
-      style={{
-        height: "100%",
-        width: "100%",
-      }}
-    >
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+    <FriendMainPage>
+      <FriendMainPageSendRequestText>
         <h2>Add Friend</h2>
-      </div>
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "5px",
-        }}
-      >
+      </FriendMainPageSendRequestText>
+      <FriendMainPageSendRequestSmallText>
         <h4>Search user with username</h4>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "5px",
-        }}
-      >
+      </FriendMainPageSendRequestSmallText>
+      <FriendRequstSearchBar>
         <SearchBar onSearch={handleSearch} />
-      </div>
+      </FriendRequstSearchBar>
       {searchResult && (
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "15px",
-          }}
-        >
+        <FriendPageSendRequestDiv>
           <SendRequests
             imageUrl={searchResult.profileImage}
             username={searchResult.username}
@@ -84,57 +55,21 @@ const FriendPage = ({ user }) => {
             id={searchResult._id}
             token={user.token}
           />
-        </div>
+        </FriendPageSendRequestDiv>
       )}
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "50px",
-        }}
-      >
+      <FriendPageHeaderText>
         <h2>Get Friend Request</h2>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          marginTop: "15px",
-        }}
-      >
+      </FriendPageHeaderText>
+      <FriendPageCardDiv>
         <GetRequest token={user.token} />
-      </div>
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "50px",
-        }}
-      >
+      </FriendPageCardDiv>
+      <FriendPageHeaderText>
         <h2>Get Sent Friend Request</h2>
-      </div>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-          marginTop: "15px",
-        }}
-      >
+      </FriendPageHeaderText>
+      <FriendPageCardDiv>
         <GetSendRequest token={user.token} />
-      </div>
-    </div>
+      </FriendPageCardDiv>
+    </FriendMainPage>
   );
 };
 
