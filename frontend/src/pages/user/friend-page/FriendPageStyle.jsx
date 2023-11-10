@@ -48,10 +48,10 @@ export const FriendPageHeaderText = styled.div`
 `;
 
 export const FriendPageCardDiv = styled.div`
-  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  flex-direction: column;
+  margin-top: 15px;
 `;
