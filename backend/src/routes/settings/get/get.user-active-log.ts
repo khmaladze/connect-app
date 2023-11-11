@@ -84,13 +84,6 @@ import { userSettingsUserActiveMessage } from "../../../function/server-route-me
  *       - Settings
  *     security:
  *       - BearerAuth: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: The authentication token. Use the format "Bearer jwt_token".
  *     responses:
  *       200:
  *         description: Get user active log successful.
