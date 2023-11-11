@@ -4,6 +4,7 @@ import * as sendFriendRequest from "./post/post.friend-request";
 import * as getUserProfile from "./get/get.user-profile";
 import * as getFriendRequest from "./get/get.friend-request";
 import * as getSendRequest from "./get/get.send-request";
+import * as getFriendList from "./get/get.friendList";
 import * as responseFriendRequest from "./put/put.friend-request-response";
 import * as removeSentFriendRequest from "./put/put.remove-friend-request";
 import userCheck from "../../middleware/user-check";
@@ -21,6 +22,7 @@ router.get(
   userCheck,
   getUserProfile.businessLogic
 );
+router.get("/", userAuthorization, userCheck, getFriendList.businessLogic);
 router.get(
   "/request",
   userAuthorization,
