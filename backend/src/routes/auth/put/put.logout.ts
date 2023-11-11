@@ -18,13 +18,6 @@ import { userLogOutMessage } from "../../../function/server-route-messages";
  *       - Auth
  *     security:
  *       - BearerAuth: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: The authentication token. Use the format "Bearer jwt_token".
  *     responses:
  *       200:
  *         description: User log out successful.
