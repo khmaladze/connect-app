@@ -32,7 +32,6 @@ import Joi from "joi";
  *               maxLength: 100
  *             confirmPassword:
  *               type: string
- *               valid: Joi.ref("password")
  *     responses:
  *       200:
  *         description: Update user password successful.
