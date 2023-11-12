@@ -14,14 +14,6 @@ import { User } from "../../../models/user/user-model";
  *     description: Retrieve pending friend requests for the user.
  *     tags:
  *       - Friend
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *           format: Bearer jwt_token
- *         description: The user's JWT token for authorization.
  *     responses:
  *       200:
  *         description: Friend requests retrieved successfully.
