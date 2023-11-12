@@ -41,6 +41,7 @@ export const API_URL = {
       user_profile_for_request: `${USER_API + "/friend/user/"}`,
       friend_request: `${USER_API + "/friend/request"}`,
       get_send_requests: `${USER_API + "/friend/get_send_request"}`,
+      friend_list: `${USER_API + "/frind"}`,
     },
     post: {
       friend_request: `${USER_API + "/friend/send_friend_request"}`,
