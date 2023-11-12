@@ -18,13 +18,6 @@ import { CustomRequest } from "../../../middleware/user-authorization";
  *       - Profile
  *     security:
  *       - BearerAuth: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: The authentication token. Use the format "Bearer jwt_token".
  *     requestBody:
  *       content:
  *         application/json:

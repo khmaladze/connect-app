@@ -21,13 +21,6 @@ import { deleteImageFromCloudinary } from "../../../function/server-image-delete
  *       - Profile
  *     security:
  *       - BearerAuth: string
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         schema:
- *           type: string
- *         required: true
- *         description: The authentication token. Use the format "Bearer jwt_token".
  *     requestBody:
  *       required: true
  *       content:

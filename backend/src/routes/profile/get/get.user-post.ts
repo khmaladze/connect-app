@@ -13,14 +13,6 @@ import { Post } from "../../../models/post/post-model";
  *     description: Retrieve all posts created by the authenticated user.
  *     tags:
  *       - Profile
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         required: true
- *         schema:
- *           type: string
- *           format: Bearer jwt_token
- *         description: The user's JWT token for authorization.
  *     responses:
  *       200:
  *         description: All user posts retrieved successfully.
