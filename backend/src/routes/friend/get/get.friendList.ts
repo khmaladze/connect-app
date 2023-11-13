@@ -4,6 +4,7 @@ import { custom_server_response } from "../../../function/server-response";
 import { userGetFriendRequestMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { UserFriend } from "../../../models/friend/friend-model";
+import { User } from "../../../models/user/user-model";
 
 /**
  * @swagger
@@ -53,11 +54,19 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
 
-    const userFriendRequest = await UserFriend.find({
+    const userFriend = await UserFriend.find({
       user_profile_id: userProfileId,
     }).select("friends");
 
-    const friendList = await userFriendRequest[0].friends;
+    const friendPromises = userFriend[0].friends.map(async (request: any) => {
+      const userDetails = await User.findOne({
+        _id: request.user_id,
+      }).select("_id username gender profileImage");
+
+      return { user: userDetails, request };
+    });
+
+    const friendList = await Promise.all(friendPromises);
 
     return custom_server_response(
       res,
