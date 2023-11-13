@@ -14,6 +14,7 @@ import {
   FriendPageSendRequestDiv,
   FriendRequstSearchBar,
 } from "./FriendPageStyle";
+import FriendCard from "../../../components/user/friend-page/friend-cards/friend-card/FriendCard";
 
 const FriendPage = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
@@ -72,6 +73,9 @@ const FriendPage = ({ user }) => {
       <FriendPageHeaderText>
         <h2>Friend List</h2>
       </FriendPageHeaderText>
+      <FriendPageCardDiv>
+        <FriendCard token={user.token} />
+      </FriendPageCardDiv>
     </FriendMainPage>
   );
 };
