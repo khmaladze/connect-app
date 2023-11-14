@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { apiGetRequest } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import ProfilePost from "./ProfilePost";
-import { CircularProgress } from "@mui/material";
+import Loading from "../../../loading/Loading";
 
 const ProfilePostComponent = ({ user }) => {
   const [profilePosts, setProfilePosts] = useState("");
@@ -30,19 +30,7 @@ const ProfilePostComponent = ({ user }) => {
 
   return (
     <Fragment>
-      {loading && (
-        <div
-          style={{
-            maxWidth: "1500px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "15px",
-          }}
-        >
-          <CircularProgress />
-        </div>
-      )}
+      {loading && <Loading />}
       {profilePosts
         ? profilePosts.map((item) => {
             return (
