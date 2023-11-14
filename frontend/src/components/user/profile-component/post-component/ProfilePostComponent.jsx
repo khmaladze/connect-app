@@ -18,7 +18,7 @@ const ProfilePostComponent = ({ user }) => {
         setTimeout(() => {
           setLoading(!loading);
           setProfilePosts(response.data);
-        }, 1500);
+        }, 500);
       } else {
         setTimeout(() => {
           setLoading(!loading);
