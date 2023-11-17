@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
-import { Avatar } from "@mui/material";
+import { Avatar, FormControl, MenuItem, Select } from "@mui/material";
 import { apiPostRequest, userProfileImage } from "../../../../api/user/Api";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -47,7 +47,9 @@ const ProfileAddPostComponent = ({ user }) => {
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
-  const [borderColor, setBorderColor] = useState("friend");
+  const [borderColor, setBorderColor] = useState("Friend");
+
+  const friendListData = ["Friend", "CloseFriend", "Favorite"];
 
   const createPost = async () => {
     if (image || text) {
@@ -115,6 +117,34 @@ const ProfileAddPostComponent = ({ user }) => {
               name="files"
               labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
             />
+          </Grid>
+        </AddPostImageBody>
+        <AddPostImageBody>
+          <Grid item xs={12}>
+            <h4>Select Friend List</h4>
+            <FormControl
+              style={{
+                width: "100%",
+                marginTop: "10px",
+              }}
+            >
+              <Select
+                labelId="dropdown-label"
+                id="dropdown"
+                value={borderColor}
+                onChange={(e) => {
+                  setBorderColor(e.target.value);
+                }}
+              >
+                {friendListData.map((item) => {
+                  return (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
           </Grid>
         </AddPostImageBody>
         <AddPostFooter borderColor={borderColor}>

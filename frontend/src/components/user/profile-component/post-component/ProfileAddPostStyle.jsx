@@ -14,9 +14,9 @@ export const AddPostDiv = styled.div`
   min-height: 350px;
   border: 3px solid
     ${(props) =>
-      props.borderColor === "friend"
+      props.borderColor === "Friend"
         ? "#0500ff"
-        : props.borderColor === "closeFriend"
+        : props.borderColor === "CloseFriend"
         ? "#1eff1e"
         : "#FF008A"};
   background: white;
@@ -34,9 +34,9 @@ export const AddPostHeader = styled.div`
   width: 100%;
   /* border-bottom: 3px solid
     ${(props) =>
-    props.borderColor === "friend"
+    props.borderColor === "Friend"
       ? "#0500ff"
-      : props.borderColor === "closeFriend"
+      : props.borderColor === "CloseFriend"
       ? "#1eff1e"
       : "#FF008A"}; */
   padding: 10px;
@@ -72,24 +72,24 @@ export const AddPostFooter = styled.div`
   width: 100%;
   /* border-top: 3px solid
     ${(props) =>
-    props.borderColor === "friend"
+    props.borderColor === "Friend"
       ? "#0500ff"
-      : props.borderColor === "closeFriend"
+      : props.borderColor === "CloseFriend"
       ? "#1eff1e"
       : "#FF008A"}; */
   padding: 10px;
   color: ${(props) =>
-    props.borderColor === "friend"
+    props.borderColor === "Friend"
       ? "#0500ff"
-      : props.borderColor === "closeFriend"
+      : props.borderColor === "CloseFriend"
       ? "#1eff1e"
       : "#FF008A"};
 
   button {
     color: ${(props) =>
-      props.borderColor === "friend"
+      props.borderColor === "Friend"
         ? "#0500ff"
-        : props.borderColor === "closeFriend"
+        : props.borderColor === "CloseFriend"
         ? "#1eff1e"
         : "#FF008A"};
   }
@@ -105,9 +105,9 @@ export const CustomTextarea = styled.textarea`
   font-size: 16px;
   border: 2px solid
     ${(props) =>
-      props.borderColor === "friend"
+      props.borderColor === "Friend"
         ? "#0500ff"
-        : props.borderColor === "closeFriend"
+        : props.borderColor === "CloseFriend"
         ? "#1eff1e"
         : "#FF008A"};
   border-radius: 5px;
@@ -115,18 +115,18 @@ export const CustomTextarea = styled.textarea`
 
   &:hover {
     border-color: ${(props) =>
-      props.borderColor === "friend"
+      props.borderColor === "Friend"
         ? "#0500ff"
-        : props.borderColor === "closeFriend"
+        : props.borderColor === "CloseFriend"
         ? "#1eff1e"
         : "#FF008A"};
   }
 
   &:focus {
     border-color: ${(props) =>
-      props.borderColor === "friend"
+      props.borderColor === "Friend"
         ? "#0500ff"
-        : props.borderColor === "closeFriend"
+        : props.borderColor === "CloseFriend"
         ? "#1eff1e"
         : "#FF008A"};
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
