@@ -12,6 +12,13 @@ export const ProfilePostDiv = styled.div`
   max-width: 700px;
   width: 700px;
   border: 3px solid #1eff1e;
+  border: 3px solid
+    ${(props) =>
+      props.borderColor === "Friend"
+        ? "#0500ff"
+        : props.borderColor === "CloseFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
   background: white;
   border-radius: 15px;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -31,7 +38,13 @@ export const ProfilePostHeader = styled.div`
   align-items: center;
   height: 70px;
   width: 100%;
-  border-bottom: 3px solid #1eff1e;
+  border-bottom: 3px solid
+    ${(props) =>
+      props.borderColor === "Friend"
+        ? "#0500ff"
+        : props.borderColor === "CloseFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
   padding: 10px;
 `;
 
@@ -64,6 +77,12 @@ export const ProfilePostFooter = styled.div`
   align-items: center;
   height: 50px;
   width: 100%;
-  border-top: 3px solid #1eff1e;
+  border-top: 3px solid
+    ${(props) =>
+      props.borderColor === "Friend"
+        ? "#0500ff"
+        : props.borderColor === "CloseFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
   padding: 10px;
 `;
