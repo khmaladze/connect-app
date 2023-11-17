@@ -43,6 +43,7 @@ const ProfilePostComponent = ({ user }) => {
                   gender={user.gender}
                   text={item.text || ""}
                   image={item.media.length > 0 ? item.media[0].url : ""}
+                  list={item.list}
                 />
               </div>
             );
