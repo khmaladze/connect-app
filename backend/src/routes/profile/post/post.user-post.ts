@@ -92,6 +92,7 @@ import { Post } from "../../../models/post/post-model";
 
 const postSchema = Joi.object({
   text: Joi.string().max(500),
+  friendList: Joi.string().valid("Friend", "CloseFriend", "Favorite"),
 }).options({ abortEarly: false });
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
@@ -103,6 +104,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const file = req.file;
     const text = req.body.text;
+    const friendList = req.body.text;
 
     if (!text && !file) {
       return custom_server_response(
@@ -116,6 +118,10 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     if (text) {
       createData.text = text;
+    }
+
+    if (friendList) {
+      createData.friendList = friendList;
     }
 
     if (file) {
