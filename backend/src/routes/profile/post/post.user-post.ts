@@ -104,7 +104,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     const file = req.file;
     const text = req.body.text;
-    const friendList = req.body.text;
+    const friendList = req.body.friendList;
 
     if (!text && !file) {
       return custom_server_response(
@@ -121,7 +121,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     }
 
     if (friendList) {
-      createData.friendList = friendList;
+      createData.list = friendList;
     }
 
     if (file) {
