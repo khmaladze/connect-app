@@ -15,7 +15,6 @@ const userFriendSchema = new mongoose.Schema(
       },
     ],
   },
-
   { timestamps: true }
 );
 
