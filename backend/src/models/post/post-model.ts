@@ -22,6 +22,7 @@ const postSchema = new Schema<IPost>(
     media: [
       {
         url: String,
+        public_id: String,
       },
     ],
     author: {
