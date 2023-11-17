@@ -130,7 +130,10 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         String(userProfileId),
         file
       );
-      createData.media = { url: imageUrl };
+      createData.media = {
+        url: imageUrl.secure_url,
+        public_id: imageUrl.public_id,
+      };
     }
 
     const newData = await Post.create(createData);
