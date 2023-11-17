@@ -22,11 +22,12 @@ const ProfilePost = ({
   profileImage,
   createdAt,
   gender,
+  list,
 }) => {
   return (
     <ProfilePostContainer>
-      <ProfilePostDiv>
-        <ProfilePostHeader>
+      <ProfilePostDiv borderColor={list}>
+        <ProfilePostHeader borderColor={list}>
           <ProfilePostHeaderContainer>
             <Avatar
               style={{ height: "55px", width: "55px" }}
@@ -46,7 +47,7 @@ const ProfilePost = ({
         {image !== "" && (
           <ProfilePostBodyImage image={image}></ProfilePostBodyImage>
         )}
-        <ProfilePostFooter>
+        <ProfilePostFooter borderColor={list}>
           <div>
             <FavoriteBorderIcon />
             <AddCommentIcon />
