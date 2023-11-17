@@ -1,10 +1,16 @@
 import mongoose, { Document, Schema, model } from "mongoose";
 
+enum FriendList {
+  Friend = "Friend",
+  CloseFriend = "CloseFriend",
+  Favorite = "Favorite",
+}
+
 export interface IPost extends Document {
   text: string;
   media: string[];
   author: any;
-  //   list: any;
+  list: FriendList;
 }
 
 const postSchema = new Schema<IPost>(
@@ -23,11 +29,12 @@ const postSchema = new Schema<IPost>(
       ref: "User",
       required: true,
     },
-    //   list: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "List",
-    //     required: true,
-    //   },
+    list: {
+      type: String,
+      enum: FriendList,
+      required: true,
+      default: FriendList.Friend,
+    },
   },
   { timestamps: true }
 );
