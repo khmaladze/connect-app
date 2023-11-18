@@ -11,6 +11,7 @@ export interface IPost extends Document {
   media: string[];
   author: any;
   list: FriendList;
+  expiryDate: any;
 }
 
 const postSchema = new Schema<IPost>(
@@ -36,6 +37,7 @@ const postSchema = new Schema<IPost>(
       required: true,
       default: FriendList.Friend,
     },
+    expiryDate: { type: Date, required: true },
   },
   { timestamps: true }
 );
