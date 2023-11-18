@@ -124,6 +124,9 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       createData.list = friendList;
     }
 
+    const fiveDay = 1000 * 60 * 60 * 24 * 5;
+    createData.expiryDate = Date.now() + fiveDay;
+
     if (file) {
       // Upload the image to Cloudinary in the specified folder
       const imageUrl = await uploadImageToCloudinary(
