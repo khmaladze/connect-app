@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userProfileMessage } from "../../../function/server-route-messages";
 import { UserProfile } from "../../../models/user/user-profile-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
 
@@ -79,6 +78,13 @@ import { CustomRequest } from "../../../middleware/user-authorization";
  *               message: "Unauthorized"
  */
 
+const routeMessage = {
+  add_min_one_fields: "add min one fields",
+  userprofile_data_success: "userprofile data add success",
+  user_image_update_failed: "user image update failed",
+  user_profileImage_update_success: "user profileImage update success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -90,7 +96,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userProfileMessage.userprofile_data_success,
+      routeMessage.userprofile_data_success,
       userData
     );
   } catch (error) {

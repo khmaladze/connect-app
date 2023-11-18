@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { getUserPostMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { Post } from "../../../models/post/post-model";
 
@@ -68,6 +67,10 @@ import { Post } from "../../../models/post/post-model";
  *       - BearerAuth: []
  */
 
+const routeMessage = {
+  get_user_post: "get user post",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -80,7 +83,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      getUserPostMessage.get_user_post,
+      routeMessage.get_user_post,
       userPosts
     );
   } catch (error) {

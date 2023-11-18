@@ -2,7 +2,6 @@ import { Response } from "express";
 import Joi from "joi";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userProfileMessage } from "../../../function/server-route-messages";
 import { userProfileData } from "../../../data/user-profile";
 import { UserProfile } from "../../../models/user/user-profile-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
@@ -76,6 +75,13 @@ interface IUserProfileData {
   passions?: string[];
 }
 
+const routeMessage = {
+  add_min_one_fields: "add min one fields",
+  userprofile_data_success: "userprofile data add success",
+  user_image_update_failed: "user image update failed",
+  user_profileImage_update_success: "user profileImage update success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -87,11 +93,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const { languages, education, passions }: IUserProfileData = req.body;
 
     if (!languages && !education && !passions) {
-      return custom_server_response(
-        res,
-        400,
-        userProfileMessage.add_min_one_fields
-      );
+      return custom_server_response(res, 400, routeMessage.add_min_one_fields);
     }
 
     let userProfileData: IUserProfileData = {
@@ -123,7 +125,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userProfileMessage.userprofile_data_success
+      routeMessage.userprofile_data_success
     );
   } catch (error) {
     return customServerError(res, error);

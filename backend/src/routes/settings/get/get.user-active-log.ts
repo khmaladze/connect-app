@@ -3,7 +3,6 @@ import userActiveModel from "../../../models/user/user-active-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
-import { userSettingsUserActiveMessage } from "../../../function/server-route-messages";
 
 /**
  * @swagger
@@ -116,6 +115,10 @@ import { userSettingsUserActiveMessage } from "../../../function/server-route-me
  *               message: "Unauthorized"
  */
 
+const routeMessage = {
+  get_user_log_success: "get user active log success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userActiveData = await userActiveModel
@@ -128,7 +131,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userSettingsUserActiveMessage.get_user_log_success,
+      routeMessage.get_user_log_success,
       userActiveData
     );
   } catch (error) {

@@ -6,7 +6,6 @@ import { User } from "../../../models/user/user-model";
 import userActiveModel from "../../../models/user/user-active-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { loginUserMessage } from "../../../function/server-route-messages";
 import config from "../../../../../config/config";
 import { getDateAfter7Days } from "../../../function/server-user-profile";
 
@@ -103,6 +102,12 @@ const loginSchema = Joi.object({
   password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
 });
 
+const routeMessage = {
+  incorrect_email: "email not found, incorrect email",
+  incorrect_password: "incorrect password",
+  auth_user_login: "user login success",
+};
+
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     // Request body
@@ -114,17 +119,13 @@ export const businessLogic = async (req: Request, res: Response) => {
     // Find the user by email
     const user: any = await User.findOne({ email });
     if (!user) {
-      return custom_server_response(res, 400, loginUserMessage.incorrect_email);
+      return custom_server_response(res, 400, routeMessage.incorrect_email);
     }
 
     // Compare the provided password with the hashed password stored in the user record
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if (!passwordsMatch) {
-      return custom_server_response(
-        res,
-        400,
-        loginUserMessage.incorrect_password
-      );
+      return custom_server_response(res, 400, routeMessage.incorrect_password);
     }
 
     // Generate a JWT and send it back to the client
@@ -145,7 +146,7 @@ export const businessLogic = async (req: Request, res: Response) => {
       expires: user_jwt_expires,
     });
 
-    return custom_server_response(res, 200, loginUserMessage.auth_user_login, {
+    return custom_server_response(res, 200, routeMessage.auth_user_login, {
       token,
       user,
     });

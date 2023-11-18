@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userAddPostMessages } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../../function/server-upload-image";
 import Joi from "joi";
@@ -95,6 +94,11 @@ const postSchema = Joi.object({
   friendList: Joi.string().valid("Friend", "CloseFriend", "Favorite"),
 });
 
+const routeMessage = {
+  add_text_or_image: "please add text or image",
+  post_created_success: "post created success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -107,11 +111,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const friendList = req.body.friendList;
 
     if (!text && !file) {
-      return custom_server_response(
-        res,
-        400,
-        userAddPostMessages.add_text_or_image
-      );
+      return custom_server_response(res, 400, routeMessage.add_text_or_image);
     }
 
     let createData: any = { author: req.user };
@@ -144,7 +144,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userAddPostMessages.post_created_success,
+      routeMessage.post_created_success,
       newData
     );
   } catch (error) {

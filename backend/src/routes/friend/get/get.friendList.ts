@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userGetFriendRequestMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { UserFriend } from "../../../models/friend/friend-model";
 import { User } from "../../../models/user/user-model";
@@ -50,6 +49,10 @@ import { User } from "../../../models/user/user-model";
  *       - BearerAuth: []
  */
 
+const routeMessage = {
+  get_friend_list_success: "get friend list success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -71,7 +74,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userGetFriendRequestMessage.get_friend_request_success,
+      routeMessage.get_friend_list_success,
       friendList
     );
   } catch (error) {

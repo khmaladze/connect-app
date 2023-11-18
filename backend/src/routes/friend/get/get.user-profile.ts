@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { getUserFriendProfileMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
@@ -42,6 +41,12 @@ import { UserFriendAdd } from "../../../models/friend/friend-send-request-model"
  *       - BearerAuth: []
  */
 
+const routeMessage = {
+  username_required: "username required",
+  user_not_found: "user not found",
+  user_get_success: "user get success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -50,11 +55,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const username = req.params.username;
 
     if (!username) {
-      return custom_server_response(
-        res,
-        400,
-        getUserFriendProfileMessage.username_required
-      );
+      return custom_server_response(res, 400, routeMessage.username_required);
     }
 
     const getUserProfile = await User.findOne({
@@ -62,19 +63,11 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     }).select("_id username profileImage gender");
 
     if (!getUserProfile) {
-      return custom_server_response(
-        res,
-        400,
-        getUserFriendProfileMessage.user_not_found
-      );
+      return custom_server_response(res, 400, routeMessage.user_not_found);
     }
 
     if (getUserProfile._id.toString() == userProfileId.toString()) {
-      return custom_server_response(
-        res,
-        400,
-        getUserFriendProfileMessage.user_not_found
-      );
+      return custom_server_response(res, 400, routeMessage.user_not_found);
     }
 
     // Check if we already send request
@@ -104,7 +97,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return custom_server_response(
           res,
           200,
-          getUserFriendProfileMessage.user_get_success,
+          routeMessage.user_get_success,
           getUserProfile
         );
       } else {
@@ -115,7 +108,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      getUserFriendProfileMessage.user_get_success,
+      routeMessage.user_get_success,
       getUserProfile
     );
   } catch (error) {

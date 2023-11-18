@@ -2,10 +2,6 @@ import { Response } from "express";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import {
-  getFriendSendRequestMessage,
-  userGetFriendRequestMessage,
-} from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 
@@ -57,6 +53,12 @@ import { User } from "../../../models/user/user-model";
  *     security:
  *       - BearerAuth: []
  */
+
+const routeMessage = {
+  get_send_request_success: "get send request success",
+  you_have_not_send_request: "you have not send request",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -70,7 +72,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         200,
-        getFriendSendRequestMessage.you_have_not_send_request,
+        routeMessage.you_have_not_send_request,
         userFriendRequest
       );
     }
@@ -88,7 +90,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userGetFriendRequestMessage.get_friend_request_success,
+      routeMessage.get_send_request_success,
       friendRequests
     );
   } catch (error) {

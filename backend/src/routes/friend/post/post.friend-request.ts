@@ -3,7 +3,6 @@ import Joi from "joi";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userSendFriendRequestMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 
@@ -84,6 +83,13 @@ const sendFriendRequestSchema = Joi.object({
     .required(),
 });
 
+const routeMessage = {
+  receiver_not_exists: "receiver not exists",
+  friend_request_already_exists: "friend request already exists",
+  person_already_send_you_request: "person already send you request",
+  send_friend_request_success: "send friend request success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -98,11 +104,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
 
     // Check that receiver and userProfileId is different
     if (receiver === userProfileId.toString()) {
-      return custom_server_response(
-        res,
-        400,
-        userSendFriendRequestMessage.receiver_not_exists
-      );
+      return custom_server_response(res, 400, routeMessage.receiver_not_exists);
     }
 
     // Check if receiver Exists
@@ -110,11 +112,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       _id: receiver,
     });
     if (!isValidreceiver) {
-      return custom_server_response(
-        res,
-        400,
-        userSendFriendRequestMessage.receiver_not_exists
-      );
+      return custom_server_response(res, 400, routeMessage.receiver_not_exists);
     }
 
     // Check if the friend request already send
@@ -126,7 +124,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        userSendFriendRequestMessage.friend_request_already_exists
+        routeMessage.friend_request_already_exists
       );
     }
 
@@ -152,7 +150,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return custom_server_response(
           res,
           200,
-          userSendFriendRequestMessage.send_friend_request_success,
+          routeMessage.send_friend_request_success,
           sendFriendRequest
         );
       }
@@ -160,7 +158,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        userSendFriendRequestMessage.person_already_send_you_request
+        routeMessage.person_already_send_you_request
       );
     }
 
@@ -173,7 +171,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userSendFriendRequestMessage.send_friend_request_success,
+      routeMessage.send_friend_request_success,
       sendFriendRequest
     );
   } catch (error) {

@@ -2,7 +2,6 @@ import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
-import { userSettingsUserActiveMessage } from "../../../function/server-route-messages";
 import { User } from "../../../models/user/user-model";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
@@ -66,6 +65,10 @@ const passwordUpdateSchema = Joi.object({
   confirmPassword: Joi.string().required().valid(Joi.ref("password")),
 });
 
+const routeMessage = {
+  update_user_password_success: "update user password success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     // Validate request body
@@ -85,7 +88,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userSettingsUserActiveMessage.update_user_password_success
+      routeMessage.update_user_password_success
     );
   } catch (error) {
     return customServerError(res, error);

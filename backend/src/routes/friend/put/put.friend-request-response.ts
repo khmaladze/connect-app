@@ -5,7 +5,6 @@ import { customServerError } from "../../../function/server-custom-error-respons
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
-import { userFriendRequestResponseMessage } from "../../../function/server-route-messages";
 
 /**
  * @swagger
@@ -71,6 +70,13 @@ const responseFriendRequestSchema = Joi.object({
   friend_list: Joi.string().valid("Friend", "CloseFriend", "Favorite"),
 });
 
+const routeMessage = {
+  error_can_not_send_response: "error, can't send response",
+  user_friend_request_not_found: "user friend request not found",
+  already_friends: "already friends",
+  request_response_send_success: "request response send success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -86,7 +92,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         400,
-        userFriendRequestResponseMessage.error_can_not_send_response
+        routeMessage.error_can_not_send_response
       );
     }
 
@@ -100,7 +106,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         200,
-        userFriendRequestResponseMessage.user_friend_request_not_found
+        routeMessage.user_friend_request_not_found
       );
     }
 
@@ -115,7 +121,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       return custom_server_response(
         res,
         200,
-        userFriendRequestResponseMessage.request_response_send_success
+        routeMessage.request_response_send_success
       );
     }
 
@@ -127,11 +133,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       });
 
       if (alreadyFriends.length > 0) {
-        return custom_server_response(
-          res,
-          200,
-          userFriendRequestResponseMessage.already_friends
-        );
+        return custom_server_response(res, 200, routeMessage.already_friends);
       }
 
       await UserFriend.findOneAndUpdate(
@@ -175,7 +177,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userFriendRequestResponseMessage.request_response_send_success
+      routeMessage.request_response_send_success
     );
   } catch (error) {
     return customServerError(res, error);

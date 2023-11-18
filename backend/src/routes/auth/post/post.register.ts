@@ -5,7 +5,6 @@ import { User } from "../../../models/user/user-model";
 import { UserFriend } from "../../../models/friend/friend-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { registerUserMessage } from "../../../function/server-route-messages";
 import {
   getZodiacSign,
   isValidDate,
@@ -124,6 +123,13 @@ const registrationSchema = Joi.object({
   confirmPassword: Joi.string().required().valid(Joi.ref("password")),
 });
 
+const routeMessage = {
+  user_email_exist: "try another email",
+  user_username_exist: "try another username",
+  user_not_valid_date: "date is not valid",
+  auth_user_register: "user register success",
+};
+
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     // Validate request body
@@ -145,30 +151,18 @@ export const businessLogic = async (req: Request, res: Response) => {
     // Check if the email already exists in the database
     const emailExists = await User.exists({ email });
     if (emailExists) {
-      return custom_server_response(
-        res,
-        400,
-        registerUserMessage.user_email_exist
-      );
+      return custom_server_response(res, 400, routeMessage.user_email_exist);
     }
 
     // Check if the username already exists in the database
     const usernameExists = await User.exists({ username });
     if (usernameExists) {
-      return custom_server_response(
-        res,
-        400,
-        registerUserMessage.user_username_exist
-      );
+      return custom_server_response(res, 400, routeMessage.user_username_exist);
     }
 
     // Validate year, month, day
     if (!isValidDate(birthYear, birthMonth, birthDay)) {
-      return custom_server_response(
-        res,
-        400,
-        registerUserMessage.user_not_valid_date
-      );
+      return custom_server_response(res, 400, routeMessage.user_not_valid_date);
     }
 
     // for password hash
@@ -194,11 +188,7 @@ export const businessLogic = async (req: Request, res: Response) => {
 
     await UserFriend.create({ user_profile_id: user._id });
 
-    return custom_server_response(
-      res,
-      200,
-      registerUserMessage.auth_user_register
-    );
+    return custom_server_response(res, 200, routeMessage.auth_user_register);
   } catch (error) {
     return customServerError(res, error);
   }

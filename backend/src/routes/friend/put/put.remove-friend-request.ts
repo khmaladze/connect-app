@@ -2,7 +2,6 @@ import { Response } from "express";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { userFriendRequstRemoveMessage } from "../../../function/server-route-messages";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 
@@ -55,6 +54,11 @@ const responseFriendRequestSchema = Joi.object({
   id: Joi.string(),
 });
 
+const routeMessage = {
+  user_already_respond: "user already respond",
+  response_remove_success: "response remove success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -79,7 +83,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return custom_server_response(
           res,
           200,
-          userFriendRequstRemoveMessage.user_already_respond
+          routeMessage.user_already_respond
         );
       }
     }
@@ -91,7 +95,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userFriendRequstRemoveMessage.response_remove_success
+      routeMessage.response_remove_success
     );
   } catch (error) {
     return customServerError(res, error);

@@ -5,7 +5,6 @@ import userActiveModel, {
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
-import { userLogOutMessage } from "../../../function/server-route-messages";
 
 // Documentation
 /**
@@ -49,6 +48,10 @@ import { userLogOutMessage } from "../../../function/server-route-messages";
  *               message: "Unauthorized"
  */
 
+const routeMessage = {
+  user_log_out_success: "user log out success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     let token: any = "";
@@ -67,11 +70,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       { new: true }
     );
 
-    return custom_server_response(
-      res,
-      200,
-      userLogOutMessage.user_log_out_success
-    );
+    return custom_server_response(res, 200, routeMessage.user_log_out_success);
   } catch (error) {
     return customServerError(res, error);
   }

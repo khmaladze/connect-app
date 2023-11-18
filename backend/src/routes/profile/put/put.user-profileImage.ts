@@ -1,10 +1,7 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import {
-  userProfileMessage,
-  multerImageMessage,
-} from "../../../function/server-route-messages";
+import { multerImageMessage } from "../../../function/server-route-messages";
 import { User } from "../../../models/user/user-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../../function/server-upload-image";
@@ -57,6 +54,13 @@ import { deleteImageFromCloudinary } from "../../../function/server-image-delete
  *                       description: The URL of the updated profile image.
  */
 
+const routeMessage = {
+  add_min_one_fields: "add min one fields",
+  userprofile_data_success: "userprofile data add success",
+  user_image_update_failed: "user image update failed",
+  user_profileImage_update_success: "user profileImage update success",
+};
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -86,7 +90,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return custom_server_response(
           res,
           400,
-          userProfileMessage.user_image_update_failed
+          routeMessage.user_image_update_failed
         );
       }
     }
@@ -105,7 +109,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      userProfileMessage.user_profileImage_update_success,
+      routeMessage.user_profileImage_update_success,
       newData
     );
   } catch (error) {
