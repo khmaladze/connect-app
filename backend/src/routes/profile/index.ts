@@ -5,6 +5,7 @@ import userAuthorization from "../../middleware/user-authorization";
 import * as userProfileDataGet from "./get/get.user-profile";
 import * as userPost from "./post/post.user-post";
 import * as getUserPost from "./get/get.user-post";
+import * as postUserLike from "./post/post.user-post-like";
 import uploadImageToServer from "../../function/server-upload-image";
 import userCheck from "../../middleware/user-check";
 let router = express.Router();
@@ -31,5 +32,11 @@ router.post(
   userPost.businessLogic
 );
 router.get("/posts", userAuthorization, userCheck, getUserPost.businessLogic);
+router.post(
+  "/like_post",
+  userAuthorization,
+  userCheck,
+  postUserLike.businessLogic
+);
 
 export default router;
