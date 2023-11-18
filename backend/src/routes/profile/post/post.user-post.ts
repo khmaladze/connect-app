@@ -93,7 +93,7 @@ import { Post } from "../../../models/post/post-model";
 const postSchema = Joi.object({
   text: Joi.string().max(500),
   friendList: Joi.string().valid("Friend", "CloseFriend", "Favorite"),
-}).options({ abortEarly: false });
+});
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
