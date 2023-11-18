@@ -1,4 +1,4 @@
-import mongoose, { Document, Schema, model } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
 enum FriendList {
   Friend = "Friend",
