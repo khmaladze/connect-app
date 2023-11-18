@@ -47,7 +47,7 @@ const ProfileAddPostComponent = ({ user }) => {
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
   const [image, setImage] = useState("");
-  const [borderColor, setBorderColor] = useState("Friend");
+  const [friendList, setFriendList] = useState("Friend");
 
   const friendListData = ["Friend", "CloseFriend", "Favorite"];
 
@@ -59,6 +59,9 @@ const ProfileAddPostComponent = ({ user }) => {
       }
       if (text) {
         formData.append("text", text);
+      }
+      if (friendList) {
+        formData.append("friendList", friendList);
       }
 
       const response = await apiPostRequest(
@@ -78,8 +81,8 @@ const ProfileAddPostComponent = ({ user }) => {
 
   return (
     <AddPostContainer>
-      <AddPostDiv borderColor={borderColor}>
-        <AddPostHeader borderColor={borderColor}>
+      <AddPostDiv borderColor={friendList}>
+        <AddPostHeader borderColor={friendList}>
           <AddPostHeaderContainer>
             <Avatar
               style={{ height: "55px", width: "55px" }}
@@ -96,7 +99,7 @@ const ProfileAddPostComponent = ({ user }) => {
             <Grid item xs={12}>
               <CustomTextarea
                 placeholder="Add Text"
-                borderColor={borderColor}
+                borderColor={friendList}
                 value={text}
                 onChange={(e) => setText(e.target.value)}
               />
@@ -131,9 +134,9 @@ const ProfileAddPostComponent = ({ user }) => {
               <Select
                 labelId="dropdown-label"
                 id="dropdown"
-                value={borderColor}
+                value={friendList}
                 onChange={(e) => {
-                  setBorderColor(e.target.value);
+                  setFriendList(e.target.value);
                 }}
               >
                 {friendListData.map((item) => {
@@ -147,7 +150,7 @@ const ProfileAddPostComponent = ({ user }) => {
             </FormControl>
           </Grid>
         </AddPostImageBody>
-        <AddPostFooter borderColor={borderColor}>
+        <AddPostFooter borderColor={friendList}>
           <div>
             <FavoriteBorderIcon />
             <AddCommentIcon />
