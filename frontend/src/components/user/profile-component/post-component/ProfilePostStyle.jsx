@@ -85,4 +85,10 @@ export const ProfilePostFooter = styled.div`
         ? "#1eff1e"
         : "#FF008A"};
   padding: 10px;
+  color: ${(props) =>
+    props.borderColor === "Friend"
+      ? "#0500ff"
+      : props.borderColor === "CloseFriend"
+      ? "#1eff1e"
+      : "#FF008A"};
 `;
