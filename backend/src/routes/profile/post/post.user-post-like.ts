@@ -6,6 +6,64 @@ import Joi from "joi";
 import { PostLike } from "../../../models/post-like/post-like-model";
 
 // Documentation
+/**
+ * @swagger
+ * /api/user/profile/like_post:
+ *   post:
+ *     summary: Like a post.
+ *     description: Allow a user to like a specific post.
+ *     tags:
+ *       - Profile
+ *     security:
+ *       - BearerAuth: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               post_id:
+ *                 type: string
+ *                 description: The ID of the post to be liked.
+ *     responses:
+ *       '200':
+ *         description: Successful post like response.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   description: Indicates the success of the request.
+ *                 message:
+ *                   type: string
+ *                   description: Success message related to the request.
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     post_id:
+ *                       type: string
+ *                       description: ID of the liked post.
+ *                     like_author_id:
+ *                       type: string
+ *                       description: ID of the user who liked the post.
+ *                     _id:
+ *                       type: string
+ *                       description: Unique identifier for the post like.
+ *                     createdAt:
+ *                       type: string
+ *                       description: Date and time when the post like was created.
+ *                       format: date-time
+ *                     updatedAt:
+ *                       type: string
+ *                       description: Date and time when the post like was last updated.
+ *                       format: date-time
+ *                     __v:
+ *                       type: number
+ *                       description: Version number.
+ */
 
 // validation
 const postLikeSchema = Joi.object({
