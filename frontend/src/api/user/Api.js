@@ -30,14 +30,12 @@ export const apiPostRequest = async (request, postData, token, contentType) => {
     const res = await axios.post(
       request,
       postData,
-      token
-        ? {
-            headers: {
-              "Content-Type": contentType ? contentType : "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        : ""
+      token && {
+        headers: {
+          "Content-Type": contentType ? contentType : "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
     );
     const response = res.data;
     if (response?.success) {
@@ -56,14 +54,12 @@ export const apiGetRequest = async (request, token) => {
   try {
     const res = await axios.get(
       request,
-      token
-        ? {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        : ""
+      token && {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
     );
     const response = res.data;
     if (response.success) {
@@ -82,14 +78,12 @@ export const apiPutRequest = async (request, postData, token, contentType) => {
     const res = await axios.put(
       request,
       postData,
-      token
-        ? {
-            headers: {
-              "Content-Type": contentType ? contentType : "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        : ""
+      token && {
+        headers: {
+          "Content-Type": contentType ? contentType : "application/json",
+          Authorization: "Bearer " + token,
+        },
+      }
     );
     const response = res.data;
     if (response.success) {
