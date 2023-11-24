@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import SearchBar from "../../../components/user/friend-page/search-bar/SearchBar";
-import { apiGetRequest } from "../../../api/user/Api";
 import SendRequests from "../../../components/user/friend-page/friend-cards/send-request/SendRequests";
 import { toast } from "react-toastify";
 import GetRequest from "../../../components/user/friend-page/friend-cards/get-request/GetRequest";
@@ -15,6 +14,7 @@ import {
   FriendRequstSearchBar,
 } from "./FriendPageStyle";
 import FriendCard from "../../../components/user/friend-page/friend-cards/friend-card/FriendCard";
+import { apiRequest } from "../../../api/user/Api";
 
 const FriendPage = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
@@ -24,7 +24,8 @@ const FriendPage = ({ user }) => {
       return;
     }
 
-    const response = await apiGetRequest(
+    const response = await apiRequest(
+      "GET",
       "/api/user/friend/user/" + searchTerm,
       user.token
     );

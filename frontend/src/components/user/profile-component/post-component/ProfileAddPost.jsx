@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddCommentIcon from "@mui/icons-material/AddComment";
 import { Avatar, FormControl, MenuItem, Select } from "@mui/material";
-import { apiPostRequest, userProfileImage } from "../../../../api/user/Api";
+import { apiRequest, userProfileImage } from "../../../../api/user/Api";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -64,10 +64,11 @@ const ProfileAddPostComponent = ({ user }) => {
         formData.append("friendList", friendList);
       }
 
-      const response = await apiPostRequest(
+      const response = await apiRequest(
+        "POST",
         API_URL.profile.post.add_post,
-        formData,
         user.token,
+        formData,
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 

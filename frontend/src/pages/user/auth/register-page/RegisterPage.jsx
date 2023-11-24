@@ -14,9 +14,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { toast } from "react-toastify";
-import { apiPostRequest } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import WelcomePageNavbar from "../../../../components/user/navbar/WelcomePageNavbar";
+import { apiRequest } from "../../../../api/user/Api";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -56,7 +56,12 @@ const RegisterPage = () => {
       password,
       confirmPassword,
     };
-    const response = await apiPostRequest(API_URL.auth.post.register, postData);
+    const response = await apiRequest(
+      "POST",
+      API_URL.auth.post.register,
+      null,
+      postData
+    );
     if (response?.success) {
       navigate("/");
     }

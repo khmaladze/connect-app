@@ -14,7 +14,7 @@ import { userLogin } from "../../../../store/isLogIn";
 import { toast } from "react-toastify";
 import WelcomePageNavbar from "../../../../components/user/navbar/WelcomePageNavbar";
 import {
-  apiPostRequest,
+  apiRequest,
   setLocalstorage,
   userLocalstorage,
 } from "../../../../api/user/Api";
@@ -39,7 +39,12 @@ const LoginPage = ({ updateSetIsAuth }) => {
       password,
     };
 
-    const response = await apiPostRequest(API_URL.auth.post.login, postData);
+    const response = await apiRequest(
+      "POST",
+      API_URL.auth.post.login,
+      null,
+      postData
+    );
 
     if (response?.success) {
       const responseData = response.data;

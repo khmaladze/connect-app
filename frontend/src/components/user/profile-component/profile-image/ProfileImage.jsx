@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  apiPutRequest,
+  apiRequest,
   setLocalstorage,
   userLocalstorage,
   userProfileImage,
@@ -38,10 +38,11 @@ const ProfileImageComponent = ({ user }) => {
     if (image && image[0] && image[0]["file"]) {
       const formData = new FormData();
       formData.append("image", image[0]["file"]);
-      const response = await apiPutRequest(
+      const response = await apiRequest(
+        "PUT",
         API_URL.profile.put.updateUserProfileImage,
-        formData,
         user.token,
+        formData,
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 

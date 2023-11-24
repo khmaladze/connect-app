@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import {
-  apiGetRequest,
-  apiPutRequest,
+  apiRequest,
   setLocalstorage,
   userLocalstorage,
 } from "../../../../api/user/Api";
@@ -44,10 +43,11 @@ const ProfileDetailsComponent = ({ user }) => {
       education: selectEducation,
     };
 
-    const response = await apiPutRequest(
+    const response = await apiRequest(
+      "PUT",
       API_URL.profile.put.updateUserProfileInfo,
-      postData,
-      user.token
+      user.token,
+      postData
     );
 
     if (response?.success) {
@@ -70,7 +70,8 @@ const ProfileDetailsComponent = ({ user }) => {
 
   useEffect(() => {
     const fetchProfileInfoData = async () => {
-      const response = await apiGetRequest(
+      const response = await apiRequest(
+        "GET",
         API_URL.profile.get.user_profile,
         user.token
       );

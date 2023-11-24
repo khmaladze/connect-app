@@ -25,70 +25,52 @@ const clearUserAuthLocalstorage = () => {
   }
 };
 
-export const apiPostRequest = async (request, postData, token, contentType) => {
+export const apiRequest = async (
+  method,
+  request,
+  token,
+  postData,
+  contentType
+) => {
   try {
-    const res = await axios.post(
-      request,
-      postData,
-      token && {
-        headers: {
-          "Content-Type": contentType ? contentType : "application/json",
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    const response = res.data;
+    const axiosConfig = {
+      headers: {
+        "Content-Type": contentType ? contentType : "application/json",
+        Authorization: token ? "Bearer " + token : undefined,
+      },
+    };
+
+    let axiosResponse;
+
+    switch (method.toUpperCase()) {
+      case "GET":
+        axiosResponse = await axios.get(request, token && axiosConfig);
+        break;
+      case "POST":
+        axiosResponse = await axios.post(
+          request,
+          postData,
+          token && axiosConfig
+        );
+        break;
+      case "PUT":
+        axiosResponse = await axios.put(
+          request,
+          postData,
+          token && axiosConfig
+        );
+        break;
+      default:
+        throw new Error("Invalid HTTP method");
+    }
+
+    const response = axiosResponse.data;
+
     if (response?.success) {
-      toast.success(response.message);
-      return res.data;
-    }
-  } catch (error) {
-    if (error && error.response && error.response.data) {
-      toast.error(error.response.data.message);
-      userNotAuthorizedAction(error);
-    }
-  }
-};
-
-export const apiGetRequest = async (request, token) => {
-  try {
-    const res = await axios.get(
-      request,
-      token && {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
+      if (method !== "GET") {
+        toast.success(response.message);
       }
-    );
-    const response = res.data;
-    if (response.success) {
-      return res.data;
-    }
-  } catch (error) {
-    if (error && error.response && error.response.data) {
-      toast.error(error.response.data.message);
-      userNotAuthorizedAction(error);
-    }
-  }
-};
-
-export const apiPutRequest = async (request, postData, token, contentType) => {
-  try {
-    const res = await axios.put(
-      request,
-      postData,
-      token && {
-        headers: {
-          "Content-Type": contentType ? contentType : "application/json",
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    const response = res.data;
-    if (response.success) {
-      toast.success(response.message);
-      return res.data;
+      return response;
     }
   } catch (error) {
     if (error && error.response && error.response.data) {

@@ -12,7 +12,7 @@ import { useDispatch } from "react-redux";
 import { API_URL } from "../../../config/config";
 import { logOut } from "../../../store/auth";
 import {
-  apiPutRequest,
+  apiRequest,
   clearUserAuthLocalstorage,
   userProfileImage,
 } from "../../../api/user/Api";
@@ -23,10 +23,11 @@ const Navbar = ({ user, updateSetIsAuth }) => {
   const dispatch = useDispatch();
 
   const logOutHandle = async () => {
-    const response = await apiPutRequest(
+    const response = await apiRequest(
+      "PUT",
       API_URL.auth.put.logout,
-      {},
-      user.token
+      user.token,
+      {}
     );
     if (response.success) {
       updateSetIsAuth(false);

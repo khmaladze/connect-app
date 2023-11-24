@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { apiPostRequest, userProfileImage } from "../../../../../api/user/Api";
+import { apiRequest, userProfileImage } from "../../../../../api/user/Api";
 import { MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 
@@ -12,13 +12,14 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
   const [status, setStatus] = useState("Friend");
 
   const sendFriendRequest = async () => {
-    const response = await apiPostRequest(
+    const response = await apiRequest(
+      "POST",
       API_URL.friend.post.friend_request,
+      token,
       {
         receiver: id,
         friend_list: status,
-      },
-      token
+      }
     );
 
     if (response?.success) {
