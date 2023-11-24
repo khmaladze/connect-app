@@ -62,7 +62,7 @@ const Routing = () => {
       }
       if (
         window.location.pathname !== "/login" &&
-        window.location.pathname !== "/login"
+        window.location.pathname !== "/register"
       ) {
         navigate("/");
       }
