@@ -83,7 +83,7 @@ const Routing = () => {
       <ToastContainer />
       {isAuth && <TopNavbar user={user} customSetIsAuth={setIsAuth} />}
       <Routes>
-        {isAuth && (
+        {isAuth ? (
           <Fragment>
             <Route
               path="/profile"
@@ -99,8 +99,7 @@ const Routing = () => {
             <Route path="/friend" exact element={<FriendPage user={user} />} />
             {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
-        )}
-        {isAuth === false && (
+        ) : (
           <Fragment>
             <Route path="/" exact element={<WelcomePage />} />
             <Route
