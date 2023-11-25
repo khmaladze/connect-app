@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { apiRequest } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -24,6 +24,24 @@ const ProfilePostFooterLike = ({ token, postId }) => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    const checkIsPostLiked = async () => {
+      try {
+        const response = await apiRequest(
+          "GET",
+          API_URL.profile.get.check_post_like + "/" + postId,
+          token
+        );
+        if (response?.success) {
+          setIsLiked(response.data.liked);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    checkIsPostLiked();
+  }, [isLiked]);
 
   return (
     <Fragment>
