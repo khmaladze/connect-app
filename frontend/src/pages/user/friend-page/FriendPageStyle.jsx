@@ -6,11 +6,13 @@ export const FriendMainPage = styled.div`
 `;
 
 export const FriendMainPageSendRequestText = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: white;
+  height: 50px;
+  width: 30%;
+  margin: 0 auto;
 `;
 
 export const FriendMainPageSendRequestSmallText = styled.div`
@@ -19,7 +21,7 @@ export const FriendMainPageSendRequestSmallText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 5px;
+  margin-top: 25px;
 `;
 
 export const FriendRequstSearchBar = styled.div`
@@ -39,11 +41,13 @@ export const FriendPageSendRequestDiv = styled.div`
 `;
 
 export const FriendPageHeaderText = styled.div`
-  height: 100%;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: white;
+  height: 50px;
+  width: 30%;
+  margin: 0 auto;
   margin-top: 50px;
 `;
 
