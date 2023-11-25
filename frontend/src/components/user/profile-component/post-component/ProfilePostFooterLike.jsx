@@ -25,6 +25,22 @@ const ProfilePostFooterLike = ({ token, postId }) => {
     }
   };
 
+  const removePostLike = async () => {
+    try {
+      const response = await apiRequest(
+        "POST",
+        API_URL.profile.post.remove_post_like,
+        token,
+        { post_id: postId }
+      );
+      if (response?.success) {
+        setIsLiked(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const checkIsPostLiked = async () => {
       try {
@@ -48,7 +64,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
       {isLiked ? (
         <FavoriteIcon
           onClick={() => {
-            likePost();
+            removePostLike();
           }}
         />
       ) : (
