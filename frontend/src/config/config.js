@@ -17,6 +17,7 @@ export const API_URL = {
   },
   profile: {
     get: {
+      check_post_like: `${USER_API + "/profile/check_post_like"}`,
       user_profile: `${USER_API + "/profile"}`,
       profile_post: `${USER_API + "/profile/posts"}`,
     },
