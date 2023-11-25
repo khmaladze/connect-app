@@ -37,6 +37,7 @@ const ProfilePostComponent = ({ user }) => {
             return (
               <div key={item._id}>
                 <ProfilePost
+                  postId={item._id}
                   firstname={user.firstname}
                   lastname={user.lastname}
                   createdAt={item.createdAt}
@@ -45,6 +46,7 @@ const ProfilePostComponent = ({ user }) => {
                   text={item.text || ""}
                   image={item.media.length > 0 ? item.media[0].url : ""}
                   list={item.list}
+                  token={user.token}
                 />
               </div>
             );
