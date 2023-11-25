@@ -91,4 +91,14 @@ export const ProfilePostFooter = styled.div`
       : props.borderColor === "CloseFriend"
       ? "#1eff1e"
       : "#FF008A"};
+
+  div {
+    width: 55px;
+    display: flex;
+    justify-content: space-between;
+
+    svg:hover {
+      cursor: pointer;
+    }
+  }
 `;
