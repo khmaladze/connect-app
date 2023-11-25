@@ -24,6 +24,7 @@ export const API_URL = {
     post: {
       add_post: `${USER_API + "/profile/add_post"}`,
       like_post: `${USER_API + "/profile/like_post"}`,
+      remove_post_like: `${USER_API + "/profile/remove_post_like"}`,
     },
     put: {
       updateUserProfileInfo: `${USER_API + "/profile/profile_info_data"}`,
