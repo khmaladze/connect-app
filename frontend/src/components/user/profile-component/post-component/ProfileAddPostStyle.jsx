@@ -93,6 +93,16 @@ export const AddPostFooter = styled.div`
         ? "#1eff1e"
         : "#FF008A"};
   }
+
+  div:nth-child(1) {
+    width: 55px;
+    display: flex;
+    justify-content: space-between;
+
+    svg:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const CustomTextarea = styled.textarea`
