@@ -1,20 +1,11 @@
 import React from "react";
-import { Avatar } from "@mui/material";
-import { userProfileImage } from "../../../../api/user/Api";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AddCommentIcon from "@mui/icons-material/AddComment";
-import {
-  ProfilePostBodyImage,
-  ProfilePostBodyText,
-  ProfilePostContainer,
-  ProfilePostDiv,
-  ProfilePostFooter,
-  ProfilePostHeader,
-  ProfilePostHeaderContainer,
-  ProfilePostHeaderDiv,
-} from "./ProfilePostStyle";
+import { ProfilePostContainer, ProfilePostDiv } from "./ProfilePostStyle";
+import ProfilePostHeaderComponent from "./ProfilePostHeader";
+import ProfilePostBodyComponent from "./ProfilePostBody";
+import ProfilePostFooterComponent from "./ProfilePostFooter";
 
 const ProfilePost = ({
+  postId,
   firstname,
   lastname,
   text,
@@ -23,36 +14,24 @@ const ProfilePost = ({
   createdAt,
   gender,
   list,
+  token,
 }) => {
   return (
     <ProfilePostContainer>
       <ProfilePostDiv borderColor={list}>
-        <ProfilePostHeader borderColor={list}>
-          <ProfilePostHeaderContainer>
-            <Avatar
-              style={{ height: "55px", width: "55px" }}
-              alt="user"
-              src={userProfileImage(gender, profileImage)}
-            />
-            <ProfilePostHeaderDiv />
-            <h3>{firstname + " " + lastname}</h3>
-          </ProfilePostHeaderContainer>
-          <h3>{createdAt.slice(0, 10)}</h3>
-        </ProfilePostHeader>
-        {text && (
-          <ProfilePostBodyText>
-            <h4>{text} </h4>
-          </ProfilePostBodyText>
-        )}
-        {image !== "" && (
-          <ProfilePostBodyImage image={image}></ProfilePostBodyImage>
-        )}
-        <ProfilePostFooter borderColor={list}>
-          <div>
-            <FavoriteBorderIcon />
-            <AddCommentIcon />
-          </div>
-        </ProfilePostFooter>
+        <ProfilePostHeaderComponent
+          gender={gender}
+          profileImage={profileImage}
+          firstname={firstname}
+          lastname={lastname}
+          createdAt={createdAt.slice(0, 10)}
+          list={list}
+        />
+        <ProfilePostBodyComponent
+          text={text ? text : ""}
+          image={image ? image : ""}
+        />
+        <ProfilePostFooterComponent list={list} postId={postId} token={token} />
       </ProfilePostDiv>
     </ProfilePostContainer>
   );
