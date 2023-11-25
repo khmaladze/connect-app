@@ -6,6 +6,7 @@ import * as userProfileDataGet from "./get/get.user-profile";
 import * as userPost from "./post/post.user-post";
 import * as getUserPost from "./get/get.user-post";
 import * as postUserLike from "./post/post.user-post-like";
+import * as getPostUserLike from "./get/get.user-post-liked";
 import uploadImageToServer from "../../function/server-upload-image";
 import userCheck from "../../middleware/user-check";
 let router = express.Router();
@@ -37,6 +38,12 @@ router.post(
   userAuthorization,
   userCheck,
   postUserLike.businessLogic
+);
+router.get(
+  "/check_post_like/:postId",
+  userAuthorization,
+  userCheck,
+  getPostUserLike.businessLogic
 );
 
 export default router;
