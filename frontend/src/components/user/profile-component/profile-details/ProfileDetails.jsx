@@ -75,7 +75,7 @@ const ProfileDetailsComponent = ({ user }) => {
         API_URL.profile.get.user_profile,
         user.token
       );
-      if (response.success) {
+      if (response?.success) {
         setUserProfileData(response.data);
         setLocalstorage(userLocalstorage.auth.userProfileInfoData, {
           ...response.data,

@@ -46,7 +46,7 @@ const ProfileImageComponent = ({ user }) => {
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 
-      if (response.success) {
+      if (response?.success) {
         const userProfileData = JSON.parse(
           localStorage.getItem(userLocalstorage.auth.user)
         );

@@ -29,7 +29,7 @@ const Navbar = ({ user, updateSetIsAuth }) => {
       user.token,
       {}
     );
-    if (response.success) {
+    if (response?.success) {
       updateSetIsAuth(false);
       setTimeout(() => {
         dispatch(logOut());

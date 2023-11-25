@@ -72,7 +72,7 @@ const ProfileAddPostComponent = ({ user }) => {
         API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
       );
 
-      if (response.success) {
+      if (response?.success) {
         window.location.reload();
       }
     } else {
