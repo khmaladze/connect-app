@@ -63,7 +63,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
 
   return (
     <Fragment>
-      {isLiked ? (
+      {isLiked && count ? (
         <div
           style={{
             height: "100%",
@@ -79,7 +79,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
               removePostLike();
             }}
           />
-          <h4>{count && count}</h4>
+          <h4>{count}</h4>
           <div style={{ width: "10px" }}></div>
         </div>
       ) : (
