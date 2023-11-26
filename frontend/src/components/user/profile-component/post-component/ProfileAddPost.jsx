@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import AddCommentIcon from "@mui/icons-material/AddComment";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Avatar, FormControl, MenuItem, Select } from "@mui/material";
 import { apiRequest, userProfileImage } from "../../../../api/user/Api";
 import Button from "@mui/material/Button";
@@ -154,7 +154,7 @@ const ProfileAddPostComponent = ({ user }) => {
         <AddPostFooter borderColor={friendList}>
           <div>
             <FavoriteBorderIcon />
-            <AddCommentIcon />
+            <ChatBubbleOutlineIcon />
           </div>
           <div>
             <Button onClick={createPost}>Create Post</Button>
