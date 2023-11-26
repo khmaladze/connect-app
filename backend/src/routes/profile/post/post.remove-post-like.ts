@@ -106,6 +106,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       routeMessage.post_like_remove_success
     );
   } catch (error) {
-    return customServerError(res, error, req);
+    return customServerError(res, error);
   }
 };
