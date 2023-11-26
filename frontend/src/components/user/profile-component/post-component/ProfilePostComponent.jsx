@@ -36,8 +36,6 @@ const ProfilePostComponent = ({ user }) => {
       }
     };
 
-    fetchProfilePost();
-
     const handleScroll = () => {
       // Fetch more posts when the user is near the bottom of the page
       if (
@@ -45,6 +43,7 @@ const ProfilePostComponent = ({ user }) => {
         hasMore
       ) {
         setPage((prevPage) => prevPage + 1);
+        fetchProfilePost();
       }
     };
 
