@@ -65,7 +65,7 @@ import { PostLike } from "../../../models/post-like/post-like-model";
 // route message
 const routeMessage = {
   like_already_exists: "like already exists",
-  post_dont_exists: "like don't exists",
+  like_dont_exists: "like don't exists",
 };
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
@@ -78,19 +78,22 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       like_author_id: userProfileId,
     });
 
+    const count = await PostLike.countDocuments({ post_id: postId });
+
     if (isLikeExists) {
       return custom_server_response(
         res,
         200,
         routeMessage.like_already_exists,
-        { liked: true }
+        { liked: true, count: count }
       );
     }
 
-    return custom_server_response(res, 200, routeMessage.post_dont_exists, {
+    return custom_server_response(res, 200, routeMessage.like_dont_exists, {
       liked: false,
+      count: count,
     });
   } catch (error) {
-    return customServerError(res, error, req);
+    return customServerError(res, error);
   }
 };
