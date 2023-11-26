@@ -59,8 +59,8 @@ const ProfilePostComponent = ({ user }) => {
     <Fragment>
       {loading && <Loading />}
       {profilePosts &&
-        profilePosts.map((item) => (
-          <div key={item._id}>
+        profilePosts.map((item, index) => (
+          <div key={`${item._id}_${index}`}>
             <ProfilePost
               postId={item._id}
               firstname={user.firstname}
