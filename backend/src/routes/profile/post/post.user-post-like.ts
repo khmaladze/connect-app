@@ -3,7 +3,7 @@ import { customServerError } from "../../../function/server-custom-error-respons
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
-import { PostLike } from "../../../models/post-like/post-like-model";
+import { PostLike } from "../../../models/post/post-like-model";
 
 // Documentation
 /**

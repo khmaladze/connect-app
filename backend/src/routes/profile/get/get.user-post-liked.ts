@@ -2,7 +2,7 @@ import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
-import { PostLike } from "../../../models/post-like/post-like-model";
+import { PostLike } from "../../../models/post/post-like-model";
 
 // Documentation
 /**
