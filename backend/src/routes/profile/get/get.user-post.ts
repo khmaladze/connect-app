@@ -70,18 +70,21 @@ import { Post } from "../../../models/post/post-model";
 const routeMessage = {
   get_user_post: "get user post",
 };
-
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
     const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
-    const pageSize = req.query.pageSize
-      ? parseInt(req.query.pageSize as string, 10)
-      : 5;
 
+    // Set the initial pageSize to 5
+    const pageSize = 5;
+
+    // Calculate the number of posts to skip based on the page
+    const postsToSkip = (page - 1) * pageSize;
+
+    // Fetch the user's posts, skipping the appropriate number based on the page
     const userPosts = await Post.find({ author: userProfileId })
       .sort("-createdAt")
-      .skip((page - 1) * pageSize)
+      .skip(postsToSkip)
       .limit(pageSize);
 
     return custom_server_response(
