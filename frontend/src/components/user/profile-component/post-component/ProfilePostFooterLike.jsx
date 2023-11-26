@@ -6,6 +6,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 
 const ProfilePostFooterLike = ({ token, postId }) => {
   const [isLiked, setIsLiked] = useState(false);
+  const [count, setCount] = useState(0);
 
   const likePost = async () => {
     try {
@@ -51,6 +52,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
         );
         if (response?.success) {
           setIsLiked(response.data.liked);
+          setCount(response.data.count);
         }
       } catch (error) {
         console.log(error);
@@ -62,11 +64,24 @@ const ProfilePostFooterLike = ({ token, postId }) => {
   return (
     <Fragment>
       {isLiked ? (
-        <FavoriteIcon
-          onClick={() => {
-            removePostLike();
+        <div
+          style={{
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignContent: "center",
+            alignItems: "center",
+            textAlign: "center",
           }}
-        />
+        >
+          <FavoriteIcon
+            onClick={() => {
+              removePostLike();
+            }}
+          />
+          <h4>{count && count}</h4>
+          <div style={{ width: "10px" }}></div>
+        </div>
       ) : (
         <FavoriteBorderIcon
           onClick={() => {
