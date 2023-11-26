@@ -12,6 +12,7 @@ const ProfilePostComponent = ({ user }) => {
     const fetchProfilePost = async () => {
       const response = await apiRequest(
         "GET",
+        false,
         API_URL.profile.get.profile_post,
         user.token
       );

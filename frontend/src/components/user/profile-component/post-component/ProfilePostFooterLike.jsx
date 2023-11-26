@@ -12,6 +12,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
     try {
       const response = await apiRequest(
         "POST",
+        false,
         API_URL.profile.post.like_post,
         token,
         {
@@ -30,6 +31,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
     try {
       const response = await apiRequest(
         "POST",
+        false,
         API_URL.profile.post.remove_post_like,
         token,
         { post_id: postId }
@@ -47,6 +49,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
       try {
         const response = await apiRequest(
           "GET",
+          false,
           API_URL.profile.get.check_post_like + "/" + postId,
           token
         );

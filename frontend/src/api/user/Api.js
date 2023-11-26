@@ -27,6 +27,7 @@ const clearUserAuthLocalstorage = () => {
 
 export const apiRequest = async (
   method,
+  message,
   request,
   token,
   postData,
@@ -67,7 +68,7 @@ export const apiRequest = async (
     const response = axiosResponse.data;
 
     if (response?.success) {
-      if (method !== "GET") {
+      if (message) {
         toast.success(response.message);
       }
       return response;

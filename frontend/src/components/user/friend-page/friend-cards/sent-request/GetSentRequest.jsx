@@ -16,6 +16,7 @@ const GetSendRequest = ({ token }) => {
     const getFriendRequest = async () => {
       const response = await apiRequest(
         "GET",
+        false,
         API_URL.friend.get.get_send_requests,
         token
       );
@@ -36,6 +37,7 @@ const GetSendRequest = ({ token }) => {
   const removeFriendRequest = async (id) => {
     const response = await apiRequest(
       "PUT",
+      true,
       API_URL.friend.put.friend_request_remove,
       token,
       { id: id }

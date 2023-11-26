@@ -14,6 +14,7 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
   const sendFriendRequest = async () => {
     const response = await apiRequest(
       "POST",
+      true,
       API_URL.friend.post.friend_request,
       token,
       {

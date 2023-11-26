@@ -25,6 +25,7 @@ const Navbar = ({ user, updateSetIsAuth }) => {
   const logOutHandle = async () => {
     const response = await apiRequest(
       "PUT",
+      false,
       API_URL.auth.put.logout,
       user.token,
       {}

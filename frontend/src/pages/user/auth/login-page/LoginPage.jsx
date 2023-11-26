@@ -41,6 +41,7 @@ const LoginPage = ({ updateSetIsAuth }) => {
 
     const response = await apiRequest(
       "POST",
+      true,
       API_URL.auth.post.login,
       null,
       postData

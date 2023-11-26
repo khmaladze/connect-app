@@ -17,6 +17,7 @@ const GetRequest = ({ token }) => {
     const getFriendRequest = async () => {
       const response = await apiRequest(
         "GET",
+        false,
         API_URL.friend.get.friend_request,
         token
       );
@@ -41,6 +42,7 @@ const GetRequest = ({ token }) => {
   ) => {
     const response = await apiRequest(
       "PUT",
+      true,
       API_URL.friend.put.friend_request_response,
       token,
       { id: id, status: status, friend_list: friendList }

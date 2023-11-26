@@ -45,6 +45,7 @@ const ProfileDetailsComponent = ({ user }) => {
 
     const response = await apiRequest(
       "PUT",
+      true,
       API_URL.profile.put.updateUserProfileInfo,
       user.token,
       postData
@@ -72,6 +73,7 @@ const ProfileDetailsComponent = ({ user }) => {
     const fetchProfileInfoData = async () => {
       const response = await apiRequest(
         "GET",
+        false,
         API_URL.profile.get.user_profile,
         user.token
       );

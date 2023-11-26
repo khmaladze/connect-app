@@ -18,6 +18,7 @@ const FriendCard = ({ token }) => {
     const getFriendList = async () => {
       const response = await apiRequest(
         "GET",
+        false,
         API_URL.friend.get.friend_list,
         token
       );

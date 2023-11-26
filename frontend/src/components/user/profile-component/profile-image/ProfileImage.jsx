@@ -40,6 +40,7 @@ const ProfileImageComponent = ({ user }) => {
       formData.append("image", image[0]["file"]);
       const response = await apiRequest(
         "PUT",
+        true,
         API_URL.profile.put.updateUserProfileImage,
         user.token,
         formData,

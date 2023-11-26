@@ -20,6 +20,7 @@ const SendFriendRequest = ({ user }) => {
 
     const response = await apiRequest(
       "GET",
+      false,
       "/api/user/friend/user/" + searchTerm,
       user.token
     );

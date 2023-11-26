@@ -58,6 +58,7 @@ const RegisterPage = () => {
     };
     const response = await apiRequest(
       "POST",
+      true,
       API_URL.auth.post.register,
       null,
       postData

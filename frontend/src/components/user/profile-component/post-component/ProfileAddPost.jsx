@@ -66,6 +66,7 @@ const ProfileAddPostComponent = ({ user }) => {
 
       const response = await apiRequest(
         "POST",
+        true,
         API_URL.profile.post.add_post,
         user.token,
         formData,
