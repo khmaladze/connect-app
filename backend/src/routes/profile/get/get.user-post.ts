@@ -74,11 +74,15 @@ const routeMessage = {
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
+    const page = req.query.page ? parseInt(req.query.page as string, 10) : 1;
+    const pageSize = req.query.pageSize
+      ? parseInt(req.query.pageSize as string, 10)
+      : 5;
 
-    // Retrieve all posts created by the authenticated user
-    const userPosts = await Post.find({ author: userProfileId }).sort(
-      "-createdAt"
-    );
+    const userPosts = await Post.find({ author: userProfileId })
+      .sort("-createdAt")
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
 
     return custom_server_response(
       res,
