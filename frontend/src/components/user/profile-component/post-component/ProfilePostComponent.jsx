@@ -11,6 +11,25 @@ const ProfilePostComponent = ({ user }) => {
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
+    const handleScroll = () => {
+      // Fetch more posts when the user is near the bottom of the page and there are more posts to fetch
+      if (
+        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+        hasMore
+      ) {
+        setPage((prevPage) => prevPage + 1);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [page, hasMore, user.token]);
+
+  // Fetch posts when the component mounts
+  useEffect(() => {
     const fetchProfilePost = async () => {
       try {
         const response = await apiRequest(
@@ -22,8 +41,13 @@ const ProfilePostComponent = ({ user }) => {
 
         if (response?.success) {
           setLoading(false);
-          setProfilePosts((prevPosts) => [...prevPosts, ...response.data]);
+          // If it's the first page, set the response data directly
+          // Otherwise, concatenate the new data with the existing posts
+          setProfilePosts((prevPosts) =>
+            page === 1 ? response.data : [...prevPosts, ...response.data]
+          );
 
+          // Check if there are more posts
           if (response.data.length < 5) {
             setHasMore(false);
           }
@@ -36,23 +60,8 @@ const ProfilePostComponent = ({ user }) => {
       }
     };
 
-    const handleScroll = () => {
-      // Fetch more posts when the user is near the bottom of the page
-      if (
-        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-        hasMore
-      ) {
-        setPage((prevPage) => prevPage + 1);
-        fetchProfilePost();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [page, hasMore, user.token]);
+    fetchProfilePost();
+  }, [page, user.token]);
 
   return (
     <Fragment>
