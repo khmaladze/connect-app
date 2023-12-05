@@ -25,6 +25,12 @@ const clearUserAuthLocalstorage = () => {
   }
 };
 
+export const apiRequestType = {
+  get: "GET",
+  post: "POST",
+  put: "PUT",
+};
+
 export const apiRequest = async (
   method,
   message,
