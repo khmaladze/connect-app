@@ -10,6 +10,8 @@ const ProfilePostFooterLike = ({ token, postId }) => {
 
   const likePost = async () => {
     try {
+      setIsLiked(true);
+      setCount(count + 1);
       const response = await apiRequest(
         "POST",
         false,
