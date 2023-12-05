@@ -28,7 +28,7 @@ const GetRequest = ({ token }) => {
         } else {
           setTimeout(() => {
             setLoading(false);
-          }, 2000);
+          }, 700);
         }
       }
     };
