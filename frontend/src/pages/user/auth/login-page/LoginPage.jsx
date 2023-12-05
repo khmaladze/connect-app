@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import WelcomePageNavbar from "../../../../components/user/navbar/WelcomePageNavbar";
 import {
   apiRequest,
+  apiRequestType,
   setLocalstorage,
   userLocalstorage,
 } from "../../../../api/user/Api";
@@ -40,7 +41,7 @@ const LoginPage = ({ updateSetIsAuth }) => {
     };
 
     const response = await apiRequest(
-      "POST",
+      apiRequestType.post,
       true,
       API_URL.auth.post.login,
       null,

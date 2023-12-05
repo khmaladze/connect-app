@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Avatar, FormControl, MenuItem, Select } from "@mui/material";
-import { apiRequest, userProfileImage } from "../../../../api/user/Api";
+import {
+  apiRequest,
+  apiRequestType,
+  userProfileImage,
+} from "../../../../api/user/Api";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
@@ -65,7 +69,7 @@ const ProfileAddPostComponent = ({ user }) => {
       }
 
       const response = await apiRequest(
-        "POST",
+        apiRequestType.post,
         true,
         API_URL.profile.post.add_post,
         user.token,

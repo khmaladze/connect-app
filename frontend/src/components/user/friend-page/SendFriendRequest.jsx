@@ -7,7 +7,7 @@ import {
 } from "../../../pages/user/friend-page/FriendPageStyle";
 import SearchBar from "./search-bar/SearchBar";
 import SendRequests from "./friend-cards/send-request/SendRequests";
-import { apiRequest } from "../../../api/user/Api";
+import { apiRequest, apiRequestType } from "../../../api/user/Api";
 import { toast } from "react-toastify";
 
 const SendFriendRequest = ({ user }) => {
@@ -19,7 +19,7 @@ const SendFriendRequest = ({ user }) => {
     }
 
     const response = await apiRequest(
-      "GET",
+      apiRequestType.get,
       false,
       "/api/user/friend/user/" + searchTerm,
       user.token

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { apiRequest } from "../../../../api/user/Api";
+import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import ProfilePost from "./ProfilePost";
 import Loading from "../../../loading/Loading";
@@ -33,7 +33,7 @@ const ProfilePostComponent = ({ user }) => {
     const fetchProfilePost = async () => {
       try {
         const response = await apiRequest(
-          "GET",
+          apiRequestType.get,
           false,
           `${API_URL.profile.get.profile_post}?page=${page}&pageSize=5`,
           user.token

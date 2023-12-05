@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import {
   apiRequest,
+  apiRequestType,
   setLocalstorage,
   userLocalstorage,
 } from "../../../../api/user/Api";
@@ -44,7 +45,7 @@ const ProfileDetailsComponent = ({ user }) => {
     };
 
     const response = await apiRequest(
-      "PUT",
+      apiRequestType.put,
       true,
       API_URL.profile.put.updateUserProfileInfo,
       user.token,
@@ -72,7 +73,7 @@ const ProfileDetailsComponent = ({ user }) => {
   useEffect(() => {
     const fetchProfileInfoData = async () => {
       const response = await apiRequest(
-        "GET",
+        apiRequestType.get,
         false,
         API_URL.profile.get.user_profile,
         user.token

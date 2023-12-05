@@ -4,7 +4,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { apiRequest, userProfileImage } from "../../../../../api/user/Api";
+import {
+  apiRequest,
+  apiRequestType,
+  userProfileImage,
+} from "../../../../../api/user/Api";
 import { MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 
@@ -13,7 +17,7 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
 
   const sendFriendRequest = async () => {
     const response = await apiRequest(
-      "POST",
+      apiRequestType.post,
       true,
       API_URL.friend.post.friend_request,
       token,

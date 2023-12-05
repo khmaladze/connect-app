@@ -13,6 +13,7 @@ import { API_URL } from "../../../config/config";
 import { logOut } from "../../../store/auth";
 import {
   apiRequest,
+  apiRequestType,
   clearUserAuthLocalstorage,
   userProfileImage,
 } from "../../../api/user/Api";
@@ -24,7 +25,7 @@ const Navbar = ({ user, updateSetIsAuth }) => {
 
   const logOutHandle = async () => {
     const response = await apiRequest(
-      "PUT",
+      apiRequestType.put,
       false,
       API_URL.auth.put.logout,
       user.token,

@@ -4,7 +4,11 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { apiRequest, userProfileImage } from "../../../../../api/user/Api";
+import {
+  apiRequest,
+  apiRequestType,
+  userProfileImage,
+} from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -15,7 +19,7 @@ const GetSendRequest = ({ token }) => {
   useEffect(() => {
     const getFriendRequest = async () => {
       const response = await apiRequest(
-        "GET",
+        apiRequestType.get,
         false,
         API_URL.friend.get.get_send_requests,
         token
@@ -36,7 +40,7 @@ const GetSendRequest = ({ token }) => {
 
   const removeFriendRequest = async (id) => {
     const response = await apiRequest(
-      "PUT",
+      apiRequestType.put,
       true,
       API_URL.friend.put.friend_request_remove,
       token,

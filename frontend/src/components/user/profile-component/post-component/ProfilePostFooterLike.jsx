@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { apiRequest } from "../../../../api/user/Api";
+import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -13,7 +13,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
       setIsLiked(true);
       setCount(count + 1);
       const response = await apiRequest(
-        "POST",
+        apiRequestType.post,
         false,
         API_URL.profile.post.like_post,
         token,
@@ -32,7 +32,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
   const removePostLike = async () => {
     try {
       const response = await apiRequest(
-        "POST",
+        apiRequestType.post,
         false,
         API_URL.profile.post.remove_post_like,
         token,
@@ -50,7 +50,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
     const checkIsPostLiked = async () => {
       try {
         const response = await apiRequest(
-          "GET",
+          apiRequestType.get,
           false,
           API_URL.profile.get.check_post_like + "/" + postId,
           token
