@@ -1,7 +1,10 @@
 import { Response } from "express";
 import { custom_server_response } from "./server-response";
-import { serverErrorMessage } from "./server-route-messages";
 import fs from "fs";
+
+const serverErrorMessage = {
+  server_error: "server error",
+};
 
 interface IJoiErrorMessageData {
   details: [{ message: string }];
