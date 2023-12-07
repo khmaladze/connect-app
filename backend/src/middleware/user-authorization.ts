@@ -5,7 +5,6 @@ import userActiveModel, {
   UserActiveStatusEnum,
 } from "../models/user/user-active-model";
 import { custom_server_response } from "../function/server-response";
-import { userAuthorizationMessage } from "../function/server-route-messages";
 import config from "../../../config/config";
 
 export interface CustomRequest extends Request {
@@ -29,6 +28,15 @@ const removeExpiredSessions = async (userJwtStatusList: any[]) => {
       await userActiveModel.findByIdAndRemove(session._id);
     }
   }
+};
+
+export const userAuthorizationMessage = {
+  user_not_found: "Error, You are not user. user not found",
+  session_not_found: "Session not found",
+  session_expired: "Session expired",
+  not_authorized: "Not authorized",
+  not_authorized_no_token: "Not authorized, no token",
+  user_required: "user required",
 };
 
 const userAuthorization = async (
@@ -80,6 +88,17 @@ const userAuthorization = async (
       }
 
       req.user = user;
+
+      const userProfileId: number = req.user._id;
+
+      if (!userProfileId) {
+        return custom_server_response(
+          res,
+          400,
+          userAuthorizationMessage.user_required
+        );
+      }
+
       next();
     } else {
       return custom_server_response(
