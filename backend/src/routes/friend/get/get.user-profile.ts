@@ -8,7 +8,7 @@ import { UserFriendAdd } from "../../../models/friend/friend-send-request-model"
 // Documentaion
 /**
  * @swagger
- * /api/user/profile/{username}:
+ * /api/user/friend/{username}:
  *   get:
  *     summary: Get a friend's profile by username.
  *     description: Retrieve a friend's profile information by their username.
