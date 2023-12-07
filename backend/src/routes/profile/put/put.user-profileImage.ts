@@ -1,7 +1,6 @@
 import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
-import { multerImageMessage } from "../../../function/server-route-messages";
 import { User } from "../../../models/user/user-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../../function/server-upload-image";
@@ -59,6 +58,10 @@ const routeMessage = {
   userprofile_data_success: "userprofile data add success",
   user_image_update_failed: "user image update failed",
   user_profileImage_update_success: "user profileImage update success",
+};
+
+const multerImageMessage = {
+  image_required: "image required",
 };
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
