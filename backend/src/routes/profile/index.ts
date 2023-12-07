@@ -9,47 +9,36 @@ import * as postUserLike from "./post/post.user-post-like";
 import * as getPostUserLike from "./get/get.user-post-liked";
 import * as removeUserPostLike from "./post/post.remove-post-like";
 import uploadImageToServer from "../../function/server-upload-image";
-import userCheck from "../../middleware/user-check";
 let router = express.Router();
 
-router.get("/", userAuthorization, userCheck, userProfileDataGet.businessLogic);
+router.get("/", userAuthorization, userProfileDataGet.businessLogic);
 router.put(
   "/profile_info_data",
   userAuthorization,
-  userCheck,
   userProfileAdd.businessLogic
 );
 router.put(
   "/update_profile_image",
   userAuthorization,
-  userCheck,
   uploadImageToServer,
   userProfileImage.businessLogic
 );
 router.post(
   "/add_post",
   userAuthorization,
-  userCheck,
   uploadImageToServer,
   userPost.businessLogic
 );
-router.get("/posts", userAuthorization, userCheck, getUserPost.businessLogic);
-router.post(
-  "/like_post",
-  userAuthorization,
-  userCheck,
-  postUserLike.businessLogic
-);
+router.get("/posts", userAuthorization, getUserPost.businessLogic);
+router.post("/like_post", userAuthorization, postUserLike.businessLogic);
 router.get(
   "/check_post_like/:postId",
   userAuthorization,
-  userCheck,
   getPostUserLike.businessLogic
 );
 router.post(
   "/remove_post_like",
   userAuthorization,
-  userCheck,
   removeUserPostLike.businessLogic
 );
 
