@@ -9,10 +9,10 @@ const ProfilePostComponent = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Fetch more posts when the user is near the bottom of the page and there are more posts to fetch
       if (
         window.innerHeight + window.scrollY >= document.body.offsetHeight &&
         hasMore
@@ -28,7 +28,6 @@ const ProfilePostComponent = ({ user }) => {
     };
   }, [page, hasMore, user.token]);
 
-  // Fetch posts when the component mounts
   useEffect(() => {
     const fetchProfilePost = async () => {
       try {
@@ -41,21 +40,20 @@ const ProfilePostComponent = ({ user }) => {
 
         if (response?.success) {
           setLoading(false);
-          // If it's the first page, set the response data directly
-          // Otherwise, concatenate the new data with the existing posts
           setProfilePosts((prevPosts) =>
             page === 1 ? response.data : [...prevPosts, ...response.data]
           );
 
-          // Check if there are more posts
           if (response.data.length < 5) {
             setHasMore(false);
           }
         } else {
-          setLoading(false);
+          setError("Failed to fetch profile posts");
         }
       } catch (error) {
         console.error("Error fetching profile posts:", error);
+        setError("An unexpected error occurred");
+      } finally {
         setLoading(false);
       }
     };
@@ -65,8 +63,7 @@ const ProfilePostComponent = ({ user }) => {
 
   return (
     <Fragment>
-      {loading && <Loading />}
-      {profilePosts &&
+      {profilePosts.length > 0 &&
         profilePosts.map((item, index) => (
           <div key={`${item._id}_${index}`}>
             <ProfilePost
@@ -83,6 +80,8 @@ const ProfilePostComponent = ({ user }) => {
             />
           </div>
         ))}
+      {loading && <Loading />}
+      {error && <div>Error: {error}</div>}
     </Fragment>
   );
 };
