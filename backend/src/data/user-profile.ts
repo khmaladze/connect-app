@@ -1,3 +1,4 @@
+// Enum representing different languages a user can speak
 enum Language {
   English = "english",
   Spanish = "spanish",
@@ -34,6 +35,7 @@ enum Language {
   Korean = "korean",
 }
 
+// Enum representing different zodiac signs
 enum ZodiacSign {
   Aries = "aries",
   Taurus = "taurus",
@@ -49,6 +51,7 @@ enum ZodiacSign {
   Pisces = "pisces",
 }
 
+// Enum representing different education levels
 enum EducationLevel {
   HighSchool = "high school",
   College = "college",
@@ -60,6 +63,7 @@ enum EducationLevel {
   Other = "other",
 }
 
+// Enum representing different passions or interests
 enum Passion {
   Sports = "sports",
   Travel = "travel",
@@ -68,6 +72,7 @@ enum Passion {
   Startups = "start ups",
 }
 
+// Object containing arrays of possible values for user profile attributes
 export const userProfileData = {
   languages: Object.values(Language),
   zodiac: Object.values(ZodiacSign),
