@@ -2,11 +2,12 @@ import swaggerJSDoc from "swagger-jsdoc";
 import * as path from "path";
 import * as fs from "fs";
 
+// Swagger options for API documentation
 const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "CONNECT APP BACKEND API.",
+      title: "CONNECT APP BACKEND API",
       version: "1.0.0",
       description: "API Documentation",
     },
@@ -15,7 +16,7 @@ const options = {
         url: "http://localhost:5000",
       },
     ],
-    // Add securitySchemes here
+    // Security schemes for JWT authentication
     securitySchemes: {
       BearerAuth: {
         type: "http",
@@ -23,7 +24,7 @@ const options = {
         bearerFormat: "JWT",
       },
     },
-    // Add components section to define security scheme
+    // Components section to define security scheme
     components: {
       securitySchemes: {
         BearerAuth: {
@@ -34,12 +35,12 @@ const options = {
       },
     },
   },
-  // Recursively find all .ts files in the specified directory
+  // Recursively find all .ts files in the specified directory for API documentation
   apis: getRouteFiles(path.join(__dirname, "routes", ".")),
 };
 
+// Recursively find all .ts files in the specified directory
 function getRouteFiles(dir: any) {
-  // Add type annotations
   let results: any[] = [];
   const files = fs.readdirSync(dir);
 
@@ -68,6 +69,7 @@ const bearerAuthHeader = {
   },
 };
 
+// Generate Swagger specification
 const swaggerSpec = swaggerJSDoc(options);
 
 export default swaggerSpec;
