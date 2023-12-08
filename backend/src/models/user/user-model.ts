@@ -122,10 +122,6 @@ const userSchema = new Schema<UserDoc, UserModel>(
       minlength: [10, "Password should be at least 10 characters."],
       maxlength: [100, "Password should not exceed 100 characters."],
     },
-    isActive: {
-      type: Boolean,
-      default: false,
-    },
     isBlocked: {
       type: Boolean,
       default: false,
