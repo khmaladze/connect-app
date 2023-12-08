@@ -17,64 +17,27 @@ import TopNavbar from "./components/user/navbar/TopNavbar";
 const Routing = () => {
   const navigate = useNavigate();
   const defaultState = JSON.parse(localStorage.getItem("user")) || null;
-  let stateValue = defaultState;
-  if (stateValue == null) {
-    stateValue = false;
-  } else {
-    stateValue = true;
-  }
 
-  const [isAuth, setIsAuth] = useState(stateValue);
+  // Simplify isAuth initialization
+  const [isAuth, setIsAuth] = useState(!!defaultState);
+
   const store = useStore();
   const stateUser = useSelector((state) => state.auth);
   const loginUser = store.getState();
 
-  let user;
-
-  if (stateUser !== null) {
-    if (stateUser.value !== null) {
-      if (stateUser.value.user) {
-        user = stateUser.value.user;
-      }
-    }
-  }
-
-  if (user === undefined) {
-    if (loginUser.auth.value) {
-      user = loginUser.auth.value;
-      if (loginUser.auth.value.user) {
-        user = loginUser.auth.value.user;
-      }
-    }
-  }
+  // Simplify user assignment
+  let user = stateUser?.user || loginUser?.auth?.user;
 
   useEffect(() => {
     if (isAuth) {
       navigate(window.location.pathname);
-    }
+    } else {
+      const path = window.location.pathname;
+      const isLoginPageOrRegisterPage =
+        path === "/login" || path === "/register";
 
-    if (isAuth === false) {
-      if (window.location.pathname === "/login") {
-        navigate("/login");
-      }
-      if (window.location.pathname === "/register") {
-        navigate("/register");
-      }
-      if (
-        window.location.pathname !== "/login" &&
-        window.location.pathname !== "/register"
-      ) {
-        navigate("/");
-      }
-    }
-
-    if (isAuth) {
-      if (window.location.pathname === "/login") {
-        navigate("/profile");
-      }
-      if (window.location.pathname === "/register") {
-        navigate("/profile");
-      }
+      // Use ternary operator for navigation
+      navigate(isLoginPageOrRegisterPage ? path : "/");
     }
   }, [isAuth]);
 
