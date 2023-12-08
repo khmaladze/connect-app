@@ -9,63 +9,42 @@ import { custom_server_response } from "../../../function/server-response";
 import config from "../../../../../config/config";
 import { getDateAfter7Days } from "../../../function/server-user-profile";
 
-// Documentation
+// Minimum password length required
+const MIN_PASSWORD_LENGTH = 10;
+
+// Joi schema for user login
+const loginSchema = Joi.object({
+  email: Joi.string().email().required(),
+  password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
+});
+
+// Messages for different scenarios
+const routeMessage = {
+  incorrect_email: "Email not found. Incorrect email.",
+  incorrect_password: "Incorrect password.",
+  auth_user_login: "User login success.",
+};
+
+interface User {
+  _id: string;
+  firstname: string;
+  lastname: string;
+  username: string;
+  gender: string;
+  profileImage: string;
+  birthDay: number;
+  birthMonth: number;
+  birthYear: number;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+  password: any;
+  profileImagePublicId: any;
+}
+
 /**
- * @swagger
- * components:
- *   schemas:
- *     LoginResponseUser:
- *       type: object
- *       properties:
- *         _id:
- *           type: string
- *         firstname:
- *           type: string
- *         lastname:
- *           type: string
- *         username:
- *           type: string
- *         gender:
- *           type: string
- *         profileImage:
- *           type: string
- *         birthDay:
- *           type: number
- *         birthMonth:
- *           type: number
- *         birthYear:
- *           type: number
- *         email:
- *           type: string
- *         createdAt:
- *           type: string
- *         updatedAt:
- *           type: string
- *         __v:
- *           type: number
- *     LoginResponseData:
- *       type: object
- *       properties:
- *         success:
- *           type: boolean
- *         message:
- *           type: string
- *         data:
- *           type: object
- *           properties:
- *             token:
- *               type: string
- *             user:
- *               $ref: '#/components/schemas/LoginResponseUser'
- *     LoginRequest:
- *       type: object
- *       properties:
- *         email:
- *           type: string
- *           format: email
- *         password:
- *           type: string
- *
+ * Handles user login.
  * @swagger
  * /api/user/auth/login:
  *   post:
@@ -93,21 +72,6 @@ import { getDateAfter7Days } from "../../../function/server-user-profile";
  *             schema:
  *               $ref: '#/components/schemas/LoginResponseData'
  */
-
-const MIN_PASSWORD_LENGTH = 10;
-
-// Joi schema for user login
-const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(MIN_PASSWORD_LENGTH).required(),
-});
-
-const routeMessage = {
-  incorrect_email: "email not found, incorrect email",
-  incorrect_password: "incorrect password",
-  auth_user_login: "user login success",
-};
-
 export const businessLogic = async (req: Request, res: Response) => {
   try {
     // Request body
@@ -117,13 +81,17 @@ export const businessLogic = async (req: Request, res: Response) => {
     await loginSchema.validateAsync({ email, password });
 
     // Find the user by email
-    const user: any = await User.findOne({ email });
+    const user: User | null = await User.findOne({ email });
+
+    // If user not found, return an error response
     if (!user) {
       return custom_server_response(res, 400, routeMessage.incorrect_email);
     }
 
     // Compare the provided password with the hashed password stored in the user record
     const passwordsMatch = await bcrypt.compare(password, user.password);
+
+    // If passwords don't match, return an error response
     if (!passwordsMatch) {
       return custom_server_response(res, 400, routeMessage.incorrect_password);
     }
@@ -136,21 +104,26 @@ export const businessLogic = async (req: Request, res: Response) => {
     // Hide password for user
     user.password = undefined;
 
+    // Hide profileImagePublicId for user
+    user.profileImagePublicId = undefined;
+
     // Calculate JWT expiration date
-    const user_jwt_expires = await getDateAfter7Days();
+    const userJwtExpires = await getDateAfter7Days();
 
     // Create a new userActiveModel
     await userActiveModel.create({
       jwt: token,
       user_id: user._id,
-      expires: user_jwt_expires,
+      expires: userJwtExpires,
     });
 
+    // Return a success response with token and user information
     return custom_server_response(res, 200, routeMessage.auth_user_login, {
       token,
       user,
     });
   } catch (error) {
+    // Handle any unexpected errors
     return customServerError(res, error);
   }
 };
