@@ -14,17 +14,15 @@ export async function deleteImageFromCloudinary(
     });
 
     // Send a request to Cloudinary to delete the image
-    const result = await cloudinary.v2.api.delete_resources(
-      [String(imageUrl)],
-      {
-        type: "upload",
-        resource_type: "image",
-      }
-    );
+    await cloudinary.v2.api.delete_resources([String(imageUrl)], {
+      type: "upload",
+      resource_type: "image",
+    });
 
     return true;
   } catch (error) {
     console.error("Error deleting image:", error);
-    return false;
+    // Optionally throw a more specific error or customize the error message
+    throw new Error("Failed to delete image from Cloudinary");
   }
 }
