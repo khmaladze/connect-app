@@ -30,15 +30,18 @@ if (isValidEnv()) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
 
-  const config_api_user: string = "/api/user";
+  const configApiUser: string = "/api/user"; // Use camelCase for variable names
 
   // Define routes
-  app.use(`${config_api_user}/auth`, authRoutes);
-  app.use(`${config_api_user}/profile`, userProfileRoutes);
-  app.use(`${config_api_user}/friend`, userFriendsRoutes);
-  app.use(`${config_api_user}/settings`, userSettingsRoutes);
-  if (config.node_env == "development")
+  app.use(`${configApiUser}/auth`, authRoutes);
+  app.use(`${configApiUser}/profile`, userProfileRoutes);
+  app.use(`${configApiUser}/friend`, userFriendsRoutes);
+  app.use(`${configApiUser}/settings`, userSettingsRoutes);
+
+  // Serve API documentation only in development environment
+  if (config.node_env === "development") {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  }
 
   // Start the server
   app.listen(config.port, () => {
