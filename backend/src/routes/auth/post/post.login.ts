@@ -36,9 +36,6 @@ interface User {
   birthMonth: number;
   birthYear: number;
   email: string;
-  createdAt: string;
-  updatedAt: string;
-  __v: number;
   password: any;
   profileImagePublicId: any;
 }
@@ -154,7 +151,10 @@ export const businessLogic = async (req: Request, res: Response) => {
     await loginSchema.validateAsync({ email, password });
 
     // Find the user by email
-    const user: User | null = await User.findOne({ email });
+    const user: User | null | any = await User.findOne({
+      email: email,
+      isBlocked: false,
+    }).select("-createdAt -updatedAt -__v -isBlocked -isActive");
 
     // If user not found, return an error response
     if (!user) {
