@@ -30,20 +30,22 @@ const RegisterPage = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  // Function to handle user registration
   const registerUser = async () => {
     if (
-      !firstname &&
-      !lastname &&
-      !username &&
-      !gender &&
-      !dateOfBirth &&
-      !email &&
-      !password &&
+      !firstname ||
+      !lastname ||
+      !username ||
+      !gender ||
+      !dateOfBirth ||
+      !email ||
+      !password ||
       !confirmPassword
     ) {
-      toast.error("please add all the fields");
+      toast.error("Please fill in all the fields");
       return;
     }
+
     const postData = {
       firstname,
       lastname,
@@ -56,6 +58,7 @@ const RegisterPage = () => {
       password,
       confirmPassword,
     };
+
     const response = await apiRequest(
       apiRequestType.post,
       true,
@@ -63,6 +66,7 @@ const RegisterPage = () => {
       null,
       postData
     );
+
     if (response?.success) {
       navigate("/");
     }
@@ -77,6 +81,7 @@ const RegisterPage = () => {
             Register
           </Typography>
           <Grid container spacing={2}>
+            {/* First Name */}
             <Grid item xs={12} sm={6}>
               <TextField
                 autoFocus
@@ -90,6 +95,8 @@ const RegisterPage = () => {
                 onChange={(e) => setFirstname(e.target.value)}
               />
             </Grid>
+
+            {/* Last Name */}
             <Grid item xs={12} sm={6}>
               <TextField
                 required
@@ -102,18 +109,22 @@ const RegisterPage = () => {
                 onChange={(e) => setLastname(e.target.value)}
               />
             </Grid>
+
+            {/* Username */}
             <Grid item xs={12}>
               <TextField
                 required
                 fullWidth
                 id="username"
-                label="username"
+                label="Username"
                 name="username"
                 autoComplete="username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Grid>
+
+            {/* Gender */}
             <Grid item xs={12}>
               <FormControl required fullWidth>
                 <InputLabel id="demo-simple-select-label">Gender</InputLabel>
@@ -129,6 +140,8 @@ const RegisterPage = () => {
                 </Select>
               </FormControl>
             </Grid>
+
+            {/* Date of Birth */}
             <Grid item xs={12}>
               <TextField
                 id="date"
@@ -145,6 +158,8 @@ const RegisterPage = () => {
                 }}
               />
             </Grid>
+
+            {/* Email */}
             <Grid item xs={12}>
               <TextField
                 required
@@ -157,6 +172,8 @@ const RegisterPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
+
+            {/* Password */}
             <Grid item xs={12}>
               <TextField
                 required
@@ -170,6 +187,8 @@ const RegisterPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
+
+            {/* Confirm Password */}
             <Grid item xs={12}>
               <TextField
                 required
@@ -184,6 +203,8 @@ const RegisterPage = () => {
               />
             </Grid>
           </Grid>
+
+          {/* Register Button */}
           <Button
             type="submit"
             fullWidth
@@ -193,11 +214,13 @@ const RegisterPage = () => {
           >
             REGISTER
           </Button>
+
+          {/* Login Link */}
           <Grid mb={2} container justifyContent="flex-end">
             <Grid item>
               <Link to={"/login"}>
                 <div style={{ textDecoration: "underline", color: "blue" }}>
-                  Already have an account? login
+                  Already have an account? Login
                 </div>
               </Link>
             </Grid>
