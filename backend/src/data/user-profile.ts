@@ -37,18 +37,18 @@ enum Language {
 
 // Enum representing different zodiac signs
 enum ZodiacSign {
-  Aries = "aries",
-  Taurus = "taurus",
-  Gemini = "gemini",
-  Cancer = "cancer",
-  Leo = "leo",
-  Virgo = "virgo",
-  Libra = "libra",
-  Scorpio = "scorpio",
-  Sagittarius = "sagittarius",
-  Capricorn = "capricorn",
-  Aquarius = "aquarius",
-  Pisces = "pisces",
+  Aries = "aries", // March 21 - April 19
+  Taurus = "taurus", // April 20 - May 20
+  Gemini = "gemini", // May 21 - June 20
+  Cancer = "cancer", // June 21 - July 22
+  Leo = "leo", // July 23 - August 22
+  Virgo = "virgo", // August 23 - September 22
+  Libra = "libra", // September 23 - October 22
+  Scorpio = "scorpio", // October 23 - November 21
+  Sagittarius = "sagittarius", // November 22 - December 21
+  Capricorn = "capricorn", // December 22 - January 19
+  Aquarius = "aquarius", // January 20 - February 18
+  Pisces = "pisces", // February 19 - March 20
 }
 
 // Enum representing different education levels
