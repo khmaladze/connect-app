@@ -55,17 +55,17 @@ export const apiRequest = async (
     let axiosResponse;
 
     switch (method.toUpperCase()) {
-      case apiRequestType.GET:
+      case apiRequestType.get:
         axiosResponse = await axios.get(request, token && axiosConfig);
         break;
-      case apiRequestType.POST:
+      case apiRequestType.post:
         axiosResponse = await axios.post(
           request,
           postData,
           token && axiosConfig
         );
         break;
-      case apiRequestType.PUT:
+      case apiRequestType.put:
         axiosResponse = await axios.put(
           request,
           postData,
