@@ -19,6 +19,7 @@ const ProfilePost = ({
   return (
     <ProfilePostContainer>
       <ProfilePostDiv borderColor={list}>
+        {/* Profile post header */}
         <ProfilePostHeaderComponent
           gender={gender}
           profileImage={profileImage}
@@ -27,10 +28,14 @@ const ProfilePost = ({
           createdAt={createdAt.slice(0, 10)}
           list={list}
         />
+
+        {/* Profile post body */}
         <ProfilePostBodyComponent
           text={text ? text : ""}
           image={image ? image : ""}
         />
+
+        {/* Profile post footer */}
         <ProfilePostFooterComponent list={list} postId={postId} token={token} />
       </ProfilePostDiv>
     </ProfilePostContainer>
