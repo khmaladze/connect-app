@@ -10,6 +10,7 @@ export const LoginPageMain = styled.div`
 `;
 
 export const LoginPageFormContainer = styled.div`
+  /* Set a minimum height to cover the entire viewport minus the navbar height */
   min-height: calc(100vh - 110px);
   height: 100%;
   width: 95%;
@@ -17,9 +18,12 @@ export const LoginPageFormContainer = styled.div`
 `;
 
 export const LoginPageForm = styled.div`
+  /* Style for the login form container */
   width: 350px;
   margin: 0 auto;
   margin-top: 200px;
+
+  /* Style for the login form header */
   h1 {
     text-align: center;
   }
