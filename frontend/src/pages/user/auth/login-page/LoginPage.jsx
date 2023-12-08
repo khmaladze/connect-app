@@ -30,52 +30,73 @@ const LoginPage = ({ updateSetIsAuth }) => {
   const [password, setPassword] = useState("");
 
   const loginUserHandle = async () => {
+    // Check if email and password are provided
     if (!email || !password) {
-      toast.error("please add all the fields");
+      toast.error("Please fill in all the fields");
       return;
     }
 
+    // Prepare data for login request
     const postData = {
       email,
       password,
     };
 
-    const response = await apiRequest(
-      apiRequestType.post,
-      true,
-      API_URL.auth.post.login,
-      null,
-      postData
-    );
+    try {
+      // Make API request for login
+      const response = await apiRequest(
+        apiRequestType.post,
+        true,
+        API_URL.auth.post.login,
+        null,
+        postData
+      );
 
-    if (response?.success) {
-      const responseData = response.data;
-      const getUser = await responseData.user;
-      const getUserToken = await responseData.token;
-      setLocalstorage(userLocalstorage.auth.user, {
-        ...getUser,
-        token: getUserToken,
-      });
-      dispatch(
-        logIn({
+      // Check if login is successful
+      if (response?.success) {
+        const responseData = response.data;
+        const getUser = await responseData.user;
+        const getUserToken = await responseData.token;
+
+        // Store user information in local storage
+        setLocalstorage(userLocalstorage.auth.user, {
           ...getUser,
           token: getUserToken,
-        })
-      );
-      dispatch(userLogin());
-      updateSetIsAuth(true);
-      navigate("/");
+        });
+
+        // Dispatch actions to update Redux store
+        dispatch(
+          logIn({
+            ...getUser,
+            token: getUserToken,
+          })
+        );
+        dispatch(userLogin());
+
+        // Update authentication state in the parent component
+        updateSetIsAuth(true);
+
+        // Navigate to the home page
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      // Handle login error, show toast, etc.
+      toast.error("Login failed. Please try again.");
     }
   };
 
   return (
     <LoginPageMain>
+      {/* Display the welcome page navbar */}
       <WelcomePageNavbar />
       <LoginPageFormContainer>
         <LoginPageForm>
+          {/* Login form header */}
           <Typography mb={2} component="h1" variant="h1">
             Login
           </Typography>
+          {/* Email and password input fields */}
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -104,6 +125,7 @@ const LoginPage = ({ updateSetIsAuth }) => {
               />
             </Grid>
           </Grid>
+          {/* Login button */}
           <Button
             type="submit"
             fullWidth
@@ -113,11 +135,12 @@ const LoginPage = ({ updateSetIsAuth }) => {
           >
             LOGIN
           </Button>
+          {/* Link to register page */}
           <Grid mb={2} container justifyContent="flex-end">
             <Grid item>
               <Link to={"/register"}>
                 <div style={{ textDecoration: "underline", color: "blue" }}>
-                  Don't have an account? register
+                  Don't have an account? Register
                 </div>
               </Link>
             </Grid>
