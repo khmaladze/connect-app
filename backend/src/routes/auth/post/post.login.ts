@@ -94,8 +94,6 @@ interface User {
  *                   default: false
  *                 message:
  *                   type: string
- *                 data:
- *                   $ref: '#/components/schemas/LoginResponseUser'
  *
  * components:
  *   schemas:
