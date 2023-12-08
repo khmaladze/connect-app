@@ -3,7 +3,8 @@ import { CustomRequest } from "../middleware/user-authorization";
 import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 
-const storage: any = multer.diskStorage({
+// Multer storage configuration
+const storage: multer.StorageEngine = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "backend/src/uploads");
   },
@@ -15,20 +16,20 @@ const storage: any = multer.diskStorage({
   },
 });
 
-let uploadImageToServer = multer({ storage: storage }).single("image");
+// Multer middleware for handling file uploads
+const uploadImageToServer = multer({ storage: storage }).single("image");
 
+// Function to upload an image to Cloudinary
 export const uploadImageToCloudinary = async (
   folderName: string,
-  file: any
-) => {
+  file: Express.Multer.File
+): Promise<{ secure_url: string; public_id: string }> => {
   try {
-    // Check if the folder exists in Cloudinary
+    // Check if the folder exists in Cloudinary, create if not
     const existingFolder = await cloudinary.api.create_folder(folderName);
-
-    // If the folder already exists, use its public_id
     const folderPublicId = existingFolder.public_id || "";
 
-    // Ensure that the uniqueFilename doesn't contain an extension
+    // Generate a unique filename for the uploaded image
     const uniqueFilename = `${Date.now()}_${file.originalname
       .replace(/\s/g, "")
       .replace(/\..+$/, "")}`;
@@ -39,18 +40,17 @@ export const uploadImageToCloudinary = async (
       public_id: folderPublicId + "/" + uniqueFilename,
     });
 
-    // Check if the image file exists
+    // Check if the local image file exists, and remove it
     if (fs.existsSync(file.path)) {
-      // Remove the image file
       await fs.unlinkSync(file.path);
     }
 
-    // Return the uploaded image URL
+    // Return the uploaded image URL and public_id
     return { secure_url: result.secure_url, public_id: result.public_id };
   } catch (error) {
-    // Handle any errors
+    // Log error and throw a more specific error message
     console.error("Error uploading image to Cloudinary:", error);
-    throw error;
+    throw new Error("Failed to upload image to Cloudinary");
   }
 };
 
