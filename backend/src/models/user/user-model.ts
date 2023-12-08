@@ -1,11 +1,13 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
+// Enum representing different gender options
 enum Gender {
   Male = "male",
   Female = "female",
   Other = "other",
 }
 
+// Interface defining the attributes required for creating a new user
 interface UserAttrs {
   firstname: string;
   lastname: string;
@@ -22,8 +24,7 @@ interface UserAttrs {
   isBlocked?: boolean;
 }
 
-interface UserModel extends Model<UserDoc> {}
-
+// Interface defining the structure of a user document
 interface UserDoc extends Document {
   firstname: string;
   lastname: string;
@@ -40,6 +41,10 @@ interface UserDoc extends Document {
   isBlocked: boolean;
 }
 
+// Interface defining the structure of the User model
+interface UserModel extends Model<UserDoc> {}
+
+// Schema definition for the User model
 const userSchema = new Schema<UserDoc, UserModel>(
   {
     firstname: {
@@ -129,6 +134,7 @@ const userSchema = new Schema<UserDoc, UserModel>(
   { timestamps: true }
 );
 
+// Create the User model from the schema
 const User = mongoose.model<UserDoc, UserModel>("User", userSchema);
 
 export { User, UserAttrs, UserDoc, UserModel };
