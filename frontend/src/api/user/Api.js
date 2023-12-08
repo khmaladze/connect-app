@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import manImage from "../../images/man-profile.jpg";
 import girlImage from "../../images/girl-profile.jpg";
 
+// Constants for local storage keys related to user authentication
 export const userLocalstorage = {
   auth: {
     user: "user",
@@ -10,6 +11,7 @@ export const userLocalstorage = {
   },
 };
 
+// Messages related to user authorization errors
 const userAuthorizationMessage = {
   session_not_found: "Session not found",
   session_expired: "Session expired",
@@ -19,18 +21,21 @@ const userAuthorizationMessage = {
     "Error, You are not user. user not found",
 };
 
+// Clear user authentication-related data from local storage
 const clearUserAuthLocalstorage = () => {
-  for (let value of Object.values(userLocalstorage.auth)) {
-    localStorage.removeItem(value);
-  }
+  Object.values(userLocalstorage.auth).forEach((value) =>
+    localStorage.removeItem(value)
+  );
 };
 
+// Constants for API request types
 export const apiRequestType = {
   get: "GET",
   post: "POST",
   put: "PUT",
 };
 
+// Function to handle API requests
 export const apiRequest = async (
   method,
   message,
@@ -43,24 +48,24 @@ export const apiRequest = async (
     const axiosConfig = {
       headers: {
         "Content-Type": contentType ? contentType : "application/json",
-        Authorization: token ? "Bearer " + token : undefined,
+        Authorization: token ? `Bearer ${token}` : undefined,
       },
     };
 
     let axiosResponse;
 
     switch (method.toUpperCase()) {
-      case "GET":
+      case apiRequestType.GET:
         axiosResponse = await axios.get(request, token && axiosConfig);
         break;
-      case "POST":
+      case apiRequestType.POST:
         axiosResponse = await axios.post(
           request,
           postData,
           token && axiosConfig
         );
         break;
-      case "PUT":
+      case apiRequestType.PUT:
         axiosResponse = await axios.put(
           request,
           postData,
@@ -87,26 +92,22 @@ export const apiRequest = async (
   }
 };
 
+// Set data in local storage
 export const setLocalstorage = (name, data) => {
   localStorage.setItem(name, JSON.stringify(data));
 };
 
+// Function to determine user profile image based on gender and provided image
 const userProfileImage = (gender, image) => {
   if (!image) return gender === "female" ? girlImage : manImage;
   return image;
 };
 
+// Action to take when the user is not authorized (e.g., session expired)
 const userNotAuthorizedAction = (error) => {
-  if (
-    error.response.data.message ===
-      userAuthorizationMessage.session_not_found ||
-    error.response.data.message === userAuthorizationMessage.session_expired ||
-    error.response.data.message === userAuthorizationMessage.not_authorized ||
-    error.response.data.message ===
-      userAuthorizationMessage.not_authorized_no_token ||
-    error.response.data.message ===
-      userAuthorizationMessage.error_you_are_not_user_user_not_found
-  ) {
+  const { message } = error.response.data;
+
+  if (Object.values(userAuthorizationMessage).includes(message)) {
     setTimeout(() => {
       clearUserAuthLocalstorage();
       window.location.reload();
@@ -114,4 +115,5 @@ const userNotAuthorizedAction = (error) => {
   }
 };
 
+// Export relevant functions and constants
 export { userProfileImage, clearUserAuthLocalstorage };
