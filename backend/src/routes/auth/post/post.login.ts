@@ -57,20 +57,95 @@ interface User {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/LoginRequest'
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 format: email
+ *               password:
+ *                 type: string
+ *                 minLength: 10
+ *             required:
+ *               - email
+ *               - password
  *     responses:
  *       200:
  *         description: User login successful.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/LoginResponseData'
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 message:
+ *                   type: string
+ *                   default: User login success.
+ *                 data:
+ *                   $ref: '#/components/schemas/LoginResponseUser'
  *       400:
  *         description: Bad request or incorrect email/password.
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/LoginResponseData'
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   default: false
+ *                 message:
+ *                   type: string
+ *                 data:
+ *                   $ref: '#/components/schemas/LoginResponseUser'
+ *
+ * components:
+ *   schemas:
+ *     LoginResponseUser:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         firstname:
+ *           type: string
+ *         lastname:
+ *           type: string
+ *         username:
+ *           type: string
+ *         gender:
+ *           type: string
+ *         profileImage:
+ *           type: string
+ *         birthDay:
+ *           type: number
+ *         birthMonth:
+ *           type: number
+ *         birthYear:
+ *           type: number
+ *         email:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *         updatedAt:
+ *           type: string
+ *         __v:
+ *           type: number
+ *     LoginResponseData:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *         message:
+ *           type: string
+ *         data:
+ *           $ref: '#/components/schemas/LoginResponseUser'
+ *     LoginRequest:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *           format: email
+ *         password:
+ *           type: string
+ *           minLength: 10
  */
 export const businessLogic = async (req: Request, res: Response) => {
   try {
@@ -101,10 +176,8 @@ export const businessLogic = async (req: Request, res: Response) => {
       expiresIn: "7d",
     });
 
-    // Hide password for user
+    // Hide password and profileImagePublicId for user
     user.password = undefined;
-
-    // Hide profileImagePublicId for user
     user.profileImagePublicId = undefined;
 
     // Calculate JWT expiration date
