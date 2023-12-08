@@ -119,15 +119,26 @@ const registrationSchema = Joi.object({
     .trim()
     .lowercase()
     .required(),
-  password: Joi.string().required().min(10).max(100),
+  password: Joi.string()
+    .required()
+    .min(10)
+    .max(100)
+    .pattern(
+      new RegExp(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%^&\\*])(?=.{10,})"
+      )
+    )
+    .message(
+      "must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 10 characters long"
+    ),
   confirmPassword: Joi.string().required().valid(Joi.ref("password")),
 });
 
 const routeMessage = {
-  user_email_exist: "try another email",
-  user_username_exist: "try another username",
-  user_not_valid_date: "date is not valid",
-  auth_user_register: "user register success",
+  user_email_exist: "Email already exists. Try another email.",
+  user_username_exist: "Username already exists. Try another username.",
+  user_not_valid_date: "Invalid date provided.",
+  auth_user_register: "User registration success.",
 };
 
 export const businessLogic = async (req: Request, res: Response) => {
@@ -165,10 +176,10 @@ export const businessLogic = async (req: Request, res: Response) => {
       return custom_server_response(res, 400, routeMessage.user_not_valid_date);
     }
 
-    // for password hash
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Create user in the database
     const user = await User.create({
       firstname,
       lastname,
@@ -181,6 +192,7 @@ export const businessLogic = async (req: Request, res: Response) => {
       password: hashedPassword,
     });
 
+    // Create user profile and friend record
     await UserProfile.create({
       user_profile_id: user._id,
       zodiac: getZodiacSign(Number(birthMonth), Number(birthDay)).toLowerCase(),
@@ -190,6 +202,7 @@ export const businessLogic = async (req: Request, res: Response) => {
 
     return custom_server_response(res, 200, routeMessage.auth_user_register);
   } catch (error) {
+    // Handle any unexpected errors
     return customServerError(res, error);
   }
 };
