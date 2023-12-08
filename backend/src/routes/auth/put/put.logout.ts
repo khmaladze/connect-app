@@ -16,42 +16,33 @@ import { CustomRequest } from "../../../middleware/user-authorization";
  *     tags:
  *       - Auth
  *     security:
- *       - BearerAuth: string
+ *       - BearerAuth: []
  *     responses:
  *       200:
  *         description: User log out successful.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 message:
- *                   type: string
- *             example:
- *               success: true
- *               message: "User log out success"
+ *               $ref: '#/components/schemas/LogoutResponse'
  *       401:
  *         description: Unauthorized or invalid token.
  *         content:
  *           application/json:
  *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                 message:
- *                   type: string
- *             example:
- *               success: false
- *               message: "Unauthorized"
+ *               $ref: '#/components/schemas/ErrorResponse'
  */
 
 const routeMessage = {
-  user_log_out_success: "user log out success",
+  user_log_out_success: "User log out success.",
 };
 
+/**
+ * Handles user logout.
+ *
+ * @param req - The request object.
+ * @param res - The response object.
+ * @returns The response indicating the success or failure of the user logout.
+ */
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     let token: any = "";
