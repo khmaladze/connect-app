@@ -35,7 +35,7 @@ import { UserProfile } from "../../../models/user/user-profile-model";
  *           type: string
  *           format: email
  *           description: The user's email address.
- *           example: john.doe@example.com
+ *           example: john.doe@gmail.com
  *         gender:
  *           type: string
  *           enum:
@@ -59,11 +59,11 @@ import { UserProfile } from "../../../models/user/user-profile-model";
  *         password:
  *           type: string
  *           description: The user's password.
- *           example: 1234567890
+ *           example: aA!1234567
  *         confirmPassword:
  *           type: string
  *           description: The confirmation of the user's password.
- *           example: 1234567890
+ *           example: aA!1234567
  *
  * @swagger
  * /api/user/auth/register:
