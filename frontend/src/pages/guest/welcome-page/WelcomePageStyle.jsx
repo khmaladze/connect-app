@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// Styled components for the WelcomePage
 export const WelcomePageMain = styled.div`
   height: 100%;
   width: 100%;
