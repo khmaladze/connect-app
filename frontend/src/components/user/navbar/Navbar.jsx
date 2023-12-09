@@ -22,24 +22,6 @@ const settings = ["profile", "main", "chat", "friend", "logout"];
 
 const Navbar = ({ user, updateSetIsAuth }) => {
   const dispatch = useDispatch();
-
-  const logOutHandle = async () => {
-    const response = await apiRequest(
-      apiRequestType.put,
-      false,
-      API_URL.auth.put.logout,
-      user.token,
-      {}
-    );
-    if (response?.success) {
-      updateSetIsAuth(false);
-      setTimeout(() => {
-        dispatch(logOut());
-        clearUserAuthLocalstorage();
-      }, 100);
-    }
-  };
-
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -48,6 +30,28 @@ const Navbar = ({ user, updateSetIsAuth }) => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logOutHandle = async () => {
+    try {
+      const response = await apiRequest(
+        apiRequestType.put,
+        false,
+        API_URL.auth.put.logout,
+        user.token,
+        {}
+      );
+
+      if (response?.success) {
+        updateSetIsAuth(false);
+        setTimeout(() => {
+          dispatch(logOut());
+          clearUserAuthLocalstorage();
+        }, 100);
+      }
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   return (
@@ -87,9 +91,7 @@ const Navbar = ({ user, updateSetIsAuth }) => {
                 {setting === "logout" ? (
                   <div
                     onClick={logOutHandle}
-                    style={{
-                      color: "red",
-                    }}
+                    style={{ color: "red", cursor: "pointer" }}
                   >
                     {setting}
                   </div>
