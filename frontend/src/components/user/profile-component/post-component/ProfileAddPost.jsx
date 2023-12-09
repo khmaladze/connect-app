@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import { Avatar, FormControl, MenuItem, Select } from "@mui/material";
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import {
   apiRequest,
   apiRequestType,
@@ -10,20 +15,6 @@ import {
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-// Import React FilePond
-import { FilePond, registerPlugin } from "react-filepond";
-// Import FilePond styles
-import "filepond/dist/filepond.min.css";
-// Import the Image EXIF Orientation and Image Preview plugins
-// Note: These need to be installed separately
-// `npm i filepond-plugin-image-preview filepond-plugin-image-exif-orientation --save`
-import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
-import FilePondPluginImagePreview from "filepond-plugin-image-preview";
-import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-// Import the plugin code
-import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-// Import the plugin code
-import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
@@ -40,12 +31,8 @@ import {
 } from "./ProfileAddPostStyle";
 
 // Register the plugins
-registerPlugin(
-  FilePondPluginFileValidateSize,
-  FilePondPluginImageExifOrientation,
-  FilePondPluginImagePreview,
-  FilePondPluginFileValidateType
-);
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
+
 const ProfileAddPostComponent = ({ user }) => {
   const dateNow = new Date(Date.now());
   const postCreateDate = dateNow.toISOString().slice(0, 10);
@@ -56,32 +43,36 @@ const ProfileAddPostComponent = ({ user }) => {
   const friendListData = ["Friend", "CloseFriend", "Favorite"];
 
   const createPost = async () => {
-    if (image || text) {
-      const formData = new FormData();
-      if (image) {
-        formData.append("image", image[0]["file"]);
-      }
-      if (text) {
-        formData.append("text", text);
-      }
-      if (friendList) {
-        formData.append("friendList", friendList);
-      }
+    try {
+      if (image || text) {
+        const formData = new FormData();
+        if (image) {
+          formData.append("image", image[0].file);
+        }
+        if (text) {
+          formData.append("text", text);
+        }
+        if (friendList) {
+          formData.append("friendList", friendList);
+        }
 
-      const response = await apiRequest(
-        apiRequestType.post,
-        true,
-        API_URL.profile.post.add_post,
-        user.token,
-        formData,
-        API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
-      );
+        const response = await apiRequest(
+          apiRequestType.post,
+          true,
+          API_URL.profile.post.add_post,
+          user.token,
+          formData,
+          API_CONTENT_TYPE_LIST.application_x_www_form_urlencoded
+        );
 
-      if (response?.success) {
-        window.location.reload();
+        if (response?.success) {
+          window.location.reload();
+        }
+      } else {
+        toast.error("Please add image or text");
       }
-    } else {
-      toast.error("please add image or text");
+    } catch (error) {
+      console.error("Error creating post:", error);
     }
   };
 
@@ -96,7 +87,7 @@ const ProfileAddPostComponent = ({ user }) => {
               src={userProfileImage(user.gender, user.profileImage)}
             />
             <AddPostHeaderDiv />
-            <h3>{user.firstname + " " + user.lastname}</h3>
+            <h3>{`${user.firstname} ${user.lastname}`}</h3>
           </AddPostHeaderContainer>
           <h3>{postCreateDate}</h3>
         </AddPostHeader>
@@ -141,17 +132,13 @@ const ProfileAddPostComponent = ({ user }) => {
                 labelId="dropdown-label"
                 id="dropdown"
                 value={friendList}
-                onChange={(e) => {
-                  setFriendList(e.target.value);
-                }}
+                onChange={(e) => setFriendList(e.target.value)}
               >
-                {friendListData.map((item) => {
-                  return (
-                    <MenuItem key={item} value={item}>
-                      {item}
-                    </MenuItem>
-                  );
-                })}
+                {friendListData.map((item) => (
+                  <MenuItem key={item} value={item}>
+                    {item}
+                  </MenuItem>
+                ))}
               </Select>
             </FormControl>
           </Grid>
