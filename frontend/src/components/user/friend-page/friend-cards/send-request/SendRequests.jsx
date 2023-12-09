@@ -4,43 +4,42 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { MenuItem, Select } from "@mui/material";
 import {
   apiRequest,
   apiRequestType,
   userProfileImage,
 } from "../../../../../api/user/Api";
-import { MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 
 const SendRequests = ({ id, gender, imageUrl, username, token }) => {
   const [status, setStatus] = useState("Friend");
 
   const sendFriendRequest = async () => {
-    const response = await apiRequest(
-      apiRequestType.post,
-      true,
-      API_URL.friend.post.friend_request,
-      token,
-      {
-        receiver: id,
-        friend_list: status,
-      }
-    );
+    try {
+      const response = await apiRequest(
+        apiRequestType.post,
+        true,
+        API_URL.friend.post.friend_request,
+        token,
+        {
+          receiver: id,
+          friend_list: status,
+        }
+      );
 
-    if (response?.success) {
-      setTimeout(() => {
-        window.location.reload();
-      }, 3000);
+      if (response?.success) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Error sending friend request:", error);
     }
   };
 
   return (
-    <Card
-      style={{
-        width: "300px",
-        height: "400px",
-      }}
-    >
+    <Card style={{ width: "300px", height: "400px" }}>
       <CardMedia
         component="img"
         alt="User Image"
@@ -52,10 +51,7 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
           {username}
         </Typography>
         <Select
-          style={{
-            width: "100%",
-            marginTop: "10px",
-          }}
+          style={{ width: "100%", marginTop: "10px" }}
           labelId="dropdown-label"
           id="dropdown"
           value={status}
@@ -65,17 +61,14 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
             Friend
           </MenuItem>
           <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
-            close friend
+            Close friend
           </MenuItem>
           <MenuItem key={"Favorite"} value={"Favorite"}>
             Favorite
           </MenuItem>
         </Select>
         <Button
-          style={{
-            width: "100%",
-            marginTop: "15px",
-          }}
+          style={{ width: "100%", marginTop: "15px" }}
           variant="contained"
           color="primary"
           fullWidth
