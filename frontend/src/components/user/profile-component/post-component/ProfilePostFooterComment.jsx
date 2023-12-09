@@ -1,13 +1,14 @@
-import React, { Fragment, useState } from "react";
-import AddCommentIcon from "@mui/icons-material/AddComment";
+import React, { Fragment } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-
-const ProfilePostFooterComment = () => {
-  const [isComment, setIsComment] = useState(false);
-
+import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
+const ProfilePostFooterComment = ({ isComment, toggleComment }) => {
   return (
     <Fragment>
-      {isComment ? <AddCommentIcon /> : <ChatBubbleOutlineIcon />}
+      {isComment ? (
+        <ChatBubbleIcon onClick={toggleComment} />
+      ) : (
+        <ChatBubbleOutlineIcon onClick={toggleComment} />
+      )}
     </Fragment>
   );
 };
