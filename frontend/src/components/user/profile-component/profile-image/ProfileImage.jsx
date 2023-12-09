@@ -8,37 +8,40 @@ import {
 } from "../../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import Button from "@mui/material/Button";
-// import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import MyModal from "../../modal/MyModal";
-// Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
-// Import FilePond styles
 import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-// Import the plugin code
 import FilePondPluginFileValidateType from "filepond-plugin-file-validate-type";
-// Import the plugin code
 import FilePondPluginFileValidateSize from "filepond-plugin-file-validate-size";
 import { Grid } from "@mui/material";
 import { toast } from "react-toastify";
 import { ProfileImage } from "./ProfileImageStyle";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
-// Register the plugins
 registerPlugin(
   FilePondPluginFileValidateSize,
   FilePondPluginImageExifOrientation,
   FilePondPluginImagePreview,
   FilePondPluginFileValidateType
 );
+
 const ProfileImageComponent = ({ user }) => {
   const [image, setImage] = useState();
+  // const [profileImage, setProfileImage] = useState();
 
   const updateUserImageHandle = async () => {
-    if (image && image[0] && image[0]["file"]) {
-      const formData = new FormData();
-      formData.append("image", image[0]["file"]);
+    if (!image || !image[0] || !image[0].file) {
+      toast.error("Please add an image");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("image", image[0].file);
+
+    try {
       const response = await apiRequest(
         apiRequestType.put,
         true,
@@ -58,10 +61,13 @@ const ProfileImageComponent = ({ user }) => {
           ...userProfileData,
           ...response.data,
         });
+
+        // setProfileImage(response.data.profileImage);
+
         window.location.reload();
       }
-    } else {
-      toast.error("please add image");
+    } catch (error) {
+      console.error("Error updating profile image:", error);
     }
   };
 
@@ -72,41 +78,34 @@ const ProfileImageComponent = ({ user }) => {
           <Button
             variant="contained"
             color="primary"
-            startIcon={
-              // <AddPhotoAlternateIcon />
-              <span className="material-symbols-outlined">
-                add_photo_alternate
-              </span>
-            }
+            startIcon={<AddPhotoAlternateIcon />}
           >
             Update Image
           </Button>
         }
-        title={"Update Profile Image"}
+        title="Update Profile Image"
         body={
-          <div>
-            <Grid item xs={12}>
-              <FilePond
-                files={image}
-                allowMultiple={false}
-                maxFiles={1}
-                onupdatefiles={setImage}
-                allowFileSizeValidation={true}
-                maxFileSize={"5MB"}
-                acceptedFileTypes={["image/*"]}
-                name="files"
-                labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
-              />
-              <Button
-                style={{ width: "100%" }}
-                variant="contained"
-                color="primary"
-                onClick={updateUserImageHandle}
-              >
-                Update
-              </Button>
-            </Grid>
-          </div>
+          <Grid item xs={12}>
+            <FilePond
+              files={image}
+              allowMultiple={false}
+              maxFiles={1}
+              onupdatefiles={setImage}
+              allowFileSizeValidation={true}
+              maxFileSize={"5MB"}
+              acceptedFileTypes={["image/*"]}
+              name="files"
+              labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
+            />
+            <Button
+              style={{ width: "100%", marginTop: "10px" }}
+              variant="contained"
+              color="primary"
+              onClick={updateUserImageHandle}
+            >
+              Update
+            </Button>
+          </Grid>
         }
       />
     </ProfileImage>
