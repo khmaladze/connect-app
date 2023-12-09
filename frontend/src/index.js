@@ -7,11 +7,13 @@ import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import authSlice from "./store/auth";
 import isLoggedInSlice from "./store/isLogIn";
+import profileImageSlice from "./store/profileImage";
 
 const store = configureStore({
   reducer: {
     auth: authSlice,
     login: isLoggedInSlice,
+    profileImage: profileImageSlice,
   },
 });
 
