@@ -9,11 +9,17 @@ import { API_URL } from "../../../../config/config";
 import Button from "@mui/material/Button";
 import MyModal from "../../modal/MyModal";
 import { Grid } from "@mui/material";
-// import InfoIcon from "@mui/icons-material/Info";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
-import { education, languages, passions } from "../../../../data/userInfoData";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Typography,
+} from "@mui/material";
 import { toast } from "react-toastify";
 import { ProfileDetails } from "./ProfileDetailsStyle";
+import InfoIcon from "@mui/icons-material/Info";
+import { education, languages, passions } from "../../../../data/userInfoData";
 
 const ProfileDetailsComponent = ({ user }) => {
   const [userProfileData, setUserProfileData] = useState("");
@@ -34,7 +40,7 @@ const ProfileDetailsComponent = ({ user }) => {
 
   const updateUserInfoHandle = async () => {
     if (!selectLanguage || !selectPassion || !selectEducation) {
-      toast.error("please add all the fields");
+      toast.error("Please fill in all the fields");
       return;
     }
 
@@ -54,7 +60,9 @@ const ProfileDetailsComponent = ({ user }) => {
 
     if (response?.success) {
       localStorage.removeItem(userLocalstorage.auth.userProfileInfoData);
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
   };
 
@@ -101,27 +109,34 @@ const ProfileDetailsComponent = ({ user }) => {
   return (
     <ProfileDetails>
       <div>
-        <h2>{user.firstname + " " + user.lastname}</h2>
-        <h3>username {user.username}</h3>
+        <Typography variant="h4">
+          {user.firstname + " " + user.lastname}
+        </Typography>
+        <Typography variant="h5">Username: {user.username}</Typography>
         {userProfileData && (
           <Fragment>
-            <h3>languages: {userProfileData?.languages[0]}</h3>
-            <h3>zodiac: {userProfileData?.zodiac}</h3>
-            <h3>degree: {userProfileData?.education}</h3>
-            <h3>passion: {userProfileData?.passions[0]}</h3>
+            <Typography variant="h5">
+              Languages: {userProfileData?.languages[0]}
+            </Typography>
+            <Typography variant="h5">
+              Zodiac: {userProfileData?.zodiac}
+            </Typography>
+            <Typography variant="h5">
+              Degree: {userProfileData?.education}
+            </Typography>
+            <Typography variant="h5">
+              Passion: {userProfileData?.passions[0]}
+            </Typography>
           </Fragment>
         )}
         <MyModal
-          title={"Update Info"}
+          title="Update Info"
           ButtonText={
             <Button
               style={{ width: "100%", marginTop: "10px" }}
               variant="contained"
               color="primary"
-              startIcon={
-                // <InfoIcon />
-                <span className="material-symbols-outlined">info</span>
-              }
+              startIcon={<InfoIcon />}
             >
               Update Info
             </Button>
@@ -129,69 +144,49 @@ const ProfileDetailsComponent = ({ user }) => {
           body={
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <FormControl
-                  style={{
-                    width: "100%",
-                  }}
-                >
-                  <InputLabel id="dropdown-label">Language</InputLabel>
+                <FormControl style={{ width: "100%" }}>
+                  <InputLabel id="language-label">Language</InputLabel>
                   <Select
-                    labelId="dropdown-label"
-                    id="dropdown"
+                    labelId="language-label"
+                    id="language"
                     value={selectLanguage}
                     onChange={handleLanguageChange}
                   >
-                    {languages.map((item) => {
-                      return (
-                        <MenuItem key={item} value={item}>
-                          {item}
-                        </MenuItem>
-                      );
-                    })}
+                    {languages.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
-                <FormControl
-                  style={{
-                    width: "100%",
-                    marginTop: "10px",
-                  }}
-                >
-                  <InputLabel id="dropdown-label">degree</InputLabel>
+                <FormControl style={{ width: "100%", marginTop: "10px" }}>
+                  <InputLabel id="education-label">Degree</InputLabel>
                   <Select
-                    labelId="dropdown-label"
-                    id="dropdown"
+                    labelId="education-label"
+                    id="education"
                     value={selectEducation}
                     onChange={handleEducationChange}
                   >
-                    {education.map((item) => {
-                      return (
-                        <MenuItem key={item} value={item}>
-                          {item}
-                        </MenuItem>
-                      );
-                    })}
+                    {education.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
-                <FormControl
-                  style={{
-                    width: "100%",
-                    marginTop: "10px",
-                  }}
-                >
-                  <InputLabel id="dropdown-label">passion</InputLabel>
+                <FormControl style={{ width: "100%", marginTop: "10px" }}>
+                  <InputLabel id="passion-label">Passion</InputLabel>
                   <Select
-                    labelId="dropdown-label"
-                    id="dropdown"
+                    labelId="passion-label"
+                    id="passion"
                     value={selectPassion}
                     onChange={handlePassionChange}
                   >
-                    {passions.map((item) => {
-                      return (
-                        <MenuItem key={item} value={item}>
-                          {item}
-                        </MenuItem>
-                      );
-                    })}
+                    {passions.map((option) => (
+                      <MenuItem key={option} value={option}>
+                        {option}
+                      </MenuItem>
+                    ))}
                   </Select>
                 </FormControl>
                 <Button
