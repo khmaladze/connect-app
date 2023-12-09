@@ -21,7 +21,7 @@ const SearchBar = ({ onSearch }) => {
     <TextField
       style={{
         maxWidth: "500px",
-        width: "500px",
+        width: "100%", // Adjusted width to take full available width
       }}
       label="Search"
       variant="outlined"
@@ -34,7 +34,6 @@ const SearchBar = ({ onSearch }) => {
           <InputAdornment position="end">
             <IconButton color="primary" onClick={handleSearch} size="small">
               <SearchIcon />
-              {/* <span class="material-symbols-outlined">search</span> */}
             </IconButton>
           </InputAdornment>
         ),
