@@ -12,23 +12,30 @@ import { toast } from "react-toastify";
 
 const SendFriendRequest = ({ user }) => {
   const [searchResult, setSearchResult] = useState("");
+
   const handleSearch = async (searchTerm, updateSearchBar) => {
     if (searchTerm.length <= 0) {
-      toast.error("can't find user with empty field");
+      toast.error("Please enter a username to search for.");
       return;
     }
 
-    const response = await apiRequest(
-      apiRequestType.get,
-      false,
-      "/api/user/friend/user/" + searchTerm,
-      user.token
-    );
+    try {
+      const response = await apiRequest(
+        apiRequestType.get,
+        false,
+        `/api/user/friend/user/${searchTerm}`,
+        user.token
+      );
 
-    if (!response) {
-      updateSearchBar("");
-    } else {
-      setSearchResult(response.data);
+      if (response?.data) {
+        setSearchResult(response.data);
+      } else {
+        updateSearchBar("");
+        toast.error("User not found.");
+      }
+    } catch (error) {
+      console.error("Error searching for user:", error);
+      toast.error("An error occurred while searching for user.");
     }
   };
 
@@ -38,7 +45,7 @@ const SendFriendRequest = ({ user }) => {
         <h2>Add Friend</h2>
       </FriendMainPageSendRequestText>
       <FriendMainPageSendRequestSmallText>
-        <h4>Search user with username</h4>
+        <h4>Search for a user by username</h4>
       </FriendMainPageSendRequestSmallText>
       <FriendRequstSearchBar>
         <SearchBar onSearch={handleSearch} />
