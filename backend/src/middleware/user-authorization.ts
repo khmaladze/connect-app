@@ -126,6 +126,12 @@ const userAuthorization = async (
 
       // Set the user in the request object and proceed to the next middleware
       req.user = user;
+
+      // Check req.user
+      if (!validateUserProfileId(req.user, res)) {
+        return;
+      }
+
       next();
     } else {
       // If no valid authorization header is present, return an error response
