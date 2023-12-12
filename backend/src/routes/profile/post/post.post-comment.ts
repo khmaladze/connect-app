@@ -17,7 +17,82 @@ const routeMessage = {
   add_comment_success: "Add comment success.",
 };
 
-// Route to create a new comment
+/**
+ * @swagger
+ * /api/user/comment:
+ *   post:
+ *     summary: Create a new comment
+ *     description: Creates a new comment for a post.
+ *     tags:
+ *       - Profile
+ *     security:
+ *       - BearerAuth: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/CommentRequest'
+ *     responses:
+ *       200:
+ *         description: Comment added successfully.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/CommentResponse'
+ *       400:
+ *         description: Bad request or user has already commented on the post.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CommentRequest:
+ *       type: object
+ *       properties:
+ *         post_id:
+ *           type: string
+ *           required: true
+ *         comment:
+ *           type: string
+ *           required: true
+ *           maxLength: 70
+ *       required:
+ *         - post_id
+ *         - comment
+ *
+ *     CommentResponse:
+ *       type: object
+ *       properties:
+ *         _id:
+ *           type: string
+ *         author_id:
+ *           type: string
+ *         post_id:
+ *           type: string
+ *         comment:
+ *           type: string
+ *         createdAt:
+ *           type: string
+ *         updatedAt:
+ *           type: string
+ *         __v:
+ *           type: number
+ *
+ *     Error:
+ *       type: object
+ *       properties:
+ *         success:
+ *           type: boolean
+ *           default: false
+ *         message:
+ *           type: string
+ */
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     // Destructure validated data for easier access
@@ -33,7 +108,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     });
 
     if (existingComment) {
-      // If user has already commented, return an error response
+      // If the user has already commented, return an error response
       return custom_server_response(
         res,
         400,
@@ -48,7 +123,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       comment: comment,
     });
 
-    // Return success response with the newly created comment
+    // Return a success response with the newly created comment
     return custom_server_response(
       res,
       200,
