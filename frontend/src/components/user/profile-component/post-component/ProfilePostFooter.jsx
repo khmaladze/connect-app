@@ -4,22 +4,41 @@ import ProfilePostFooterLike from "./ProfilePostFooterLike";
 import ProfilePostFooterComment from "./ProfilePostFooterComment";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { toast } from "react-toastify";
+import { apiRequest, apiRequestType } from "../../../../api/user/Api";
+import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 
 const ProfilePostFooterComponent = ({ list, postId, token }) => {
   const [isComment, setIsComment] = useState(false);
   const [commentText, setCommentText] = useState("");
+  const [comment, setComment] = useState(false);
 
   const toggleComment = () => {
     setIsComment(!isComment);
   };
 
-  const handleCommentSubmit = () => {
-    // Add your logic here to handle comment submission
-    console.log("Comment submitted:", commentText);
+  const handleCommentSubmit = async () => {
+    try {
+      if (commentText) {
+        const response = await apiRequest(
+          apiRequestType.post,
+          false,
+          API_URL.profile.post.add_comment,
+          token,
+          { comment: String(commentText), post_id: String(postId) },
+          API_CONTENT_TYPE_LIST.application_json
+        );
 
-    // Reset comment text and hide the input field
-    setCommentText("");
-    setIsComment(false);
+        if (response?.success) {
+          // window.location.reload();
+          setComment(true);
+        }
+      } else {
+        toast.error("Please add text");
+      }
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
   };
 
   return (
@@ -39,7 +58,7 @@ const ProfilePostFooterComponent = ({ list, postId, token }) => {
           />
         </div>
       </ProfilePostFooter>
-      {isComment && (
+      {isComment && !comment && (
         <div
           style={{
             display: "flex",
