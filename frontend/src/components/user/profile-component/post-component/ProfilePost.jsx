@@ -83,7 +83,9 @@ const ProfilePost = ({
       }
     };
 
-    fetchComments();
+    if (commentBool === false) {
+      fetchComments();
+    }
   }, [postId, token, comments]);
 
   return (
