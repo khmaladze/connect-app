@@ -102,3 +102,30 @@ export const ProfilePostFooter = styled.div`
     }
   }
 `;
+
+export const CommentContainerMain = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  padding: 5px;
+  margin-bottom: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 3px solid
+    ${(props) =>
+      props.borderColor === "Friend"
+        ? "#0500ff"
+        : props.borderColor === "CloseFriend"
+        ? "#1eff1e"
+        : "#FF008A"};
+  border-radius: 10px;
+`;
+
+export const UsernameContainer = styled.div`
+  margin-left: 10px;
+`;
+
+export const CommentContainer = styled.div`
+  margin-left: 10px;
+  width: 100%;
+`;
