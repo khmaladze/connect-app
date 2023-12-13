@@ -1,46 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { ProfilePostFooter } from "./ProfilePostStyle";
 import ProfilePostFooterLike from "./ProfilePostFooterLike";
 import ProfilePostFooterComment from "./ProfilePostFooterComment";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { toast } from "react-toastify";
-import { apiRequest, apiRequestType } from "../../../../api/user/Api";
-import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 
-const ProfilePostFooterComponent = ({ list, postId, token }) => {
-  const [isComment, setIsComment] = useState(false);
-  const [commentText, setCommentText] = useState("");
-  const [comment, setComment] = useState(false);
-
-  const toggleComment = () => {
-    setIsComment(!isComment);
-  };
-
-  const handleCommentSubmit = async () => {
-    try {
-      if (commentText) {
-        const response = await apiRequest(
-          apiRequestType.post,
-          false,
-          API_URL.profile.post.add_comment,
-          token,
-          { comment: String(commentText), post_id: String(postId) },
-          API_CONTENT_TYPE_LIST.application_json
-        );
-
-        if (response?.success) {
-          // window.location.reload();
-          setComment(true);
-        }
-      } else {
-        toast.error("Please add text");
-      }
-    } catch (error) {
-      console.error("Error adding comment:", error);
-    }
-  };
-
+const ProfilePostFooterComponent = ({
+  list,
+  postId,
+  token,
+  isComment,
+  commentText,
+  setCommentText,
+  commentBool,
+  handleCommentSubmit,
+  toggleComment,
+}) => {
   return (
     <Fragment>
       <ProfilePostFooter borderColor={list}>
@@ -55,10 +30,11 @@ const ProfilePostFooterComponent = ({ list, postId, token }) => {
             setCommentText={setCommentText}
             handleCommentSubmit={handleCommentSubmit}
             toggleComment={toggleComment}
+            commentBool={commentBool}
           />
         </div>
       </ProfilePostFooter>
-      {isComment && !comment && (
+      {isComment && !commentBool && (
         <div
           style={{
             display: "flex",
