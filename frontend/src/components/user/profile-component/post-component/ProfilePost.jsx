@@ -27,13 +27,16 @@ const ProfilePost = ({
   list,
   token,
 }) => {
-  const [comments, setComments] = useState([]);
-  const [isComment, setIsComment] = useState(false);
+  const [commentsData, setCommentsData] = useState([]);
+  const [isOpenCommentField, setIsOpenCommentField] = useState(false);
   const [commentText, setCommentText] = useState("");
-  const [commentBool, setCommentBool] = useState(false);
+  const [isCommentDataFetched, setIsCommentDataFetched] = useState(false);
+  const [userAlreadyComment, setIsUserAlreadyComment] = useState(false);
 
   const toggleComment = () => {
-    setIsComment(!isComment);
+    if (userAlreadyComment === false) {
+      setIsOpenCommentField(!isOpenCommentField);
+    }
   };
 
   const handleCommentSubmit = async () => {
@@ -49,9 +52,10 @@ const ProfilePost = ({
         );
 
         if (response?.success) {
-          setCommentBool(true);
-          setIsComment(true);
-          setCommentText(response.data);
+          setIsCommentDataFetched(false);
+          setIsOpenCommentField(false);
+          setIsUserAlreadyComment(true);
+          setCommentText("");
         }
       } else {
         toast.error("Please add text");
@@ -71,11 +75,10 @@ const ProfilePost = ({
           token
         );
         if (response?.success) {
-          setComments(response.data);
+          setCommentsData(response.data);
           if (response.data[0]._id) {
-            setCommentBool(true);
-            setIsComment(true);
-            setCommentText(response.data);
+            setIsOpenCommentField(false);
+            setIsUserAlreadyComment(true);
           }
         }
       } catch (error) {
@@ -83,10 +86,11 @@ const ProfilePost = ({
       }
     };
 
-    if (commentBool === false) {
+    if (isCommentDataFetched === false) {
       fetchComments();
+      setIsCommentDataFetched(true);
     }
-  }, [postId, token, comments]);
+  }, [postId, token, commentsData, isCommentDataFetched]);
 
   return (
     <ProfilePostContainer>
@@ -112,17 +116,18 @@ const ProfilePost = ({
           list={list}
           postId={postId}
           token={token}
-          isComment={isComment}
-          setIsComment={setIsComment}
+          isOpenCommentField={isOpenCommentField}
+          setIsOpenCommentField={setIsOpenCommentField}
           commentText={commentText}
           setCommentText={setCommentText}
-          commentBool={commentBool}
-          setCommentBool={setCommentBool}
+          isCommentDataFetched={isCommentDataFetched}
+          setIsCommentDataFetched={setIsCommentDataFetched}
+          userAlreadyComment={userAlreadyComment}
           handleCommentSubmit={handleCommentSubmit}
           toggleComment={toggleComment}
         />
-        {comments &&
-          comments.map((comment) => {
+        {commentsData &&
+          commentsData.map((comment) => {
             return (
               <CommentContainerMain key={comment._id} borderColor={list}>
                 <Avatar src={profileImage} />

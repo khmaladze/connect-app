@@ -9,12 +9,12 @@ const ProfilePostFooterComponent = ({
   list,
   postId,
   token,
-  isComment,
+  isOpenCommentField,
   commentText,
   setCommentText,
-  commentBool,
   handleCommentSubmit,
   toggleComment,
+  userAlreadyComment,
 }) => {
   return (
     <Fragment>
@@ -25,16 +25,12 @@ const ProfilePostFooterComponent = ({
 
           {/* Profile post footer comment component */}
           <ProfilePostFooterComment
-            isComment={isComment}
-            commentText={commentText}
-            setCommentText={setCommentText}
-            handleCommentSubmit={handleCommentSubmit}
+            userAlreadyComment={userAlreadyComment}
             toggleComment={toggleComment}
-            commentBool={commentBool}
           />
         </div>
       </ProfilePostFooter>
-      {isComment && !commentBool && (
+      {isOpenCommentField && (
         <div
           style={{
             display: "flex",

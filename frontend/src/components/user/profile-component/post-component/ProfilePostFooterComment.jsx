@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
-const ProfilePostFooterComment = ({ isComment, toggleComment }) => {
+
+const ProfilePostFooterComment = ({ userAlreadyComment, toggleComment }) => {
   return (
     <Fragment>
-      {isComment ? (
+      {userAlreadyComment ? (
         <ChatBubbleIcon onClick={toggleComment} />
       ) : (
         <ChatBubbleOutlineIcon onClick={toggleComment} />
