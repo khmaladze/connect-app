@@ -12,8 +12,9 @@ import ProfilePostFooterComponent from "./ProfilePostFooter";
 import Typography from "@mui/material/Typography";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
-import { Avatar } from "@mui/material";
+import { Avatar, Button, Grid } from "@mui/material";
 import { toast } from "react-toastify";
+import MyModal from "../../modal/MyModal";
 
 const ProfilePost = ({
   postId,
@@ -96,6 +97,25 @@ const ProfilePost = ({
     }
   }, [postId, token, commentsData, isCommentDataFetched]);
 
+  const deleteUserPostCommenthandle = async (postId, token) => {
+    try {
+      const response = await apiRequest(
+        apiRequestType.post,
+        true,
+        API_URL.profile.post.delete_post_comment + postId,
+        token
+      );
+      if (response?.success) {
+        setIsOpenCommentField(false);
+        setIsUserAlreadyComment(false);
+        setCommentText("");
+        setCommentsData(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ProfilePostContainer>
       <ProfilePostDiv borderColor={list}>
@@ -145,7 +165,33 @@ const ProfilePost = ({
                     comment: {comment.comment}
                   </Typography>
                 </CommentContainer>
-                <span className="material-symbols-outlined">delete</span>
+                <MyModal
+                  title="Delete Post Comment"
+                  ButtonText={
+                    <span className="material-symbols-outlined">delete</span>
+                  }
+                  body={
+                    <Grid container spacing={2}>
+                      <Grid item xs={12}>
+                        <p>when click delete it will be deleted</p>
+                        <Button
+                          style={{
+                            width: "100%",
+                            marginTop: "10px",
+                            color: "red",
+                            borderColor: "red",
+                          }}
+                          variant="outlined"
+                          onClick={async () => {
+                            await deleteUserPostCommenthandle(postId, token);
+                          }}
+                        >
+                          Delete Post
+                        </Button>
+                      </Grid>
+                    </Grid>
+                  }
+                />
               </CommentContainerMain>
             );
           })}
