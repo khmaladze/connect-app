@@ -106,8 +106,7 @@ export const ProfilePostFooter = styled.div`
 export const CommentContainerMain = styled.div`
   width: 100%;
   margin: 0 auto;
-  padding: 5px;
-  margin-bottom: 7px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
