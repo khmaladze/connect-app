@@ -40,6 +40,7 @@ const ProfilePostFooterLike = ({ token, postId }) => {
       );
       if (response?.success) {
         setIsLiked(false);
+        setCount(count - 1);
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +64,9 @@ const ProfilePostFooterLike = ({ token, postId }) => {
         console.log(error);
       }
     };
-    checkIsPostLiked();
+    setTimeout(() => {
+      checkIsPostLiked();
+    }, 1000);
   }, [isLiked]);
 
   return (
