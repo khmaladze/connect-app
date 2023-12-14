@@ -77,6 +77,8 @@ const ProfilePostComponent = ({ user }) => {
               image={item.media.length > 0 ? item.media[0].url : ""}
               list={item.list}
               token={user.token}
+              profilePosts={profilePosts}
+              setProfilePosts={setProfilePosts}
             />
           </div>
         ))}
