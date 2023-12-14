@@ -28,6 +28,7 @@ export const API_URL = {
       remove_post_like: `${USER_API + "/profile/remove_post_like"}`,
       add_comment: `${USER_API + "/profile/comment"}`,
       delete_post: `${USER_API + "/profile/post/"}`,
+      delete_post_comment: `${USER_API + "/profile/post/comment/"}`,
     },
     put: {
       updateUserProfileInfo: `${USER_API + "/profile/profile_info_data"}`,
