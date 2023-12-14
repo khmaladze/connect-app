@@ -15,7 +15,9 @@ const MyModal = ({ title, description, ButtonText, body }) => {
 
   return (
     <div>
-      <div onClick={handleOpen}>{ButtonText}</div>
+      <div style={{ cursor: "pointer" }} onClick={handleOpen}>
+        {ButtonText}
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
