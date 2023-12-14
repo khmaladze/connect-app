@@ -26,6 +26,8 @@ const ProfilePost = ({
   gender,
   list,
   token,
+  profilePosts,
+  setProfilePosts,
 }) => {
   const [commentsData, setCommentsData] = useState([]);
   const [isOpenCommentField, setIsOpenCommentField] = useState(false);
@@ -76,7 +78,7 @@ const ProfilePost = ({
         );
         if (response?.success) {
           setCommentsData(response.data);
-          if (response.data[0]._id) {
+          if (response.data && response.data[0] && response.data[0]._id) {
             setIsOpenCommentField(false);
             setIsUserAlreadyComment(true);
           }
@@ -105,6 +107,10 @@ const ProfilePost = ({
           lastname={lastname}
           createdAt={createdAt.slice(0, 10)}
           list={list}
+          postId={postId}
+          token={token}
+          profilePosts={profilePosts}
+          setProfilePosts={setProfilePosts}
         />
 
         {/* Profile post body */}
