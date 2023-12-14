@@ -186,7 +186,7 @@ const ProfilePost = ({
                             await deleteUserPostCommenthandle(postId, token);
                           }}
                         >
-                          Delete Post
+                          Delete Post Comment
                         </Button>
                       </Grid>
                     </Grid>
