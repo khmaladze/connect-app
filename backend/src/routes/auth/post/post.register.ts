@@ -103,9 +103,9 @@ import { UserProfile } from "../../../models/user/user-profile-model";
 
 // Joi schema for user registration
 const registrationSchema = Joi.object({
-  firstname: Joi.string().trim().lowercase().required().min(2).max(50),
-  lastname: Joi.string().trim().lowercase().required().min(2).max(50),
-  username: Joi.string().trim().lowercase().required().min(2).max(50),
+  firstname: Joi.string().trim().lowercase().required().min(2).max(20),
+  lastname: Joi.string().trim().lowercase().required().min(2).max(20),
+  username: Joi.string().trim().lowercase().required().min(2).max(20),
   gender: Joi.string().valid("male", "female", "other").lowercase().required(),
   birthDay: Joi.number().required().min(1).max(31),
   birthMonth: Joi.number().required().min(1).max(12),
