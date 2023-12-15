@@ -42,13 +42,6 @@ import Joi from "joi";
  *       - BearerAuth: []
  */
 
-/**
- * Handles the business logic for removing a friend request.
- * @function
- * @param {CustomRequest} req - Express request object
- * @param {Response} res - Express response object
- */
-
 // Joi schema for response user friend request
 const responseFriendRequestSchema = Joi.object({
   id: Joi.string(),
@@ -56,7 +49,7 @@ const responseFriendRequestSchema = Joi.object({
 
 const routeMessage = {
   user_already_respond: "user already respond",
-  response_remove_success: "response remove success",
+  request_remove_success: "friend request remove success",
 };
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
@@ -95,7 +88,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      routeMessage.response_remove_success
+      routeMessage.request_remove_success
     );
   } catch (error) {
     return customServerError(res, error);
