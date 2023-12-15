@@ -19,6 +19,11 @@ const SendFriendRequest = ({ user }) => {
       return;
     }
 
+    if (user.username === searchTerm) {
+      toast.error("it's your username");
+      return;
+    }
+
     try {
       const response = await apiRequest(
         apiRequestType.get,
