@@ -17,8 +17,9 @@ const userAuthorizationMessage = {
   session_expired: "Session expired",
   not_authorized: "Not authorized",
   not_authorized_no_token: "Not authorized, no token",
+  user_required: "User required",
   error_you_are_not_user_user_not_found:
-    "Error, You are not user. user not found",
+    "Error, You are not a user. User not found",
 };
 
 // Clear user authentication-related data from local storage
