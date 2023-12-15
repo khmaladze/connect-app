@@ -74,7 +74,10 @@ const ProfilePostHeaderComponent = ({
           body={
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <p>when click delete it will be deleted</p>
+                <p>
+                  When you click 'Delete Post' your post will be permanently
+                  removed
+                </p>
                 <Button
                   style={{
                     width: "100%",
