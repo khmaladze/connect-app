@@ -5,6 +5,7 @@ import { customServerError } from "../../../function/server-custom-error-respons
 import { custom_server_response } from "../../../function/server-response";
 import CommentModel, { Comment } from "../../../models/post/post-comment-model";
 import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
+import { PostLike } from "../../../models/post/post-like-model";
 
 // Messages for different scenarios
 const routeMessages = {
@@ -120,6 +121,20 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       await deleteImageFromCloudinary(
         String(deletedPostImage?.media[0]?.public_id)
       );
+    }
+
+    const likesToDelete = await PostLike.find({
+      post_id: postId,
+    });
+
+    // If there are comments, delete them
+    if (likesToDelete && likesToDelete.length > 0) {
+      await PostLike.deleteMany({ post_id: postId });
+      //   console.log(
+      //     `Deleted ${commentsToDelete.length} comments for post with ID ${postId}`
+      //   );
+    } else {
+      //   console.log(`No comments found for post with ID ${postId}`);
     }
 
     const commentsToDelete: Comment[] = await CommentModel.find({
