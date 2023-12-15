@@ -4,6 +4,7 @@ import { Post } from "../../../models/post/post-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import CommentModel, { Comment } from "../../../models/post/post-comment-model";
+import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
 
 // Messages for different scenarios
 const routeMessages = {
@@ -95,6 +96,12 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const authorId = req.user._id; // Assuming you have the user information in the request
 
     // Find and delete the post
+    const deletedPostImage: any = await Post.findOne({
+      _id: postId,
+      author: authorId,
+    }).select("media");
+
+    // Find and delete the post
     const deletedPost = await Post.findOneAndDelete({
       _id: postId,
       author: authorId,
@@ -106,6 +113,12 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         res,
         400,
         routeMessages.post_not_found_or_unauthorized
+      );
+    }
+
+    if (deletedPostImage && deletedPostImage?.media[0]) {
+      await deleteImageFromCloudinary(
+        String(deletedPostImage?.media[0]?.public_id)
       );
     }
 
