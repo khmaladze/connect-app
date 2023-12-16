@@ -21,7 +21,7 @@ const routeMessages = {
  *     summary: Delete a post and associated comments
  *     description: Delete a post and its associated comments by the authenticated user.
  *     tags:
- *       - Post
+ *       - Profile
  *     security:
  *       - BearerAuth: []
  *     parameters:
