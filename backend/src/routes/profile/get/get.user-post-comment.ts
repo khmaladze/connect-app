@@ -89,27 +89,7 @@ const routeMessage = {
  *         __v:
  *           type: number
  *
- *     Error:
- *       $ref: '#/components/schemas/ErrorComponent'
  *
- *     ErrorData:
- *       $ref: '#/components/schemas/ErrorDataComponent'
- *
- *     ErrorComponent:
- *       type: object
- *       properties:
- *         success:
- *           type: boolean
- *           default: false
- *         message:
- *           type: string
- *         data:
- *           $ref: '#/components/schemas/ErrorData'
- *
- *     ErrorDataComponent:
- *       type: object
- *       properties:
- *         // Define your error data properties here
  */
 
 // Route to get comments for a user and post
