@@ -16,7 +16,9 @@ import styled from "styled-components";
 const FriendCard = ({ token }) => {
   const [loading, setLoading] = useState(true);
   const [friendList, setFriendList] = useState(false);
-  const [status, setStatus] = useState("Friend");
+  const [status, setStatus] = useState("");
+  const [openUpdate, setOpenUpdate] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const getFriendList = async () => {
@@ -50,10 +52,33 @@ const FriendCard = ({ token }) => {
         { user_id: userId }
       );
       if (response?.success) {
-        window.location.reload();
-        console.log(userId);
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
       }
     } catch (error) {}
+  };
+
+  const updateFriendList = async (userId, previousStatus) => {
+    if (
+      status !== previousStatus &&
+      (status === "Friend" || status === "CloseFriend" || status === "Favorite")
+    ) {
+      try {
+        const response = await apiRequest(
+          apiRequestType.put,
+          true,
+          API_URL.friend.put.friend_list_update,
+          token,
+          { friendId: userId, newFriendListType: status }
+        );
+        if (response?.success) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }
+      } catch (error) {}
+    }
   };
 
   return (
@@ -67,7 +92,7 @@ const FriendCard = ({ token }) => {
               key={item.user._id}
               style={{
                 width: "300px",
-                height: "420px",
+                height: "490px",
               }}
             >
               <CardBorder borderColor={item.request.friend_list}>
@@ -85,30 +110,64 @@ const FriendCard = ({ token }) => {
                     <Typography variant="h6" component="div">
                       {item.user.username}
                     </Typography>
-                    <Select
-                      disabled
-                      style={{
-                        width: "100%",
-                        marginTop: "10px",
-                      }}
-                      labelId="dropdown-label"
-                      id="dropdown"
-                      value={item.request.friend_list}
-                      // onChange={(event) => setStatus(event.target.value)}
-                    >
-                      <MenuItem
-                        key={item.request.friend_list}
+                    {openUpdate && userId == item.user._id ? (
+                      <Select
+                        style={{
+                          width: "100%",
+                          marginTop: "10px",
+                        }}
+                        labelId="dropdown-label"
+                        id="dropdown"
+                        value={status}
+                        onChange={(event) => setStatus(event.target.value)}
+                      >
+                        <MenuItem value={"Friend"}>{"Friend"}</MenuItem>
+                        <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
+                          Close Friend
+                        </MenuItem>
+                        <MenuItem key={"Favorite"} value={"Favorite"}>
+                          Favorite
+                        </MenuItem>
+                      </Select>
+                    ) : (
+                      <Select
+                        disabled
+                        style={{
+                          width: "100%",
+                          marginTop: "10px",
+                        }}
+                        labelId="dropdown-label"
+                        id="dropdown"
                         value={item.request.friend_list}
                       >
-                        {item.request.friend_list}
-                      </MenuItem>
-                      {/* <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
-                      close friend
-                    </MenuItem>
-                    <MenuItem key={"Favorite"} value={"Favorite"}>
-                      Favorite
-                    </MenuItem> */}
-                    </Select>
+                        <MenuItem
+                          key={item.request.friend_list}
+                          value={item.request.friend_list}
+                        >
+                          {item.request.friend_list}
+                        </MenuItem>
+                      </Select>
+                    )}
+                    <Button
+                      style={{
+                        width: "100%",
+                        marginTop: "15px",
+                      }}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      size="large"
+                      onClick={async () => {
+                        await setOpenUpdate(!openUpdate);
+                        await setUserId(item.user._id);
+                        await updateFriendList(
+                          item.user._id,
+                          item.request.friend_list
+                        );
+                      }}
+                    >
+                      Update Friend
+                    </Button>
                     <Button
                       style={{
                         width: "100%",
