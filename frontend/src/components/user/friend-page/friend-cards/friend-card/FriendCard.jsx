@@ -9,7 +9,7 @@ import {
   apiRequestType,
   userProfileImage,
 } from "../../../../../api/user/Api";
-import { CircularProgress, MenuItem, Select } from "@mui/material";
+import { Button, CircularProgress, MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 import styled from "styled-components";
 
@@ -40,6 +40,22 @@ const FriendCard = ({ token }) => {
     getFriendList();
   }, []);
 
+  const removeFriend = async (userId) => {
+    try {
+      const response = await apiRequest(
+        apiRequestType.put,
+        true,
+        API_URL.friend.put.friend_list_remove,
+        token,
+        { user_id: userId }
+      );
+      if (response?.success) {
+        window.location.reload();
+        console.log(userId);
+      }
+    } catch (error) {}
+  };
+
   return (
     <Fragment>
       {loading && <CircularProgress />}
@@ -51,7 +67,7 @@ const FriendCard = ({ token }) => {
               key={item.user._id}
               style={{
                 width: "300px",
-                height: "380px",
+                height: "420px",
               }}
             >
               <CardBorder borderColor={item.request.friend_list}>
@@ -93,6 +109,20 @@ const FriendCard = ({ token }) => {
                       Favorite
                     </MenuItem> */}
                     </Select>
+                    <Button
+                      style={{
+                        width: "100%",
+                        marginTop: "15px",
+                        backgroundColor: "red",
+                      }}
+                      variant="contained"
+                      color="primary"
+                      fullWidth
+                      size="large"
+                      onClick={async () => await removeFriend(item.user._id)}
+                    >
+                      Remove Friend
+                    </Button>
                   </CardContent>
                 </Card>
               </CardBorder>
