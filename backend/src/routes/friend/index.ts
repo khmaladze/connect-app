@@ -7,6 +7,7 @@ import * as getSendRequest from "./get/get.send-request";
 import * as getFriendList from "./get/get.friendList";
 import * as responseFriendRequest from "./put/put.friend-request-response";
 import * as removeSentFriendRequest from "./put/put.remove-friend-request";
+import * as removeUserFromFriendList from "./put/put.remove-friendList";
 let router = express.Router();
 
 router.post(
@@ -27,6 +28,11 @@ router.put(
   "/remove_request",
   userAuthorization,
   removeSentFriendRequest.businessLogic
+);
+router.put(
+  "/remove",
+  userAuthorization,
+  removeUserFromFriendList.businessLogic
 );
 
 export default router;
