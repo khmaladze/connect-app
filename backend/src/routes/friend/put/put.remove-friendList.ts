@@ -17,7 +17,7 @@ const routeMessages = {
 /**
  * @swagger
  * /api/user/friend/remove-friend:
- *   delete:
+ *   put:
  *     summary: Remove a friend from both users' friend lists.
  *     tags:
  *       - Friend
