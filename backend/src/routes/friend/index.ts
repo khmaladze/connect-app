@@ -8,6 +8,7 @@ import * as getFriendList from "./get/get.friendList";
 import * as responseFriendRequest from "./put/put.friend-request-response";
 import * as removeSentFriendRequest from "./put/put.remove-friend-request";
 import * as removeUserFromFriendList from "./put/put.remove-friendList";
+import * as updateFriendList from "./put/put.update-friend-list";
 let router = express.Router();
 
 router.post(
@@ -33,6 +34,11 @@ router.put(
   "/remove",
   userAuthorization,
   removeUserFromFriendList.businessLogic
+);
+router.put(
+  "/update-friend-list",
+  userAuthorization,
+  updateFriendList.businessLogic
 );
 
 export default router;
