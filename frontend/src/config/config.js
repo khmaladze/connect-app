@@ -57,6 +57,7 @@ export const API_URL = {
       friend_request_response: `${USER_API + "/friend/response"}`,
       friend_request_remove: `${USER_API + "/friend/remove_request"}`,
       friend_list_remove: `${USER_API + "/friend/remove"}`,
+      friend_list_update: `${USER_API + "/friend/update-friend-list"}`,
     },
   },
 };
