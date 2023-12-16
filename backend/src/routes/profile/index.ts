@@ -12,6 +12,7 @@ import * as addComment from "./post/post.post-comment";
 import * as getComment from "./get/get.user-post-comment";
 import * as deleteUserPost from "./post/post.post-delete";
 import * as deleteUserPostComment from "./post/post.post-delete-comment";
+import * as getPostLikesAndComments from "./get/get.post-statistic";
 import uploadImageToServer from "../../function/server-upload-image";
 let router = express.Router();
 
@@ -52,6 +53,11 @@ router.post(
   "/post/comment/:postId",
   userAuthorization,
   deleteUserPostComment.businessLogic
+);
+router.get(
+  "/post-like-comment/:postId",
+  userAuthorization,
+  getPostLikesAndComments.businessLogic
 );
 
 export default router;
