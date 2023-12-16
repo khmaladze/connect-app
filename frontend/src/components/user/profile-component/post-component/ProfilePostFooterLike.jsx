@@ -88,7 +88,6 @@ const ProfilePostFooterLike = ({ token, postId }) => {
             }}
           />
           <h4>{count}</h4>
-          <div style={{ width: "10px" }}></div>
         </div>
       ) : (
         <FavoriteBorderIcon
