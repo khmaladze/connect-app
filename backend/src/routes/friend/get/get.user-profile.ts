@@ -5,7 +5,6 @@ import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 import { UserFriendAdd } from "../../../models/friend/friend-send-request-model";
 
-// Documentaion
 /**
  * @swagger
  * /api/user/friend/{username}:

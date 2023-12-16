@@ -4,7 +4,6 @@ import { custom_server_response } from "../../../function/server-response";
 import { UserProfile } from "../../../models/user/user-profile-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
 
-// Documentation
 /**
  * @swagger
  * /api/user/profile:

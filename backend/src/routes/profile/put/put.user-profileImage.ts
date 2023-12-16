@@ -6,7 +6,6 @@ import { CustomRequest } from "../../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../../function/server-upload-image";
 import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
 
-// Documentation
 /**
  * @swagger
  * /api/user/profile/update_profile_image:

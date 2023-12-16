@@ -6,7 +6,6 @@ import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { User } from "../../../models/user/user-model";
 
-// Documentation
 /**
  * @swagger
  * /api/user/friend/send_friend_request:

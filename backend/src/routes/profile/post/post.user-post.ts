@@ -6,7 +6,6 @@ import { uploadImageToCloudinary } from "../../../function/server-upload-image";
 import Joi from "joi";
 import { Post } from "../../../models/post/post-model";
 
-// Documentation
 /**
  * @swagger
  * /api/user/profile/add_post:

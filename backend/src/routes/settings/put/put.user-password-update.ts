@@ -6,7 +6,6 @@ import { User } from "../../../models/user/user-model";
 import bcrypt from "bcryptjs";
 import Joi from "joi";
 
-// Documentation
 /**
  * @swagger
  * /api/user/settings/update_password:

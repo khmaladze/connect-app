@@ -11,7 +11,6 @@ import {
 } from "../../../function/server-user-profile";
 import { UserProfile } from "../../../models/user/user-profile-model";
 
-// Documentation
 /**
  * @swagger
  * components:

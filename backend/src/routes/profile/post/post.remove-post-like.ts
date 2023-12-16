@@ -5,7 +5,6 @@ import { CustomRequest } from "../../../middleware/user-authorization";
 import Joi from "joi";
 import { PostLike } from "../../../models/post/post-like-model";
 
-// Documentation
 /**
  * @swagger
  * /api/user/profile/remove_post_like:

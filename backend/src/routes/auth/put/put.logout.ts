@@ -6,7 +6,6 @@ import { customServerError } from "../../../function/server-custom-error-respons
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
 
-// Documentation
 /**
  * @swagger
  * /api/user/auth/logout:
@@ -36,13 +35,6 @@ const routeMessage = {
   user_log_out_success: "User log out success.",
 };
 
-/**
- * Handles user logout.
- *
- * @param req - The request object.
- * @param res - The response object.
- * @returns The response indicating the success or failure of the user logout.
- */
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     let token: any = "";

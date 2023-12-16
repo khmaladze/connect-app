@@ -52,13 +52,6 @@ import Joi from "joi";
  *       - BearerAuth: []
  */
 
-/**
- * Handles the business logic for responding to a friend request.
- * @function
- * @param {CustomRequest} req - Express request object
- * @param {Response} res - Express response object
- */
-
 // Joi schema for response user friend request
 const responseFriendRequestSchema = Joi.object({
   id: Joi.string(),

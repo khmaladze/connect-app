@@ -4,7 +4,6 @@ import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { PostLike } from "../../../models/post/post-like-model";
 
-// Documentation
 /**
  * @swagger
  * /api/user/profile/check_post_like/{postId}:
