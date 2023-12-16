@@ -21,6 +21,7 @@ export const API_URL = {
       user_profile: `${USER_API + "/profile"}`,
       profile_post: `${USER_API + "/profile/posts"}`,
       get_comment: `${USER_API + "/profile/comment"}`,
+      get_likes_comments: `${USER_API + "/profile/post-like-comment"}`,
     },
     post: {
       add_post: `${USER_API + "/profile/add_post"}`,
