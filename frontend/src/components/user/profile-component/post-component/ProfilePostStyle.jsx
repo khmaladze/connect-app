@@ -93,7 +93,6 @@ export const ProfilePostFooter = styled.div`
       : "#FF008A"};
 
   div {
-    width: 55px;
     display: flex;
     justify-content: space-between;
 
