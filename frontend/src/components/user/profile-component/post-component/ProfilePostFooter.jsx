@@ -4,6 +4,7 @@ import ProfilePostFooterLike from "./ProfilePostFooterLike";
 import ProfilePostFooterComment from "./ProfilePostFooterComment";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import ProfilePostStatistic from "./ProfilePostStatistic";
 
 const ProfilePostFooterComponent = ({
   list,
@@ -22,11 +23,19 @@ const ProfilePostFooterComponent = ({
         <div>
           {/* Profile post footer like component */}
           <ProfilePostFooterLike token={token} postId={postId} />
+          <div style={{ width: "10px" }}></div>
 
           {/* Profile post footer comment component */}
           <ProfilePostFooterComment
             userAlreadyComment={userAlreadyComment}
             toggleComment={toggleComment}
+          />
+          <div style={{ width: "10px" }}></div>
+
+          <ProfilePostStatistic
+            token={token}
+            postId={postId}
+            borderColor={list}
           />
         </div>
       </ProfilePostFooter>
