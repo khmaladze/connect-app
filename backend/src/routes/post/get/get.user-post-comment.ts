@@ -15,12 +15,12 @@ const routeMessage = {
 
 /**
  * @swagger
- * /api/user/profile/comments:
+ * /api/user/post/comments:
  *   get:
  *     summary: Get comments for a user and post
  *     description: Retrieve comments for a specific user and post.
  *     tags:
- *       - Profile
+ *       - Post
  *     security:
  *       - BearerAuth: string
  *     parameters:

@@ -7,12 +7,12 @@ import { PostLike } from "../../../models/post/post-like-model";
 
 /**
  * @swagger
- * /api/user/profile/like_post:
+ * /api/user/post/remove_post_like:
  *   post:
- *     summary: Like a post.
+ *     summary: remove post like.
  *     description: Allow a user to like a specific post.
  *     tags:
- *       - Profile
+ *       - Post
  *     security:
  *       - BearerAuth: string
  *     requestBody:
@@ -71,8 +71,9 @@ const postLikeSchema = Joi.object({
 
 // route message
 const routeMessage = {
+  like_not_exists: "like not exists",
   like_already_exists: "like already exists",
-  post_like_success: "post like success",
+  post_like_remove_success: "post like remove success",
 };
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
@@ -89,11 +90,11 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       like_author_id: userProfileId,
     });
 
-    if (isLikeAlreadyExists) {
-      return custom_server_response(res, 400, routeMessage.like_already_exists);
+    if (!isLikeAlreadyExists) {
+      return custom_server_response(res, 400, routeMessage.like_not_exists);
     }
 
-    const newData = await PostLike.create({
+    await PostLike.deleteOne({
       post_id: post_id,
       like_author_id: userProfileId,
     });
@@ -101,8 +102,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     return custom_server_response(
       res,
       200,
-      routeMessage.post_like_success,
-      newData
+      routeMessage.post_like_remove_success
     );
   } catch (error) {
     return customServerError(res, error);

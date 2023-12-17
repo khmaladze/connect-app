@@ -16,12 +16,12 @@ const routeMessages = {
 /**
  * Delete a post and its associated comments.
  * @swagger
- * /api/user/profile/post/comment/{postId}:
+ * /api/user/post/comment/{postId}:
  *   post:
  *     summary: Delete a post and associated comments
  *     description: Delete a post and its associated comments by the authenticated user.
  *     tags:
- *       - Profile
+ *       - Post
  *     security:
  *       - BearerAuth: []
  *     parameters:

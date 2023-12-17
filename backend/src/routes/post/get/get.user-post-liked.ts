@@ -6,13 +6,13 @@ import { PostLike } from "../../../models/post/post-like-model";
 
 /**
  * @swagger
- * /api/user/profile/check_post_like/{postId}:
+ * /api/user/post/check_post_like/{postId}:
  *   get:
  *     summary: Check if the authenticated user has liked a specific post.
  *     description: |
  *       This endpoint checks if the authenticated user has already liked a specific post.
  *     tags:
- *       - Profile
+ *       - Post
  *     parameters:
  *       - in: path
  *         name: postId
