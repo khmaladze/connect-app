@@ -15,7 +15,7 @@ const PostFooterLike = ({ token, postId }) => {
       const response = await apiRequest(
         apiRequestType.post,
         false,
-        API_URL.profile.post.like_post,
+        API_URL.post.post.like_post,
         token,
         {
           post_id: postId,
