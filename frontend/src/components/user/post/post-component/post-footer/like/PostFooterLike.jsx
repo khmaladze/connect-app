@@ -34,7 +34,7 @@ const PostFooterLike = ({ token, postId }) => {
       const response = await apiRequest(
         apiRequestType.post,
         false,
-        API_URL.profile.post.remove_post_like,
+        API_URL.post.post.remove_post_like,
         token,
         { post_id: postId }
       );
@@ -53,7 +53,7 @@ const PostFooterLike = ({ token, postId }) => {
         const response = await apiRequest(
           apiRequestType.get,
           false,
-          API_URL.profile.get.check_post_like + "/" + postId,
+          API_URL.post.get.check_post_like + "/" + postId,
           token
         );
         if (response?.success) {
