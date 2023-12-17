@@ -40,7 +40,7 @@ const ProfilePost = ({
         const response = await apiRequest(
           apiRequestType.post,
           false,
-          API_URL.profile.post.add_comment,
+          API_URL.post.post.add_comment,
           token,
           { comment: String(commentText), post_id: String(postId) },
           API_CONTENT_TYPE_LIST.application_json
@@ -66,7 +66,7 @@ const ProfilePost = ({
         const response = await apiRequest(
           apiRequestType.get,
           false,
-          `${API_URL.profile.get.get_comment}?post_id=${postId}`,
+          `${API_URL.post.get.get_comment}?post_id=${postId}`,
           token
         );
         if (response?.success) {
@@ -94,7 +94,7 @@ const ProfilePost = ({
       const response = await apiRequest(
         apiRequestType.post,
         true,
-        API_URL.profile.post.delete_post_comment + postId,
+        API_URL.post.post.delete_post_comment + postId,
         token
       );
       if (response?.success) {
