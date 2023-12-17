@@ -24,7 +24,6 @@ export const API_URL = {
     },
     post: {
       add_post: `${USER_API + "/profile/add_post"}`,
-      like_post: `${USER_API + "/profile/like_post"}`,
       delete_post: `${USER_API + "/profile/post/"}`,
     },
     put: {
@@ -40,6 +39,7 @@ export const API_URL = {
     post: {
       add_comment: `${USER_API + "/post/comment"}`,
       delete_post_comment: `${USER_API + "/post/comment/"}`,
+      like_post: `${USER_API + "/post/like_post"}`,
       remove_post_like: `${USER_API + "/post/remove_post_like"}`,
     },
   },
