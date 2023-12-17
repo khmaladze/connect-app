@@ -1,10 +1,10 @@
 import React, { Fragment } from "react";
-import { PostFooter } from "./PostStyle";
+import { PostFooter } from "../PostStyle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import PostStatistic from "./PostStatistic";
-import PostFooterComment from "./PostFooterComment";
-import PostFooterLike from "./PostFooterLike";
+import PostStatistic from "./statistic/PostStatistic";
+import PostFooterComment from "./comment/PostFooterComment";
+import PostFooterLike from "./like/PostFooterLike";
 
 const PostFooterComponent = ({
   list,

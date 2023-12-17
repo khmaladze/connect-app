@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { apiRequest, apiRequestType } from "../../../../api/user/Api";
-import { API_URL } from "../../../../config/config";
+import { apiRequest, apiRequestType } from "../../../../../../api/user/Api";
+import { API_URL } from "../../../../../../config/config";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 

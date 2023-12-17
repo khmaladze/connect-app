@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { PostBodyImage, PostBodyText } from "./PostStyle";
+import { PostBodyImage, PostBodyText } from "../PostStyle";
 
 const ProfilePostBodyComponent = ({ text, image }) => {
   return (

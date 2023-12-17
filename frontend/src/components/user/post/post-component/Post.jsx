@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { PostContainer, PostDiv } from "./PostStyle";
-import PostHeaderComponent from "./PostHeader";
-import ProfilePostBodyComponent from "./PostBody";
+import PostHeaderComponent from "./post-header/PostHeader";
+import ProfilePostBodyComponent from "./post-body/PostBody";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import { toast } from "react-toastify";
-import PostFooterComponent from "./PostFooter";
-import PostCommentComponent from "./PostCommentComponent";
+import PostFooterComponent from "./post-footer/PostFooter";
+import PostCommentComponent from "./post-footer/comment/PostCommentComponent";
 
 const ProfilePost = ({
   postId,
