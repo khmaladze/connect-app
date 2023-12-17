@@ -38,9 +38,6 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
   };
 
   useEffect(() => {
-    // Fetch likes and comments data from your backend using postId
-    // Update state with the fetched data
-    // Replace the following with your actual API calls
     fetchData();
   }, [postId]);
 
@@ -71,6 +68,7 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
                         ? "#1eff1e"
                         : "#FF008A",
                     marginRight: "10px",
+                    cursor: "pointer",
                   }}
                   onClick={() => setActiveTab("likes")}
                 />
@@ -84,6 +82,7 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
                         : borderColor === "CloseFriend"
                         ? "#1eff1e"
                         : "#FF008A",
+                    cursor: "pointer",
                   }}
                 />
 
