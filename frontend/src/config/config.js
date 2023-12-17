@@ -17,7 +17,6 @@ export const API_URL = {
   },
   profile: {
     get: {
-      check_post_like: `${USER_API + "/profile/check_post_like"}`,
       user_profile: `${USER_API + "/profile"}`,
       profile_post: `${USER_API + "/profile/posts"}`,
       get_comment: `${USER_API + "/profile/comment"}`,
@@ -26,14 +25,22 @@ export const API_URL = {
     post: {
       add_post: `${USER_API + "/profile/add_post"}`,
       like_post: `${USER_API + "/profile/like_post"}`,
-      remove_post_like: `${USER_API + "/profile/remove_post_like"}`,
-      add_comment: `${USER_API + "/profile/comment"}`,
       delete_post: `${USER_API + "/profile/post/"}`,
-      delete_post_comment: `${USER_API + "/profile/post/comment/"}`,
     },
     put: {
       updateUserProfileInfo: `${USER_API + "/profile/profile_info_data"}`,
       updateUserProfileImage: `${USER_API + "/profile/update_profile_image"}`,
+    },
+  },
+  post: {
+    get: {
+      get_comment: `${USER_API + "/post/comment"}`,
+      check_post_like: `${USER_API + "/post/check_post_like"}`,
+    },
+    post: {
+      add_comment: `${USER_API + "/post/comment"}`,
+      delete_post_comment: `${USER_API + "/post/comment/"}`,
+      remove_post_like: `${USER_API + "/post/remove_post_like"}`,
     },
   },
   settings: {
