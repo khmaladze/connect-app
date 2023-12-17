@@ -19,27 +19,28 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
   const [comments, setComments] = useState([]);
   const [activeTab, setActiveTab] = useState("likes");
 
+  const fetchData = async () => {
+    try {
+      const response = await apiRequest(
+        apiRequestType.get,
+        false,
+        API_URL.profile.get.get_likes_comments + "/" + postId,
+        token
+      );
+      const likesData = await response.data.likes;
+      setLikes(likesData.data);
+
+      const commentsData = await response.data.comments;
+      setComments(commentsData.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   useEffect(() => {
     // Fetch likes and comments data from your backend using postId
     // Update state with the fetched data
     // Replace the following with your actual API calls
-    const fetchData = async () => {
-      try {
-        const response = await apiRequest(
-          apiRequestType.get,
-          false,
-          API_URL.profile.get.get_likes_comments + "/" + postId,
-          token
-        );
-        const likesData = await response.data.likes;
-        setLikes(likesData.data);
-
-        const commentsData = await response.data.comments;
-        setComments(commentsData.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
   }, [postId]);
 
@@ -48,7 +49,14 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
       <MyModal
         title="Post Comment Statistics"
         ButtonText={
-          <span className="material-symbols-outlined">monitoring</span>
+          <span
+            onClick={() => {
+              fetchData();
+            }}
+            className="material-symbols-outlined"
+          >
+            monitoring
+          </span>
         }
         body={
           <Grid container spacing={2}>
