@@ -10,74 +10,74 @@ const ProfilePostComponent = ({ user }) => {
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (
-        window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-        hasMore
-      ) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
+  const fetchProfilePost = async () => {
+    try {
+      const response = await apiRequest(
+        apiRequestType.get,
+        false,
+        `${API_URL.profile.get.profile_post}?page=${page}&pageSize=5`,
+        user.token
+      );
 
+      if (response?.success) {
+        setProfilePosts((prevPosts) =>
+          page === 1 ? response.data : [...prevPosts, ...response.data]
+        );
+
+        setHasMore(response.data.length === 5);
+      } else {
+        console.error("Error fetching profile posts:", response?.message);
+      }
+    } catch (error) {
+      console.error("Error fetching profile posts:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+      hasMore &&
+      !loading
+    ) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [page, hasMore, user.token]);
+  }, [page, hasMore, loading, user.token]);
 
   useEffect(() => {
-    const fetchProfilePost = async () => {
-      try {
-        const response = await apiRequest(
-          apiRequestType.get,
-          false,
-          `${API_URL.profile.get.profile_post}?page=${page}&pageSize=5`,
-          user.token
-        );
-
-        if (response?.success) {
-          setProfilePosts((prevPosts) =>
-            page === 1 ? response.data : [...prevPosts, ...response.data]
-          );
-
-          if (response.data.length < 5) {
-            setHasMore(false);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching profile posts:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchProfilePost();
   }, [page, user.token]);
 
   return (
     <Fragment>
-      {profilePosts.length > 0 &&
-        profilePosts.map((item, index) => (
-          <div key={`${item._id}_${index}`}>
-            <ProfilePost
-              postId={item._id}
-              firstname={user.firstname}
-              lastname={user.lastname}
-              createdAt={item.createdAt}
-              profileImage={user.profileImage}
-              gender={user.gender}
-              text={item.text || ""}
-              image={item.media.length > 0 ? item.media[0].url : ""}
-              list={item.list}
-              token={user.token}
-              profilePosts={profilePosts}
-              setProfilePosts={setProfilePosts}
-            />
-          </div>
-        ))}
-      {loading && <Loading />}
+      {profilePosts.map((item, index) => (
+        <div key={`${item._id}_${index}`}>
+          <ProfilePost
+            postId={item._id}
+            firstname={user.firstname}
+            lastname={user.lastname}
+            createdAt={item.createdAt}
+            profileImage={user.profileImage}
+            gender={user.gender}
+            text={item.text || ""}
+            image={item.media.length > 0 ? item.media[0].url : ""}
+            list={item.list}
+            token={user.token}
+            profilePosts={profilePosts}
+            setProfilePosts={setProfilePosts}
+          />
+        </div>
+      ))}
+      {loading && hasMore && <Loading />}
     </Fragment>
   );
 };
