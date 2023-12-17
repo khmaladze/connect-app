@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  ProfilePostHeader,
-  ProfilePostHeaderContainer,
-  ProfilePostHeaderDiv,
-} from "./ProfilePostStyle";
+import { PostHeader, PostHeaderContainer, PostHeaderDiv } from "./PostStyle";
 import { Avatar, Button, Grid } from "@mui/material";
 import {
   apiRequest,
@@ -13,7 +9,7 @@ import {
 import MyModal from "../../modal/MyModal";
 import { API_URL } from "../../../../config/config";
 
-const ProfilePostHeaderComponent = ({
+const PostHeaderComponent = ({
   gender,
   profileImage,
   firstname,
@@ -49,16 +45,16 @@ const ProfilePostHeaderComponent = ({
   };
 
   return (
-    <ProfilePostHeader borderColor={list}>
-      <ProfilePostHeaderContainer>
+    <PostHeader borderColor={list}>
+      <PostHeaderContainer>
         <Avatar
           style={{ height: "55px", width: "55px" }}
           alt="user"
           src={userProfileImage(gender, profileImage)}
         />
-        <ProfilePostHeaderDiv />
+        <PostHeaderDiv />
         <h3>{firstname + " " + lastname}</h3>
-      </ProfilePostHeaderContainer>
+      </PostHeaderContainer>
       <div
         style={{
           width: "120px",
@@ -97,8 +93,8 @@ const ProfilePostHeaderComponent = ({
           }
         />
       </div>
-    </ProfilePostHeader>
+    </PostHeader>
   );
 };
 
-export default ProfilePostHeaderComponent;
+export default PostHeaderComponent;

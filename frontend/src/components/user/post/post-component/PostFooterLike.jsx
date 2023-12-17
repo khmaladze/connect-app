@@ -4,7 +4,7 @@ import { API_URL } from "../../../../config/config";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const ProfilePostFooterLike = ({ token, postId }) => {
+const PostFooterLike = ({ token, postId }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [count, setCount] = useState(0);
 
@@ -100,4 +100,4 @@ const ProfilePostFooterLike = ({ token, postId }) => {
   );
 };
 
-export default ProfilePostFooterLike;
+export default PostFooterLike;

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {
-  CommentContainer,
-  CommentContainerMain,
-  ProfilePostContainer,
-  ProfilePostDiv,
-  // UsernameContainer,
-} from "./ProfilePostStyle";
-import ProfilePostHeaderComponent from "./ProfilePostHeader";
-import ProfilePostBodyComponent from "./ProfilePostBody";
-import ProfilePostFooterComponent from "./ProfilePostFooter";
-import Typography from "@mui/material/Typography";
+import { PostContainer, PostDiv } from "./PostStyle";
+import PostHeaderComponent from "./PostHeader";
+import ProfilePostBodyComponent from "./PostBody";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
-import { Avatar, Button, Grid } from "@mui/material";
 import { toast } from "react-toastify";
-import MyModal from "../../modal/MyModal";
+import PostFooterComponent from "./PostFooter";
+import PostCommentComponent from "./PostCommentComponent";
 
 const ProfilePost = ({
   postId,
@@ -117,10 +109,10 @@ const ProfilePost = ({
   };
 
   return (
-    <ProfilePostContainer>
-      <ProfilePostDiv borderColor={list}>
+    <PostContainer>
+      <PostDiv borderColor={list}>
         {/* Profile post header */}
-        <ProfilePostHeaderComponent
+        <PostHeaderComponent
           gender={gender}
           profileImage={profileImage}
           firstname={firstname}
@@ -140,7 +132,7 @@ const ProfilePost = ({
         />
 
         {/* Profile post footer */}
-        <ProfilePostFooterComponent
+        <PostFooterComponent
           list={list}
           postId={postId}
           token={token}
@@ -157,49 +149,18 @@ const ProfilePost = ({
         {commentsData &&
           commentsData.map((comment) => {
             return (
-              <CommentContainerMain key={comment._id} borderColor={list}>
-                <Avatar src={profileImage} />
-                {/* <UsernameContainer>{username}</UsernameContainer> */}
-                <CommentContainer>
-                  <Typography variant="p">
-                    comment: {comment.comment}
-                  </Typography>
-                </CommentContainer>
-                <MyModal
-                  title="Delete Post Comment"
-                  ButtonText={
-                    <span className="material-symbols-outlined">delete</span>
-                  }
-                  body={
-                    <Grid container spacing={2}>
-                      <Grid item xs={12}>
-                        <p>
-                          When you click 'Delete Post Comment' your comment will
-                          be permanently removed
-                        </p>
-                        <Button
-                          style={{
-                            width: "100%",
-                            marginTop: "10px",
-                            color: "red",
-                            borderColor: "red",
-                          }}
-                          variant="outlined"
-                          onClick={async () => {
-                            await deleteUserPostCommenthandle(postId, token);
-                          }}
-                        >
-                          Delete Post Comment
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  }
-                />
-              </CommentContainerMain>
+              <PostCommentComponent
+                comment={comment}
+                list={list}
+                postId={postId}
+                token={token}
+                profileImage={profileImage}
+                deleteUserPostCommenthandle={deleteUserPostCommenthandle}
+              />
             );
           })}
-      </ProfilePostDiv>
-    </ProfilePostContainer>
+      </PostDiv>
+    </PostContainer>
   );
 };
 

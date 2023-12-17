@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 
-const ProfilePostFooterComment = ({ userAlreadyComment, toggleComment }) => {
+const PostFooterComment = ({ userAlreadyComment, toggleComment }) => {
   return (
     <Fragment>
       {userAlreadyComment ? (
@@ -14,4 +14,4 @@ const ProfilePostFooterComment = ({ userAlreadyComment, toggleComment }) => {
   );
 };
 
-export default ProfilePostFooterComment;
+export default PostFooterComment;

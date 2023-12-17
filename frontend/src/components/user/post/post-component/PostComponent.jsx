@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
-import ProfilePost from "./ProfilePost";
+import ProfilePost from "./Post";
 import Loading from "../../../loading/Loading";
 
 const ProfilePostComponent = ({ user }) => {

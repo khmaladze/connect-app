@@ -14,7 +14,7 @@ import { API_URL } from "../../../../config/config";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
-const ProfilePostStatistic = ({ postId, token, borderColor }) => {
+const PostStatistic = ({ postId, token, borderColor }) => {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [activeTab, setActiveTab] = useState("likes");
@@ -143,4 +143,4 @@ const ProfilePostStatistic = ({ postId, token, borderColor }) => {
   );
 };
 
-export default ProfilePostStatistic;
+export default PostStatistic;

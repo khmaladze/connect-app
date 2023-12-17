@@ -1,17 +1,15 @@
 import React, { Fragment } from "react";
-import { ProfilePostBodyImage, ProfilePostBodyText } from "./ProfilePostStyle";
+import { PostBodyImage, PostBodyText } from "./PostStyle";
 
 const ProfilePostBodyComponent = ({ text, image }) => {
   return (
     <Fragment>
       {text && (
-        <ProfilePostBodyText>
+        <PostBodyText>
           <h4>{text} </h4>
-        </ProfilePostBodyText>
+        </PostBodyText>
       )}
-      {image !== "" && (
-        <ProfilePostBodyImage image={image}></ProfilePostBodyImage>
-      )}
+      {image !== "" && <PostBodyImage image={image}></PostBodyImage>}
     </Fragment>
   );
 };

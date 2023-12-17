@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
-import { ProfilePostFooter } from "./ProfilePostStyle";
-import ProfilePostFooterLike from "./ProfilePostFooterLike";
-import ProfilePostFooterComment from "./ProfilePostFooterComment";
+import { PostFooter } from "./PostStyle";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import ProfilePostStatistic from "./ProfilePostStatistic";
+import PostStatistic from "./PostStatistic";
+import PostFooterComment from "./PostFooterComment";
+import PostFooterLike from "./PostFooterLike";
 
-const ProfilePostFooterComponent = ({
+const PostFooterComponent = ({
   list,
   postId,
   token,
@@ -19,26 +19,22 @@ const ProfilePostFooterComponent = ({
 }) => {
   return (
     <Fragment>
-      <ProfilePostFooter borderColor={list}>
+      <PostFooter borderColor={list}>
         <div>
           {/* Profile post footer like component */}
-          <ProfilePostFooterLike token={token} postId={postId} />
+          <PostFooterLike token={token} postId={postId} />
           <div style={{ width: "10px" }}></div>
 
           {/* Profile post footer comment component */}
-          <ProfilePostFooterComment
+          <PostFooterComment
             userAlreadyComment={userAlreadyComment}
             toggleComment={toggleComment}
           />
           <div style={{ width: "10px" }}></div>
 
-          <ProfilePostStatistic
-            token={token}
-            postId={postId}
-            borderColor={list}
-          />
+          <PostStatistic token={token} postId={postId} borderColor={list} />
         </div>
-      </ProfilePostFooter>
+      </PostFooter>
       {isOpenCommentField && (
         <div
           style={{
@@ -74,4 +70,4 @@ const ProfilePostFooterComponent = ({
   );
 };
 
-export default ProfilePostFooterComponent;
+export default PostFooterComponent;
