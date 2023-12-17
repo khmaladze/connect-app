@@ -9,7 +9,6 @@ const ProfilePostComponent = ({ user }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  // const [error, setError] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,7 +38,6 @@ const ProfilePostComponent = ({ user }) => {
         );
 
         if (response?.success) {
-          setLoading(false);
           setProfilePosts((prevPosts) =>
             page === 1 ? response.data : [...prevPosts, ...response.data]
           );
@@ -47,12 +45,9 @@ const ProfilePostComponent = ({ user }) => {
           if (response.data.length < 5) {
             setHasMore(false);
           }
-        } else {
-          // setError("Failed to fetch profile posts");
         }
       } catch (error) {
         console.error("Error fetching profile posts:", error);
-        // setError("An unexpected error occurred");
       } finally {
         setLoading(false);
       }
@@ -83,7 +78,6 @@ const ProfilePostComponent = ({ user }) => {
           </div>
         ))}
       {loading && <Loading />}
-      {/* {error && <div>Error: {error}</div>} */}
     </Fragment>
   );
 };
