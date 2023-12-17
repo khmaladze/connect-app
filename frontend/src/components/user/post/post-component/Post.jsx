@@ -84,7 +84,7 @@ const ProfilePost = ({
     if (isCommentDataFetched === false) {
       setTimeout(() => {
         fetchComments();
-      }, 1500);
+      }, 1000);
       setIsCommentDataFetched(true);
     }
   }, [postId, token, commentsData, isCommentDataFetched]);
