@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
-import ProfilePost from "./Post";
 import Loading from "../../../loading/Loading";
+import ProfilePost from "../../post/Post";
 
 const ProfilePostComponent = ({ user }) => {
   const [profilePosts, setProfilePosts] = useState([]);

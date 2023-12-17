@@ -3,7 +3,7 @@ import { ProfileInfoContainer, ProfilePageMain } from "./ProfilePageStyle";
 import ProfileAddPostComponent from "../../../components/user/profile-component/post-component/ProfileAddPost";
 import ProfileDetailsComponent from "../../../components/user/profile-component/profile-details/ProfileDetails";
 import ProfileImageComponent from "../../../components/user/profile-component/profile-image/ProfileImage";
-import ProfilePostComponent from "../../../components/user/post/post-component/PostComponent";
+import ProfilePostComponent from "../../../components/user/profile-component/post-component/ProfilePostComponent";
 
 const ProfilePage = ({ user }) => {
   return (

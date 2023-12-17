@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { apiRequest, apiRequestType } from "../../../../../../api/user/Api";
-import { API_URL } from "../../../../../../config/config";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
+import { API_URL } from "../../../../../config/config";
 
 const PostFooterLike = ({ token, postId }) => {
   const [isLiked, setIsLiked] = useState(false);

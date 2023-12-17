@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import MyModal from "../../../../modal/MyModal";
 import {
   Avatar,
   Grid,
@@ -9,10 +8,11 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { apiRequest, apiRequestType } from "../../../../../../api/user/Api";
-import { API_URL } from "../../../../../../config/config";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
+import { API_URL } from "../../../../../config/config";
+import MyModal from "../../../modal/MyModal";
 
 const PostStatistic = ({ postId, token, borderColor }) => {
   const [likes, setLikes] = useState([]);

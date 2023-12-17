@@ -1,13 +1,13 @@
 import React from "react";
-import { PostHeader, PostHeaderContainer, PostHeaderDiv } from "../PostStyle";
 import { Avatar, Button, Grid } from "@mui/material";
 import {
   apiRequest,
   apiRequestType,
   userProfileImage,
-} from "../../../../../api/user/Api";
-import MyModal from "../../../modal/MyModal";
-import { API_URL } from "../../../../../config/config";
+} from "../../../../api/user/Api";
+import { API_URL } from "../../../../config/config";
+import { PostHeader, PostHeaderContainer, PostHeaderDiv } from "../PostStyle";
+import MyModal from "../../modal/MyModal";
 
 const PostHeaderComponent = ({
   gender,

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Grid } from "@mui/material";
-import MyModal from "../../../../modal/MyModal";
+import MyModal from "../../../modal/MyModal";
 
 const PostDeleteComment = ({ deleteUserPostCommenthandle, postId, token }) => {
   return (

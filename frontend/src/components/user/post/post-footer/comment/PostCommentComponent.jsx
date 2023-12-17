@@ -1,6 +1,6 @@
 import React from "react";
-import { CommentContainer, CommentContainerMain } from "../../PostStyle";
 import { Avatar, Typography } from "@mui/material";
+import { CommentContainer, CommentContainerMain } from "../../PostStyle";
 import PostDeleteComment from "./PostDeleteComment";
 
 const PostCommentComponent = ({
