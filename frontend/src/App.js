@@ -53,6 +53,7 @@ const Routing = () => {
               exact
               element={<ProfilePage user={user} />}
             />
+            <Route path="/main" element={<MainPage user={user} />} />
             {/* <Route
               path="/settings"
               exact
