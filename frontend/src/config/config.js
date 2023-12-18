@@ -35,6 +35,7 @@ export const API_URL = {
     get: {
       get_comment: `${USER_API + "/post/comment"}`,
       check_post_like: `${USER_API + "/post/check_post_like"}`,
+      posts: `${USER_API + "/post/"}`,
     },
     post: {
       add_comment: `${USER_API + "/post/comment"}`,
