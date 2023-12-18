@@ -67,8 +67,6 @@ import { User } from "../../../models/user/user-model";
  *       - BearerAuth: []
  */
 
-// Joi schema for request validation (if needed)
-
 // Route message constants
 const routeMessage = {
   success: "User friends posts fetched successfully",
@@ -127,6 +125,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     // Get posts of user's friends with author information
     const posts = await Post.find({
       author: { $in: friendIdsWithPosts },
+      expiryDate: { $gt: Date.now() },
     })
       .sort({ createdAt: -1 }) // Sort posts by createdAt in descending order
       .limit(pageSize) // Limit the number of posts per page
