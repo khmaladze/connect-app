@@ -10,11 +10,15 @@ import {
 } from "@mui/material";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
+import {
+  apiRequest,
+  apiRequestType,
+  userProfileImage,
+} from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
 import MyModal from "../../../modal/MyModal";
 
-const PostStatistic = ({ postId, token, borderColor }) => {
+const PostStatistic = ({ postId, token, borderColor, gender }) => {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [activeTab, setActiveTab] = useState("likes");
@@ -97,7 +101,10 @@ const PostStatistic = ({ postId, token, borderColor }) => {
                           <ListItem key={like.user_id}>
                             <ListItemAvatar>
                               <Avatar
-                                src={like.profileImage}
+                                src={userProfileImage(
+                                  gender,
+                                  like.profileImage
+                                )}
                                 alt={like.username}
                               />
                             </ListItemAvatar>
@@ -120,7 +127,10 @@ const PostStatistic = ({ postId, token, borderColor }) => {
                           <ListItem key={comment.user_id}>
                             <ListItemAvatar>
                               <Avatar
-                                src={comment.profileImage}
+                                src={userProfileImage(
+                                  gender,
+                                  comment.profileImage
+                                )}
                                 alt={comment.username}
                               />
                             </ListItemAvatar>
