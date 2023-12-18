@@ -32,7 +32,9 @@ const PostFooterComponent = ({
           />
           <div style={{ width: "10px" }}></div>
 
-          <PostStatistic token={token} postId={postId} borderColor={list} />
+          {window.location.pathname == "/profile" && (
+            <PostStatistic token={token} postId={postId} borderColor={list} />
+          )}
         </div>
       </PostFooter>
       {isOpenCommentField && (
