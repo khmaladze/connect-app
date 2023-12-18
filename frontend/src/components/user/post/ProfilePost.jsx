@@ -97,7 +97,7 @@ const ProfilePost = ({
       const response = await apiRequest(
         apiRequestType.post,
         true,
-        API_URL.post.post.delete_post_comment + postId,
+        `${API_URL.post.post.delete_post_comment + "/" + postId}`,
         token
       );
       if (response?.success) {
@@ -157,7 +157,7 @@ const ProfilePost = ({
                 list={list}
                 postId={postId}
                 token={token}
-                profileImage={profileImage}
+                profileImage={comment.author_profileImage}
                 deleteUserPostCommenthandle={deleteUserPostCommenthandle}
               />
             );
