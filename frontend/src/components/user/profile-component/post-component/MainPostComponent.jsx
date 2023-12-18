@@ -15,7 +15,7 @@ const MainPostComponent = ({ user }) => {
       const response = await apiRequest(
         apiRequestType.get,
         false,
-        `${API_URL.post.get.posts}`,
+        `${API_URL.post.get.posts}?page=${page}`, // Use a query parameter for pagination
         user.token
       );
 
@@ -46,8 +46,10 @@ const MainPostComponent = ({ user }) => {
   };
 
   useEffect(() => {
+    // Attach event listener for infinite scrolling
     window.addEventListener("scroll", handleScroll);
 
+    // Detach event listener on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
