@@ -38,7 +38,7 @@ const PostStatistic = ({ postId, token, borderColor }) => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (window.location.pathname == "/profile") fetchData();
   }, [postId]);
 
   return (
