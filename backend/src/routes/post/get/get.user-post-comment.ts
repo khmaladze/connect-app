@@ -4,6 +4,7 @@ import CommentModel, { Comment } from "../../../models/post/post-comment-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
+import { User } from "../../../models/user/user-model";
 // import { User } from "../../../models/user/user-model";
 
 // Messages for different scenarios
@@ -109,23 +110,23 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       post_id: post_id,
     });
 
-    // // Fetch additional information about the user who posted each comment
-    // const commentsWithUserInfo = await Promise.all(
-    //   comments.map(async (comment) => {
-    //     const user = await User.findOne({ _id: comment.author_id });
-    //     return {
-    //       ...comment.toObject(),
-    //       author_profileImage: user?.profileImage || "",
-    //     };
-    //   })
-    // );
+    // Fetch additional information about the user who posted each comment
+    const commentsWithUserInfo = await Promise.all(
+      comments.map(async (comment) => {
+        const user = await User.findOne({ _id: comment.author_id });
+        return {
+          ...comment.toObject(),
+          author_profileImage: user?.profileImage || "",
+        };
+      })
+    );
 
     // Return success response with the retrieved comments
     return custom_server_response(
       res,
       200,
       routeMessage.comments_retrieved_success,
-      comments
+      commentsWithUserInfo
     );
   } catch (error) {
     // Handle any unexpected errors
