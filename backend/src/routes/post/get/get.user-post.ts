@@ -66,7 +66,6 @@ const routeMessage = {
 };
 
 // Business logic for getting user's friends' posts
-// Business logic for getting user's friends' posts
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     // Extract user ID from request
@@ -119,7 +118,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       postsWithUserInfo
     );
   } catch (error) {
-    console.log(error);
     return customServerError(res, error);
   }
 };
