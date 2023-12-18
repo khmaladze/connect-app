@@ -71,7 +71,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     // Find and delete the post
     const deletedPost = await Post.findOne({
       _id: postId,
-      author: authorId,
     });
 
     if (!deletedPost) {
