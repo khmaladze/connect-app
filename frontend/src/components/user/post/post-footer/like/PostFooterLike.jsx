@@ -11,7 +11,9 @@ const PostFooterLike = ({ token, postId }) => {
   const likePost = async () => {
     try {
       setIsLiked(true);
-      setCount(count + 1);
+
+      window.location.pathname == "/profile" && setCount(count + 1);
+
       const response = await apiRequest(
         apiRequestType.post,
         false,
@@ -40,7 +42,7 @@ const PostFooterLike = ({ token, postId }) => {
       );
       if (response?.success) {
         setIsLiked(false);
-        setCount(count - 1);
+        window.location.pathname == "/profile" && setCount(count - 1);
       }
     } catch (error) {
       console.log(error);
@@ -87,7 +89,7 @@ const PostFooterLike = ({ token, postId }) => {
               removePostLike();
             }}
           />
-          <h4>{count}</h4>
+          {window.location.pathname == "/profile" && <h4>{count}</h4>}
         </div>
       ) : (
         <FavoriteBorderIcon
