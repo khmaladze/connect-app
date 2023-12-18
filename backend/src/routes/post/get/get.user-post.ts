@@ -14,6 +14,17 @@ import { User } from "../../../models/user/user-model";
  *     summary: Get posts of user's friends based on friend list type.
  *     tags:
  *       - Post
+ *     parameters:
+ *       - in: query
+ *         name: page
+ *         schema:
+ *           type: integer
+ *         description: Page number for pagination (default: 1)
+ *       - in: query
+ *         name: pageSize
+ *         schema:
+ *           type: integer
+ *         description: Number of posts per page (default: 5)
  *     responses:
  *       200:
  *         description: Successful response with user's friends' posts.
@@ -65,11 +76,38 @@ const routeMessage = {
   error: "Error fetching user friends posts",
 };
 
+/**
+ * Sorts posts based on the order of the 'list' property.
+ * @param posts - Array of post objects.
+ * @returns Sorted array of post objects.
+ */
+function sortPostsByList(posts: any[]): any[] {
+  const order = ["Favorite", "CloseFriend", "Friend"];
+
+  return posts.sort((a: any, b: any) => {
+    const indexA = order.indexOf(a.list);
+    const indexB = order.indexOf(b.list);
+
+    if (indexA !== indexB) {
+      return indexA - indexB;
+    }
+
+    return b.createdAt - a.createdAt;
+  });
+}
+
 // Business logic for getting user's friends' posts
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     // Extract user ID from request
     const userId = req.user._id;
+
+    // Extract pagination parameters
+    const page = parseInt(req.query.page as string) || 1;
+    const pageSize = parseInt(req.query.pageSize as string) || 5;
+
+    // Calculate skip value for pagination
+    const skip = (page - 1) * pageSize;
 
     // Get user's friend list
     const userFriend = await UserFriend.findOne({
@@ -89,7 +127,13 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     // Get posts of user's friends with author information
     const posts = await Post.find({
       author: { $in: friendIdsWithPosts },
-    }).sort({ createdAt: -1 }); // Sort posts by createdAt in descending order
+    })
+      .sort({ createdAt: -1 }) // Sort posts by createdAt in descending order
+      .limit(pageSize) // Limit the number of posts per page
+      .skip(skip); // Skip posts based on pagination
+
+    // Check if there are more posts
+    const hasMore = posts.length === pageSize;
 
     // Extract user IDs from post authors
     const authorIds = posts.map((post) => post.author);
@@ -111,12 +155,9 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       };
     });
 
-    return custom_server_response(
-      res,
-      200,
-      routeMessage.success,
-      postsWithUserInfo
-    );
+    const sorted = sortPostsByList(postsWithUserInfo);
+
+    return custom_server_response(res, 200, routeMessage.success, sorted);
   } catch (error) {
     return customServerError(res, error);
   }
