@@ -154,6 +154,7 @@ const ProfilePost = ({
           commentsData.map((comment) => {
             return (
               <PostCommentComponent
+                key={comment._id}
                 comment={comment}
                 list={list}
                 postId={postId}
