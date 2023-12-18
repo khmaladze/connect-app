@@ -16,6 +16,7 @@ const PostFooterComponent = ({
   handleCommentSubmit,
   toggleComment,
   userAlreadyComment,
+  gender,
 }) => {
   return (
     <Fragment>
@@ -33,7 +34,12 @@ const PostFooterComponent = ({
           <div style={{ width: "10px" }}></div>
 
           {window.location.pathname == "/profile" && (
-            <PostStatistic token={token} postId={postId} borderColor={list} />
+            <PostStatistic
+              token={token}
+              postId={postId}
+              borderColor={list}
+              gender={gender}
+            />
           )}
         </div>
       </PostFooter>
