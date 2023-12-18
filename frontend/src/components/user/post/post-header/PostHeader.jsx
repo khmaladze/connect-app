@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Avatar, Button, Grid } from "@mui/material";
 import {
   apiRequest,
@@ -26,22 +26,23 @@ const PostHeaderComponent = ({
   };
 
   const deleteUserPosthandle = async (postId, token) => {
-    try {
-      const response = await apiRequest(
-        apiRequestType.post,
-        true,
-        API_URL.profile.post.delete_post + postId,
-        token
-      );
-      if (response?.success) {
-        setProfilePosts(removeObjectFromArray(profilePosts, postId));
-        if (profilePosts.length === 1) {
-          window.location.reload();
+    if (window.location.pathname == "/profile")
+      try {
+        const response = await apiRequest(
+          apiRequestType.post,
+          true,
+          API_URL.profile.post.delete_post + postId,
+          token
+        );
+        if (response?.success) {
+          setProfilePosts(removeObjectFromArray(profilePosts, postId));
+          if (profilePosts.length === 1) {
+            window.location.reload();
+          }
         }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -57,41 +58,47 @@ const PostHeaderComponent = ({
       </PostHeaderContainer>
       <div
         style={{
-          width: "120px",
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
         <h3>{createdAt && createdAt}</h3>
-        <MyModal
-          title="Delete Post"
-          ButtonText={<span className="material-symbols-outlined">delete</span>}
-          body={
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <p>
-                  When you click 'Delete Post' your post will be permanently
-                  removed
-                </p>
-                <Button
-                  style={{
-                    width: "100%",
-                    marginTop: "10px",
-                    color: "red",
-                    borderColor: "red",
-                  }}
-                  variant="outlined"
-                  onClick={async () => {
-                    await deleteUserPosthandle(postId, token);
-                  }}
-                >
-                  Delete Post
-                </Button>
-              </Grid>
-            </Grid>
-          }
-        />
+        {window.location.pathname == "/profile" && (
+          <Fragment>
+            <div style={{ width: "10px" }}></div>
+            <MyModal
+              title="Delete Post"
+              ButtonText={
+                <span className="material-symbols-outlined">delete</span>
+              }
+              body={
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <p>
+                      When you click 'Delete Post' your post will be permanently
+                      removed
+                    </p>
+                    <Button
+                      style={{
+                        width: "100%",
+                        marginTop: "10px",
+                        color: "red",
+                        borderColor: "red",
+                      }}
+                      variant="outlined"
+                      onClick={async () => {
+                        await deleteUserPosthandle(postId, token);
+                      }}
+                    >
+                      Delete Post
+                    </Button>
+                  </Grid>
+                </Grid>
+              }
+            />
+          </Fragment>
+        )}
       </div>
     </PostHeader>
   );
