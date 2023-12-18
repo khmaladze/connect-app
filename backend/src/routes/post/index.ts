@@ -6,8 +6,10 @@ import * as removeUserPostLike from "./post/post.remove-post-like";
 import * as addComment from "./post/post.post-comment";
 import * as getComment from "./get/get.user-post-comment";
 import * as deleteUserPostComment from "./post/post.post-delete-comment";
+import * as getUserFriendsPost from "./get/get.user-post";
 let router = express.Router();
 
+router.get("/", userAuthorization, getUserFriendsPost.businessLogic);
 router.post("/like_post", userAuthorization, postUserLike.businessLogic);
 router.get(
   "/check_post_like/:postId",
@@ -26,6 +28,5 @@ router.post(
   userAuthorization,
   deleteUserPostComment.businessLogic
 );
-
 
 export default router;
