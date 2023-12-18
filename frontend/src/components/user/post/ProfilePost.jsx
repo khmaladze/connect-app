@@ -139,6 +139,7 @@ const ProfilePost = ({
           list={list}
           postId={postId}
           token={token}
+          gender={gender}
           isOpenCommentField={isOpenCommentField}
           setIsOpenCommentField={setIsOpenCommentField}
           commentText={commentText}
