@@ -17,7 +17,7 @@ export const ProfileImage = styled.div`
         : props.isStory === "CloseFriend"
         ? "#1eff1e"
         : props.isStory === "Favorite"
-        ? "#1eff1e"
+        ? "#FF008A"
         : "white"};
   display: flex;
   justify-content: center;
