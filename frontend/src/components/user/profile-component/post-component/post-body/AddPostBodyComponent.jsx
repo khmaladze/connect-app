@@ -21,8 +21,11 @@ const AddPostBodyComponent = ({
       </AddPostTextBody>
       <AddPostImageBody>
         <Grid item xs={12}>
-          <h4>Upload Image</h4>
-          <ImageUploader files={image} setFiles={setImage} />
+          <h4 style={{ cursor: "pointer" }}>Upload Image</h4>
+          <ImageUploader
+            files={image}
+            setFiles={setImage}
+          />
         </Grid>
       </AddPostImageBody>
       <AddPostImageBody>
