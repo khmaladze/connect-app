@@ -2,18 +2,14 @@ import React from "react";
 import { FormControl, Grid, MenuItem, Select } from "@mui/material";
 import { friendListData } from "../../api/user/Api";
 
-const FriendListDropdown = ({
-  friendList,
-  setFriendList,
-  showHeaderText = true,
-}) => {
+const FriendListDropdown = ({ friendList, setFriendList, showHeaderText }) => {
   return (
     <Grid item xs={12}>
       {showHeaderText && <h4>Select Friend List</h4>}
       <FormControl
         style={{
           width: "100%",
-          marginTop: "10px",
+          margin: "10px 0",
         }}
       >
         <Select
