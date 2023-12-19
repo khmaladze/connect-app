@@ -109,23 +109,21 @@ const ProfileDetailsComponent = ({ user }) => {
   return (
     <ProfileDetails>
       <div>
-        <Typography variant="h4">
-          {user.firstname + " " + user.lastname}
-        </Typography>
+        <Typography variant="h4">{`${user.firstname} ${user.lastname}`}</Typography>
         <Typography variant="h5">Username: {user.username}</Typography>
         {userProfileData && (
           <Fragment>
             <Typography variant="h5">
-              Languages: {userProfileData?.languages[0]}
+              Languages: {userProfileData.languages[0]}
             </Typography>
             <Typography variant="h5">
-              Zodiac: {userProfileData?.zodiac}
+              Zodiac: {userProfileData.zodiac}
             </Typography>
             <Typography variant="h5">
-              Degree: {userProfileData?.education}
+              Degree: {userProfileData.education}
             </Typography>
             <Typography variant="h5">
-              Passion: {userProfileData?.passions[0]}
+              Passion: {userProfileData.passions[0]}
             </Typography>
           </Fragment>
         )}
