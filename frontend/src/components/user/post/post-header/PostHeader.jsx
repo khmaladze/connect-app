@@ -20,12 +20,12 @@ const PostHeaderComponent = ({
     <PostHeader borderColor={list}>
       <PostHeaderContainer>
         <Avatar
-          style={{ height: "55px", width: "55px" }}
+          style={{ height: "55px", width: "55px", cursor: "pointer" }}
           alt="user"
           src={userProfileImage(gender, profileImage)}
         />
         <PostHeaderDiv />
-        <h3>{firstname + " " + lastname}</h3>
+        <h3 style={{ cursor: "pointer" }}>{firstname + " " + lastname}</h3>
       </PostHeaderContainer>
       <div
         style={{
@@ -34,7 +34,7 @@ const PostHeaderComponent = ({
           alignItems: "center",
         }}
       >
-        <h3>{createdAt && createdAt}</h3>
+        <h3 style={{ cursor: "pointer" }}>{createdAt && createdAt}</h3>
         <DeletePostComponent
           postId={postId}
           token={token}
