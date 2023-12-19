@@ -11,6 +11,7 @@ import {
   userProfileImage,
 } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
+import FriendListDropdown from "../../../FriendListDropdown";
 
 const SendRequests = ({ id, gender, imageUrl, username, token }) => {
   const [status, setStatus] = useState("Friend");
@@ -50,23 +51,11 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
         <Typography variant="h6" component="div">
           {username}
         </Typography>
-        <Select
-          style={{ width: "100%", marginTop: "10px" }}
-          labelId="dropdown-label"
-          id="dropdown"
-          value={status}
-          onChange={(event) => setStatus(event.target.value)}
-        >
-          <MenuItem key={"Friend"} value={"Friend"}>
-            Friend
-          </MenuItem>
-          <MenuItem key={"CloseFriend"} value={"CloseFriend"}>
-            Close friend
-          </MenuItem>
-          <MenuItem key={"Favorite"} value={"Favorite"}>
-            Favorite
-          </MenuItem>
-        </Select>
+        <FriendListDropdown
+          friendList={status}
+          setFriendList={setStatus}
+          showHeaderText={false}
+        />
         <Button
           style={{ width: "100%", marginTop: "15px" }}
           variant="contained"
