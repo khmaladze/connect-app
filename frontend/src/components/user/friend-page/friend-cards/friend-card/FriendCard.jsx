@@ -11,6 +11,7 @@ import {
 import { Button, CircularProgress, MenuItem, Select } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
 import styled from "styled-components";
+import FriendListDropdown from "../../../FriendListDropdown";
 
 const FriendCard = ({ token }) => {
   const [loading, setLoading] = useState(true);
@@ -105,17 +106,11 @@ const FriendCard = ({ token }) => {
                   {item.user.username}
                 </Typography>
                 {openUpdate && selectedUserId === item.user._id ? (
-                  <Select
-                    style={{ width: "100%", marginTop: "10px" }}
-                    labelId="dropdown-label"
-                    id="dropdown"
-                    value={status}
-                    onChange={(event) => setStatus(event.target.value)}
-                  >
-                    <MenuItem value="Friend">Friend</MenuItem>
-                    <MenuItem value="CloseFriend">Close Friend</MenuItem>
-                    <MenuItem value="Favorite">Favorite</MenuItem>
-                  </Select>
+                  <FriendListDropdown
+                    friendList={status}
+                    setFriendList={setStatus}
+                    showHeaderText={false}
+                  />
                 ) : (
                   <Select
                     disabled
