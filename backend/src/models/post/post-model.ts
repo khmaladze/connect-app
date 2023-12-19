@@ -23,12 +23,21 @@ const postSchema = new Schema<IPost>(
       type: String,
       maxlength: 500,
     },
-    media: [
-      {
-        url: String,
-        public_id: String,
+    media: {
+      type: [
+        {
+          url: String,
+          public_id: String,
+        },
+      ],
+      validate: {
+        validator: function (mediaArray: any) {
+          // Custom validator to ensure media array length is 0 or 1
+          return mediaArray.length <= 1;
+        },
+        message: "Media array can have at most 1 file.",
       },
-    ],
+    },
     author: {
       type: Schema.Types.ObjectId,
       ref: "User",
