@@ -10,8 +10,22 @@ export const ProfileImage = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: 10px solid white;
+  border: 5px solid
+    ${(props) =>
+      props.isStory === "Friend"
+        ? "#0500ff"
+        : props.isStory === "CloseFriend"
+        ? "#1eff1e"
+        : props.isStory === "Favorite"
+        ? "#1eff1e"
+        : "white"};
   display: flex;
   justify-content: center;
   align-items: end;
+  cursor: ${(props) =>
+    props.isStory === "Friend" ||
+    props.isStory === "CloseFriend" ||
+    props.isStory === "Favorite"
+      ? "pointer"
+      : "default"};
 `;
