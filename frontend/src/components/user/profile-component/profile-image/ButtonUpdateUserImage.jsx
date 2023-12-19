@@ -9,7 +9,7 @@ import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import { toast } from "react-toastify";
 import CustomButton from "../CustomButton";
 
-const updateLocalStorage = (token, response) => {
+const updateLocalStorage = (response) => {
   const userProfileData = JSON.parse(
     localStorage.getItem(userLocalstorage.auth.user)
   );
@@ -44,7 +44,7 @@ const ButtonUpdateUserImage = ({ image, token }) => {
       );
 
       if (response?.success) {
-        updateLocalStorage(token, response);
+        updateLocalStorage(response);
       }
     } catch (error) {
       console.error("Error updating profile image:", error);
