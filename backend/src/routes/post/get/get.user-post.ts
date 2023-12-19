@@ -19,12 +19,12 @@ import { User } from "../../../models/user/user-model";
  *         name: page
  *         schema:
  *           type: integer
- *         description: Page number for pagination (default: 1)
+ *         description: Page number for pagination default 1
  *       - in: query
  *         name: pageSize
  *         schema:
  *           type: integer
- *         description: Number of posts per page (default: 5)
+ *         description: Number of posts per page default 5
  *     responses:
  *       200:
  *         description: Successful response with user's friends' posts.
