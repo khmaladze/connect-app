@@ -19,14 +19,14 @@ const AddPostHeaderComponent = ({
     <AddPostHeader borderColor={borderColor}>
       <AddPostHeaderContainer>
         <Avatar
-          style={{ height: "55px", width: "55px" }}
+          style={{ height: "55px", width: "55px", cursor: "pointer" }}
           alt="user"
           src={userProfileImage(gender, profileImage)}
         />
         <AddPostHeaderDiv />
-        <h3>{`${firstname} ${lastname}`}</h3>
+        <h3 style={{ cursor: "pointer" }}>{`${firstname} ${lastname}`}</h3>
       </AddPostHeaderContainer>
-      <h3>{postCreateDate}</h3>
+      <h3 style={{ cursor: "pointer" }}>{postCreateDate}</h3>
     </AddPostHeader>
   );
 };
