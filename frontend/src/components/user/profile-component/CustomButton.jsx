@@ -3,7 +3,7 @@ import React from "react";
 
 const CustomButton = ({
   style,
-  varaint,
+  variant,
   color,
   onClickFuntion,
   buttonText,
@@ -11,7 +11,7 @@ const CustomButton = ({
   return (
     <Button
       style={style}
-      variant={varaint}
+      variant={variant}
       color={color}
       onClick={onClickFuntion}
     >
