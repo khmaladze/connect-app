@@ -16,17 +16,19 @@ registerPlugin(
 
 const ImageUploader = ({ files, setFiles }) => {
   return (
-    <FilePond
-      files={files}
-      allowMultiple={false}
-      maxFiles={1}
-      onupdatefiles={setFiles}
-      allowFileSizeValidation={true}
-      maxFileSize={"5MB"}
-      acceptedFileTypes={["image/*"]}
-      name="files"
-      labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
-    />
+    <div style={{ cursor: "pointer" }}>
+      <FilePond
+        files={files}
+        allowMultiple={false}
+        maxFiles={1}
+        onupdatefiles={setFiles}
+        allowFileSizeValidation={true}
+        maxFileSize={"5MB"}
+        acceptedFileTypes={["image/*"]}
+        name="files"
+        labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
+      />
+    </div>
   );
 };
 
