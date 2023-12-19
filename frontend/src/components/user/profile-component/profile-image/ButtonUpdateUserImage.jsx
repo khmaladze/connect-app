@@ -9,8 +9,22 @@ import { API_CONTENT_TYPE_LIST, API_URL } from "../../../../config/config";
 import { toast } from "react-toastify";
 import CustomButton from "../CustomButton";
 
+const updateLocalStorage = (token, response) => {
+  const userProfileData = JSON.parse(
+    localStorage.getItem(userLocalstorage.auth.user)
+  );
+
+  localStorage.removeItem(userLocalstorage.auth.user);
+  setLocalstorage(userLocalstorage.auth.user, {
+    ...userProfileData,
+    ...response.data,
+  });
+
+  window.location.reload();
+};
+
 const ButtonUpdateUserImage = ({ image, token }) => {
-  const updateUserImageHandle = async () => {
+  const updateUserImage = async () => {
     if (!image || !image[0] || !image[0].file) {
       toast.error("Please add an image");
       return;
@@ -30,29 +44,20 @@ const ButtonUpdateUserImage = ({ image, token }) => {
       );
 
       if (response?.success) {
-        const userProfileData = JSON.parse(
-          localStorage.getItem(userLocalstorage.auth.user)
-        );
-
-        localStorage.removeItem(userLocalstorage.auth.user);
-        setLocalstorage(userLocalstorage.auth.user, {
-          ...userProfileData,
-          ...response.data,
-        });
-
-        window.location.reload();
+        updateLocalStorage(token, response);
       }
     } catch (error) {
       console.error("Error updating profile image:", error);
+      toast.error("Failed to update profile image");
     }
   };
 
   return (
     <CustomButton
       style={{ width: "100%", marginTop: "10px" }}
-      varaint={"contained"}
+      variant={"contained"}
       color={"primary"}
-      onClickFuntion={updateUserImageHandle}
+      onClickFuntion={updateUserImage}
       buttonText={"Update"}
     />
   );
