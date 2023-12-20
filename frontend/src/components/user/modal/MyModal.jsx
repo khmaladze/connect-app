@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 
-const MyModal = ({ title, description, ButtonText, body }) => {
+const MyModal = ({ title, description, ButtonText, body, customStyle }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -14,7 +14,7 @@ const MyModal = ({ title, description, ButtonText, body }) => {
   };
 
   return (
-    <div>
+    <div style={customStyle}>
       <div style={{ cursor: "pointer" }} onClick={handleOpen}>
         {ButtonText}
       </div>
