@@ -71,7 +71,7 @@ const MainPostComponent = ({ user }) => {
             profileImage={item.user.profileImage}
             gender={item.user.gender}
             text={item.text || ""}
-            image={item.media.length > 0 ? item.media[0].url : ""}
+            media={item.media.length > 0 ? item.media[0].url : ""}
             list={item.list}
             token={user.token}
             posts={posts}
