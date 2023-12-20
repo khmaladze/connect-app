@@ -94,13 +94,28 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                 <div>
                   {activeTab === "likes" && likes.length > 0 && (
                     <>
-                      <Typography variant="subtitle1">Likes</Typography>
-                      <Typography variant="body2">{`Total Likes: ${likes.length}`}</Typography>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="subtitle1"
+                      >
+                        Likes
+                      </Typography>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="body2"
+                      >{`Total Likes: ${likes.length}`}</Typography>
                       <List>
                         {likes.map((like) => (
                           <ListItem key={like.user_id}>
                             <ListItemAvatar>
                               <Avatar
+                                style={{
+                                  cursor: "pointer",
+                                }}
                                 src={userProfileImage(
                                   gender,
                                   like.profileImage
@@ -108,7 +123,12 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                                 alt={like.username}
                               />
                             </ListItemAvatar>
-                            <ListItemText primary={like.username} />
+                            <ListItemText
+                              style={{
+                                cursor: "pointer",
+                              }}
+                              primary={like.username}
+                            />
                           </ListItem>
                         ))}
                       </List>
@@ -120,13 +140,28 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                 <div>
                   {activeTab === "comments" && comments.length > 0 && (
                     <>
-                      <Typography variant="subtitle1">Comments</Typography>
-                      <Typography variant="body2">{`Total Comments: ${comments.length}`}</Typography>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="subtitle1"
+                      >
+                        Comments
+                      </Typography>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="body2"
+                      >{`Total Comments: ${comments.length}`}</Typography>
                       <List>
                         {comments.map((comment) => (
                           <ListItem key={comment.user_id}>
                             <ListItemAvatar>
                               <Avatar
+                                style={{
+                                  cursor: "pointer",
+                                }}
                                 src={userProfileImage(
                                   gender,
                                   comment.profileImage
@@ -135,6 +170,9 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                               />
                             </ListItemAvatar>
                             <ListItemText
+                              style={{
+                                cursor: "pointer",
+                              }}
                               primary={comment.username}
                               secondary={comment.comment_text}
                             />
