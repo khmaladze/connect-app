@@ -15,10 +15,22 @@ const PostCommentComponent = ({
 }) => {
   return (
     <CommentContainerMain key={comment._id} borderColor={list}>
-      <Avatar src={userProfileImage(gender, profileImage)} />
+      <Avatar
+        style={{
+          cursor: "pointer",
+        }}
+        src={userProfileImage(gender, profileImage)}
+      />
       {/* <UsernameContainer>{username}</UsernameContainer> */}
       <CommentContainer>
-        <Typography variant="p">comment: {comment.comment}</Typography>
+        <Typography
+          style={{
+            cursor: "pointer",
+          }}
+          variant="p"
+        >
+          comment: {comment.comment}
+        </Typography>
       </CommentContainer>
       <PostDeleteComment
         postId={postId}
