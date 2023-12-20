@@ -16,7 +16,7 @@ const ProfilePost = ({
   firstname,
   lastname,
   text,
-  image,
+  media,
   profileImage,
   createdAt,
   gender,
@@ -131,7 +131,7 @@ const ProfilePost = ({
         {/* Profile post body */}
         <ProfilePostBodyComponent
           text={text ? text : ""}
-          image={image ? image : ""}
+          media={media ? media : ""}
         />
 
         {/* Profile post footer */}
