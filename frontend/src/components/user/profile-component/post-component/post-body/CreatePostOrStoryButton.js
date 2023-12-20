@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 
 const CreatePostOrStoryButton = ({
-  image,
+  file,
   text,
   friendList,
   token,
@@ -14,10 +14,10 @@ const CreatePostOrStoryButton = ({
 }) => {
   const createPostOrStory = async () => {
     try {
-      if (image || text) {
+      if (file || text) {
         const formData = new FormData();
-        if (image) {
-          formData.append("image", image[0].file);
+        if (file) {
+          formData.append("file", file[0].file);
         }
         if (text) {
           formData.append("text", text);
@@ -47,7 +47,7 @@ const CreatePostOrStoryButton = ({
           window.location.reload();
         }
       } else {
-        toast.error("Please add image or text");
+        toast.error("Please add file or text");
       }
     } catch (error) {
       console.error("Error creating post:", error);
