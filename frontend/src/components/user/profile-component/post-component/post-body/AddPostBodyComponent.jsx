@@ -2,16 +2,16 @@ import React, { Fragment } from "react";
 import { AddPostImageBody, AddPostTextBody } from "../ProfileAddPostStyle";
 import AddPostText from "./AddPostText";
 import { Grid } from "@mui/material";
-import ImageUploader from "../../../../image-uploader/ImageUploader";
 import FriendListDropdown from "../../../FriendListDropdown";
 import { friendListData } from "../../../../../api/user/Api";
+import ImageVideoUploader from "../../../../image-video-uploader/ImageVideoUploader";
 
 const AddPostBodyComponent = ({
   friendList,
   text,
   setText,
-  image,
-  setImage,
+  file,
+  setFile,
   setFriendList,
 }) => {
   return (
@@ -21,11 +21,8 @@ const AddPostBodyComponent = ({
       </AddPostTextBody>
       <AddPostImageBody>
         <Grid item xs={12}>
-          <h4 style={{ cursor: "pointer" }}>Upload Image</h4>
-          <ImageUploader
-            files={image}
-            setFiles={setImage}
-          />
+          <h4 style={{ cursor: "pointer" }}>Upload Image or Video</h4>
+          <ImageVideoUploader files={file} setFiles={setFile} />
         </Grid>
       </AddPostImageBody>
       <AddPostImageBody>
