@@ -10,6 +10,7 @@ import * as getUserStory from "./get/get.user-story";
 import * as deleteUserPost from "./post/post.post-delete";
 import * as getPostLikesAndComments from "./get/get.post-statistic";
 import uploadImageToServer from "../../function/server-upload-image";
+import uploadToServer from "../../function/server-upload-image-video";
 let router = express.Router();
 
 router.get("/", userAuthorization, userProfileDataGet.businessLogic);
@@ -27,7 +28,7 @@ router.put(
 router.post(
   "/add_post",
   userAuthorization,
-  uploadImageToServer,
+  uploadToServer,
   userPost.businessLogic
 );
 router.post(
