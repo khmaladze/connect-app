@@ -4,8 +4,8 @@ import { Post } from "../../../models/post/post-model";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import CommentModel, { Comment } from "../../../models/post/post-comment-model";
-import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
 import { PostLike } from "../../../models/post/post-like-model";
+import { deleteFileFromCloudinary } from "../../../function/server-file-delete";
 
 // Messages for different scenarios
 const routeMessages = {
@@ -97,7 +97,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const authorId = req.user._id; // Assuming you have the user information in the request
 
     // Find and delete the post
-    const deletedPostImage: any = await Post.findOne({
+    const deletedPostFile: any = await Post.findOne({
       _id: postId,
       author: authorId,
     }).select("media");
@@ -117,9 +117,17 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       );
     }
 
-    if (deletedPostImage && deletedPostImage?.media[0]) {
-      await deleteImageFromCloudinary(
-        String(deletedPostImage?.media[0]?.public_id)
+    if (deletedPostFile && deletedPostFile?.media[0]) {
+      let mediaType: string =
+        deletedPostFile?.media[0].url.slice(
+          deletedPostFile?.media[0].url.length - 3,
+          deletedPostFile?.media[0].url.length
+        ) == "mp4"
+          ? "video"
+          : "image";
+      await deleteFileFromCloudinary(
+        String(deletedPostFile?.media[0]?.public_id),
+        mediaType
       );
     }
 
