@@ -19,13 +19,16 @@ export const ProfileImage = styled.div`
         : props.isStory === "Favorite"
         ? "#FF008A"
         : "white"};
-  display: flex;
-  justify-content: center;
-  align-items: end;
   cursor: ${(props) =>
     props.isStory === "Friend" ||
     props.isStory === "CloseFriend" ||
     props.isStory === "Favorite"
       ? "pointer"
       : "default"};
+  max-height: 250px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
