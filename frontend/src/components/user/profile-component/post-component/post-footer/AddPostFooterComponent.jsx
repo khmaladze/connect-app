@@ -6,7 +6,7 @@ import CreatePostOrStoryButton from "../post-body/CreatePostOrStoryButton";
 
 const AddPostFooterComponent = ({
   borderColor,
-  image,
+  file,
   text,
   friendList,
   token,
@@ -26,7 +26,7 @@ const AddPostFooterComponent = ({
         }}
       >
         <CreatePostOrStoryButton
-          image={image}
+          file={file}
           text={text}
           token={token}
           friendList={friendList}
@@ -35,7 +35,7 @@ const AddPostFooterComponent = ({
         />
         <h4>OR</h4>
         <CreatePostOrStoryButton
-          image={image}
+          file={file}
           text={text}
           token={token}
           friendList={friendList}
