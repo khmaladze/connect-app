@@ -2,9 +2,9 @@ import { Response } from "express";
 import { customServerError } from "../../../function/server-custom-error-response";
 import { custom_server_response } from "../../../function/server-response";
 import { CustomRequest } from "../../../middleware/user-authorization";
-import { uploadImageToCloudinary } from "../../../function/server-upload-image";
 import Joi from "joi";
 import { Post } from "../../../models/post/post-model";
+import { uploadToCloudinary } from "../../../function/server-upload-image-video";
 
 /**
  * @swagger
@@ -98,6 +98,14 @@ const routeMessage = {
   post_created_success: "post created success",
 };
 
+export const validFileTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/gif",
+  "video/mp4",
+  "video/mpeg",
+];
+
 export const businessLogic = async (req: CustomRequest, res: Response) => {
   try {
     const userProfileId: number = req.user._id;
@@ -127,14 +135,16 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     createData.expiryDate = Date.now() + fiveDay;
 
     if (file) {
-      // Upload the image to Cloudinary in the specified folder
-      const imageUrl = await uploadImageToCloudinary(
-        String(userProfileId),
-        file
-      );
+      // Check if the file type is valid (image or video)
+      if (!validFileTypes.includes(file.mimetype)) {
+        return custom_server_response(res, 400, "Invalid file type");
+      }
+
+      // Upload the file to Cloudinary in the specified folder
+      const file_url = await uploadToCloudinary(String(userProfileId), file);
       createData.media = {
-        url: imageUrl.secure_url,
-        public_id: imageUrl.public_id,
+        url: file_url.secure_url,
+        public_id: file_url.public_id,
       };
     }
 
