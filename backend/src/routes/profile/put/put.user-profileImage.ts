@@ -4,7 +4,7 @@ import { custom_server_response } from "../../../function/server-response";
 import { User } from "../../../models/user/user-model";
 import { CustomRequest } from "../../../middleware/user-authorization";
 import { uploadImageToCloudinary } from "../../../function/server-upload-image";
-import { deleteImageFromCloudinary } from "../../../function/server-image-delete";
+import { deleteFileFromCloudinary } from "../../../function/server-file-delete";
 
 /**
  * @swagger
@@ -85,8 +85,9 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     }).select("_id profileImagePublicId");
 
     if (deleteOldImageUrl) {
-      const deleted = await deleteImageFromCloudinary(
-        String(deleteOldImageUrl?.profileImagePublicId)
+      const deleted = await deleteFileFromCloudinary(
+        String(deleteOldImageUrl?.profileImagePublicId),
+        "image"
       );
       if (!deleted) {
         return custom_server_response(
