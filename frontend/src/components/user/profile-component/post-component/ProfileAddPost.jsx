@@ -9,7 +9,7 @@ const ProfileAddPostComponent = ({ user }) => {
   const dateNow = new Date(Date.now());
   const postCreateDate = dateNow.toISOString().slice(0, 10);
   const [text, setText] = useState("");
-  const [image, setImage] = useState("");
+  const [file, setFile] = useState("");
   const [friendList, setFriendList] = useState("Friend");
 
   return (
@@ -27,15 +27,15 @@ const ProfileAddPostComponent = ({ user }) => {
           friendList={friendList}
           text={text}
           setText={setText}
-          image={image}
-          setImage={setImage}
+          file={file}
+          setFile={setFile}
           setFriendList={setFriendList}
         />
         <AddPostFooterComponent
           borderColor={friendList}
           friendList={friendList}
           token={user.token}
-          image={image}
+          file={file}
           text={text}
         />
       </AddPostDiv>
