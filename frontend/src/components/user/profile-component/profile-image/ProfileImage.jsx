@@ -92,7 +92,11 @@ const ProfileImageComponent = ({ user }) => {
             title="View Story"
             body={
               <Grid item xs={12}>
-                <StorySwitcher data={profileStory} token={user.token} />
+                <StorySwitcher
+                  data={profileStory}
+                  token={user.token}
+                  gender={user.gender}
+                />
               </Grid>
             }
           />
