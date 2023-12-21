@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import StoryFooterComponent from "./StoryFooterComponent";
 
-const StoryComponent = ({ data }) => {
+const StoryComponent = ({ data, token }) => {
   const storyStyle = {
     height: "90%",
     display: "flex",
@@ -23,11 +24,11 @@ const StoryComponent = ({ data }) => {
   return (
     <div style={storyStyle}>
       <Fragment key={data._id}>
-        {data.list && (
+        {/* {data.list && (
           <FriendListStyleComponent list={data.list}>
             {data.list}
           </FriendListStyleComponent>
-        )}
+        )} */}
         {data.text && <div style={itemStyle}>{data.text}</div>}
         {data.media && data.media[0] && data.media[0].url && (
           <img
@@ -40,6 +41,23 @@ const StoryComponent = ({ data }) => {
             alt={`story-${data._id}`}
           />
         )}
+        <div
+          style={{
+            marginBottom: "10px",
+            padding: "10px",
+            border: "1px solid #ccc",
+            borderRadius: "5px",
+            width: "100%",
+            minWidth: "370px",
+            textAlign: "center",
+          }}
+        >
+          <StoryFooterComponent
+            token={token}
+            borderColor={data.list}
+            storyId={data._id}
+          />
+        </div>
       </Fragment>
     </div>
   );
@@ -47,20 +65,20 @@ const StoryComponent = ({ data }) => {
 
 export default StoryComponent;
 
-const FriendListStyleComponent = styled.div`
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-  min-width: 370px;
-  text-align: center;
-  color: ${(props) =>
-    props.list === "Friend"
-      ? "#0500ff"
-      : props.list === "CloseFriend"
-      ? "#1eff1e"
-      : props.list === "Favorite"
-      ? "#FF008A"
-      : "white"};
-`;
+// const FriendListStyleComponent = styled.div`
+//   margin-bottom: 10px;
+//   padding: 10px;
+//   border: 1px solid #ccc;
+//   border-radius: 5px;
+//   width: 100%;
+//   min-width: 370px;
+//   text-align: center;
+//   color: ${(props) =>
+//     props.list === "Friend"
+//       ? "#0500ff"
+//       : props.list === "CloseFriend"
+//       ? "#1eff1e"
+//       : props.list === "Favorite"
+//       ? "#FF008A"
+//       : "white"};
+// `;
