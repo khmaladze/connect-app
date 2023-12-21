@@ -8,6 +8,7 @@ import userProfileRoutes from "./routes/profile/index";
 import userSettingsRoutes from "./routes/settings/index";
 import userFriendsRoutes from "./routes/friend/index";
 import userPostsRoutes from "./routes/post/index";
+import userStorysRoutes from "./routes/story/index";
 import { v2 as cloudinary } from "cloudinary";
 import swaggerSpec from "./swagger";
 import swaggerUi from "swagger-ui-express";
@@ -37,6 +38,7 @@ if (isValidEnv()) {
   app.use(`${configApiUser}/auth`, authRoutes);
   app.use(`${configApiUser}/profile`, userProfileRoutes);
   app.use(`${configApiUser}/post`, userPostsRoutes);
+  app.use(`${configApiUser}/story`, userStorysRoutes);
   app.use(`${configApiUser}/friend`, userFriendsRoutes);
   app.use(`${configApiUser}/settings`, userSettingsRoutes);
 
