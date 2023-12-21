@@ -13,8 +13,7 @@ import { ProfileImage } from "./ProfileImageStyle";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import ImageUploader from "../../../image-uploader/ImageUploader";
 import ButtonUpdateUserImage from "./ButtonUpdateUserImage";
-import StoryComponent from "../../story-component/StoryComponent";
-import StorySwitcher from "../../story-component/StorySwitcher";
+import StorySwitcher from "../../story/StorySwitcher";
 
 const ProfileImageComponent = ({ user }) => {
   const [image, setImage] = useState();
@@ -93,7 +92,7 @@ const ProfileImageComponent = ({ user }) => {
             title="View Story"
             body={
               <Grid item xs={12}>
-                <StorySwitcher data={profileStory} />
+                <StorySwitcher data={profileStory} token={user.token} />
               </Grid>
             }
           />
