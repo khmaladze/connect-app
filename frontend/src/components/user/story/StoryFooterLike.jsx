@@ -66,9 +66,7 @@ const StoryFooterLike = ({ token, storyId }) => {
         console.log(error);
       }
     };
-    setTimeout(() => {
-      checkIsPostLiked();
-    }, 1000);
+    checkIsPostLiked();
   }, [isLiked]);
 
   return (
