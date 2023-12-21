@@ -46,6 +46,19 @@ export const API_URL = {
       remove_post_like: `${USER_API + "/post/remove_post_like"}`,
     },
   },
+  story: {
+    get: {
+      get_comment: `${USER_API + "/story/comment"}`,
+      check_story_like: `${USER_API + "/story/check_story_like"}`,
+      storys: `${USER_API + "/story/"}`,
+    },
+    post: {
+      add_comment: `${USER_API + "/story/comment"}`,
+      delete_story_comment: `${USER_API + "/story/comment/"}`,
+      like_story: `${USER_API + "/story/like_story"}`,
+      remove_story_like: `${USER_API + "/story/remove_story_like"}`,
+    },
+  },
   settings: {
     get: {
       acticity_log: `${USER_API + "/settings/active_log"}`,
