@@ -1,5 +1,8 @@
 import React, { Fragment } from "react";
 import StoryFooterComponent from "./StoryFooterComponent";
+import DeleteStoryHeader from "./DeleteStoryHeader";
+import { PostBodyImage } from "../post/PostStyle";
+import StoryVideo from "./StoryVideo";
 
 const StoryComponent = ({
   data,
@@ -27,6 +30,9 @@ const StoryComponent = ({
     width: "100%",
     minWidth: "370px",
     textAlign: "center",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   };
 
   const footerStyle = {
@@ -38,20 +44,27 @@ const StoryComponent = ({
     textAlign: "center",
   };
 
+  const mediaType =
+    data.media[0] &&
+    data.media[0].url.slice(
+      data.media[0].url.length - 3,
+      data.media[0].url.length
+    );
+
   return (
     <div style={storyStyle}>
       <Fragment key={storyId}>
+        <DeleteStoryHeader storyId={storyId} token={token} />
         {data.text && <div style={itemStyle}>{data.text}</div>}
-        {data.media && data.media[0] && data.media[0].url && (
-          <img
-            style={{
-              height: "100%",
-              width: "100%",
-              maxHeight: "500px",
-            }}
-            src={data.media[0].url}
-            alt={`story-${storyId}`}
-          />
+        {data &&
+        data.media &&
+        data.media[0] &&
+        data.media[0].url &&
+        mediaType !== "mp4" ? (
+          <PostBodyImage image={data.media[0].url}></PostBodyImage>
+        ) : (
+          data.media.length > 0 &&
+          data.media[0].url && <StoryVideo video={data.media[0].url} />
         )}
         <div style={footerStyle}>
           <StoryFooterComponent
