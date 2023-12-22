@@ -7,14 +7,14 @@ import { toast } from "react-toastify";
 
 const StorySwitcher = ({ data, token, gender }) => {
   const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+  let newData =
+    window.location.pathname == "/profile" ? data[currentStoryIndex] : data;
   const [commentsData, setCommentsData] = useState([]);
   const [isOpenCommentField, setIsOpenCommentField] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [isCommentDataFetched, setIsCommentDataFetched] = useState(false);
   const [userAlreadyComment, setIsUserAlreadyComment] = useState([]);
-  const [fetchCurrentId, setFetchCurrentId] = useState(
-    data[currentStoryIndex]._id
-  );
+  const [fetchCurrentId, setFetchCurrentId] = useState(newData._id);
 
   const switchToNextStory = () => {
     setCurrentStoryIndex((prevIndex) =>
@@ -44,7 +44,7 @@ const StorySwitcher = ({ data, token, gender }) => {
           token,
           {
             comment: String(commentText),
-            story_id: String(data[currentStoryIndex]._id),
+            story_id: String(newData._id),
           },
           API_CONTENT_TYPE_LIST.application_json
         );
@@ -52,10 +52,7 @@ const StorySwitcher = ({ data, token, gender }) => {
         if (response?.success) {
           setIsCommentDataFetched(false);
           setIsOpenCommentField(false);
-          setIsUserAlreadyComment((prevArr) => [
-            ...prevArr,
-            data[currentStoryIndex]._id,
-          ]);
+          setIsUserAlreadyComment((prevArr) => [...prevArr, newData._id]);
           setCommentText("");
         }
       } else {
@@ -72,17 +69,14 @@ const StorySwitcher = ({ data, token, gender }) => {
         const response = await apiRequest(
           apiRequestType.get,
           false,
-          `${API_URL.story.get.get_comment}?story_id=${data[currentStoryIndex]._id}`,
+          `${API_URL.story.get.get_comment}?story_id=${newData._id}`,
           token
         );
         if (response?.success) {
           setCommentsData(response.data);
           if (response.data && response.data[0] && response.data[0]._id) {
             setIsOpenCommentField(false);
-            setIsUserAlreadyComment((prevArr) => [
-              ...prevArr,
-              data[currentStoryIndex]._id,
-            ]);
+            setIsUserAlreadyComment((prevArr) => [...prevArr, newData._id]);
           }
         }
       } catch (error) {
@@ -97,8 +91,10 @@ const StorySwitcher = ({ data, token, gender }) => {
   }, [data, token, commentsData, isCommentDataFetched, currentStoryIndex]);
 
   useEffect(() => {
-    setFetchCurrentId(data[currentStoryIndex]._id);
-    setIsCommentDataFetched(false);
+    if (window.location.pathname == "/profile") {
+      setFetchCurrentId(newData._id);
+      setIsCommentDataFetched(false);
+    }
   }, [currentStoryIndex]);
 
   const deleteUserPostCommenthandle = async (storyId, token) => {
@@ -112,7 +108,7 @@ const StorySwitcher = ({ data, token, gender }) => {
       if (response?.success) {
         setIsOpenCommentField(false);
         setIsUserAlreadyComment((prevArr) =>
-          prevArr.filter((id) => id !== data[currentStoryIndex]._id)
+          prevArr.filter((id) => id !== newData._id)
         );
         setCommentText("");
         setCommentsData(false);
@@ -139,10 +135,10 @@ const StorySwitcher = ({ data, token, gender }) => {
         <div>
           <StoryComponent
             currentStoryIndex={currentStoryIndex}
-            data={data[currentStoryIndex]}
+            data={newData}
             token={token}
             gender={gender}
-            storyId={data[currentStoryIndex]._id}
+            storyId={newData._id}
             userAlreadyComment={userAlreadyComment}
             toggleComment={toggleComment}
             deleteUserPostCommenthandle={deleteUserPostCommenthandle}
@@ -187,14 +183,24 @@ const StorySwitcher = ({ data, token, gender }) => {
           )}
         </div>
       </Grid>
-      <Grid item container justifyContent="space-between">
-        <Button variant="contained" color="primary" onClick={switchToPrevStory}>
-          Previous Story
-        </Button>
-        <Button variant="contained" color="primary" onClick={switchToNextStory}>
-          Next Story
-        </Button>
-      </Grid>
+      {window.location.pathname == "/profile" && (
+        <Grid item container justifyContent="space-between">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={switchToPrevStory}
+          >
+            Previous Story
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={switchToNextStory}
+          >
+            Next Story
+          </Button>
+        </Grid>
+      )}
     </Grid>
   );
 };
