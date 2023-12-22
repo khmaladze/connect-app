@@ -100,13 +100,6 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     // Extract user ID from request
     const userId = req.user._id;
 
-    // Extract pagination parameters
-    const page = parseInt(req.query.page as string) || 1;
-    const pageSize = parseInt(req.query.pageSize as string) || 5;
-
-    // Calculate skip value for pagination
-    const skip = (page - 1) * pageSize;
-
     // Get user's friend list
     const userFriend = await UserFriend.findOne({
       user_profile_id: userId,
@@ -126,13 +119,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const storys = await Story.find({
       author: { $in: friendIdsWithstorys },
       expiryDate: { $gt: Date.now() },
-    })
-      .sort({ createdAt: -1 }) // Sort storys by createdAt in descending order
-      .limit(pageSize) // Limit the number of storys per page
-      .skip(skip); // Skip storys based on pagination
-
-    // Check if there are more storys
-    const hasMore = storys.length === pageSize;
+    }).sort({ createdAt: -1 }); // Sort storys by createdAt in descending order
 
     // Extract user IDs from story authors
     const authorIds = storys.map((story) => story.author);
