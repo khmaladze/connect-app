@@ -6,7 +6,7 @@ const MainPage = ({ user }) => {
   return (
     <Fragment>
       <MainStoryComponent user={user} />
-      <MainPostComponent user={user} />;
+      <MainPostComponent user={user} />
     </Fragment>
   );
 };
