@@ -48,7 +48,7 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
   return (
     <div>
       <MyModal
-        title="Post Comment Statistics"
+        title="Post Comment & Likes Statistics"
         ButtonText={
           <span
             onClick={() => {
