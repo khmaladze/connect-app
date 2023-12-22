@@ -54,3 +54,20 @@ a {
   'GRAD' 0,
   'opsz' 24
 }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white; 
+  height: 0px;
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; 
+  height: 0px;
+  width: 0px;
+}
