@@ -49,9 +49,9 @@ const routeMessages = {
  */
 
 export const businessLogic = async (req: CustomRequest, res: Response) => {
-  const postId = req.params.postId;
-
   try {
+    const postId = req.params.postId;
+
     // Check if req.user._id is the same as the author in the Post model
     const post = await Post.findById(postId);
     if (!post) {
