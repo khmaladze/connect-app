@@ -20,6 +20,7 @@ const StoryComponent = ({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
+    width: "400px",
   };
 
   const itemStyle = {
@@ -54,7 +55,9 @@ const StoryComponent = ({
   return (
     <div style={storyStyle}>
       <Fragment key={storyId}>
-        <DeleteStoryHeader storyId={storyId} token={token} />
+        {window.location.pathname == "/profile" && (
+          <DeleteStoryHeader storyId={storyId} token={token} />
+        )}
         {data.text && <div style={itemStyle}>{data.text}</div>}
         {data &&
         data.media &&
