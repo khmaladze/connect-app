@@ -65,6 +65,7 @@ export const PostBodyImage = styled.div`
   height: 100%;
   min-height: 350px;
   max-height: 500px;
+  min-width: 350px;
   background-size: contain;
   background-image: url(${(props) => props.image});
   background-position: center;
