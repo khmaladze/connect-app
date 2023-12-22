@@ -34,12 +34,14 @@ const StoryFooterComponent = ({
             storyId={storyId}
           />
           <div style={{ width: "10px" }}></div>
-          <StoryStatistic
-            storyId={storyId}
-            token={token}
-            borderColor={list}
-            gender={gender}
-          />
+          {window.location.pathname == "/profile" && (
+            <StoryStatistic
+              storyId={storyId}
+              token={token}
+              borderColor={list}
+              gender={gender}
+            />
+          )}
         </div>
       </PostFooter>
       {commentsData &&
