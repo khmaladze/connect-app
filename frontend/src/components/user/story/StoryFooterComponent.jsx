@@ -3,6 +3,7 @@ import StoryFooterLike from "./StoryFooterLike";
 import { PostFooter } from "../post/PostStyle";
 import StoryFooterComment from "./StoryFooterComment";
 import StoryComment from "./StoryComment";
+import StoryStatistic from "./StoryStatistic";
 
 const StoryFooterComponent = ({
   token,
@@ -31,6 +32,13 @@ const StoryFooterComponent = ({
             toggleComment={toggleComment}
             currentStoryIndex={currentStoryIndex}
             storyId={storyId}
+          />
+          <div style={{ width: "10px" }}></div>
+          <StoryStatistic
+            storyId={storyId}
+            token={token}
+            borderColor={list}
+            gender={gender}
           />
         </div>
       </PostFooter>
