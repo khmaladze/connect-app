@@ -1,4 +1,3 @@
-// StorySwitcher.js
 import React, { useEffect, useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import StoryComponent from "./StoryComponent";
