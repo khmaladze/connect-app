@@ -21,12 +21,14 @@ export const API_URL = {
       profile_post: `${USER_API + "/profile/posts"}`,
       get_comment: `${USER_API + "/profile/comment"}`,
       get_likes_comments: `${USER_API + "/profile/post-like-comment"}`,
+      get_story_likes_comments: `${USER_API + "/profile/story-like-comment"}`,
       profile_story: `${USER_API + "/profile/story"}`,
     },
     post: {
       add_post: `${USER_API + "/profile/add_post"}`,
       add_story: `${USER_API + "/profile/add_story"}`,
       delete_post: `${USER_API + "/profile/post/"}`,
+      delete_story: `${USER_API + "/profile/story/"}`,
     },
     put: {
       updateUserProfileInfo: `${USER_API + "/profile/profile_info_data"}`,
