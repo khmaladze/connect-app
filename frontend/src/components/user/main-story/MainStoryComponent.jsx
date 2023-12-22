@@ -26,6 +26,17 @@ const MainStoryComponent = ({ user }) => {
     }
   };
 
+  const addStoryView = async (storyId) => {
+    await apiRequest(
+      apiRequestType.post,
+      false,
+      `${API_URL.story.post.add_view}`,
+      user.token,
+      { story_id: storyId }
+    );
+    setLoading(false);
+  };
+
   useEffect(() => {
     fetchProfilePost();
   }, [user.token]);
@@ -62,7 +73,12 @@ const MainStoryComponent = ({ user }) => {
           {story &&
             story.length > 0 &&
             story.map((storyItem) => (
-              <MainStoryDiv key={storyItem._id} data={storyItem} user={user} />
+              <div
+                onClick={() => addStoryView(storyItem._id)}
+                key={storyItem._id}
+              >
+                <MainStoryDiv data={storyItem} user={user} />
+              </div>
             ))}
           {loading && <Loading />}
           {story && story.length == 0 && <h4>NO STORY.</h4>}
