@@ -59,6 +59,7 @@ export const API_URL = {
       delete_story_comment: `${USER_API + "/story/comment/"}`,
       like_story: `${USER_API + "/story/like_story"}`,
       remove_story_like: `${USER_API + "/story/remove_story_like"}`,
+      add_view: `${USER_API + "/story/story_view"}`,
     },
   },
   settings: {
