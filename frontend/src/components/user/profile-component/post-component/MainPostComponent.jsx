@@ -92,7 +92,7 @@ const MainPostComponent = ({ user }) => {
           <Loading />
         </div>
       )}
-      {posts && posts.length == 0 && (
+      {!loading && posts && posts.length == 0 && (
         <h4 style={{ textAlign: "center" }}>NO POST.</h4>
       )}
     </Fragment>
