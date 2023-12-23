@@ -81,7 +81,7 @@ const MainStoryComponent = ({ user }) => {
               </div>
             ))}
           {loading && <Loading />}
-          {story && story.length == 0 && <h4>NO STORY.</h4>}
+          {!loading && story && story.length == 0 && <h4>NO STORY.</h4>}
         </div>
       </div>
     </div>
