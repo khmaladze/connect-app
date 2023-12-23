@@ -6,6 +6,7 @@ import { custom_server_response } from "../../../function/server-response";
 import { Story } from "../../../models/story/story-model";
 import { StoryLike } from "../../../models/story/story-like-model";
 import StoryCommentModel from "../../../models/story/story-comment-model";
+import { StoryView } from "../../../models/story/story-view";
 
 const routeMessages = {
   get_story_likes_and_comment_success: "get story likes and comment success",
@@ -101,7 +102,26 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       })
     );
 
-    const likesAndCommentsData = {
+    // Get storyViews for the story
+    const storyViews = await StoryView.find({ story_id: storyId });
+
+    // Get user information for each story views
+    const storyViewsWithUserInfo = await Promise.all(
+      storyViews.map(async (storyView: any) => {
+        const user = await User.findById(storyView.view_author_id).select(
+          "username profileImage"
+        );
+        return {
+          user_id: user?._id,
+          username: user?.username,
+          profileImage: user?.profileImage,
+          createdAt: storyView.createdAt,
+          updatedAt: storyView.updatedAt,
+        };
+      })
+    );
+
+    const likesAndCommentsAndViewsData = {
       likes: {
         count: likesWithUserInfo.length,
         data: likesWithUserInfo,
@@ -110,13 +130,17 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         count: commentsWithUserInfo.length,
         data: commentsWithUserInfo,
       },
+      views: {
+        count: storyViewsWithUserInfo.length,
+        data: storyViewsWithUserInfo,
+      },
     };
 
     return custom_server_response(
       res,
       200,
       routeMessages.get_story_likes_and_comment_success,
-      likesAndCommentsData
+      likesAndCommentsAndViewsData
     );
   } catch (error) {
     console.error("Error retrieving likes and comments:", error);
