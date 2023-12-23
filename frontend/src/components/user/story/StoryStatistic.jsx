@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import PreviewIcon from "@mui/icons-material/Preview";
 import {
   apiRequest,
   apiRequestType,
@@ -21,6 +22,7 @@ import MyModal from "../modal/MyModal";
 const StoryStatistic = ({ storyId, token, borderColor, gender }) => {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
+  const [views, setViews] = useState([]);
   const [activeTab, setActiveTab] = useState("likes");
 
   const fetchData = async () => {
@@ -36,6 +38,9 @@ const StoryStatistic = ({ storyId, token, borderColor, gender }) => {
 
       const commentsData = await response.data.comments;
       setComments(commentsData.data);
+
+      const viewsData = await response.data.views;
+      setViews(viewsData.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -87,7 +92,21 @@ const StoryStatistic = ({ storyId, token, borderColor, gender }) => {
                         ? "#1eff1e"
                         : "#FF008A",
                     cursor: "pointer",
+                    marginRight: "10px",
                   }}
+                />
+
+                <PreviewIcon
+                  style={{
+                    color:
+                      borderColor === "Friend"
+                        ? "#0500ff"
+                        : borderColor === "CloseFriend"
+                        ? "#1eff1e"
+                        : "#FF008A",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => setActiveTab("views")}
                 />
 
                 {/* Likes Section */}
@@ -175,6 +194,51 @@ const StoryStatistic = ({ storyId, token, borderColor, gender }) => {
                               }}
                               primary={comment.username}
                               secondary={comment.comment_text}
+                            />
+                          </ListItem>
+                        ))}
+                      </List>
+                    </>
+                  )}
+                </div>
+                <div>
+                  {activeTab === "views" && views.length > 0 && (
+                    <>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="subtitle1"
+                      >
+                        Views
+                      </Typography>
+                      <Typography
+                        style={{
+                          cursor: "pointer",
+                        }}
+                        variant="body2"
+                      >{`Total Views: ${views.length}`}</Typography>
+                      <List>
+                        {views.map((view) => (
+                          <ListItem key={view.user_id}>
+                            <ListItemAvatar>
+                              <Avatar
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                                src={userProfileImage(
+                                  gender,
+                                  view.profileImage
+                                )}
+                                alt={view.username}
+                              />
+                            </ListItemAvatar>
+                            <ListItemText
+                              style={{
+                                cursor: "pointer",
+                              }}
+                              primary={view.username}
+                              secondary={view.createdAt.slice(0, 10)}
                             />
                           </ListItem>
                         ))}
