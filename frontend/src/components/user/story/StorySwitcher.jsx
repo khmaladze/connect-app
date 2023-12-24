@@ -183,7 +183,7 @@ const StorySwitcher = ({ data, token, gender }) => {
           )}
         </div>
       </Grid>
-      {window.location.pathname == "/profile" && (
+      {window.location.pathname == "/profile" && newData.length > 1 && (
         <Grid item container justifyContent="space-between">
           <Button
             variant="contained"
