@@ -11,7 +11,6 @@ const WelcomePage = () => {
     <WelcomePageMain>
       <WelcomePageNavbar />
       <WelcomePageMovingText>
-        {/* Typewriter effect for dynamic and engaging text */}
         <div className="welcome__text">
           <Typewriter
             onInit={(typewriter) => {
@@ -33,8 +32,11 @@ const WelcomePage = () => {
           />
         </div>
       </WelcomePageMovingText>
-      {/* Button stack with links to login and register pages */}
-      <Stack spacing={2} direction="row">
+      <Stack
+        spacing={2}
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        alignItems="center"
+      >
         <Link to={"/login"}>
           <Button
             variant="outlined"
@@ -43,14 +45,17 @@ const WelcomePage = () => {
               color: "black",
               border: "black 1px solid",
               height: "50px",
-              width: "100px",
+              width: "100%",
+              maxWidth: "200px",
               fontFamily: "'Raleway', sans-serif",
             }}
           >
             LOGIN
           </Button>
         </Link>
-        <div style={{ width: "70px" }}></div>
+        <div
+          style={{ margin: "10px", display: "none", sm: "block", md: "block" }}
+        ></div>
         <Link to={"/register"}>
           <Button
             variant="contained"
@@ -58,7 +63,8 @@ const WelcomePage = () => {
               background: "black",
               color: "white",
               height: "50px",
-              width: "100px",
+              width: "100%",
+              maxWidth: "200px",
               fontFamily: "'Raleway', sans-serif",
             }}
           >
