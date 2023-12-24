@@ -131,8 +131,8 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
       createData.list = friendList;
     }
 
-    const fiveDay = 1000 * 60 * 60 * 24 * 5;
-    createData.expiryDate = Date.now() + fiveDay;
+    const oneDay = 1000 * 60 * 60 * 24 * 1;
+    createData.expiryDate = Date.now() + oneDay;
 
     if (file) {
       // Check if the file type is valid (image or video)
