@@ -60,7 +60,18 @@ import Joi from "joi";
 
 // Joi schema for user passwordUpdate
 const passwordUpdateSchema = Joi.object({
-  password: Joi.string().required().min(10).max(100),
+  password: Joi.string()
+    .required()
+    .min(10)
+    .max(100)
+    .pattern(
+      new RegExp(
+        "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\\$%^&\\*])(?=.{10,})"
+      )
+    )
+    .message(
+      "must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be at least 10 characters long"
+    ),
   confirmPassword: Joi.string().required().valid(Joi.ref("password")),
 });
 
