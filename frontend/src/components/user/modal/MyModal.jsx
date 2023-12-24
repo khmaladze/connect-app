@@ -33,7 +33,7 @@ const MyModal = ({ title, description, ButtonText, body, customStyle }) => {
             backgroundColor: "white",
             padding: "20px",
             width: "97%",
-            maxWidth: "500px",
+            maxWidth: "1000px",
           }}
         >
           <h2 id="modal-title">{title}</h2>
