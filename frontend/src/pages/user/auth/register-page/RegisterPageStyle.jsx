@@ -23,4 +23,8 @@ export const RegisterPageForm = styled.div`
   h1 {
     text-align: center;
   }
+
+  @media screen and (max-width: 750px) {
+    margin-top: 50px;
+  }
 `;
