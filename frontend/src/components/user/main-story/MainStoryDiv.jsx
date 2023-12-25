@@ -1,6 +1,7 @@
 import React from "react";
 import MyModal from "../modal/MyModal";
 import StorySwitcher from "../story/StorySwitcher";
+import { userProfileImage } from "../../../api/user/Api";
 
 const MainStoryDiv = ({ data, user }) => {
   return (
@@ -27,13 +28,17 @@ const MainStoryDiv = ({ data, user }) => {
     >
       <MyModal
         title="View Story"
+        modalWidth="800px"
         ButtonText={
           <div
             style={{
               height: "65px",
               width: "65px",
               borderRadius: "50%",
-              backgroundImage: `url(${data.user.profileImage})`,
+              backgroundImage: `url(${userProfileImage(
+                data.user.gender,
+                data.user.profileImage
+              )})`,
               backgroundPosition: "center",
               backgroundSize: "cover",
             }}
