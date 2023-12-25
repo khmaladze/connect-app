@@ -25,6 +25,8 @@ const ProfileImageComponent = ({ user }) => {
     justifyContent: "center",
     alignItems: "flex-end",
     marginTop: "5px",
+    width: "500px",
+    maxWidth: "500px",
   });
 
   useEffect(() => {
@@ -52,6 +54,8 @@ const ProfileImageComponent = ({ user }) => {
               justifyContent: "center",
               alignItems: "flex-end",
               marginTop: "5px",
+              width: "500px",
+              maxWidth: "500px",
             });
           }
         } else {
@@ -77,7 +81,10 @@ const ProfileImageComponent = ({ user }) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-end",
+              width: "500px",
+              maxWidth: "500px",
             }}
+            modalWidth="800px"
             ButtonText={
               <Button
                 variant="contained"
@@ -103,6 +110,7 @@ const ProfileImageComponent = ({ user }) => {
         )}
         <MyModal
           customStyle={updateImageStyle}
+          modalWidth="500px"
           ButtonText={
             <Button
               variant="contained"
