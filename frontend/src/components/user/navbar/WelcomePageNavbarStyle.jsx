@@ -7,6 +7,11 @@ export const WelcomePageNavbarMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 750px) {
+    font-size: 25px;
+    width: 92%;
+  }
 `;
 
 export const WelcomePageLogo = styled.div`
@@ -18,6 +23,10 @@ export const WelcomePageLogo = styled.div`
   justify-content: space-between;
   align-items: center;
   font-family: "Raleway", sans-serif;
+
+  @media screen and (max-width: 750px) {
+    font-size: 25px;
+  }
 `;
 
 export const WelcomePageNavbarButtons = styled.div`
@@ -27,10 +36,18 @@ export const WelcomePageNavbarButtons = styled.div`
   justify-content: space-between;
   align-items: center;
   font-family: "Raleway", sans-serif;
+
+  @media screen and (max-width: 750px) {
+    width: 285px;
+  }
 `;
 
 export const WelcomePageNavbarButton = styled.div`
   color: #000000;
   font-size: 28px;
   cursor: pointer;
+
+  @media screen and (max-width: 750px) {
+    font-size: 25px;
+  }
 `;
