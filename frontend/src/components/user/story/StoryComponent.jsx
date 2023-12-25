@@ -24,6 +24,7 @@ const StoryComponent = ({
   };
 
   const itemStyle = {
+    marginTop: "10px",
     marginBottom: "10px",
     padding: "10px",
     border: "1px solid #ccc",
