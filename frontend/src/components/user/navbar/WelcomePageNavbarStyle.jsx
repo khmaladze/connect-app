@@ -12,6 +12,11 @@ export const WelcomePageNavbarMain = styled.div`
     font-size: 25px;
     width: 92%;
   }
+
+  @media screen and (max-width: 550px) {
+    font-size: 20px;
+    width: 95%;
+  }
 `;
 
 export const WelcomePageLogo = styled.div`
@@ -27,6 +32,10 @@ export const WelcomePageLogo = styled.div`
   @media screen and (max-width: 750px) {
     font-size: 25px;
   }
+
+  @media screen and (max-width: 550px) {
+    font-size: 22px;
+  }
 `;
 
 export const WelcomePageNavbarButtons = styled.div`
@@ -40,6 +49,10 @@ export const WelcomePageNavbarButtons = styled.div`
   @media screen and (max-width: 750px) {
     width: 285px;
   }
+
+  @media screen and (max-width: 550px) {
+    width: 250px;
+  }
 `;
 
 export const WelcomePageNavbarButton = styled.div`
@@ -49,5 +62,9 @@ export const WelcomePageNavbarButton = styled.div`
 
   @media screen and (max-width: 750px) {
     font-size: 25px;
+  }
+
+  @media screen and (max-width: 550px) {
+    font-size: 22px;
   }
 `;
