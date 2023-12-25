@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 
-const MyModal = ({ title, description, ButtonText, body, customStyle }) => {
+const MyModal = ({
+  title,
+  description,
+  ButtonText,
+  body,
+  customStyle,
+  modalWidth = "1000px",
+}) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -33,7 +40,7 @@ const MyModal = ({ title, description, ButtonText, body, customStyle }) => {
             backgroundColor: "white",
             padding: "20px",
             width: "97%",
-            maxWidth: "1000px",
+            maxWidth: modalWidth,
           }}
         >
           <h2 id="modal-title">{title}</h2>
