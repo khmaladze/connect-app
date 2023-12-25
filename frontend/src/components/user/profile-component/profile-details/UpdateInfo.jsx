@@ -19,6 +19,7 @@ const UpdateInfo = ({
   return (
     <MyModal
       title="Update Info"
+      modalWidth="500px"
       ButtonText={
         <Button
           style={{ width: "100%", marginTop: "10px" }}
