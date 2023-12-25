@@ -54,6 +54,7 @@ const StoryStatistic = ({ storyId, token, borderColor, gender }) => {
     <div>
       <MyModal
         title="Story Comment & Likes Statistics"
+        modalWidth="700px"
         ButtonText={
           <span
             onClick={() => {
