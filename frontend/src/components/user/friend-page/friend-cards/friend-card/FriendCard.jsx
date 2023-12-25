@@ -31,8 +31,10 @@ const FriendCard = ({ token }) => {
         );
         if (response?.success) {
           setFriendList(response.data);
-          setLoading(response.data.length === 0);
+        } else {
+          setFriendList(0);
         }
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching friend list:", error);
       }
