@@ -9,6 +9,7 @@ import { API_URL } from "../../../../config/config";
 import { ProfileDetails } from "./ProfileDetailsStyle";
 import ProfileDetailsInfo from "./ProfileDetailsInfo";
 import UpdateInfo from "./UpdateInfo";
+import { InfoDetailsStyle } from "../profile-image/ProfileImageStyle";
 
 const ProfileDetailsComponent = ({ user }) => {
   const [userProfileData, setUserProfileData] = useState("");
@@ -69,7 +70,7 @@ const ProfileDetailsComponent = ({ user }) => {
 
   return (
     <ProfileDetails>
-      <div>
+      <InfoDetailsStyle>
         <ProfileDetailsInfo
           userProfileData={userProfileData}
           firstname={user.firstname}
@@ -85,7 +86,7 @@ const ProfileDetailsComponent = ({ user }) => {
           handlePassionChange={handlePassionChange}
           token={user.token}
         />
-      </div>
+      </InfoDetailsStyle>
     </ProfileDetails>
   );
 };
