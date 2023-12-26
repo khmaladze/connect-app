@@ -16,8 +16,13 @@ const AddPostBodyComponent = ({
 }) => {
   return (
     <Fragment>
-      <AddPostTextBody>
-        <AddPostText friendList={friendList} text={text} setText={setText} />
+      <AddPostTextBody style={{ maxWidth: "700px", width: "100%" }}>
+        <AddPostText
+          style={{ maxWidth: "700px", width: "100%" }}
+          friendList={friendList}
+          text={text}
+          setText={setText}
+        />
       </AddPostTextBody>
       <AddPostImageBody>
         <Grid item xs={12}>

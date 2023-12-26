@@ -10,8 +10,7 @@ export const AddPostContainer = styled.div`
 
 export const AddPostDiv = styled.div`
   max-width: 700px;
-  width: 700px;
-  min-height: 350px;
+  width: 100%;
   border: 3px solid
     ${(props) =>
       props.borderColor === "Friend"
@@ -106,9 +105,8 @@ export const AddPostFooter = styled.div`
 `;
 
 export const CustomTextarea = styled.textarea`
-  width: 670px;
+  width: 100%;
   max-width: 670px;
-  min-width: 670px;
   min-height: 100px;
   max-height: 300px;
   padding: 10px;

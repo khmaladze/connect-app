@@ -14,7 +14,10 @@ const ProfileAddPostComponent = ({ user }) => {
 
   return (
     <AddPostContainer>
-      <AddPostDiv borderColor={friendList}>
+      <AddPostDiv
+        borderColor={friendList}
+        style={{ width: "100%", maxWidth: "700px" }}
+      >
         <AddPostHeaderComponent
           borderColor={friendList}
           gender={user.gender}
