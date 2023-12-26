@@ -20,7 +20,7 @@ const StoryComponent = ({
     flexDirection: "column",
     justifyContent: "space-around",
     alignItems: "center",
-    width: "400px",
+    maxWidth: "400px",
   };
 
   const itemStyle = {
@@ -29,8 +29,8 @@ const StoryComponent = ({
     padding: "10px",
     border: "1px solid #ccc",
     borderRadius: "5px",
-    width: "100%",
-    minWidth: "370px",
+    width: "330px",
+    maxWidth: "100%",
     textAlign: "center",
     display: "flex",
     justifyContent: "center",
@@ -44,6 +44,7 @@ const StoryComponent = ({
     borderRadius: "5px",
     width: "100%",
     textAlign: "center",
+    maxWidth: "330px",
   };
 
   const mediaType =
