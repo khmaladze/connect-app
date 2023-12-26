@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import { PostFooter } from "../PostStyle";
 import PostFooterLike from "./like/PostFooterLike";
 import PostStatistic from "./statistic/PostStatistic";
 import PostFooterComment from "./comment/PostFooterComment";
+import AddCommentField from "./AddCommentField";
 
 const PostFooterComponent = ({
   list,
@@ -44,35 +43,11 @@ const PostFooterComponent = ({
         </div>
       </PostFooter>
       {isOpenCommentField && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            height: "75px",
-            width: "100%",
-            padding: "10px",
-          }}
-        >
-          <TextField
-            style={{
-              width: "70%",
-              height: "37px",
-            }}
-            fullWidth
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            placeholder="Add a comment..."
-          />
-          <Button
-            style={{
-              height: "50px",
-            }}
-            onClick={handleCommentSubmit}
-            color="primary"
-          >
-            Submit
-          </Button>
-        </div>
+        <AddCommentField
+          commentText={commentText}
+          setCommentText={setCommentText}
+          handleCommentSubmit={handleCommentSubmit}
+        />
       )}
     </Fragment>
   );
