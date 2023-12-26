@@ -159,7 +159,7 @@ const ProfilePost = ({
                 list={list}
                 postId={postId}
                 token={token}
-                gender={gender}
+                gender={comment.gender}
                 profileImage={comment.author_profileImage}
                 deleteUserPostCommenthandle={deleteUserPostCommenthandle}
               />
