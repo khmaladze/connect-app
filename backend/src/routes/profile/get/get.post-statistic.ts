@@ -69,11 +69,12 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const likesWithUserInfo = await Promise.all(
       likes.map(async (like: any) => {
         const user = await User.findById(like.like_author_id).select(
-          "username profileImage"
+          "username profileImage gender"
         );
         return {
           user_id: user?._id,
           username: user?.username,
+          gender: user?.gender,
           profileImage: user?.profileImage,
           createdAt: like.createdAt,
           updatedAt: like.updatedAt,
@@ -88,12 +89,13 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const commentsWithUserInfo = await Promise.all(
       comments.map(async (comment: any) => {
         const user = await User.findById(comment.author_id).select(
-          "username profileImage"
+          "username profileImage gender"
         );
         return {
           user_id: user?._id,
           username: user?.username,
           profileImage: user?.profileImage,
+          gender: user?.gender,
           comment_text: comment.comment,
           createdAt: comment.createdAt,
           updatedAt: comment.updatedAt,
