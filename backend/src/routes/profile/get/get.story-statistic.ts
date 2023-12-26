@@ -70,12 +70,13 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const likesWithUserInfo = await Promise.all(
       likes.map(async (like: any) => {
         const user = await User.findById(like.like_author_id).select(
-          "username profileImage"
+          "username profileImage gender"
         );
         return {
           user_id: user?._id,
           username: user?.username,
           profileImage: user?.profileImage,
+          gender: user?.gender,
           createdAt: like.createdAt,
           updatedAt: like.updatedAt,
         };
@@ -89,12 +90,13 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const commentsWithUserInfo = await Promise.all(
       comments.map(async (comment: any) => {
         const user = await User.findById(comment.author_id).select(
-          "username profileImage"
+          "username profileImage gender"
         );
         return {
           user_id: user?._id,
           username: user?.username,
           profileImage: user?.profileImage,
+          gender: user?.gender,
           comment_text: comment.comment,
           createdAt: comment.createdAt,
           updatedAt: comment.updatedAt,
@@ -109,12 +111,13 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
     const storyViewsWithUserInfo = await Promise.all(
       storyViews.map(async (storyView: any) => {
         const user = await User.findById(storyView.view_author_id).select(
-          "username profileImage"
+          "username profileImage gender"
         );
         return {
           user_id: user?._id,
           username: user?.username,
           profileImage: user?.profileImage,
+          gender: user?.gender,
           createdAt: storyView.createdAt,
           updatedAt: storyView.updatedAt,
         };
