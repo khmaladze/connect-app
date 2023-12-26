@@ -1,24 +1,14 @@
 import React, { useEffect, useState } from "react";
-import {
-  Avatar,
-  Grid,
-  List,
-  ListItem,
-  ListItemAvatar,
-  ListItemText,
-  Typography,
-} from "@mui/material";
+import { Grid } from "@mui/material";
 import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import {
-  apiRequest,
-  apiRequestType,
-  userProfileImage,
-} from "../../../../../api/user/Api";
+import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
 import MyModal from "../../../modal/MyModal";
+import LikesSection from "./LikesSection";
+import CommentsSection from "./CommentsSection";
 
-const PostStatistic = ({ postId, token, borderColor, gender }) => {
+const PostStatistic = ({ postId, token, borderColor }) => {
   const [likes, setLikes] = useState([]);
   const [comments, setComments] = useState([]);
   const [activeTab, setActiveTab] = useState("likes");
@@ -91,97 +81,10 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                 />
 
                 {/* Likes Section */}
-                <div>
-                  {activeTab === "likes" && likes.length > 0 && (
-                    <>
-                      <Typography
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        variant="subtitle1"
-                      >
-                        Likes
-                      </Typography>
-                      <Typography
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        variant="body2"
-                      >{`Total Likes: ${likes.length}`}</Typography>
-                      <List>
-                        {likes.map((like) => (
-                          <ListItem key={like.user_id}>
-                            <ListItemAvatar>
-                              <Avatar
-                                style={{
-                                  cursor: "pointer",
-                                }}
-                                src={userProfileImage(
-                                  like.gender,
-                                  like.profileImage
-                                )}
-                                alt={like.username}
-                              />
-                            </ListItemAvatar>
-                            <ListItemText
-                              style={{
-                                cursor: "pointer",
-                              }}
-                              primary={like.username}
-                            />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </>
-                  )}
-                </div>
+                <LikesSection activeTab={activeTab} likes={likes} />
 
                 {/* Comments Section */}
-                <div>
-                  {activeTab === "comments" && comments.length > 0 && (
-                    <>
-                      <Typography
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        variant="subtitle1"
-                      >
-                        Comments
-                      </Typography>
-                      <Typography
-                        style={{
-                          cursor: "pointer",
-                        }}
-                        variant="body2"
-                      >{`Total Comments: ${comments.length}`}</Typography>
-                      <List>
-                        {comments.map((comment) => (
-                          <ListItem key={comment.user_id}>
-                            <ListItemAvatar>
-                              <Avatar
-                                style={{
-                                  cursor: "pointer",
-                                }}
-                                src={userProfileImage(
-                                  comment.gender,
-                                  comment.profileImage
-                                )}
-                                alt={comment.username}
-                              />
-                            </ListItemAvatar>
-                            <ListItemText
-                              style={{
-                                cursor: "pointer",
-                              }}
-                              primary={comment.username}
-                              secondary={comment.comment_text}
-                            />
-                          </ListItem>
-                        ))}
-                      </List>
-                    </>
-                  )}
-                </div>
+                <CommentsSection activeTab={activeTab} comments={comments} />
               </div>
             </Grid>
           </Grid>
