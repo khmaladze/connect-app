@@ -25,10 +25,23 @@ export const ProfileImage = styled.div`
     props.isStory === "Favorite"
       ? "pointer"
       : "default"};
-  max-height: 250px;
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 750px) {
+    max-height: 200px;
+    max-width: 200px;
+  }
+
+  @media screen and (max-width: 500px) {
+    max-height: 250px;
+    max-width: 250px;
+  }
+`;
+
+export const InfoDetailsStyle = styled.div`
+  font-size: 20px;
 `;
