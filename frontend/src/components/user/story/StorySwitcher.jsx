@@ -125,8 +125,8 @@ const StorySwitcher = ({ data, token, gender }) => {
     border: "1px solid #ccc",
     borderRadius: "5px",
     width: "100%",
-    minWidth: "370px",
     textAlign: "center",
+    maxWidth: "330px",
   };
 
   return (
@@ -157,12 +157,14 @@ const StorySwitcher = ({ data, token, gender }) => {
                   height: "75px",
                   width: "100%",
                   padding: "10px",
+                  maxWidth: "330px",
                 }}
               >
                 <TextField
                   style={{
                     width: "70%",
                     height: "37px",
+                    maxWidth: "500px",
                   }}
                   fullWidth
                   value={commentText}
