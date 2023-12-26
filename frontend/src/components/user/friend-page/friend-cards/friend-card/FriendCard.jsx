@@ -1,17 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import {
-  apiRequest,
-  apiRequestType,
-  userProfileImage,
-} from "../../../../../api/user/Api";
-import { Button, CircularProgress, MenuItem, Select } from "@mui/material";
+import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
+import { CircularProgress } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
-import styled from "styled-components";
-import FriendListDropdown from "../../../FriendListDropdown";
+import FriendListComponent from "./FriendListComponent";
 
 const FriendCard = ({ token }) => {
   const [loading, setLoading] = useState(true);
@@ -43,139 +34,22 @@ const FriendCard = ({ token }) => {
     getFriendList();
   }, [token]);
 
-  const removeFriend = async (userId) => {
-    try {
-      const response = await apiRequest(
-        apiRequestType.put,
-        true,
-        API_URL.friend.put.friend_list_remove,
-        token,
-        { user_id: userId }
-      );
-      if (response?.success) {
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
-      }
-    } catch (error) {
-      console.error("Error removing friend:", error);
-    }
-  };
-
-  const updateFriendList = async (userId, previousStatus) => {
-    if (
-      status !== previousStatus &&
-      ["Friend", "CloseFriend", "Favorite"].includes(status)
-    ) {
-      try {
-        const response = await apiRequest(
-          apiRequestType.put,
-          true,
-          API_URL.friend.put.friend_list_update,
-          token,
-          { friendId: userId, newFriendListType: status }
-        );
-        if (response?.success) {
-          setTimeout(() => {
-            window.location.reload();
-          }, 500);
-        }
-      } catch (error) {
-        console.error("Error updating friend list:", error);
-      }
-    }
-  };
-
   return (
     <Fragment>
       {loading && <CircularProgress />}
       {!loading && friendList.length === 0 && <h4>no friends</h4>}
-      {friendList.map((item) => (
-        <div key={item.user._id} style={{ width: "300px", height: "490px" }}>
-          <CardBorder borderColor={item.request.friend_list}>
-            <Card>
-              <CardMedia
-                component="img"
-                alt="User Image"
-                height="200"
-                image={userProfileImage(
-                  item.user.gender,
-                  item.user.profileImage
-                )}
-              />
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {item.user.username}
-                </Typography>
-                {openUpdate && selectedUserId === item.user._id ? (
-                  <FriendListDropdown
-                    friendList={status}
-                    setFriendList={setStatus}
-                    showHeaderText={false}
-                  />
-                ) : (
-                  <Select
-                    disabled
-                    style={{ width: "100%", marginTop: "10px" }}
-                    labelId="dropdown-label"
-                    id="dropdown"
-                    value={item.request.friend_list}
-                  >
-                    <MenuItem value={item.request.friend_list}>
-                      {item.request.friend_list}
-                    </MenuItem>
-                  </Select>
-                )}
-                <Button
-                  style={{ width: "100%", marginTop: "15px" }}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  onClick={() => {
-                    setOpenUpdate(!openUpdate);
-                    setSelectedUserId(item.user._id);
-                    updateFriendList(item.user._id, item.request.friend_list);
-                  }}
-                >
-                  Update Friend
-                </Button>
-                <Button
-                  style={{
-                    width: "100%",
-                    marginTop: "15px",
-                    backgroundColor: "red",
-                  }}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  size="large"
-                  onClick={() => removeFriend(item.user._id)}
-                >
-                  Remove Friend
-                </Button>
-              </CardContent>
-            </Card>
-          </CardBorder>
-        </div>
-      ))}
+      <FriendListComponent
+        friendList={friendList}
+        token={token}
+        openUpdate={openUpdate}
+        selectedUserId={selectedUserId}
+        status={status}
+        setStatus={setStatus}
+        setOpenUpdate={setOpenUpdate}
+        setSelectedUserId={setSelectedUserId}
+      />
     </Fragment>
   );
 };
-
-const CardBorder = styled.div`
-  border: 2px solid
-    ${(props) =>
-      props.borderColor === "Friend"
-        ? "#0500ff"
-        : props.borderColor === "CloseFriend"
-        ? "#1eff1e"
-        : "#FF008A"};
-  background: white;
-  border-radius: 7px;
-  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
-`;
 
 export default FriendCard;
