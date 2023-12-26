@@ -117,7 +117,7 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                                   cursor: "pointer",
                                 }}
                                 src={userProfileImage(
-                                  gender,
+                                  like.gender,
                                   like.profileImage
                                 )}
                                 alt={like.username}
@@ -163,7 +163,7 @@ const PostStatistic = ({ postId, token, borderColor, gender }) => {
                                   cursor: "pointer",
                                 }}
                                 src={userProfileImage(
-                                  gender,
+                                  comment.gender,
                                   comment.profileImage
                                 )}
                                 alt={comment.username}
