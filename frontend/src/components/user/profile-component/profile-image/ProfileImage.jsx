@@ -5,15 +5,10 @@ import {
   userProfileImage,
 } from "../../../../api/user/Api";
 import { API_URL } from "../../../../config/config";
-import Button from "@mui/material/Button";
-import MyModal from "../../modal/MyModal";
 import "filepond/dist/filepond.min.css";
-import { Grid } from "@mui/material";
 import { ProfileImage } from "./ProfileImageStyle";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import ImageUploader from "../../../image-uploader/ImageUploader";
-import ButtonUpdateUserImage from "./ButtonUpdateUserImage";
-import StorySwitcher from "../../story/StorySwitcher";
+import UpdateProfileImageModal from "./UpdateProfileImageModal";
+import ViewStoryModal from "./ViewStoryModal";
 
 const ProfileImageComponent = ({ user }) => {
   const [image, setImage] = useState();
@@ -71,58 +66,13 @@ const ProfileImageComponent = ({ user }) => {
         isStory={isStory}
       >
         {isStory.length > 0 && (
-          <MyModal
-            customStyle={{
-              height: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-end",
-              width: "100%",
-              maxWidth: "500px",
-            }}
-            modalWidth="800px"
-            ButtonText={
-              <Button
-                variant="contained"
-                color="primary"
-                startIcon={
-                  <span className="material-symbols-outlined">preview</span>
-                }
-              >
-                View Story
-              </Button>
-            }
-            title="View Story"
-            body={
-              <Grid item xs={12}>
-                <StorySwitcher
-                  data={profileStory}
-                  token={user.token}
-                  gender={user.gender}
-                />
-              </Grid>
-            }
-          />
+          <ViewStoryModal user={user} profileStory={profileStory} />
         )}
-        <MyModal
-          customStyle={updateImageStyle}
-          modalWidth="500px"
-          ButtonText={
-            <Button
-              variant="contained"
-              color="primary"
-              startIcon={<AddPhotoAlternateIcon />}
-            >
-              Update Image
-            </Button>
-          }
-          title="Update Profile Image"
-          body={
-            <Grid item xs={12}>
-              <ImageUploader files={image} setFiles={setImage} />
-              <ButtonUpdateUserImage image={image} token={user.token} />
-            </Grid>
-          }
+        <UpdateProfileImageModal
+          image={image}
+          setImage={setImage}
+          user={user}
+          updateImageStyle={updateImageStyle}
         />
       </ProfileImage>
     </Fragment>
