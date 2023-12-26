@@ -19,6 +19,10 @@ export const NavbarMain = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 export const NavbarLogo = styled.div`
@@ -29,4 +33,8 @@ export const NavbarLogo = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    font-size: 25px;
+  }
 `;
