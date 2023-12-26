@@ -1,17 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { API_URL } from "../../../config/config";
 import { apiRequest, apiRequestType } from "../../../api/user/Api";
+import ActivityLogTable from "./ActivityLogTable";
 
 const ActicityLog = ({ user }) => {
   const [data, setData] = useState([]);
@@ -57,31 +49,7 @@ const ActicityLog = ({ user }) => {
           Activity log
         </Button>
       }
-      body={
-        <TableContainer component={Paper}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell>Status</TableCell>
-                <TableCell>Log In</TableCell>
-                <TableCell>Expires</TableCell>
-                <TableCell>Log Out</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data &&
-                data.map((row) => (
-                  <TableRow key={row._id}>
-                    <TableCell>{row.status}</TableCell>
-                    <TableCell>{row.createdAt}</TableCell>
-                    <TableCell>{row.expires}</TableCell>
-                    <TableCell>{row.updatedAt}</TableCell>
-                  </TableRow>
-                ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      }
+      body={<ActivityLogTable data={data} />}
     />
   );
 };
