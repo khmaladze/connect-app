@@ -19,7 +19,7 @@ export const ProfileDetails = styled.div`
   }
 
   @media screen and (max-width: 500px) {
-    width: 390px;
+    width: 360px;
     margin: 0 auto;
     display: flex;
     justify-content: center;

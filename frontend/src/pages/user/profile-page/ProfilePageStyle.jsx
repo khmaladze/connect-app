@@ -27,6 +27,7 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     flex-direction: column;
     height: 570px;
+    max-width: 360px;
   }
 
   @media screen and (max-width: 500px) {
@@ -36,5 +37,6 @@ export const ProfileInfoContainer = styled.div`
     align-items: center;
     flex-direction: column;
     height: 570px;
+    max-width: 360px;
   }
 `;

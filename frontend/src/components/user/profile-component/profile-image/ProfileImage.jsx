@@ -25,8 +25,6 @@ const ProfileImageComponent = ({ user }) => {
     justifyContent: "center",
     alignItems: "flex-end",
     marginTop: "5px",
-    width: "500px",
-    maxWidth: "500px",
   });
 
   useEffect(() => {
@@ -54,8 +52,6 @@ const ProfileImageComponent = ({ user }) => {
               justifyContent: "center",
               alignItems: "flex-end",
               marginTop: "5px",
-              width: "500px",
-              maxWidth: "500px",
             });
           }
         } else {
@@ -81,7 +77,7 @@ const ProfileImageComponent = ({ user }) => {
               display: "flex",
               justifyContent: "center",
               alignItems: "flex-end",
-              width: "500px",
+              width: "100%",
               maxWidth: "500px",
             }}
             modalWidth="800px"
