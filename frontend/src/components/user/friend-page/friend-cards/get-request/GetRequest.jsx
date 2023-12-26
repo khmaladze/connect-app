@@ -4,7 +4,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { CircularProgress, MenuItem, Select } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import {
   apiRequest,
   apiRequestType,
