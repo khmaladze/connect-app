@@ -21,6 +21,12 @@ export const ProfileInfoContainer = styled.div`
 
   @media screen and (max-width: 750px) {
     width: 97%;
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    height: 570px;
   }
 
   @media screen and (max-width: 500px) {
