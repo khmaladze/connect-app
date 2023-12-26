@@ -117,6 +117,7 @@ export const businessLogic = async (req: CustomRequest, res: Response) => {
         return {
           ...comment.toObject(),
           author_profileImage: user?.profileImage || "",
+          gender: user?.gender,
         };
       })
     );
