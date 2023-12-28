@@ -41,7 +41,18 @@ const UserProfile = ({ user }) => {
           <ProfilePostComponent user={user} data={data} />
         </ProfilePageMain>
       ) : (
-        <Loading />
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            minHeight: "300px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Loading />
+        </div>
       )}
     </Fragment>
   );
