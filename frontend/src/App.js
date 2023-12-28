@@ -13,6 +13,7 @@ import TopNavbar from "./components/user/navbar/TopNavbar";
 import SettingsPage from "./pages/user/settings-page/SettingsPage";
 import ChatPage from "./pages/user/chat-page/ChatPage";
 import MessagePage from "./pages/user/chat-page/MessagePage";
+import UserProfile from "./pages/user/userprofile/UserProfile";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -69,6 +70,11 @@ const Routing = () => {
               path="/chat/:friendId"
               exact
               element={<MessagePage user={user} />}
+            />
+            <Route
+              path="/userprofile/:profileId"
+              exact
+              element={<UserProfile user={user} />}
             />
             {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
