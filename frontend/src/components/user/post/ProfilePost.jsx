@@ -24,6 +24,7 @@ const ProfilePost = ({
   token,
   profilePosts,
   setProfilePosts,
+  postedUserId,
 }) => {
   const [commentsData, setCommentsData] = useState([]);
   const [isOpenCommentField, setIsOpenCommentField] = useState(false);
@@ -117,6 +118,7 @@ const ProfilePost = ({
         {/* Profile post header */}
         <PostHeaderComponent
           gender={gender}
+          postedUserId={postedUserId}
           profileImage={profileImage}
           firstname={firstname}
           lastname={lastname}
