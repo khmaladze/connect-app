@@ -7,12 +7,13 @@ const TopNavbar = ({ user, customSetIsAuth }) => {
     <Fragment>
       <Navbar updateSetIsAuth={customSetIsAuth} user={user} />
       <div className="navbar__bottom"></div>
-      {window.location.pathname !== "/profile" && (
-        <Fragment>
-          <PageNavigator />
-          <div className="navbar__bottom"></div>
-        </Fragment>
-      )}
+      {window.location.pathname !== "/profile" &&
+        window.location.pathname.startsWith("/userprofile") == false && (
+          <Fragment>
+            <PageNavigator />
+            <div className="navbar__bottom"></div>
+          </Fragment>
+        )}
     </Fragment>
   );
 };
