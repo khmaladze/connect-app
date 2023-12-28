@@ -3,6 +3,7 @@ import { Avatar } from "@mui/material";
 import { userProfileImage } from "../../../../api/user/Api";
 import { PostHeader, PostHeaderContainer, PostHeaderDiv } from "../PostStyle";
 import DeletePostComponent from "./DeletePostComponent";
+import { useNavigate } from "react-router-dom";
 
 const PostHeaderComponent = ({
   gender,
@@ -15,10 +16,16 @@ const PostHeaderComponent = ({
   token,
   profilePosts,
   setProfilePosts,
+  postedUserId,
 }) => {
+  const navigate = useNavigate();
   return (
     <PostHeader borderColor={list}>
-      <PostHeaderContainer>
+      <PostHeaderContainer
+        onClick={() => {
+          navigate("/userprofile/" + postedUserId);
+        }}
+      >
         <Avatar
           style={{ height: "55px", width: "55px", cursor: "pointer" }}
           alt="user"
