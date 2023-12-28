@@ -15,6 +15,15 @@ export const API_URL = {
       logout: `${USER_API + "/auth/logout"}`,
     },
   },
+  chat: {
+    get: {
+      get_user: `${USER_API + "/message/user"}`,
+      get_user_message: `${USER_API + "/message"}`,
+    },
+    post: {
+      send_message: `${USER_API + "/message"}`,
+    },
+  },
   profile: {
     get: {
       user_profile: `${USER_API + "/profile"}`,
