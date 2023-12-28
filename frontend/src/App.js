@@ -11,6 +11,8 @@ import MainPage from "./pages/user/main-page/MainPage";
 import FriendPage from "./pages/user/friend-page/FriendPage";
 import TopNavbar from "./components/user/navbar/TopNavbar";
 import SettingsPage from "./pages/user/settings-page/SettingsPage";
+import ChatPage from "./pages/user/chat-page/ChatPage";
+import MessagePage from "./pages/user/chat-page/MessagePage";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -62,6 +64,12 @@ const Routing = () => {
             />
             <Route path="/" exact element={<MainPage user={user} />} />
             <Route path="/friend" exact element={<FriendPage user={user} />} />
+            <Route path="/chat" exact element={<ChatPage user={user} />} />
+            <Route
+              path="/chat/:friendId"
+              exact
+              element={<MessagePage user={user} />}
+            />
             {/* <Route path="*" exact element={<NotFound />} /> */}
           </Fragment>
         ) : (
