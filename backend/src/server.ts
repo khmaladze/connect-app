@@ -9,6 +9,7 @@ import userSettingsRoutes from "./routes/settings/index";
 import userFriendsRoutes from "./routes/friend/index";
 import userPostsRoutes from "./routes/post/index";
 import userStorysRoutes from "./routes/story/index";
+import userMessageRoutes from "./routes/message/index";
 import { v2 as cloudinary } from "cloudinary";
 import swaggerSpec from "./swagger";
 import swaggerUi from "swagger-ui-express";
@@ -41,6 +42,7 @@ if (isValidEnv()) {
   app.use(`${configApiUser}/story`, userStorysRoutes);
   app.use(`${configApiUser}/friend`, userFriendsRoutes);
   app.use(`${configApiUser}/settings`, userSettingsRoutes);
+  app.use(`${configApiUser}/message`, userMessageRoutes);
 
   // Serve API documentation only in development environment
   if (config.node_env === "development") {
