@@ -96,4 +96,9 @@ export const API_URL = {
       friend_list_update: `${USER_API + "/friend/update-friend-list"}`,
     },
   },
+  userprofile: {
+    get: {
+      userprofile: `${USER_API + "/userprofile/"}`,
+    },
+  },
 };
