@@ -68,6 +68,7 @@ const MainPostComponent = ({ user }) => {
             firstname={item.user.firstname}
             lastname={item.user.lastname}
             createdAt={item.createdAt}
+            postedUserId={item.author}
             profileImage={item.user.profileImage}
             gender={item.user.gender}
             text={item.text || ""}

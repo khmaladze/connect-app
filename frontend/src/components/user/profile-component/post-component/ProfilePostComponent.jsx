@@ -4,7 +4,7 @@ import { API_URL } from "../../../../config/config";
 import Loading from "../../../loading/Loading";
 import ProfilePost from "../../post/ProfilePost";
 
-const ProfilePostComponent = ({ user }) => {
+const ProfilePostComponent = ({ user, data }) => {
   const [profilePosts, setProfilePosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -54,7 +54,11 @@ const ProfilePostComponent = ({ user }) => {
   }, [page, hasMore, loading, user.token]);
 
   useEffect(() => {
-    fetchProfilePost();
+    if (data && data[0].posts.length === 0) {
+      fetchProfilePost();
+    } else {
+      setLoading(false);
+    }
   }, [page, user.token]);
 
   return (
@@ -63,6 +67,7 @@ const ProfilePostComponent = ({ user }) => {
         <div key={`${item._id}_${index}`}>
           <ProfilePost
             postId={item._id}
+            postedUserId={item.author}
             firstname={user.firstname}
             lastname={user.lastname}
             createdAt={item.createdAt}
@@ -77,6 +82,26 @@ const ProfilePostComponent = ({ user }) => {
           />
         </div>
       ))}
+      {data &&
+        data[0].posts.map((item, index) => (
+          <div key={`${item._id}_${index}`}>
+            <ProfilePost
+              postId={item._id}
+              postedUserId={item.author}
+              firstname={data[0].user.firstname}
+              lastname={data[0].user.lastname}
+              createdAt={item.createdAt}
+              profileImage={data[0].user.profileImage}
+              gender={data[0].user.gender}
+              text={item.text || ""}
+              media={item.media.length > 0 ? item.media[0].url : ""}
+              list={item.list}
+              token={user.token}
+              profilePosts={profilePosts}
+              setProfilePosts={setProfilePosts}
+            />
+          </div>
+        ))}
       {loading && hasMore && <Loading />}
     </Fragment>
   );

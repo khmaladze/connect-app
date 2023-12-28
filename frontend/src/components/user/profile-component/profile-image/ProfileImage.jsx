@@ -10,7 +10,10 @@ import { ProfileImage } from "./ProfileImageStyle";
 import UpdateProfileImageModal from "./UpdateProfileImageModal";
 import ViewStoryModal from "./ViewStoryModal";
 
-const ProfileImageComponent = ({ user }) => {
+const ProfileImageComponent = ({ user, data }) => {
+  let userImage = data ? data[0].user.profileImage : user.profileImage;
+  let userGender = data ? data[0].user.gender : user.gender;
+
   const [image, setImage] = useState();
   const [profileStory, setProfileStory] = useState([]);
   const [isStory, setIsStory] = useState("");
@@ -56,24 +59,30 @@ const ProfileImageComponent = ({ user }) => {
         console.error("Error fetching profile story:", error);
       }
     };
-    fetchProfileStory();
+
+    if (data && data.length === 0) {
+      fetchProfileStory();
+    }
   }, [user.token]);
 
   return (
     <Fragment>
       <ProfileImage
-        image={userProfileImage(user.gender, user.profileImage)}
+        image={userProfileImage(userGender, userImage)}
         isStory={isStory}
       >
-        {isStory.length > 0 && (
-          <ViewStoryModal user={user} profileStory={profileStory} />
+        {window.location.pathname.startsWith("/userprofile") == false &&
+          isStory.length > 0 && (
+            <ViewStoryModal user={user} profileStory={profileStory} />
+          )}
+        {window.location.pathname.startsWith("/userprofile") == false && (
+          <UpdateProfileImageModal
+            image={image}
+            setImage={setImage}
+            user={user}
+            updateImageStyle={updateImageStyle}
+          />
         )}
-        <UpdateProfileImageModal
-          image={image}
-          setImage={setImage}
-          user={user}
-          updateImageStyle={updateImageStyle}
-        />
       </ProfileImage>
     </Fragment>
   );

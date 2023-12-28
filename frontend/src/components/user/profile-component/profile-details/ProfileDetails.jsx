@@ -11,7 +11,7 @@ import ProfileDetailsInfo from "./ProfileDetailsInfo";
 import UpdateInfo from "./UpdateInfo";
 import { InfoDetailsStyle } from "../profile-image/ProfileImageStyle";
 
-const ProfileDetailsComponent = ({ user }) => {
+const ProfileDetailsComponent = ({ user, data }) => {
   const [userProfileData, setUserProfileData] = useState("");
   const userProfileInfoData =
     JSON.parse(
@@ -59,7 +59,11 @@ const ProfileDetailsComponent = ({ user }) => {
       }
     };
     if (userProfileInfoData == null) {
-      fetchProfileInfoData();
+      if (data) {
+        setUserProfileData(data[0].userProfile);
+      } else {
+        fetchProfileInfoData();
+      }
     } else {
       setUserProfileData(userProfileInfoData);
       setselectLanguage(userProfileInfoData.languages[0]);
@@ -68,24 +72,30 @@ const ProfileDetailsComponent = ({ user }) => {
     }
   }, []);
 
+  let firstname = data ? data[0].user.firstname : user.firstname;
+  let lastname = data ? data[0].user.lastname : user.lastname;
+  let username = data ? data[0].user.username : user.username;
+
   return (
     <ProfileDetails>
       <InfoDetailsStyle>
         <ProfileDetailsInfo
-          userProfileData={userProfileData}
-          firstname={user.firstname}
-          lastname={user.lastname}
-          username={user.username}
+          userProfileData={data ? data[0].userProfile : userProfileData}
+          firstname={firstname}
+          lastname={lastname}
+          username={username}
         />
-        <UpdateInfo
-          selectEducation={selectEducation}
-          selectLanguage={selectLanguage}
-          selectPassion={selectPassion}
-          handleEducationChange={handleEducationChange}
-          handleLanguageChange={handleLanguageChange}
-          handlePassionChange={handlePassionChange}
-          token={user.token}
-        />
+        {window.location.pathname.startsWith("/userprofile") == false && (
+          <UpdateInfo
+            selectEducation={selectEducation}
+            selectLanguage={selectLanguage}
+            selectPassion={selectPassion}
+            handleEducationChange={handleEducationChange}
+            handleLanguageChange={handleLanguageChange}
+            handlePassionChange={handlePassionChange}
+            token={user.token}
+          />
+        )}
       </InfoDetailsStyle>
     </ProfileDetails>
   );
