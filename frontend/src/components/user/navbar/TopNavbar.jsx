@@ -11,7 +11,6 @@ const TopNavbar = ({ user, customSetIsAuth }) => {
         window.location.pathname.startsWith("/userprofile") == false && (
           <Fragment>
             <PageNavigator />
-            <div className="navbar__bottom"></div>
           </Fragment>
         )}
     </Fragment>
