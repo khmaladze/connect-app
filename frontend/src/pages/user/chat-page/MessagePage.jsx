@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,7 +19,6 @@ const MessagePage = ({ user }) => {
 
   const sendMessage = async () => {
     try {
-      // Add logic to send a message
       if (inputMessage.trim() !== "") {
         const response = await apiRequest(
           apiRequestType.post,
@@ -33,7 +32,6 @@ const MessagePage = ({ user }) => {
         );
         setMessages([...messages, { message: inputMessage, sender: user._id }]);
         setInputMessage("");
-        // Implement logic to handle sending messages to the other user
       }
     } catch (error) {
       console.log(error);
@@ -62,7 +60,7 @@ const MessagePage = ({ user }) => {
     };
 
     getFriendList();
-  }, [user.token]);
+  }, [user.token, friendId]);
 
   const getUserMessages = async () => {
     try {
@@ -73,7 +71,9 @@ const MessagePage = ({ user }) => {
         user.token
       );
       if (response?.success) setMessages(response.data);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error fetching user messages:", error);
+    }
   };
 
   useEffect(() => {
@@ -81,6 +81,18 @@ const MessagePage = ({ user }) => {
       getUserMessages();
     }
   }, [userData]);
+
+  const divRef = useRef();
+
+  useEffect(() => {
+    const scrollToBottom = () => {
+      if (divRef.current) {
+        divRef.current.scrollTop = divRef.current.scrollHeight;
+      }
+    };
+
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <div
@@ -108,7 +120,7 @@ const MessagePage = ({ user }) => {
       </div>
 
       {/* Messages */}
-      <div style={{ flex: 1, overflowY: "auto", height: "200px" }}>
+      <div style={{ flex: 1, overflowY: "auto", height: "200px" }} ref={divRef}>
         {messages.map((message, index) => (
           <div
             key={index}

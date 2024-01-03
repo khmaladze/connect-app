@@ -13,6 +13,10 @@ export const FriendMainPageSendRequestText = styled.div`
   height: 50px;
   width: 30%;
   margin: 0 auto;
+
+  @media screen and (max-width: 800px) {
+    width: 65%;
+  }
 `;
 
 export const FriendMainPageSendRequestSmallText = styled.div`
@@ -49,6 +53,10 @@ export const FriendPageHeaderText = styled.div`
   width: 30%;
   margin: 0 auto;
   margin-top: 50px;
+
+  @media screen and (max-width: 800px) {
+    width: 65%;
+  }
 `;
 
 export const FriendPageCardDiv = styled.div`
