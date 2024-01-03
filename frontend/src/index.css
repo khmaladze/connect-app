@@ -47,6 +47,12 @@ a {
   height: 90px;
 }
 
+@media screen and (max-width:500px) {
+  .navbar__bottom{
+    height: 125px;
+  }
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
