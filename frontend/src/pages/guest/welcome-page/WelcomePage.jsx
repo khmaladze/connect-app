@@ -16,12 +16,12 @@ const WelcomePage = () => {
             onInit={(typewriter) => {
               typewriter
                 .pasteString(
-                  "CREATE ACCOUNT, LOG IN, CREATE POST, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
+                  "CREATE ACCOUNT, LOG IN, CREATE POST, CREATE STORY, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
                 )
                 .pauseFor(5000)
                 .deleteAll()
                 .typeString(
-                  "CREATE ACCOUNT, LOG IN, CREATE POST, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
+                  "CREATE ACCOUNT, LOG IN, CREATE POST, CREATE STORY, LIKE & COMMENT, UPLOAD IMAGES VIDEOS, ADD FRIEND, MESSAGE TO YOUR FRIEND  "
                 )
                 .start();
             }}
