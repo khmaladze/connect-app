@@ -52,9 +52,11 @@ const GetSendRequest = ({ token }) => {
       );
 
       if (response?.success) {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        // Update local state instead of reloading the window
+        setFriendRequest((prevFriendRequests) =>
+          prevFriendRequests.filter((item) => item.request._id !== id)
+        );
+        window.location.reload();
       } else {
         console.error("Error removing friend request:", response?.error);
       }
@@ -63,10 +65,13 @@ const GetSendRequest = ({ token }) => {
     }
   };
 
+  const MemoizedCircularProgress = React.memo(CircularProgress);
+  const MemoizedH4 = React.memo(() => <h4>No requests</h4>);
+
   return (
     <>
-      {loading && <CircularProgress />}
-      {!loading && friendRequest.length === 0 && <h4>No requests</h4>}
+      {loading && <MemoizedCircularProgress />}
+      {!loading && friendRequest.length === 0 && <MemoizedH4 />}
       {friendRequest.length > 0 &&
         friendRequest.map((item) => (
           <div key={item.user._id} style={{ width: "300px", height: "350px" }}>
