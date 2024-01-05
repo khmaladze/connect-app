@@ -14,7 +14,11 @@ registerPlugin(
   FilePondPluginFileValidateType
 );
 
-const ImageVideoUploader = ({ files, setFiles }) => {
+const FileImageVideoUploader = ({
+  files,
+  setFiles,
+  acceptedFileTypes = ["image/*", "video/*"],
+}) => {
   return (
     <div style={{ cursor: "pointer" }}>
       <FilePond
@@ -24,7 +28,7 @@ const ImageVideoUploader = ({ files, setFiles }) => {
         onupdatefiles={setFiles}
         allowFileSizeValidation={true}
         maxFileSize={"5MB"}
-        acceptedFileTypes={["image/*", "video/*"]}
+        acceptedFileTypes={acceptedFileTypes}
         name="files"
         labelIdle='Drag & Drop your files or <span className="filepond--label-action">Browse</span>'
       />
@@ -32,4 +36,4 @@ const ImageVideoUploader = ({ files, setFiles }) => {
   );
 };
 
-export default ImageVideoUploader;
+export default FileImageVideoUploader;
