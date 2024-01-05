@@ -1,11 +1,14 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
 
-const RemoveFriendButton = ({ token, item }) => {
+const RemoveFriendButton = ({ token, item, onRemove }) => {
+  const [isRemoving, setIsRemoving] = useState(false);
+
   const removeFriend = async (userId) => {
     try {
+      setIsRemoving(true);
       const response = await apiRequest(
         apiRequestType.put,
         true,
@@ -14,12 +17,14 @@ const RemoveFriendButton = ({ token, item }) => {
         { user_id: userId }
       );
       if (response?.success) {
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        // Trigger the onRemove callback to update the state locally
+        onRemove(userId);
       }
     } catch (error) {
       console.error("Error removing friend:", error);
+    } finally {
+      window.location.reload();
+      setIsRemoving(false);
     }
   };
 
@@ -35,8 +40,9 @@ const RemoveFriendButton = ({ token, item }) => {
       fullWidth
       size="large"
       onClick={() => removeFriend(item.user._id)}
+      disabled={isRemoving}
     >
-      Remove Friend
+      {isRemoving ? "Removing..." : "Remove Friend"}
     </Button>
   );
 };
