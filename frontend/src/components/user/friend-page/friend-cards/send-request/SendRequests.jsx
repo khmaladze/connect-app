@@ -29,14 +29,15 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
       );
 
       if (response?.success) {
-        setTimeout(() => {
-          window.location.reload();
-        }, 3000);
+        setStatus("Friend");
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error sending friend request:", error);
     }
   };
+
+  const MemoizedFriendListDropdown = React.memo(FriendListDropdown);
 
   return (
     <Card style={{ width: "300px", height: "400px" }}>
@@ -50,7 +51,7 @@ const SendRequests = ({ id, gender, imageUrl, username, token }) => {
         <Typography variant="h6" component="div">
           {username}
         </Typography>
-        <FriendListDropdown
+        <MemoizedFriendListDropdown
           friendList={status}
           setFriendList={setStatus}
           showHeaderText={false}
