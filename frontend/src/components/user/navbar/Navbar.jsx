@@ -20,7 +20,7 @@ import {
 
 const settings = ["profile", "main", "chat", "friend", "logout"];
 
-const Navbar = ({ user, updateSetIsAuth }) => {
+const Navbar = React.memo(({ user, updateSetIsAuth }) => {
   const dispatch = useDispatch();
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -67,6 +67,7 @@ const Navbar = ({ user, updateSetIsAuth }) => {
                 style={{ height: "55px", width: "55px" }}
                 alt="user"
                 src={userProfileImage(user.gender, user.profileImage)}
+                loading="lazy"
               />
             </IconButton>
           </Tooltip>
@@ -107,6 +108,6 @@ const Navbar = ({ user, updateSetIsAuth }) => {
       </NavbarMain>
     </FixedNavbar>
   );
-};
+});
 
 export default Navbar;
