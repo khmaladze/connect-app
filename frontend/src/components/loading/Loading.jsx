@@ -1,21 +1,14 @@
 import { CircularProgress } from "@mui/material";
-import React from "react";
 import styled from "styled-components";
 
 const Loading = () => {
-  return (
-    <LoadingComponent>
-      <CircularProgress />
-    </LoadingComponent>
-  );
+  return <StyledCircularProgress />;
 };
 
-const LoadingComponent = styled.div`
+const StyledCircularProgress = styled(CircularProgress)`
   max-width: 1500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
+  margin: 15px auto;
+  display: block;
 `;
 
 export default Loading;
