@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Roboto&display=swap');
 
 *,
 *::before,
@@ -16,7 +15,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f7f7f7;
   font-weight: 400;
-  scroll-behavior: smooth;
+  scroll-behavior: smooth; 
+  font-display: swap;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -29,9 +29,9 @@ a {
 }
 
 .welcome__text {
-  background: linear-gradient(180deg, #1238fd, #3531ff);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(180deg, #1238fd, #3531ff) text;
+  -webkit-background-clip: text;
+  color: transparent;
   font-family: "Raleway", sans-serif;
   max-width: 50%;
   font-size: 25px;
@@ -61,15 +61,37 @@ a {
   width: 0px;
 }
 
-/* Track */
-::-webkit-scrollbar-track {
-  background: white; 
+/* Track and Thumb styles */
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+  background: white;
   height: 0px;
   width: 0px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: white; 
-  height: 0px;
-  width: 0px;
+/* main-story-component.css */
+
+.main-story-container {
+  width: 100%;
+  margin: 0 auto;
+  overflow-x: auto;
+  margin-bottom: 15px;
+}
+
+.story-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.story-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  height: 85px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
 }
