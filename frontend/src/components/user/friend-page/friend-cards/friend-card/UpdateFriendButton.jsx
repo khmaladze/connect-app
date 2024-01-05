@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
 import { API_URL } from "../../../../../config/config";
 
@@ -11,6 +11,8 @@ const UpdateFriendButton = ({
   status,
   token,
 }) => {
+  const [loading, setLoading] = useState(false);
+
   const updateFriendList = async (userId, previousStatus) => {
     if (
       status !== previousStatus &&
@@ -31,6 +33,9 @@ const UpdateFriendButton = ({
         }
       } catch (error) {
         console.error("Error updating friend list:", error);
+      } finally {
+        setLoading(false);
+        window.location.reload();
       }
     }
   };
@@ -42,13 +47,14 @@ const UpdateFriendButton = ({
       color="primary"
       fullWidth
       size="large"
+      disabled={loading}
       onClick={() => {
         setOpenUpdate(!openUpdate);
         setSelectedUserId(item.user._id);
         updateFriendList(item.user._id, item.request.friend_list);
       }}
     >
-      Update Friend
+      {loading ? "Updating..." : "Update Friend"}
     </Button>
   );
 };
