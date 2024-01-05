@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { apiRequest, apiRequestType } from "../../../../../api/user/Api";
 import { CircularProgress } from "@mui/material";
 import { API_URL } from "../../../../../config/config";
@@ -20,11 +20,13 @@ const FriendCard = ({ token }) => {
           API_URL.friend.get.friend_list,
           token
         );
+
         if (response?.success) {
           setFriendList(response.data);
         } else {
-          setFriendList(0);
+          setFriendList([]);
         }
+
         setLoading(false);
       } catch (error) {
         console.error("Error fetching friend list:", error);
@@ -34,21 +36,25 @@ const FriendCard = ({ token }) => {
     getFriendList();
   }, [token]);
 
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  if (friendList.length === 0) {
+    return <h4>No friends</h4>;
+  }
+
   return (
-    <Fragment>
-      {loading && <CircularProgress />}
-      {!loading && friendList.length === 0 && <h4>no friends</h4>}
-      <FriendListComponent
-        friendList={friendList}
-        token={token}
-        openUpdate={openUpdate}
-        selectedUserId={selectedUserId}
-        status={status}
-        setStatus={setStatus}
-        setOpenUpdate={setOpenUpdate}
-        setSelectedUserId={setSelectedUserId}
-      />
-    </Fragment>
+    <FriendListComponent
+      friendList={friendList}
+      token={token}
+      openUpdate={openUpdate}
+      selectedUserId={selectedUserId}
+      status={status}
+      setStatus={setStatus}
+      setOpenUpdate={setOpenUpdate}
+      setSelectedUserId={setSelectedUserId}
+    />
   );
 };
 
