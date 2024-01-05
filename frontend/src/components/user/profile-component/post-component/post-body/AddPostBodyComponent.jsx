@@ -4,7 +4,7 @@ import AddPostText from "./AddPostText";
 import { Grid } from "@mui/material";
 import FriendListDropdown from "../../../FriendListDropdown";
 import { friendListData } from "../../../../../api/user/Api";
-import ImageVideoUploader from "../../../../image-video-uploader/ImageVideoUploader";
+import FileImageVideoUploader from "../../../../image-video-uploader/ImageVideoUploader";
 
 const AddPostBodyComponent = ({
   friendList,
@@ -27,7 +27,7 @@ const AddPostBodyComponent = ({
       <AddPostImageBody>
         <Grid item xs={12}>
           <h4 style={{ cursor: "pointer" }}>Upload Image or Video</h4>
-          <ImageVideoUploader files={file} setFiles={setFile} />
+          <FileImageVideoUploader files={file} setFiles={setFile} />
         </Grid>
       </AddPostImageBody>
       <AddPostImageBody>
