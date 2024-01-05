@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
@@ -42,7 +43,7 @@ const GetRequest = ({ token }) => {
     };
 
     getFriendRequest();
-  }, []);
+  }, [token]);
 
   const sendFriendRequestResponse = async (
     id,
@@ -59,14 +60,20 @@ const GetRequest = ({ token }) => {
       );
 
       if (response?.success) {
+        // Update local state instead of reloading the window
+        setFriendRequest((prevRequests) =>
+          prevRequests.filter((request) => request.request._id !== id)
+        );
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 1500);
       }
     } catch (error) {
       console.error("Error responding to friend request:", error);
     }
   };
+
+  const MemoizedFriendListDropdown = React.memo(FriendListDropdown);
 
   return (
     <Fragment>
@@ -89,11 +96,13 @@ const GetRequest = ({ token }) => {
                 <Typography variant="h6" component="div">
                   {item.user.username}
                 </Typography>
-                <FriendListDropdown
+                <MemoizedFriendListDropdown
                   friendList={status}
                   setFriendList={setStatus}
                   showHeaderText={false}
                 />
+              </CardContent>
+              <CardActions>
                 <Button
                   style={{ width: "100%", marginTop: "15px" }}
                   variant="contained"
@@ -126,7 +135,7 @@ const GetRequest = ({ token }) => {
                 >
                   Reject
                 </Button>
-              </CardContent>
+              </CardActions>
             </Card>
           </div>
         ))}
