@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 import { apiRequest, apiRequestType } from "../../../api/user/Api";
 import { API_URL } from "../../../config/config";
 import Loading from "../../loading/Loading";
 import MainStoryDiv from "./MainStoryDiv";
 
 const MainStoryComponent = ({ user }) => {
-  const [story, setStory] = useState([]);
+  const [stories, setStories] = useState({});
   const [loading, setLoading] = useState(true);
 
-  const fetchProfilePost = async () => {
+  const fetchProfilePost = useCallback(async () => {
     try {
       const response = await apiRequest(
         apiRequestType.get,
@@ -17,71 +17,65 @@ const MainStoryComponent = ({ user }) => {
         user.token
       );
       if (response?.success) {
-        setStory(response.data);
+        const newStories = response.data.reduce((uniqueStories, storyItem) => {
+          if (!uniqueStories[storyItem._id]) {
+            uniqueStories[storyItem._id] = true;
+            return [...uniqueStories, storyItem];
+          }
+          return uniqueStories;
+        }, []);
+
+        setStories((prevStories) => ({
+          ...prevStories,
+          ...newStories.reduce((acc, storyItem) => {
+            acc[storyItem._id] = storyItem;
+            return acc;
+          }, {}),
+        }));
       }
     } catch (error) {
       console.error("Error fetching profile story:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, [user.token]);
 
-  const addStoryView = async (storyId) => {
-    await apiRequest(
-      apiRequestType.post,
-      false,
-      `${API_URL.story.post.add_view}`,
-      user.token,
-      { story_id: storyId }
-    );
-    setLoading(false);
-  };
+  const addStoryView = useCallback(
+    async (storyId) => {
+      await apiRequest(
+        apiRequestType.post,
+        false,
+        `${API_URL.story.post.add_view}`,
+        user.token,
+        { story_id: storyId }
+      );
+      setLoading(false);
+    },
+    [user.token]
+  );
 
   useEffect(() => {
     fetchProfilePost();
-  }, [user.token]);
+  }, [fetchProfilePost]);
+
+  const memoizedStories = useMemo(() => Object.values(stories), [stories]);
 
   return (
-    <div
-      style={{
-        width: "100",
-        margin: "0 auto",
-        overflowX: "auto",
-        marginBottom: "15px",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "700px",
-          margin: "0 auto",
-          overflowX: "auto",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "700px",
-            margin: "0 auto",
-            background: "white",
-            height: "85px",
-            borderRadius: "15px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            padding: "10px",
-          }}
-        >
-          {story &&
-            story.length > 0 &&
-            story.map((storyItem) => (
-              <div
-                onClick={() => addStoryView(storyItem._id)}
-                key={storyItem._id}
-              >
-                <MainStoryDiv data={storyItem} user={user} />
-              </div>
-            ))}
+    <div className="main-story-container">
+      <div className="story-wrapper">
+        <div className="story-container">
+          {memoizedStories.map((storyItem) => (
+            <div
+              onClick={() => addStoryView(storyItem._id)}
+              key={storyItem._id}
+            >
+              <MainStoryDiv data={storyItem} user={user} />
+            </div>
+          ))}
           {loading && <Loading />}
-          {!loading && story && story.length === 0 && <h4>NO STORY.</h4>}
+          {!loading && (!memoizedStories || memoizedStories.length === 0) && (
+            <h4>NO STORY.</h4>
+          )}
         </div>
       </div>
     </div>
