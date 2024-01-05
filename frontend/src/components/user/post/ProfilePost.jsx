@@ -7,9 +7,6 @@ import PostHeaderComponent from "./post-header/PostHeader";
 import ProfilePostBodyComponent from "./post-body/PostBody";
 import PostFooterComponent from "./post-footer/PostFooter";
 import PostCommentComponent from "./post-footer/comment/PostCommentComponent";
-// import PostHeaderComponent from "./post-header/PostHeader";
-// import ProfilePostBodyComponent from "./post-body/PostBody";
-// import PostFooterComponent from "./post-footer/PostFooter";
 
 const ProfilePost = ({
   postId,
