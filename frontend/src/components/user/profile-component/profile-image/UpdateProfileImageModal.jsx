@@ -1,9 +1,9 @@
 import React from "react";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-import ImageUploader from "../../../image-uploader/ImageUploader";
 import ButtonUpdateUserImage from "./ButtonUpdateUserImage";
 import MyModal from "../../modal/MyModal";
 import { Button, Grid } from "@mui/material";
+import FileImageVideoUploader from "../../../image-video-uploader/ImageVideoUploader";
 
 const UpdateProfileImageModal = ({
   image,
@@ -27,7 +27,11 @@ const UpdateProfileImageModal = ({
       title="Update Profile Image"
       body={
         <Grid item xs={12}>
-          <ImageUploader files={image} setFiles={setImage} />
+          <FileImageVideoUploader
+            files={image}
+            setFiles={setImage}
+            acceptedFileTypes={["image/*"]}
+          />
           <ButtonUpdateUserImage image={image} token={user.token} />
         </Grid>
       }
