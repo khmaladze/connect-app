@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import MyModal from "../modal/MyModal";
 import StorySwitcher from "../story/StorySwitcher";
 import { userProfileImage } from "../../../api/user/Api";
@@ -24,7 +24,6 @@ const MainStoryDiv = ({ data, user }) => {
         }`,
         marginRight: "15px",
       }}
-      key={data._id}
     >
       <MyModal
         title="View Story"
@@ -52,4 +51,4 @@ const MainStoryDiv = ({ data, user }) => {
   );
 };
 
-export default MainStoryDiv;
+export default memo(MainStoryDiv);
