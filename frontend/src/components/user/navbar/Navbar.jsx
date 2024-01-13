@@ -18,7 +18,7 @@ import {
   userProfileImage,
 } from "../../../api/user/Api";
 
-const settings = ["profile", "main", "chat", "friend", "logout"];
+const settings = ["profile", "main", "chat", "friend", "settings", "logout"];
 
 const Navbar = React.memo(({ user, updateSetIsAuth }) => {
   const dispatch = useDispatch();
