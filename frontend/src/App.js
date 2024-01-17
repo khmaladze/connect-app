@@ -14,6 +14,7 @@ import SettingsPage from "./pages/user/settings-page/SettingsPage";
 import ChatPage from "./pages/user/chat-page/ChatPage";
 import MessagePage from "./pages/user/chat-page/MessagePage";
 import UserProfile from "./pages/user/userprofile/UserProfile";
+import WelcomePageNavbar from "./components/user/navbar/WelcomePageNavbar";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -48,7 +49,14 @@ const Routing = () => {
   return (
     <Fragment>
       <ToastContainer />
-      {isAuth && <TopNavbar user={user} customSetIsAuth={setIsAuth} />}
+      {isAuth ? (
+        <TopNavbar user={user} customSetIsAuth={setIsAuth} />
+      ) : (
+        <Fragment>
+          {/* Display the welcome page navbar */}
+          <WelcomePageNavbar />
+        </Fragment>
+      )}
       <Routes>
         {isAuth ? (
           <Fragment>

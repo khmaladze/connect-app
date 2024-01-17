@@ -15,7 +15,6 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { toast } from "react-toastify";
 import { API_URL } from "../../../../config/config";
-import WelcomePageNavbar from "../../../../components/user/navbar/WelcomePageNavbar";
 import { apiRequest, apiRequestType } from "../../../../api/user/Api";
 
 const RegisterPage = () => {
@@ -74,7 +73,6 @@ const RegisterPage = () => {
 
   return (
     <RegisterPageMain>
-      <WelcomePageNavbar />
       <RegisterPageFormContainer>
         <RegisterPageForm>
           <Typography mb={2} component="h1" variant="h1">

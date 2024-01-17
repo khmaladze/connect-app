@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import { useDispatch } from "react-redux";
 import { userLogin } from "../../../../store/isLogIn";
 import { toast } from "react-toastify";
-import WelcomePageNavbar from "../../../../components/user/navbar/WelcomePageNavbar";
 import {
   apiRequest,
   apiRequestType,
@@ -88,8 +87,6 @@ const LoginPage = ({ updateSetIsAuth }) => {
 
   return (
     <LoginPageMain>
-      {/* Display the welcome page navbar */}
-      <WelcomePageNavbar />
       <LoginPageFormContainer>
         <LoginPageForm>
           {/* Login form header */}

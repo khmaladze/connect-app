@@ -3,13 +3,11 @@ import Typewriter from "typewriter-effect";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import WelcomePageNavbar from "../../../components/user/navbar/WelcomePageNavbar";
 import { WelcomePageMain, WelcomePageMovingText } from "./WelcomePageStyle";
 
 const WelcomePage = () => {
   return (
     <WelcomePageMain>
-      <WelcomePageNavbar />
       <WelcomePageMovingText>
         <div className="welcome__text">
           <Typewriter
