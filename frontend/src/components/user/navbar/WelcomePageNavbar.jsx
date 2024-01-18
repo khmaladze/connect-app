@@ -14,8 +14,12 @@ const WelcomePageNavbar = () => {
         <WelcomePageLogo>CONNECT</WelcomePageLogo>
       </Link>
       <WelcomePageNavbarButtons>
-        <WelcomePageNavbarButton>ABOUT</WelcomePageNavbarButton>
-        <WelcomePageNavbarButton>INSTRUCTIONS</WelcomePageNavbarButton>
+        <Link to={"/about"}>
+          <WelcomePageNavbarButton>ABOUT</WelcomePageNavbarButton>
+        </Link>
+        <Link to={"/instructions"}>
+          <WelcomePageNavbarButton>INSTRUCTIONS</WelcomePageNavbarButton>
+        </Link>
       </WelcomePageNavbarButtons>
     </WelcomePageNavbarMain>
   );
