@@ -4,6 +4,8 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { WelcomePageMain, WelcomePageMovingText } from "./WelcomePageStyle";
+import { StyledDisclaimer } from "../about/About";
+import { Typography } from "@mui/material";
 
 const WelcomePage = () => {
   return (
@@ -69,6 +71,22 @@ const WelcomePage = () => {
             REGISTER
           </Button>
         </Link>
+      </Stack>
+      <Stack
+        spacing={2}
+        direction={{ xs: "column", sm: "column", md: "row" }}
+        alignItems="center"
+        style={{
+          marginTop: "30px",
+        }}
+      >
+        <StyledDisclaimer>
+          <Typography variant="body1" paragraph>
+            This is a portfolio project intended for demonstration purposes
+            only. It is not meant for real-world use but rather to showcase my
+            skills to potential recruiters and employers.
+          </Typography>
+        </StyledDisclaimer>
       </Stack>
     </WelcomePageMain>
   );
