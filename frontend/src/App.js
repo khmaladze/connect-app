@@ -15,6 +15,10 @@ import ChatPage from "./pages/user/chat-page/ChatPage";
 import MessagePage from "./pages/user/chat-page/MessagePage";
 import UserProfile from "./pages/user/userprofile/UserProfile";
 import WelcomePageNavbar from "./components/user/navbar/WelcomePageNavbar";
+import About, { StyledDisclaimer } from "./pages/guest/about/About";
+import Instructions from "./pages/guest/instructions/Instructions";
+import MyModal from "./components/user/modal/MyModal";
+import { Typography } from "@mui/material";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -38,11 +42,14 @@ const Routing = () => {
       navigate(window.location.pathname);
     } else {
       const path = window.location.pathname;
-      const isLoginPageOrRegisterPage =
-        path === "/login" || path === "/register";
+      const isAllowedPath =
+        path === "/login" ||
+        path === "/register" ||
+        path === "/about" ||
+        path == "/instructions";
 
       // Use ternary operator for navigation
-      navigate(isLoginPageOrRegisterPage ? path : "/");
+      navigate(isAllowedPath ? path : "/");
     }
   }, [isAuth]);
 
@@ -56,6 +63,21 @@ const Routing = () => {
           {/* Display the welcome page navbar */}
           <WelcomePageNavbar />
         </Fragment>
+      )}
+      {!isAuth && (
+        <MyModal
+          title="Notification"
+          description={
+            <StyledDisclaimer>
+              <Typography variant="body1" paragraph>
+                This is a portfolio project intended for demonstration purposes
+                only. It is not meant for real-world use but rather to showcase
+                my skills to potential recruiters and employers.
+              </Typography>
+            </StyledDisclaimer>
+          }
+          openValue={true}
+        />
       )}
       <Routes>
         {isAuth ? (
@@ -89,6 +111,8 @@ const Routing = () => {
         ) : (
           <Fragment>
             <Route path="/" exact element={<WelcomePage />} />
+            <Route path="/about" exact element={<About />} />
+            <Route path="/instructions" exact element={<Instructions />} />
             <Route
               path="/login"
               exact

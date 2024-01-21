@@ -13,6 +13,8 @@
   "author": "Giorgi khmaladze",
   "license": "ISC",
   "dependencies": {
+    "@mui/styles": "^5.15.5",
+    "@mui/system": "^5.15.5",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cloudinary": "^1.40.0",

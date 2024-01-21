@@ -10,8 +10,9 @@ const MyModal = ({
   body,
   customStyle,
   modalWidth = "1000px",
+  openValue = false,
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(openValue);
 
   const handleOpen = () => {
     setOpen(true);
