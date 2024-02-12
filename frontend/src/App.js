@@ -15,10 +15,9 @@ import ChatPage from "./pages/user/chat-page/ChatPage";
 import MessagePage from "./pages/user/chat-page/MessagePage";
 import UserProfile from "./pages/user/userprofile/UserProfile";
 import WelcomePageNavbar from "./components/user/navbar/WelcomePageNavbar";
-import About, { StyledDisclaimer } from "./pages/guest/about/About";
+import About from "./pages/guest/about/About";
 import Instructions from "./pages/guest/instructions/Instructions";
-import MyModal from "./components/user/modal/MyModal";
-import { Typography } from "@mui/material";
+import WelcomeNotification from "./components/welcome-page/WelcomeNotification";
 // import MainPage from "./pages/main-page/MainPage";
 // import SettingsPage from "./pages/settings-page/SettingsPage";
 // import NotFound from "./pages/not-found/NotFound";
@@ -64,21 +63,7 @@ const Routing = () => {
           <WelcomePageNavbar />
         </Fragment>
       )}
-      {!isAuth && (
-        <MyModal
-          title="Notification"
-          description={
-            <StyledDisclaimer>
-              <Typography variant="body1" paragraph>
-                This is a portfolio project intended for demonstration purposes
-                only. It is not meant for real-world use but rather to showcase
-                my skills to potential recruiters and employers.
-              </Typography>
-            </StyledDisclaimer>
-          }
-          openValue={true}
-        />
-      )}
+      {!isAuth && <WelcomeNotification />}
       <Routes>
         {isAuth ? (
           <Fragment>
