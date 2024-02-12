@@ -10,6 +10,13 @@ import {
 } from "@mui/material";
 import React from "react";
 
+const BoldBlackText = styled(Typography)`
+  && {
+    font-weight: bold;
+    color: #000000;
+  }
+`;
+
 const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 800,
   margin: "auto",
@@ -90,7 +97,7 @@ const About = () => {
           <Typography variant="body1" paragraph>
             Easily compose posts and stories to share your experiences,
             thoughts, and moments with your friends. Customize your content with
-            images, text, emojis, and even videos to make it uniquely yours.
+            images, text, and even videos to make it uniquely yours.
           </Typography>
         </StyledContent>
 
@@ -99,19 +106,19 @@ const About = () => {
         </StyledSubtitle>
 
         <StyledList>
-          <StyledListItem>
+          <StyledListItem style={{ borderLeft: "5px solid rgb(255, 0, 138)" }}>
             <StyledListItemText
               primary="Pink Border:"
               secondary="Mark your posts and stories with a pink border to signify that it's a favorite. Highlight those special moments that hold a special place in your heart."
             />
           </StyledListItem>
-          <StyledListItem>
+          <StyledListItem style={{ borderLeft: "5px solid rgb(30, 255, 30)" }}>
             <StyledListItemText
               primary="Green Border:"
               secondary="Designate posts and stories with a green border for your close friends. Share more intimate moments with the people who matter most to you."
             />
           </StyledListItem>
-          <StyledListItem>
+          <StyledListItem style={{ borderLeft: "5px solid rgb(5, 0, 255)" }}>
             <StyledListItemText
               primary="Blue Border:"
               secondary="Indicate posts and stories with a blue border to share with your broader circle of friends. Keep everyone in the loop about your day-to-day adventures."
@@ -131,9 +138,9 @@ const About = () => {
           </Typography>
 
           <Typography variant="body1" paragraph>
-            Personal Engagement: Users can only see their own likes and comments
-            on a post. This maintains a personalized experience, keeping
-            interactions relevant and meaningful.
+            Personal Engagement: Users can only view their own likes and
+            comments on both posts and stories. This maintains a personalized
+            experience, keeping interactions relevant and meaningful.
           </Typography>
         </StyledContent>
 
@@ -161,15 +168,25 @@ const About = () => {
 
         <StyledContent>
           <Typography variant="body1" paragraph>
-            Author's Perspective: For stories, authors can see the number of
-            views, allowing them to gauge the reach and impact of their shared
-            moments.
+            Author's Perspective: In stories, authors have access to view the
+            number of views and the specific users who have seen it, enabling
+            them to accurately gauge the reach and impact of their shared
+            moments."
           </Typography>
         </StyledContent>
 
         <StyledSubtitle variant="h6" gutterBottom>
           Text Messages:
         </StyledSubtitle>
+
+        <StyledContent>
+          <BoldBlackText>
+            Please note that the content provided here is for portfolio purposes
+            only and should not be used for real communication or messaging.
+            It's solely intended to showcase skills and abilities to potential
+            recruiters and employers. Thank you for understanding
+          </BoldBlackText>
+        </StyledContent>
 
         <StyledContent>
           <Typography variant="body1" paragraph>
