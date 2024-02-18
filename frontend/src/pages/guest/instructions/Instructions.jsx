@@ -5,6 +5,7 @@ import welcomePageImage from "../../../images/welcome-page.png";
 import Register from "./Register";
 import LoginInstructions from "./Login";
 import Profile from "./Profile";
+import ProfilePosts from "./ProfilePosts";
 
 const Instructions = () => {
   return (
@@ -33,13 +34,7 @@ const Instructions = () => {
 
       {/* Description */}
       <Typography variant="body1" align="justify" gutterBottom>
-        Welcome to our Portfolio Application! Here, you have the power to share
-        your captivating posts and engaging stories with friends. The journey
-        begins with a simple process — create an account, log in seamlessly,
-        connect with friends, and unleash your creativity by crafting posts and
-        stories that resonate. Enhance your experience further by staying
-        connected through direct messaging with your friends. Join us in making
-        your digital presence vibrant and memorable!
+        Welcome to our Portfolio Application!
       </Typography>
 
       {/* Add more descriptions as needed */}
@@ -49,6 +44,8 @@ const Instructions = () => {
       <LoginInstructions />
 
       <Profile />
+
+      <ProfilePosts />
     </Container>
   );
 };
