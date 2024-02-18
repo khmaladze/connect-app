@@ -83,6 +83,15 @@ const About = () => {
           PLEASE NOTE: THIS PROJECT IS CURRENTLY UNDER DEVELOPMENT AND
           UNDERGOING CONTINUOUS IMPROVEMENT.
         </StyledDisclaimer>
+
+        <StyledContent>
+          <Typography variant="h6" paragraph>
+            This application was created using Node.js, Express.js, TypeScript,
+            and MongoDB for the backend, while the frontend was developed with
+            React.js and Redux
+          </Typography>
+        </StyledContent>
+
         <StyledTypography variant="h5" gutterBottom>
           Welcome to our Dynamic Web Application!
         </StyledTypography>
