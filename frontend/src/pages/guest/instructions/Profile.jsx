@@ -28,17 +28,11 @@ const Profile = () => {
           Languages: Share the languages you speak or are learning. Degree:
           Highlight your educational background by adding your degree
           information. Passion: Express your passions and interests to connect
-          with like-minded individuals. Connection Status: Friends: Individuals
-          in your network will have a blue border around their profile pictures.
-          Close Friends: Special connections will be distinguished with a green
-          border. Favorites: Your favorite contacts will stand out with a pink
-          border. Create and Share: At the bottom of the page, you'll find a
-          creative space to share your thoughts and experiences. Here, you can:
-          Create Posts: Share your updates, thoughts, and moments with your
-          network. Share Stories: Craft engaging stories using images, videos,
-          and text to captivate your audience. Feel free to utilize the platform
-          to express yourself, connect with friends, and make your profile
-          uniquely yours!
+          with like-minded individuals. Here, you can: Create Posts: Share your
+          updates, thoughts, and moments with your network. Share Stories: Craft
+          engaging stories using images, videos, and text to captivate your
+          audience. Feel free to utilize the platform to express yourself,
+          connect with friends, and make your profile uniquely yours!
         </Typography>
       </Paper>
     </Fragment>
