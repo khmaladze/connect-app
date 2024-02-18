@@ -23,7 +23,8 @@ const PostHeaderComponent = ({
     <PostHeader borderColor={list}>
       <PostHeaderContainer
         onClick={() => {
-          navigate("/userprofile/" + postedUserId);
+          if (window.location.pathname !== "/profile")
+            navigate("/userprofile/" + postedUserId);
         }}
       >
         <Avatar
