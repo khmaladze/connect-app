@@ -79,6 +79,10 @@ const About = () => {
             skills to potential recruiters and employers.
           </Typography>
         </StyledDisclaimer>
+        <StyledDisclaimer>
+          PLEASE NOTE: THIS PROJECT IS CURRENTLY UNDER DEVELOPMENT AND
+          UNDERGOING CONTINUOUS IMPROVEMENT.
+        </StyledDisclaimer>
         <StyledTypography variant="h5" gutterBottom>
           Welcome to our Dynamic Web Application!
         </StyledTypography>
