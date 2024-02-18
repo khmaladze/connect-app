@@ -64,44 +64,51 @@ const ProfilePostComponent = ({ user, data }) => {
   return (
     <Fragment>
       {data
-        ? data[0].posts.map((item, index) => (
-            <div key={`${item._id}_${index}`}>
-              <ProfilePost
-                postId={item._id}
-                postedUserId={item.author}
-                firstname={data[0].user.firstname}
-                lastname={data[0].user.lastname}
-                createdAt={item.createdAt}
-                profileImage={data[0].user.profileImage}
-                gender={data[0].user.gender}
-                text={item.text || ""}
-                media={item.media.length > 0 ? item.media[0].url : ""}
-                list={item.list}
-                token={user.token}
-                profilePosts={profilePosts}
-                setProfilePosts={setProfilePosts}
-              />
-            </div>
-          ))
-        : profilePosts.map((item, index) => (
-            <div key={`${item._id}_${index}`}>
-              <ProfilePost
-                postId={item._id}
-                postedUserId={item.author}
-                firstname={user.firstname}
-                lastname={user.lastname}
-                createdAt={item.createdAt}
-                profileImage={user.profileImage}
-                gender={user.gender}
-                text={item.text || ""}
-                media={item.media.length > 0 ? item.media[0].url : ""}
-                list={item.list}
-                token={user.token}
-                profilePosts={profilePosts}
-                setProfilePosts={setProfilePosts}
-              />
-            </div>
-          ))}
+        ? data[0].posts.map((item, index) => {
+            const { firstname, lastname, profileImage, gender } = data[0].user;
+            return (
+              <div key={`${item._id}_${index}`}>
+                <ProfilePost
+                  postId={item._id}
+                  postedUserId={item.author}
+                  firstname={firstname}
+                  lastname={lastname}
+                  createdAt={item.createdAt}
+                  profileImage={profileImage}
+                  gender={gender}
+                  text={item.text || ""}
+                  media={item.media.length > 0 ? item.media[0].url : ""}
+                  list={item.list}
+                  token={user.token}
+                  profilePosts={profilePosts}
+                  setProfilePosts={setProfilePosts}
+                />
+              </div>
+            );
+          })
+        : profilePosts.map((item, index) => {
+            const { firstname, lastname, profileImage, gender } = user;
+            return (
+              <div key={`${item._id}_${index}`}>
+                <ProfilePost
+                  postId={item._id}
+                  postedUserId={item.author}
+                  firstname={firstname}
+                  lastname={lastname}
+                  createdAt={item.createdAt}
+                  profileImage={profileImage}
+                  gender={gender}
+                  text={item.text || ""}
+                  media={item.media.length > 0 ? item.media[0].url : ""}
+                  list={item.list}
+                  token={user.token}
+                  profilePosts={profilePosts}
+                  setProfilePosts={setProfilePosts}
+                />
+              </div>
+            );
+          })}
+
       {loading && hasMore && <Loading />}
     </Fragment>
   );
