@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Card,
   CardContent,
@@ -8,7 +9,6 @@ import {
   styled,
   useTheme,
 } from "@mui/material";
-import React from "react";
 
 const BoldBlackText = styled(Typography)`
   && {
@@ -21,7 +21,6 @@ const StyledCard = styled(Card)(({ theme }) => ({
   maxWidth: 800,
   margin: "auto",
   marginTop: theme.spacing(4),
-  //   border: `2px solid ${theme.palette.primary.main}`,
   border: `2px solid #0063fd`,
   borderRadius: theme.spacing(2),
   boxShadow: theme.shadows[3],
@@ -31,7 +30,6 @@ const StyledTypography = styled(Typography)(({ theme }) => ({
   fontSize: 24,
   fontWeight: "bold",
   marginBottom: theme.spacing(2),
-  //   color: theme.palette.primary.dark,
   color: "#0063fd",
 }));
 
@@ -39,7 +37,6 @@ const StyledSubtitle = styled(Typography)(({ theme }) => ({
   fontSize: 18,
   fontWeight: "bold",
   marginBottom: theme.spacing(1),
-  //   color: theme.palette.primary.dark,
   color: "#0063fd",
 }));
 
@@ -89,6 +86,15 @@ const About = () => {
             This application was created using Node.js, Express.js, TypeScript,
             and MongoDB for the backend, while the frontend was developed with
             React.js and Redux
+          </Typography>
+        </StyledContent>
+
+        <StyledContent>
+          <Typography variant="h6" paragraph>
+            for images we use{" "}
+            <a target="_blank" href="https://unsplash.com" rel="noreferrer">
+              https://unsplash.com
+            </a>
           </Typography>
         </StyledContent>
 
@@ -184,7 +190,7 @@ const About = () => {
             Author's Perspective: In stories, authors have access to view the
             number of views and the specific users who have seen it, enabling
             them to accurately gauge the reach and impact of their shared
-            moments."
+            moments.
           </Typography>
         </StyledContent>
 
@@ -197,7 +203,7 @@ const About = () => {
             Please note that the content provided here is for portfolio purposes
             only and should not be used for real communication or messaging.
             It's solely intended to showcase skills and abilities to potential
-            recruiters and employers. Thank you for understanding
+            recruiters and employers. Thank you for understanding.
           </BoldBlackText>
         </StyledContent>
 
@@ -222,4 +228,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default React.memo(About);
