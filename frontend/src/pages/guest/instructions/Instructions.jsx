@@ -29,6 +29,7 @@ const Instructions = () => {
           src={welcomePageImage}
           alt="Instructions"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          loading="lazy" // Lazy loading the image
         />
       </Paper>
 
@@ -39,13 +40,13 @@ const Instructions = () => {
 
       {/* Add more descriptions as needed */}
 
-      <Register />
-
-      <LoginInstructions />
-
-      <Profile />
-
-      <ProfilePosts />
+      {/* Memoized Components */}
+      <React.Suspense fallback={<div>Loading...</div>}>
+        <Register />
+        <LoginInstructions />
+        <Profile />
+        <ProfilePosts />
+      </React.Suspense>
     </Container>
   );
 };
