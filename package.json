@@ -8,7 +8,8 @@
     "dev": "ts-node-dev backend/src/server.ts",
     "prettier": "npx prettier --write .",
     "build": "tsc",
-    "test": "jest"
+    "test": "jest",
+    "deploy": "npm install && npm run build && cd frontend && npm install && npm run build"
   },
   "author": "Giorgi khmaladze",
   "license": "ISC",
