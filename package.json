@@ -4,7 +4,7 @@
   "description": "connect app. best app. A Node.js/Express.js TypeScript application",
   "main": "dist/server.js",
   "scripts": {
-    "start": "nodemon dist/backend/src/server.js",
+    "start": "node dist/backend/src/server.js",
     "dev": "ts-node-dev backend/src/server.ts",
     "prettier": "npx prettier --write .",
     "build": "tsc",
@@ -28,9 +28,6 @@
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.4.4",
     "multer": "^1.4.5-lts.1",
-    "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0",
-    "ts-node": "^10.9.1",
     "winston": "^3.10.0"
   },
   "devDependencies": {
