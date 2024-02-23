@@ -2,7 +2,8 @@
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "rootDir": ".",
+    "rootDir": ".",    
+    "types": ["node", "express"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
