@@ -22,7 +22,6 @@ import path from "path";
 
 // Check if environment variables are provided
 if (isValidEnv()) {
-  console.log("start");
   // Connect to the database
   connectDB();
 
