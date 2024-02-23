@@ -9,7 +9,7 @@
     "prettier": "npx prettier --write .",
     "build": "tsc",
     "test": "jest",
-    "deploy": "npm install && cd frontend && npm install && npm run build"
+    "deploy": "npm install && npm run build && cd frontend && npm install && npm run build"
   },
   "author": "Giorgi khmaladze",
   "license": "ISC",
