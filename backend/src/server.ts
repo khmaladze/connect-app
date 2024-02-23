@@ -77,7 +77,7 @@ if (isValidEnv()) {
     app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
   }
 
-  if (process.env.NODE_ENV === "production") {
+
     app.use(express.static(path.join(__dirname, "../../../frontend/build")));
 
     app.get("*", (req, res) =>
@@ -85,7 +85,7 @@ if (isValidEnv()) {
         path.resolve(__dirname, "../../../frontend/build", "index.html")
       )
     );
-  }
+  
 
   // Start the server
   app.listen(config.port, () => {
