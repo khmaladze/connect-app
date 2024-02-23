@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "rootDir": ".",    
+    "module": "commonjs",
+    "moduleResolution": "node",
     "types": ["node"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -11,7 +10,6 @@
     "allowJs": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "outDir": "dist",
     "declaration": true,
     "skipLibCheck": true,
     "baseUrl": "./",
@@ -22,7 +20,9 @@
       "@middlewares/*": ["./backend/middleware/*"],
       "@functions/*": ["./backend/functions/*"],
       "@uploads/*": ["./backend/uploads/*"],
-      "@validate/*": ["./backend/validate/*"]
+      "@validate/*": ["./backend/validate/*"],
+      "jsonwebtoken": ["./jsonwebtoken.d.ts"], // Added path for jsonwebtoken.d.ts
+      "bcryptjs": ["./bcryptjs.d.ts"] // Added path for bcryptjs.d.ts
     }
   },
   "include": ["backend/**/*.ts"],
