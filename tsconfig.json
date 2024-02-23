@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": ".",    
     "types": ["node", "express"],
     "esModuleInterop": true,
@@ -9,7 +10,7 @@
     "strict": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "outDir": "./dist",
+    "outDir": "dist",
     "declaration": true,
     "skipLibCheck": true,
     "baseUrl": "./",
