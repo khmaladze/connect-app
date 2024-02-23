@@ -8,6 +8,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "allowJs": true,
     "strictNullChecks": true,
     "sourceMap": true,
     "outDir": "dist",
