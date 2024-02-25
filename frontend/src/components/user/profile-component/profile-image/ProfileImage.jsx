@@ -59,10 +59,7 @@ const ProfileImageComponent = ({ user, data }) => {
         console.error("Error fetching profile story:", error);
       }
     };
-
-    if (data && data.length === 0) {
-      fetchProfileStory();
-    }
+    fetchProfileStory();
   }, [user.token]);
 
   return (
